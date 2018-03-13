@@ -39,7 +39,7 @@ public class Company {
         this.identity = identity;
     }
 
-    public Long getEnterpriseId() {
+    public Long getCompanyId() {
         return companyId;
     }
     public String getUserName() {

@@ -1,9 +1,15 @@
 package com.galigaigai.jobbridge.controller;
 
 import com.galigaigai.jobbridge.model.*;
+import com.galigaigai.jobbridge.repository.*;
+import com.galigaigai.jobbridge.service.RecruitService;
+import com.galigaigai.jobbridge.service.RecruitTagService;
+import com.galigaigai.jobbridge.service.ResumeSendService;
+import com.galigaigai.jobbridge.service.TagService;
 import com.galigaigai.jobbridge.util.ParseStringUtil;
-import com.galigaigai.jobbridge.util.SendInfo;
+import com.galigaigai.jobbridge.util.SendInfoUtil;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +26,30 @@ import java.util.Map;
 
 /**
  * Created by HanrAx on 2018/3/13 0013.
+ * 公司部分的controller
  */
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
+
+    @Autowired
+    private RecruitRepository recruitRepository;
+    @Autowired
+    private RecruitService recruitService;
+    @Autowired
+    private TagRepository tagRepository;
+    @Autowired
+    private TagService tagService;
+    @Autowired
+    private RecruitTagService recruitTagService;
+    @Autowired
+    private RecruitTagRepository recruitTagRepository;
+    @Autowired
+    private ResumeSendRepository resumeSendRepository;
+    @Autowired
+    private ResumeSendService resumeSendService;
+    @Autowired
+    private ResumeRepository resumeRepository;
 
 
     /**
@@ -39,19 +65,6 @@ public class CompanyController {
         return "companyInfo";
     }
 
-    /**
-     * 公司企业退出操作
-     */
-    @GetMapping(value = "/sign_out")
-    public String doCompanyExit(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        Object loginUser = request.getSession().getAttribute("loginUser");
-        if (loginUser == null || !(loginUser instanceof Company)) {
-            response.sendRedirect("/");
-        }
-        request.getSession().removeAttribute("loginUser");
-        return "index";
-    }
 
     /**
      * 请求公司编辑与发布
@@ -71,7 +84,7 @@ public class CompanyController {
      * 请求公司已发布的招聘信息页面
      */
     @GetMapping(value = "/recruit")
-    public String showRecruitInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String showrecruit(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
@@ -84,7 +97,7 @@ public class CompanyController {
      * 公司删除已发布的招聘信息操作
      */
     @DeleteMapping(value = "/recruit")
-    public void companyDeleteRecruitInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void companyDeleterecruit(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
@@ -92,23 +105,23 @@ public class CompanyController {
             return;
         }
         Company company = (Company) loginUser;
-        String recruitInfoId = request.getParameter("id");
-        RecruitInfo recruitInfo = recruitInfoRepository.findByRecruitInfoId(Long.parseLong(recruitInfoId));
+        String recruitId = request.getParameter("id");
+        Recruit recruit = recruitRepository.findByRecruitId(Long.parseLong(recruitId));
         String result;
-        if (!company.getCompanyId().equals(recruitInfo.getCompanyId())) {
+        if (!company.getCompanyId().equals(recruit.getCompanyId())) {
             result = "{\"ok\":\"false\",\"reason\":\"非法删除其他公司招聘信息\"}";
         } else {
-            recruitInfoService.updateHaveDeleteById(Long.parseLong(recruitInfoId));
+            recruitService.updateHaveDeleteById(Long.parseLong(recruitId));
             result = "{\"ok\":\"true\"}";
         }
-        SendInfo.render(result, "text/json", response);
+        SendInfoUtil.render(result, "text/json", response);
     }
 
     /**
      * 公司发布或修改招聘信息操作
      */
     @PostMapping(value = "/recruit")
-    public void companyModifyRecruitInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void companyModifyrecruit(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
@@ -117,7 +130,7 @@ public class CompanyController {
         }
         System.out.println("已经进入公司发布或修改招聘信息");
         Company company = (Company) loginUser;
-        String recruitInfoId = request.getParameter("id");
+        String recruitId = request.getParameter("id");
         String jobName = request.getParameter("jobName");
         String location = request.getParameter("location");
         String lowSalary = request.getParameter("lowSalary");
@@ -126,18 +139,18 @@ public class CompanyController {
         String jobDescribe = request.getParameter("jobDescribe");
         String jobRequire = request.getParameter("jobRequire");
         String tagName = request.getParameter("industry");
-        System.out.println("id:" + recruitInfoId);
+        System.out.println("id:" + recruitId);
         Timestamp dateTime = new Timestamp(System.currentTimeMillis());
         String[] tags = ParseStringUtil.parseString(tagName);
 //        1.如果是新发布招聘信息
-        if (recruitInfoId == null || recruitInfoId.equals("")) {
+        if (recruitId == null || recruitId.equals("")) {
             System.out.println("发布新招聘信息");
 //            1.1 添加招聘信息
-            RecruitInfo recruitInfo = new RecruitInfo(Long.parseLong("0"), enterprise.getEnterpriseId(), jobName, jobDescribe, jobRequire, location,
+            Recruit recruit = new Recruit(Long.parseLong("0"), company.getCompanyId(), jobName, jobDescribe, jobRequire, location,
                     Integer.parseInt(lowSalary), Integer.parseInt(highSalary), dateTime, deadline, false);
-            recruitInfoService.addRecruitInfo(recruitInfo);
-            RecruitInfo justRecruitInfo = recruitInfoRepository.findLastRecruitInfoByEnterpriseId(enterprise.getEnterpriseId());
-            if (justRecruitInfo == null) {
+            recruitService.addRecruit(recruit);
+            Recruit justRecruit = recruitRepository.findLastRecruitByCompanyId(company.getCompanyId());
+            if (justRecruit == null) {
                 System.out.println("内部错误");
                 return;
             }
@@ -155,27 +168,27 @@ public class CompanyController {
                     return;
                 }
 //                1.2.3 再将tag添加到招聘信息所属标签表中
-                RecruitInfoTag recruitInfoTag = new RecruitInfoTag(justRecruitInfo.getRecruitInfoId(), justTag.getTagId());
-                recruitInfoTagService.addRecruitInfoTag(recruitInfoTag);
+                RecruitTag recruitTag = new RecruitTag(justRecruit.getRecruitId(), justTag.getTagId());
+                recruitTagService.addRecruitTag(recruitTag);
             }
             String result = "{\"ok\":\"true\"}";
-            SendInfo.render(result, "text/json", response);
+            SendInfoUtil.render(result, "text/json", response);
 //            2.如果是修改招聘信息
         } else {
             String result = null;
-            RecruitInfo recruitInfo = recruitInfoRepository.findByRecruitInfoId(Long.parseLong(recruitInfoId));
-            if (recruitInfo == null) {
+            Recruit recruit = recruitRepository.findByRecruitId(Long.parseLong(recruitId));
+            if (recruit == null) {
                 result = "{\"ok\":\"false\",\"reason\":\"你要修改的招聘信息不存在\"}";
-                SendInfo.render(result, "text/json", response);
+                SendInfoUtil.render(result, "text/json", response);
                 return;
-            } else if (recruitInfo.getHaveDelete()) {
+            } else if (recruit.getHaveDelete()) {
                 result = "{\"ok\":\"false\",\"reason\":\"你要修改的招聘信息已经被删除\"}";
-                SendInfo.render(result, "text/json", response);
+                SendInfoUtil.render(result, "text/json", response);
                 return;
             }
 //            2.1 修改招聘信息内容
             Map<String, Object> map = new HashMap<>();
-            map.put("recruitInfoId", Long.parseLong(recruitInfoId));
+            map.put("recruitId", Long.parseLong(recruitId));
             map.put("jobName", jobName);
             map.put("jobDescribe", jobDescribe);
             map.put("jobRequire", jobRequire);
@@ -183,9 +196,9 @@ public class CompanyController {
             map.put("lowSalary", Integer.parseInt(lowSalary));
             map.put("highSalary", Integer.parseInt(highSalary));
             map.put("deadline", deadline);
-            recruitInfoService.updateRecruitInfoById(map);
+            recruitService.updateRecruitById(map);
 //            2.2 删除原来的所有tag所属
-            recruitInfoTagService.deleteRecruitInfoTagByRecruitInfoId(Long.parseLong(recruitInfoId));
+            recruitTagService.deleteRecruitTagByRecruitId(Long.parseLong(recruitId));
 //            2.3 对每个tag,添加新的tag所属
             for (int i = 0; i < tags.length; i++) {
 //                2.2.1 找到这个标签
@@ -200,11 +213,11 @@ public class CompanyController {
                     return;
                 }
 //                2.2.2 再将tag添加到招聘信息所属标签表中
-                RecruitInfoTag recruitInfoTag = new RecruitInfoTag(Long.parseLong(recruitInfoId), justTag.getTagId());
-                recruitInfoTagService.addRecruitInfoTag(recruitInfoTag);
+                RecruitTag recruitTag = new RecruitTag(Long.parseLong(recruitId), justTag.getTagId());
+                recruitTagService.addRecruitTag(recruitTag);
             }
             result = "{\"ok\":\"true\"}";
-            SendInfo.render(result, "text/json", response);
+            SendInfoUtil.render(result, "text/json", response);
         }
     }
 
@@ -212,49 +225,49 @@ public class CompanyController {
      * 请求公司已发布的招聘信息详细
      */
     @GetMapping(value = "/recruit_info")
-    public void showCompanyRecruitInfoDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void showCompanyrecruitDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
             return;
         }
-        String recruitInfoId = request.getParameter("id");
-        if (recruitInfoId == null) {
+        String recruitId = request.getParameter("id");
+        if (recruitId == null) {
             return;
         }
 //        定义数据结构
         JSONObject json = new JSONObject();
 //        根据招聘信息号查询招聘信息
-        RecruitInfo recruitInfo = recruitInfoRepository.findByRecruitInfoId(Long.parseLong(recruitInfoId));
-        if (recruitInfo == null) {
-            SendInfo.render(json.toString(), "text/json", response);
+        Recruit recruit = recruitRepository.findByRecruitId(Long.parseLong(recruitId));
+        if (recruit == null) {
+            SendInfoUtil.render(json.toString(), "text/json", response);
             return;
         }
 //        将招聘信息号、职位名称和发布时间添加进入json中
-        json.put("jobName", recruitInfo.getJobName());
-        json.put("location", recruitInfo.getLocation());
-        json.put("lowSalary", recruitInfo.getLowSalary());
-        json.put("highSalary", recruitInfo.getHighSalary());
-        json.put("deadline", recruitInfo.getDeadline());
-        json.put("jobDescribe", recruitInfo.getJobDescribe());
-        json.put("jobRequire", recruitInfo.getJobRequire());
+        json.put("jobName", recruit.getJobName());
+        json.put("location", recruit.getLocation());
+        json.put("lowSalary", recruit.getLowSalary());
+        json.put("highSalary", recruit.getHighSalary());
+        json.put("deadline", recruit.getDeadline());
+        json.put("jobDescribe", recruit.getJobDescribe());
+        json.put("jobRequire", recruit.getJobRequire());
 //        查询招聘信息对应的标签
-        List<RecruitInfoTag> recruitInfoTagList = recruitInfoTagRepository.findByRecruitInfoId(Long.parseLong(recruitInfoId));
-        if (recruitInfoTagList == null || recruitInfoTagList.isEmpty() || (recruitInfoTagList.size() == 1 && recruitInfoTagList.get(0) == null)) {
+        List<RecruitTag> recruitTagList = recruitTagRepository.findByRecruitId(Long.parseLong(recruitId));
+        if (recruitTagList == null || recruitTagList.isEmpty() || (recruitTagList.size() == 1 && recruitTagList.get(0) == null)) {
             json.put("industry", "[]");
         } else {
-            String[] industry = new String[recruitInfoTagList.size()];
+            String[] industry = new String[recruitTagList.size()];
 //            对于每一个标签号，查询对应的标签名
-            for (int i = 0; i < recruitInfoTagList.size(); i++) {
-                Tag tag = tagRepository.findByTagId(recruitInfoTagList.get(i).getTagId());
+            for (int i = 0; i < recruitTagList.size(); i++) {
+                Tag tag = tagRepository.findByTagId(recruitTagList.get(i).getTagId());
                 if (tag != null) {
                     industry[i] = tag.getName();
                 }
             }
             json.put("industry", industry);
         }
-        SendInfo.render(json.toString(), "text/json", response);
+        SendInfoUtil.render(json.toString(), "text/json", response);
     }
 
     /**
@@ -267,7 +280,7 @@ public class CompanyController {
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
         }
-        return "commessage";
+        return "companyMessage";
     }
 
 //    /**
@@ -293,7 +306,7 @@ public class CompanyController {
 //        if (deliverList == null || deliverList.isEmpty() ||
 //                (deliverList.size() == 1 && deliverList.get(0) == null)) {
 //            json.put("data", dataJsonArray);
-//            //SendInfo.render(json.toString(),"text/json",response);
+//            //SendInfoUtil.render(json.toString(),"text/json",response);
 //        } else {
 //            for (Deliver tempDeliver : deliverList) {
 //                if (tempDeliver.getHaveDelete()) {
@@ -305,9 +318,9 @@ public class CompanyController {
 //                    //deliverytime
 //                    dataJson.put("deliverytime", tempDeliver.getDateTime());
 //                    //jobtitle
-//                    RecruitInfo recruitInfo = recruitInfoRepository
-//                            .findByRecruitInfoId(tempDeliver.getRecruitInfoId());
-//                    dataJson.put("jobtitle", recruitInfo.getJobName());
+//                    recruit recruit = recruitRepository
+//                            .findByrecruitId(tempDeliver.getrecruitId());
+//                    dataJson.put("jobtitle", recruit.getJobName());
 //                    //username
 //                    Resume resume = resumeRepository
 //                            .findByResumeId(tempDeliver.getResumeId());
@@ -328,7 +341,7 @@ public class CompanyController {
 //            json.put("data", dataJsonArray);
 //        }
 //        System.out.println(json);
-//        SendInfo.render(json.toString(), "text/json", response);
+//        SendInfoUtil.render(json.toString(), "text/json", response);
 //    }
 
     /**
@@ -343,16 +356,16 @@ public class CompanyController {
             return;
         }
         Company company = (Company)loginUser;
-        String deliveryId = request.getParameter("id");
-        ResumeSend resumeSend = deliverRepository.findByDeliverId(Long.parseLong(resumeSendId));
+        String resumeSendId = request.getParameter("id");
+        ResumeSend resumeSend = resumeSendRepository.findByResumeSendId(Long.parseLong(resumeSendId));
         String result;
         if (!company.getCompanyId().equals(resumeSend.getCompanyId())) {
             result = "{\"ok\":\"false\",\"reason\":\"非法删除其他公司收到的信息\"}";
         } else {
-            deliverService.updateHaveDeleteByDeliverId(Long.parseLong(deliveryId));
+            resumeSendService.updateHaveDeleteByResumeSendId(Long.parseLong(resumeSendId));
             result = "{\"ok\":\"true\"}";
         }
-        SendInfo.render(result, "text/json", response);
+        SendInfoUtil.render(result, "text/json", response);
     }
 
     /**
@@ -373,12 +386,12 @@ public class CompanyController {
             System.out.println("resumeSendStr is null");
         }
         Long resumeSendId = Long.parseLong(resumeSendStr);
-        ResumeSend resumeSend = deliverRepository.findByDeliverId(resumeSendId);
+        ResumeSend resumeSend = resumeSendRepository.findByResumeSendId(resumeSendId);
         System.out.println(resumeSend);
         Long resumeId = resumeSend.getResumeId();
 //        查找简历
         Resume resume = resumeRepository.findByResumeId(resumeId);
-        SendInfo.render(resume.getResumeContent(), "text/json", response);
+        SendInfoUtil.render(resume.getResumeContent(), "text/json", response);
 
     }
 }

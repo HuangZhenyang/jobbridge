@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Arrays;
 
-public class Crypto {
+public class CryptoUtil {
 
     private static final String HEX_NUMS_STR ="0123456789ABCDEF";
     private static final Integer SALT_LENGTH = 64;
