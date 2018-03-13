@@ -27,7 +27,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/student")
-public class StudentPage {
+public class StudentController {
 
 //    数据库操作依赖注入
     @Autowired
@@ -217,7 +217,7 @@ public class StudentPage {
             starTagService.addStarTag(starTag);
         }
         String result = "{\"ok\":\"true\"}";
-        SendInfo.render(result,"text/json",response);
+        SendInfoUtil.render(result,"text/json",response);
     }
 
     /**
@@ -242,7 +242,7 @@ public class StudentPage {
 //        如果学生没写简历，则返回空数据
         if(resume.getResumeContent() == null || resume.getResumeContent().equals("")){
             json.put("resumeSenddata",resumeSendDataJson);
-            SendInfo.render(json.toString(),"text/json",response);
+            SendInfoUtil.render(json.toString(),"text/json",response);
             return;
         }
 //        2.根据简历号查询该学生的所有投递记录的公司号和招聘信息号
@@ -250,7 +250,7 @@ public class StudentPage {
 //        如果学生没投递简历到任意公司，则返回空数据
         if(deliverList == null || deliverList.isEmpty()){
             json.put("resumeSenddata",resumeSendDataJson);
-            SendInfo.render(json.toString(),"text/json",response);
+            SendInfoUtil.render(json.toString(),"text/json",response);
             return;
         }
 //        3.对每个投递记录，查找公司名（即查找公司），职位名称、描述（即招聘信息），然后传回前端
@@ -262,7 +262,7 @@ public class StudentPage {
             if(company == null || recruit == null){
                 System.out.println("内部查询出错：没找到投递记录所对应的公司或招聘信息");
                 json.put("resumeSenddata",resumeSendDataJson);
-                SendInfo.render(json.toString(),"text/json",response);
+                SendInfoUtil.render(json.toString(),"text/json",response);
                 return;
             }
 //            3.3 添加到json数组中
@@ -277,7 +277,7 @@ public class StudentPage {
         }
 //        4.将json数组添加到json对象里面,然后发回前端
         json.put("resumeSenddata",resumeSendDataJson);
-        SendInfo.render(json.toString(),"text/json",response);
+        SendInfoUtil.render(json.toString(),"text/json",response);
     }
 
     /**
@@ -297,7 +297,7 @@ public class StudentPage {
         StarCompany starCompany = new StarCompany(Long.parseLong(companyId),student.getStudentId());
         starCompanyService.addStarCompany(starCompany);
         String result = "{\"ok\":\"true\"}";
-        SendInfo.render(result,"text/json",response);
+        SendInfoUtil.render(result,"text/json",response);
     }
 
     /**
@@ -328,7 +328,7 @@ public class StudentPage {
         if(starCompanyList == null || starCompanyList.isEmpty() ||
                 (starCompanyList.size() == 1 && starCompanyList.get(0) == null)){
             json.put("company",companyJsonArray);
-            //SendInfo.render(json.toString(),"text/json",response);
+            //SendInfoUtil.render(json.toString(),"text/json",response);
             //return;
 
         }else{
@@ -360,7 +360,7 @@ public class StudentPage {
             }
             json.put("job",tagJsonArray);
         }
-        SendInfo.render(json.toString(),"text/json",response);
+        SendInfoUtil.render(json.toString(),"text/json",response);
     }
 
     /**
@@ -405,7 +405,7 @@ public class StudentPage {
             json.put("study",studyJson);
             json.put("jobintention",jobIntentionJson);
         }
-        SendInfo.render(json.toString(),"text/json",response);
+        SendInfoUtil.render(json.toString(),"text/json",response);
     }
 
     /**
@@ -465,7 +465,7 @@ public class StudentPage {
             json.put("jobid",recruitId);
 
             System.out.println(json);
-            SendInfo.render(json.toString(),"text/json",response);
+            SendInfoUtil.render(json.toString(),"text/json",response);
 
         }
     }
@@ -493,7 +493,7 @@ public class StudentPage {
         };
         starCompanyService.deleteById(map);
         json.put("ok","true");
-        SendInfo.render(json.toString(),"text/json",response);
+        SendInfoUtil.render(json.toString(),"text/json",response);
     }
 
     /**
@@ -514,25 +514,25 @@ public class StudentPage {
 //        判断传输正误
         if(recruitId == null || recruitId.equals("")){
             result = "{\"ok\":\"false\",\"reason\":\"传到后台的招聘信息号为空\"}";
-            SendInfo.render(result,"text/json",response);
+            SendInfoUtil.render(result,"text/json",response);
             return;
         }
 //        检查该学生是否已经验证邮箱
         StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
         if(studentDetail == null){
             result = "{\"ok\":\"false\",\"reason\":\"你还没有验证学生身份\"}";
-            SendInfo.render(result,"text/json",response);
+            SendInfoUtil.render(result,"text/json",response);
             return;
         }else if(!studentDetail.getAuthentication()){
             result = "{\"ok\":\"false\",\"reason\":\"你还没有验证学生身份\"}";
-            SendInfo.render(result,"text/json",response);
+            SendInfoUtil.render(result,"text/json",response);
             return;
     }
 //        查询简历表，判断是否已经填写简历
         Resume resume = resumeRepository.findByStudentId(student.getStudentId());
         if(resume.getResumeContent() == null || resume.getResumeContent().equals("")){
             result = "{\"ok\":\"false\",\"reason\":\"你还没有填写简历\"}";
-            SendInfo.render(result,"text/json",response);
+            SendInfoUtil.render(result,"text/json",response);
             return;
         }
 //        查询发布招聘信息的公司
@@ -540,14 +540,14 @@ public class StudentPage {
         if(recruit == null){
             System.out.println("内部错误:查询招聘信息出错");
             result = "{\"ok\":\"false\",\"reason\":\"我们的数据出了点差错\"}";
-            SendInfo.render(result,"text/json",response);
+            SendInfoUtil.render(result,"text/json",response);
             return;
         }
         Company company = companyRepository.findByCompanyId(recruit.getCompanyId());
         if(company == null){
             System.out.println("内部错误:查询公司出错");
             result = "{\"ok\":\"false\",\"reason\":\"我们的数据出了点差错\"}";
-            SendInfo.render(result,"text/json",response);
+            SendInfoUtil.render(result,"text/json",response);
             return;
         }
         System.out.println("recruitid:" + recruitId);
@@ -556,7 +556,7 @@ public class StudentPage {
                 Long.parseLong(recruitId),dateTime,false,false);
         resumeSendService.addResumeSend(deliver);
         result = "{\"ok\":\"true\"}";
-        SendInfo.render(result,"text/json",response);
+        SendInfoUtil.render(result,"text/json",response);
     }
 
     /**
@@ -590,7 +590,7 @@ public class StudentPage {
             }
 
         }
-        SendInfo.render(SendStatusJson.toString(),"text/json",response);
+        SendInfoUtil.render(SendStatusJson.toString(),"text/json",response);
     }
 
     /**
@@ -609,11 +609,11 @@ public class StudentPage {
         if (studentDetail.getAuthentication()) {
             System.out.println("已验证成功");
             result = "{\"authentication\":\"true\"}";
-            SendInfo.render(result, "text/json", response);
+            SendInfoUtil.render(result, "text/json", response);
             return;
         }
         result = "{\"authentication\":\"false\"}";
-        SendInfo.render(result, "text/json", response);
+        SendInfoUtil.render(result, "text/json", response);
     }
 
     /**
@@ -631,7 +631,7 @@ public class StudentPage {
 //        将学生验证标志改为已验证
         studentDetailService.updateStudentDetailAuthenticationByStudentId(student.getStudentId());
         String result = "Congratulations! You have validated your account successfully.";
-        SendInfo.render(result,"text",response);
+        SendInfoUtil.render(result,"text",response);
     }
 
     /**
@@ -664,6 +664,6 @@ public class StudentPage {
         //String resumeid = request.getParameter("resumeid");
         Student student = (Student) loginUser;
         Resume resume = resumeRepository.findByStudentId(student.getStudentId());
-        SendInfo.render(resume.getResumeContent(),"text/json",response);
+        SendInfoUtil.render(resume.getResumeContent(),"text/json",response);
     }
 }
