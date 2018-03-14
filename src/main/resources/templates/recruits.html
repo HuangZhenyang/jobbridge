@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title class="next-head">JobBridge</title>
+    <link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}">
+    <link rel="stylesheet" href="../static/css/common/antd.min.css" class="next-head" th:href="@{/css/common/antd.min.css}">
+    <link rel="stylesheet" href="../static/css/common/font-awesome.min.css" th:href="@{/css/common/font-awesome.min.css}">
+    <script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
+    <style id="__jsx-style-212616605">
+        .job-list {
+            margin: 10px -10px;
+        }
+
+        .job-list a:hover,
+        .job-list a:active,
+        .job-list a:focus {
+            text-decoration: none;
+        }
+
+        .job-list .media {
+            background-color: #fff;
+            position: relative;
+            padding: 20px;
+            margin: 10px;
+            height: 215px;
+            overflow: hidden;
+            border: 1px solid #d9d9d9;
+            box-shadow: 0 0 3px rgba(62, 132, 224, 0.2);
+            border-radius: 10px;
+        }
+
+        .job-list .media .ant-card-body {
+            padding: 0;
+        }
+
+        .job-list .media dd .ant-tag {
+            float: right;
+        }
+    </style>
+    <style id="__jsx-style-706690241">
+        .menu .ant-menu-item {
+            padding: 0 40px;
+        }
+    </style>
+    <style id="__jsx-style-833282411">
+        .filter .tag .ant-tag {
+            font-size: 14px;
+        }
+
+        .filter {
+            padding: 10px 20px;
+            margin-top: 15px;
+            border: 1px solid #d9d9d9;
+            background-color: #fff;
+            line-height: 32px;
+        }
+
+        .tag {
+
+        }
+
+        .tag .label,
+        .tag .option {
+            float: left;
+        }
+
+        .tag .label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .tag .option {
+
+        }
+
+        .block-level {
+            display: block;
+            height: 50px;
+        }
+    </style>
+    <style id="__jsx-style-1030024603">
+        .search .ant-input {
+            padding: 5px;
+            height: auto;
+        }
+    </style>
+    <style id="__jsx-style-1302706802">.badge[data-jsx="1302706802"] {
+        background-color: #F7412D;
+        color: #fff;
+        position: absolute;
+        padding: 1px 5px 3px;
+        line-height: 12px;
+        font-size: 12px;
+        border-radius: 20px;
+        top: 6px;
+        right: 12px;
+    }</style>
+    <style id="__jsx-style-1608611644">
+        .job-banner .ant-carousel .slick-dots {
+            margin-bottom: 20px;
+        }
+
+        .job-banner .ant-carousel .slick-dots li.slick-active button {
+            background: #3E84E0;
+        }
+
+        .job-banner .ant-carousel .slick-dots li button {
+            background: #767676;
+            height: 12px;
+        }
+
+        .job-banner .ant-carousel .slick-slide img {
+            width: 100%;
+        }
+    </style>
+    <style id="__jsx-style-1656881670">.job[data-jsx="1656881670"] {
+        background-color: #F9F9F9;
+    }</style>
+    <style id="__jsx-style-1706695892">.pagination[data-jsx="1706695892"] {
+        margin-top: 15px;
+    }</style>
+    <style id="__jsx-style-1727466106">.box[data-jsx="1727466106"] {
+        position: relative;
+        z-index: 10;
+        background-color: #fff;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.075);
+    }
+
+    .logo[data-jsx="1727466106"] {
+        margin-right: 10px;
+    }
+
+    .logo[data-jsx="1727466106"] .icon[data-jsx="1727466106"] {
+        width: 30px;
+        height: auto;
+    }
+
+    .logo[data-jsx="1727466106"] .text[data-jsx="1727466106"] {
+        width: 170px;
+        height: auto;
+        margin-left: 5px;
+    }
+
+    .mitem[data-jsx="1727466106"] {
+        display: block;
+        padding: 0 10px;
+        height: 70px;
+        line-height: 62px;
+        border-top: 4px solid transparent;
+        color: #333;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .mitem[data-jsx="1727466106"]:hover {
+        border-top-color: #337ab7;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .mitem[data-jsx="1727466106"] .img[data-jsx="1727466106"] {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+
+    .mitem[data-jsx="1727466106"] .text[data-jsx="1727466106"] {
+        margin: 0 -5px 0 5px;
+        vertical-align: middle;
+    }
+
+    .mitem[data-jsx="1727466106"] .icon[data-jsx="1727466106"] {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        vertical-align: middle;
+        background: url(/static/img/common/arrow.png) no-repeat;
+        background-size: contain;
+    }
+
+    .mitem[data-jsx="1727466106"] .head-img[data-jsx="1727466106"], .mitem[data-jsx="1727466106"] .drop-down[data-jsx="1727466106"] {
+        width: 30px;
+        height: 30px;
+        vertical-align: middle;
+    }
+
+    .mitem[data-jsx="1727466106"] .name[data-jsx="1727466106"] {
+        vertical-align: middle;
+        margin-left: 5px;
+        max-width: 80px;
+    }</style>
+    <style id="__jsx-style-1812380509">.media-left[data-jsx="1812380509"] {
+        display: table-cell;
+        vertical-align: middle;
+        padding-right: 20px;
+    }
+
+    .media-left[data-jsx="1812380509"] img[data-jsx="1812380509"] {
+        width: 80px;
+    }
+
+    .media-body[data-jsx="1812380509"] {
+        border-left: 1px solid #d9d9d9;
+        padding-left: 20px;
+        display: table-cell;
+        vertical-align: top;
+        width: 10000px;
+        overflow: hidden;
+        zoom: 1;
+    }
+
+    .media-body[data-jsx="1812380509"] a[data-jsx="1812380509"] {
+    }
+
+    .media-body[data-jsx="1812380509"] dt[data-jsx="1812380509"] {
+        color: #333333;
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .media-body[data-jsx="1812380509"] dd[data-jsx="1812380509"] {
+        color: #767676;
+        line-height: 28px;
+    }
+
+    .comment[data-jsx="1812380509"] {
+        line-height: 26px;
+        margin-top: 8px;
+    }
+
+    .comment[data-jsx="1812380509"] .lab[data-jsx="1812380509"] {
+        color: #3E84E0;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .comment[data-jsx="1812380509"] .cont[data-jsx="1812380509"] {
+        color: #767676;
+        margin-left: 80px;
+    }</style>
+    <style id="__jsx-style-2165301554">.job-banner[data-jsx="2165301554"] {
+        overflow: hidden;
+        max-height: 300px;
+    }</style>
+    <style id="__jsx-style-2300919215"></style>
+    <style id="__jsx-style-2597945739">.box[data-jsx="2597945739"] {
+        position: fixed;
+        z-index: 10;
+        right: 56px;
+        bottom: 160px;
+    }
+
+    .backtop[data-jsx="2597945739"] {
+        display: block;
+        width: 28px;
+        cursor: pointer;
+    }</style>
+    <style id="__jsx-style-3300590105">.search[data-jsx="3300590105"] {
+        text-align: right;
+        padding: 15px 0;
+    }</style>
+    <style id="__jsx-style-4042860639">.box[data-jsx="4042860639"] {
+        margin-top: 20px;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        color: #d9d9d9;
+        background-color: #373737;
+    }
+
+    .logo-box[data-jsx="4042860639"] {
+        width: 450px;
+    }
+
+    .logo[data-jsx="4042860639"] {
+        display: block;
+    }
+
+    .logo[data-jsx="4042860639"] .icon[data-jsx="4042860639"] {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo[data-jsx="4042860639"] .text[data-jsx="4042860639"] {
+        width: 195px;
+        height: 35px;
+        margin-left: 5px;
+    }
+
+    .descr[data-jsx="4042860639"] {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+
+    .menu-box[data-jsx="4042860639"] {
+        width: 350px;
+    }
+
+    .menu[data-jsx="4042860639"] {
+        text-align: center;
+    }
+
+    .menu[data-jsx="4042860639"] .link[data-jsx="4042860639"] {
+        font-size: 12px;
+        margin-top: 15px;
+    }
+
+    .contact[data-jsx="4042860639"] {
+        margin-top: 20px;
+    }
+
+    .contact[data-jsx="4042860639"] .copyright[data-jsx="4042860639"] {
+        font-size: 12px;
+        text-align: right;
+    }</style>
+    <style id="__jsx-style-4224132704">
+
+        .ant-breadcrumb {
+            margin: 15px 0;
+        }
+
+        .ant-breadcrumb, .ant-breadcrumb a, .ant-breadcrumb > span:last-child {
+            color: inherit;
+        }
+
+        .ant-breadcrumb > span:last-child {
+            font-weight: normal;
+        }
+
+        .ant-tabs {
+            color: inherit;
+        }
+
+        .ant-radio-group, .ant-radio-wrapper, .ant-checkbox-group, .ant-checkbox-wrapper {
+            font-size: inherit;
+        }
+
+        .ant-radio, .ant-radio + *, .ant-checkbox, .ant-checkbox + * {
+            vertical-align: middle;
+        }
+
+        .ant-btn-danger {
+            color: #fff;
+            background-color: #F7412D;
+            border-color: #F7412D;
+        }
+
+        .ant-btn-danger:focus, .ant-btn-danger:hover {
+            background-color: #f46e65;
+            border-color: #f46e65;
+        }
+
+        .ant-btn-danger:active {
+            background-color: #d73435;
+            border-color: #d73435;
+        }
+
+        .ant-card {
+            font-size: inherit;
+            background-color: transparent;
+        }
+
+        .ant-table {
+            font-size: inherit;
+        }
+
+        .ant-modal-body {
+            font-size: inherit;
+        }
+
+        .ant-select {
+            font-size: inherit;
+        }
+
+        .ant-select-dropdown {
+            font-size: inherit;
+        }
+
+        .ant-input {
+            font-size: inherit;
+        }
+
+        .my-color-primary {
+            color: #3E84E0 !important;
+        }
+
+        .my-color-gray {
+            color: #767676 !important;
+        }
+
+        .my-color-danger {
+            color: #F7412D !important;
+        }
+
+        .my-color-success {
+            color: #00C160 !important;
+        }
+
+        .my-color-white {
+            color: #ffffff !important;
+        }
+
+        .my-color-black {
+            color: #333333 !important;
+        }
+
+        .my-color-border {
+            color: #d9d9d9 !important;
+        }
+
+        .my-bgcolor-primary {
+            color: #ffffff !important;
+            background-color: #3E84E0 !important;
+        }
+
+        .my-bgcolor-gray {
+            background-color: #F9F9F9 !important;
+        }
+
+        .my-bgcolor-danger {
+            color: #ffffff !important;
+            background-color: #F7412D !important;
+        }
+
+        .my-bgcolor-success {
+            color: #ffffff !important;
+            background-color: #00C160 !important;
+        }
+
+        body {
+            color: #333333;
+            font-size: 14px;
+        }
+
+        a,
+        a:active,
+        a:hover,
+        a:focus {
+            outline: 0;
+            text-decoration: none;
+        }
+
+        /*主体内容容器*/
+        .my-container {
+            width: 1208px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .my-container-box {
+            min-width: 1208px;
+        }
+
+        /*文本位置*/
+        .my-text-left {
+            text-align: left;
+        }
+
+        .my-text-center {
+            text-align: center;
+        }
+
+        .my-text-right {
+            text-align: right;
+        }
+
+        /*文本单行*/
+        .my-text-rowsingle {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /*图片宽度限制*/
+        .my-img-full img {
+            max-width: 100%;
+        }
+
+        /*快速浮动和清除浮动*/
+        .my-clearfix:before,
+        .my-clearfix:after {
+            content: ' ';
+            display: table;
+        }
+
+        .my-clearfix:after {
+            clear: both;
+        }
+
+        .my-pull-left {
+            float: left !important;
+        }
+
+        .my-pull-right {
+            float: right !important;
+        }
+
+        /*限制行数，多余内容省略号*/
+        .line-clamp {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        .line-clamp2 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .line-clamp3 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .line-clamp4 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+
+        /*文本动换行*/
+        .line {
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+
+        /*提示登录框*/
+        .my-modal-login .ant-confirm-btns {
+            margin-top: 15px;
+        }
+
+        .my-modal-login .ant-btn {
+            margin-bottom: 0;
+        }
+
+        .my-modal-login .anticon {
+            display: none;
+        }
+
+        .my-modal-login .ant-confirm-content {
+            margin-left: 0;
+        }
+
+        .browser-tips {
+            background-color: #3E84E0;
+            color: #fff;
+            border-radius: 0;
+            border: 0;
+        }
+
+        .browser-tips a,
+        .browser-tips i.anticon-cross {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="__next">
+        <div data-reactroot="" data-reactid="1" data-react-checksum="2001594144">
+            <div data-reactid="2"><!-- react-empty: 3 -->
+                <div data-reactid="4">
+                    <div class="box" data-jsx="1727466106" data-reactid="5">
+                        <div class="my-container" data-jsx="1727466106" data-reactid="6">
+                            <div class="ant-row-flex ant-row-flex-space-between" data-reactid="7">
+                                <div class="ant-row-flex ant-row-flex-middle" data-reactid="8">
+                                    <a class="logo" href="/"
+                                       data-jsx="1727466106"
+                                       data-reactid="9">
+                                        <div class="ant-row-flex ant-row-flex-middle" data-reactid="10"><img
+                                                class="icon"
+                                                src="../static/img/favicon/f2.ico" th:src="@{/img/favicon/f2.ico}"
+                                                data-jsx="1727466106"
+                                                data-reactid="11"/>
+                                            <a href="/" class="logo"><b><span style="color: black">JobBridge</span></b></a>
+                                        </div>
+                                    </a>
+
+                                </div>
+                                <div class="ant-row-flex ant-row-flex-middle" data-reactid="20">
+                                    <a
+                                        href="/recruitinfo" data-jsx="1727466106" data-reactid="21">
+                                    <button style="margin-right:8px;" type="button"
+                                            class="ant-btn ant-btn-primary ant-btn-lg" data-reactid="22"><i class="fa fa-search-plus"></i><span
+                                            data-reactid="23"> 职海</span></button>
+                                </a>
+                                    <a class="mitem" href="/studentcenter/info" data-jsx="1727466106"
+                                       data-reactid="24"><span
+                                        class="name" data-jsx="1727466106" data-reactid="26" id="header-userName"></span></a><a href="/exit" class="mitem" data-jsx="1727466106" data-reactid="28">登出</a>
+
+                                </div>
+                            </div>
+                        </div><!-- react-empty: 29 --></div>
+                    <div class="job" data-jsx="1656881670" data-reactid="30">
+                        <div class="my-container" data-jsx="1656881670" data-reactid="31">
+                            <div class="menu" data-jsx="1302706802" data-reactid="102">
+                                <ul class="ant-menu ant-menu-horizontal  ant-menu-light ant-menu-root" role="menu"
+                                    aria-activedescendant="" tabindex="0" data-reactid="103">
+                                    <li class="ant-menu-item-selected ant-menu-item" role="menuitem"
+                                        aria-selected="true" data-reactid="107"><a href="/job/internship"
+                                                                                   data-jsx="1302706802"
+                                                                                   data-reactid="108">全部职位</a></li>
+                                </ul><!-- react-empty: 109 --><!-- react-empty: 110 --></div>
+                            <div class="filter" data-jsx="2300919215" data-reactid="111">
+                                <ul class="tag" data-jsx="2300919215" data-reactid="112">
+                                    <li data-jsx="2300919215" data-reactid="113">
+                                        <dl class="type clearfix" data-reactid="114">
+                                            <dt class="label" data-reactid="115">城 市：</dt>
+                                            <dd class="option" data-reactid="116">
+                                                <div class="ant-tag ant-tag-checkable ant-tag-checkable-checked"
+                                                     data-reactid="117"><!-- react-text: 118 -->不限
+                                                    <!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="119">
+                                                <div id="50" class="ant-tag ant-tag-checkable" data-reactid="120">
+                                                    <!-- react-text: 121 -->北京<!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="122">
+                                                <div id="51" class="ant-tag ant-tag-checkable" data-reactid="123">
+                                                    <!-- react-text: 124 -->上海<!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="125">
+                                                <div id="52" class="ant-tag ant-tag-checkable" data-reactid="126">
+                                                    <!-- react-text: 127 -->广州<!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="128">
+                                                <div id="53" class="ant-tag ant-tag-checkable" data-reactid="129">
+                                                    <!-- react-text: 130 -->深圳<!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="131">
+                                                <div id="54" class="ant-tag ant-tag-checkable" data-reactid="132">
+                                                    <!-- react-text: 133 -->武汉<!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="134">
+                                                <div id="55" class="ant-tag ant-tag-checkable" data-reactid="135">
+                                                    <!-- react-text: 136 -->南京<!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="137">
+                                                <div id="56" class="ant-tag ant-tag-checkable" data-reactid="138">
+                                                    <!-- react-text: 139 -->成都<!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="140">
+                                                <div id="57" class="ant-tag ant-tag-checkable" data-reactid="141">
+                                                    <!-- react-text: 142 -->天津<!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="143">
+                                                <div id="58" class="ant-tag ant-tag-checkable" data-reactid="144">
+                                                    <!-- react-text: 145 -->杭州<!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="146">
+                                                <div id="155" class="ant-tag ant-tag-checkable" data-reactid="147">
+                                                    <!-- react-text: 148 -->苏州<!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="149">
+                                                <div id="156" class="ant-tag ant-tag-checkable" data-reactid="150">
+                                                    <!-- react-text: 151 -->西安<!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="152">
+                                                <div id="154" class="ant-tag ant-tag-checkable" data-reactid="153">
+                                                    <!-- react-text: 154 -->大连<!-- /react-text --></div>
+                                            </dd>
+                                            <dd class="option" data-reactid="155">
+                                                <div id="59" class="ant-tag ant-tag-checkable" data-reactid="156">
+                                                    <!-- react-text: 157 -->其他<!-- /react-text --></div>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li data-jsx="2300919215" data-reactid="158">
+                                        <div data-reactid="159">
+                                            <dt class="label block-level" data-reactid="160">行&emsp;业：</dt>
+                                            <dl class="type clearfix" data-reactid="161">
+                                                <dd class="option" data-reactid="162">
+                                                    <div class="ant-tag ant-tag-checkable ant-tag-checkable-checked"
+                                                         data-reactid="163"><!-- react-text: 164 -->不限
+                                                        <!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="165">
+                                                    <div id="200" class="ant-tag ant-tag-checkable" data-reactid="166">
+                                                        <!-- react-text: 167 -->互联网
+                                                        <!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="168">
+                                                    <div id="201" class="ant-tag ant-tag-checkable" data-reactid="169">
+                                                        <!-- react-text: 170 -->交通/物流/航天/航空<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="171">
+                                                    <div id="202" class="ant-tag ant-tag-checkable" data-reactid="172">
+                                                        <!-- react-text: 173 -->媒体/文化/休闲<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="174">
+                                                    <div id="203" class="ant-tag ant-tag-checkable" data-reactid="175">
+                                                        <!-- react-text: 176 -->能源/资源<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="177">
+                                                    <div id="205" class="ant-tag ant-tag-checkable" data-reactid="178">
+                                                        <!-- react-text: 179 -->医疗/医药<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="180">
+                                                    <div id="210" class="ant-tag ant-tag-checkable" data-reactid="181">
+                                                        <!-- react-text: 182 -->地产/建筑/施工材料<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="183">
+                                                    <div id="211" class="ant-tag ant-tag-checkable" data-reactid="184">
+                                                        <!-- react-text: 185 -->多元化<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="186">
+                                                    <div id="212" class="ant-tag ant-tag-checkable" data-reactid="187">
+                                                        <!-- react-text: 188 -->奢侈品<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="189">
+                                                    <div id="213" class="ant-tag ant-tag-checkable" data-reactid="190">
+                                                        <!-- react-text: 191 -->工业/机械/化工<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="192">
+                                                    <div id="215" class="ant-tag ant-tag-checkable" data-reactid="193">
+                                                        <!-- react-text: 194 -->汽车/汽车部件<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="195">
+                                                    <div id="216" class="ant-tag ant-tag-checkable" data-reactid="196">
+                                                        <!-- react-text: 197 -->消费品<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="198">
+                                                    <div id="217" class="ant-tag ant-tag-checkable" data-reactid="199">
+                                                        <!-- react-text: 200 -->生产/制造/纺织<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="201">
+                                                    <div id="218" class="ant-tag ant-tag-checkable" data-reactid="202">
+                                                        <!-- react-text: 203 -->电子/电器/家电<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="204">
+                                                    <div id="219" class="ant-tag ant-tag-checkable" data-reactid="205">
+                                                        <!-- react-text: 206 -->通信/计算设备/软件<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="207">
+                                                    <div class="ant-tag ant-tag-checkable" data-reactid="208">
+                                                        <!-- react-text: 209 -->金融<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="207">
+                                                    <div class="ant-tag ant-tag-checkable" data-reactid="208">
+                                                        <!-- react-text: 209 -->零售/贸易<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="207">
+                                                    <div class="ant-tag ant-tag-checkable" data-reactid="208">
+                                                        <!-- react-text: 209 -->粮油食品<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="207">
+                                                    <div class="ant-tag ant-tag-checkable" data-reactid="208">
+                                                        <!-- react-text: 209 -->公用事业<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="207">
+                                                    <div class="ant-tag ant-tag-checkable" data-reactid="208">
+                                                        <!-- react-text: 209 -->军工<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="207">
+                                                    <div class="ant-tag ant-tag-checkable" data-reactid="208">
+                                                        <!-- react-text: 209 -->专业服务(会计师/咨询/法律/人力资源)
+                                                        <!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="207">
+                                                    <div class="ant-tag ant-tag-checkable" data-reactid="208">
+                                                        <!-- react-text: 209 -->广告/公关<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="207">
+                                                    <div id="220" class="ant-tag ant-tag-checkable" data-reactid="208">
+                                                        <!-- react-text: 209 -->教育/科研/非盈利<!-- /react-text --></div>
+                                                </dd>
+                                                <dd class="option" data-reactid="210">
+                                                    <div id="221" class="ant-tag ant-tag-checkable" data-reactid="211">
+                                                        <!-- react-text: 212 -->其他<!-- /react-text --></div>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </li>
+
+                                </ul><!-- react-empty: 240 --><!-- react-empty: 241 --></div>
+                            <!--职位列表-->
+                            <div class="ant-row job-list" id="job-list">
+
+                            </div>
+                            <!--分页-->
+                            <div id="pages"></div>
+                        </div><!-- react-empty: 1259 --><!-- react-empty: 1260 --></div>
+                    <div class="box my-container-box" data-jsx="4042860639" data-reactid="1261">
+                        <div class="my-container" data-jsx="4042860639" data-reactid="1262">
+                            <div class="ant-row-flex ant-row-flex-space-between" data-reactid="1263">
+                                <div class="logo-box" data-jsx="4042860639" data-reactid="1264"><a class="logo" href="/"
+                                                                                                   data-jsx="4042860639"
+                                                                                                   data-reactid="1265">
+                                    <div class="ant-row-flex ant-row-flex-middle" data-reactid="1266"><img class="icon"
+                                                                                                           src="../static/img/favicon/f2.ico" th:src="@{/img/favicon/f2.ico}"
+                                                                                                           data-jsx="4042860639"
+                                                                                                           data-reactid="1267"/>
+                                    </div>
+                                </a>
+                                    <div class="descr" data-jsx="4042860639" data-reactid="1269">
+                                        JobBridge是川大顶尖团队出任CEO创建的面向求职大学生的一站式职业发展平台。<br>在这里，学生可以获得匹配个人职业发展需求的一站式解决方案：包括职业探索指导、求职工具、以及职位信息等。
+                                    </div>
+                                </div>
+                                <div class="menu-box" data-jsx="4042860639" data-reactid="1270">
+                                    <div class="ant-row-flex ant-row-flex-space-between" data-reactid="1271">
+                                        <div class="menu" data-jsx="4042860639" data-reactid="1272">
+                                            <div data-jsx="4042860639" data-reactid="1273">小灶教育</div>
+                                            <div class="link" data-jsx="4042860639" data-reactid="1274"><a
+                                                    class="my-color-gray" href="/" data-jsx="4042860639"
+                                                    data-reactid="1275">网站首页</a></div>
+                                        </div>
+                                        <div class="menu" data-jsx="4042860639" data-reactid="1276">
+                                            <div data-jsx="4042860639" data-reactid="1277">职位投递</div>
+                                            <div class="link" data-jsx="4042860639" data-reactid="1278"><a
+                                                    class="my-color-gray" href="/job" data-jsx="4042860639"
+                                                    data-reactid="1279">名企实习</a></div>
+                                            <div class="link" data-jsx="4042860639" data-reactid="1280"><a
+                                                    class="my-color-gray" href="/school" data-jsx="4042860639"
+                                                    data-reactid="1281">校招日历</a></div>
+                                        </div>
+                                        <div class="menu" data-jsx="4042860639" data-reactid="1282">
+                                            <div data-jsx="4042860639" data-reactid="1283">求职课程</div>
+                                            <div class="link" data-jsx="4042860639" data-reactid="1284"><a
+                                                    class="my-color-gray" href="/course" data-jsx="4042860639"
+                                                    data-reactid="1285">线上课程</a></div>
+                                        </div>
+                                        <div class="menu" data-jsx="4042860639" data-reactid="1286">
+                                            <div data-jsx="4042860639" data-reactid="1287">求职工具</div>
+                                            <div class="link" data-jsx="4042860639" data-reactid="1288"><a
+                                                    class="my-color-gray" href="/jianli" data-jsx="4042860639"
+                                                    data-reactid="1289">制作简历</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contact" data-jsx="4042860639" data-reactid="1290">
+                                <div class="ant-row-flex ant-row-flex-space-between ant-row-flex-bottom"
+                                     data-reactid="1291">
+                                    <div data-jsx="4042860639" data-reactid="1292"><span data-jsx="4042860639"
+                                                                                         data-reactid="1293">联系邮箱：</span><a
+                                            class="my-color-border" href="mailto:info@xiaozao.org" data-jsx="4042860639"
+                                            data-reactid="1294">JobBridge@163.com</a></div>
+                                    <div class="copyright my-color-gray" data-jsx="4042860639" data-reactid="1295">
+                                        <div data-jsx="4042860639" data-reactid="1296">京ICP备15065001号-1</div>
+                                        <div data-jsx="4042860639" data-reactid="1297">Copyright © 2015-2017 xiaozao.
+                                            All Rights Reserved.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- react-empty: 1298 --></div>
+                    <!-- react-empty: 1301 --></div>
+            </div><!-- react-empty: 1302 -->
+        </div>
+    </div>
+</div>
+<div id="__next-error"></div>
+</div>
+<div>
+
+    <!--javascript for this page-->
+    <script type="text/javascript" src="../static/js/jobs/jobs.js" th:src="@{/js/jobs/jobs.js}"></script>
+    <script type="text/javascript" src="../static/js/getUserName.js" th:src="@{/js/getUserName.js}"></script>
+
+
+    <!--分页-->
+    <link href="../static/css/common/bootstrap-combined.min.css" rel="stylesheet" th:href="@{/css/common/bootstrap-combined.min.css}">
+    <script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
+    <script src="../static/js/common/bootstrap.min.js" th:src="@{/js/common/bootstrap.min.js}"></script>
+    <script src="../static/js/common/bootstrap-paginator.min.js" th:src="@{/js/common/bootstrap-paginator.min.js}"></script>
+    <!--<script type='text/javascript'>
+        var options = {
+            currentPage: 1,
+            totalPages: 10,
+            alignment:'center',
+        }
+
+        $('#pages').bootstrapPaginator(options);
+    </script>-->
+
+    <!--测试-->
+    <!--<script src="http://mockjs.com/dist/mock.js"></script>
+    <script type="text/javascript">
+        var data = {
+            "numberofpage": 10,
+            "data": [{
+                "jobtitle": "大数据风险分析实习僧",
+                "jobhref": "/enterpriseowrecruitinfo?id=1",
+                "companyname": "三六零",
+                "location": "北京市朝阳区那条小胡同",
+                "time": "2017-7-22",
+                "companydesc": "三六零是一家很牛逼很牛逼很牛逼重要的事情说三遍的公司",
+                "iconaddress": "/assets/img/360.png"
+            }, {
+                "numberofpage": 10,
+                "jobtitle": "大数据风险分析实习僧",
+                "jobhref": "/enterpriseowrecruitinfo?id=1",
+                "companyname": "三六零",
+                "location": "北京市朝阳区那条小胡同",
+                "time": "2017-7-22",
+                "companydesc": "三六零是一家很牛逼很牛逼很牛逼重要的事情说三遍的公司",
+                "iconaddress": "/assets/img/360.png"
+            }]
+        };
+        Mock.mock('/recruit/showinfo', data);
+    </script>-->
+    <!--/测试-->
+
+</div>
+</body>
+</html>

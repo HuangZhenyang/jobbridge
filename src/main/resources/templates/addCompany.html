@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>设置企业信息</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}">
+    <!--Loading bootstrap css-->
+    <link type="text/css" rel="stylesheet" href="../static/css/common/font-awesome.min.css"
+          th:href="@{/css/font-awesome.min.css}">
+    <link type="text/css" rel="stylesheet" href="../static/css/common/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}">
+    <link type="text/css" rel="stylesheet" href="../static/css/common/main.css" th:href="@{/css/common/main.css}">
+    <link type="text/css" rel="stylesheet" href="../static/css/common/style-responsive.css"
+          th:href="@{/css/style-responsive.css}">
+</head>
+<!--<>-->
+<div>
+    <!--BEGIN BACK TO TOP-->
+    <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
+    <!--END BACK TO TOP-->
+    <!--BEGIN TOPBAR-->
+    <div id="header-topbar-option-demo" class="page-header-topbar">
+        <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3"
+             class="navbar navbar-default navbar-static-top">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span
+                        class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                        class="icon-bar"></span><span class="icon-bar"></span></button>
+                <a id="logo" href="/adminPage/addCompany" class="navbar-brand"><span class="fa fa-rocket"></span><span
+                        class="logo-text">JobBridge</span><span style="display: none"
+                                                                class="logo-text-icon">µ</span></a></div>
+            <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
+
+                <ul class="nav navbar navbar-top-links navbar-right mbn">
+
+                    <li class="dropdown topbar-user">
+                        <a data-hover="dropdown" href="#" class="dropdown-toggle"><label><span class="hidden-xs"
+                                                                                               id="user"></span></label>&nbsp;<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-user pull-right">
+                            <li><a href="/adminPage/exit"><i class="fa fa-key"></i>退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!--BEGIN MODAL CONFIG PORTLET-->
+        <div id="modal-config" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">
+                            Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-default">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END MODAL CONFIG PORTLET-->
+    </div>
+    <!--END TOPBAR-->
+    <div id="wrapper">
+        <!--BEGIN SIDEBAR MENU-->
+        <nav id="sidebar" role="navigation" data-step="2"
+             data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;"
+             data-position="right" class="navbar-default navbar-static-side">
+            <div class="sidebar-collapse menu-scroll">
+                <ul id="side-menu" class="nav">
+
+                    <div class="clearfix"></div>
+                    <li><a href="/adminPage/addCompany"><i class="fa fa-sitemap fa-fw">
+                        <div class="icon-bg bg-dark"></div>
+                    </i><span class="menu-title">设置企业信息</span></a>
+                    </li>
+
+                    <li><a href="/adminPage/addAdmin"><i class="fa  fa-credit-card">
+                        <div class="icon-bg bg-primary"></div>
+                    </i><span class="menu-title">增加管理员</span></a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!--END SIDEBAR MENU-->
+        <div id="page-wrapper">
+            <!--BEGIN TITLE & BREADCRUMB PAGE-->
+            <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+                <div class="page-header pull-left">
+                    <div class="page-title">
+                        企业信息添加
+                    </div>
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+            <!--END TITLE & BREADCRUMB PAGE-->
+            <!--BEGIN CONTENT-->
+            <div class="page-content">
+                <div id="tab-general">
+                    <div class="row mbl">
+                        <div class="col-lg-12">
+
+                            <div class="col-md-12">
+                                <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="row mtl">
+                                    <div class="col-md-9">
+                                        <div id="generalTabContent" class="tab-content">
+                                            <div id="tab-edit" class="tab-pane fade in active">
+                                                <div action="#" class="form-horizontal"><h3>企业信息</h3>
+                                                    <div class="form-group"><label
+                                                            class="col-sm-3 control-label">账号</label>
+                                                        <div class="col-sm-9 controls">
+                                                            <div class="row">
+                                                                <div class="col-xs-9"><input type="text" id="userName"
+                                                                                             placeholder="给企业设置一个登录账号"
+                                                                                             class="form-control"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group"><label
+                                                            class="col-sm-3 control-label">密码</label>
+                                                        <div class="col-sm-9 controls">
+                                                            <div class="row">
+                                                                <div class="col-xs-9"><input type="text" id="password"
+                                                                                             placeholder="给企业设置一个登陆密码"
+                                                                                             class="form-control"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group"><label
+                                                            class="col-sm-3 control-label">公司名字</label>
+                                                        <div class="col-sm-9 controls">
+                                                            <div class="row">
+                                                                <div class="col-xs-9"><input type="text" id="name"
+                                                                                             placeholder="输入您公司的名字"
+                                                                                             class="form-control"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group"><label
+                                                            class="col-sm-3 control-label">邮箱</label>
+                                                        <div class="col-sm-9 controls">
+                                                            <div class="row">
+                                                                <div class="col-xs-9"><input type="email" id="email"
+                                                                                             placeholder="输入您公司的邮箱"
+                                                                                             class="form-control"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group"><label
+                                                            class="col-sm-3 control-label">号码</label>
+                                                        <div class="col-sm-9 controls">
+                                                            <div class="row">
+                                                                <div class="col-xs-9"><input type="text" id="phoneNum"
+                                                                                             placeholder="输入您公司号码"
+                                                                                             class="form-control"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group"><label
+                                                            class="col-sm-3 control-label">公司介绍</label>
+
+                                                        <div class="col-sm-9 controls">
+                                                            <div class="row">
+                                                                <div class="col-xs-9"><textarea rows="3"
+                                                                                                id="enterpriseIntroduction"
+                                                                                                class="form-control"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group"><label
+                                                            class="col-sm-3 control-label"></label>
+                                                        <div class="col-sm-9 controls">
+                                                            <label style="float:left"><span id="comregisterTip"
+                                                                                            style="color: red"></span></label>
+                                                        </div>
+                                                    </div>
+                                                    <hr/>
+                                                    <input onclick="addCompanyFunc()" type="submit"
+                                                           class="btn btn-green btn-block"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END CONTENT-->
+        <!--BEGIN FOOTER-->
+        <div id="footer">
+            <div class="copyright">
+                <p style="text-align: center">2017 @出任CEO</a></p></div>
+        </div>
+        <!--END FOOTER-->
+    </div>
+
+</div>
+</div>
+<script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/jquery-1.11.0.min.js}"></script>
+<script src="../static/js/common/jquery-migrate-1.2.1.min.js" th:src="@{/js/jquery-migrate-1.2.1.min.js}"></script>
+<script src="../static/js/common/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../static/js/common/jquery.menu.js" th:src="@{/js/common/jquery.menu.js}"></script>
+<!--CORE JAVASCRIPT-->
+<script src="../static/js/addCompany/addCompany.js" th:src="@{/js/addCompany/addCompany.js}"></script>
+
+</body>
+</html>
