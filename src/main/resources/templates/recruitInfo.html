@@ -599,15 +599,15 @@ TOP BAR CONTENT & NOTIFICATIONS
                 <li><a class="logout" href="signIn.html">Logout</a></li>
             </ul>-->
             <ol class="breadcrumb" style="float: right;margin-top: 12px;">
-                <li><a href="/studentcenter/info">个人中心</a></li>
-                <li><a href="/studentcenter/info"><span id="header-userName"></span></a></li>
-                <li><a class="logout" href="/exit"><span>Logout</span></a></li>
+                <li><a href="/student/info">个人中心</a></li>
+                <li><a href="/student/info"><span id="header-userName"></span></a></li>
+                <li><a class="logout" href="/sign_out"><span>SignOut</span></a></li>
             </ol>
         </div>
         <div class="container-fluid" style="float: right;">
             <div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/recruitinfo">
+                    <li class="active"><a href="/recruit/info">
                         <button type="button" class="btn btn-round btn-info fa fa-search ">&nbsp;&nbsp;职海</button>
                     </a></li>
                 </ul>
@@ -767,7 +767,7 @@ MAIN CONTENT
             </div>
             <!-- page end-->
             <div style="display: none" >
-                <span id="jobInfoId" th:text="${id}">
+                <span id="recruitInfoId" th:text="${id}">
                 </span>
             </div>
         </section>
@@ -796,7 +796,6 @@ MAIN CONTENT
     var data = {
         "ok":"true"
     };
-    Mock.mock('/studentcenter/collectenterprise', data);
 </script>-->
 <!--/测试-->
 

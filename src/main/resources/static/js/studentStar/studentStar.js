@@ -13,7 +13,7 @@ $(document).ready(function () {
 * */
 function getData() {
     $.ajax({
-        url:'/studentcenter/showcollection',
+        url:'/student/request_star',
         type: 'get',
         dataType: 'json'
     }).done(function (data) {
@@ -95,8 +95,8 @@ function setData(data) {
 function cancel(evt) {
     //alert($(evt).parent().parent().parent().parent().attr('id'));
     $.ajax({
-        url:'/studentcenter/collection/delete?id=' + $(evt).parent().parent().parent().parent().attr('id'),
-        type:'get',
+        url:'/student/star?id=' + $(evt).parent().parent().parent().parent().attr('id'),
+        type:'delete',
         dataType: 'json'
     }).done(function (data) {
         if(data.ok === 'true'){

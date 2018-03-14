@@ -602,15 +602,15 @@ TOP BAR CONTENT & NOTIFICATIONS
                 <li><a class="logout" href="signIn.html">Logout</a></li>
             </ul>-->
             <ol class="breadcrumb" style="float: right;margin-top: 12px;">
-                <li><a href="/studentcenter/info">个人中心</a></li>
-                <li><a href="/studentcenter/info"><span id="header-userName"></span></a></li>
-                <li><a class="logout" href="/exit"><span>Logout</span></a></li>
+                <li><a href="/student/info">个人中心</a></li>
+                <li><a href="/student/info"><span id="header-userName"></span></a></li>
+                <li><a class="logout" href="/exit"><span>退出</span></a></li>
             </ol>
         </div>
         <div class="container-fluid" style="float: right;">
             <div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/recruitinfo">
+                    <li class="active"><a href="/recruit/info">
                         <button type="button" class="btn btn-round btn-info fa fa-search ">&nbsp;&nbsp;职海</button>
                     </a></li>
                 </ul>
@@ -640,30 +640,30 @@ MAIN CONTENT
                                                 <ul class="ant-menu ant-menu-vertical  ant-menu-light ant-menu-root"
                                                     role="menu" tabindex="0" data-reactid="34">
                                                     <li class="ant-menu-item info" role="menuitem" aria-selected="true"
-                                                        data-reactid="35"><a href="/studentcenter/info"
+                                                        data-reactid="35"><a href="/student/info"
                                                                              data-reactid="36"><i
                                                             class="fa fa-user" data-reactid="37"></i><span
                                                             data-reactid="38" style="color:#00a2ae">我的信息</span></a></li>
                                                     <li class="ant-menu-item resume" role="menuitem"
                                                         aria-selected="false" data-reactid="39"><a
-                                                            href="/studentcenter/resume" data-reactid="40"><i
+                                                            href="/student/resume" data-reactid="40"><i
                                                             class="fa fa-file-pdf-o" data-reactid="41"></i><span
                                                             data-reactid="42">我的简历</span></a></li>
                                                     <li class="ant-menu-item posdeliver" role="menuitem"
                                                         aria-selected="false" data-reactid="43"><a
-                                                            href="/studentcenter/sendinfo" data-reactid="44"><i
+                                                            href="/student/resume_send" data-reactid="44"><i
                                                             class="fa fa-book"
                                                             data-reactid="45"></i><span
                                                             data-reactid="46">投递的职位</span></a></li>
                                                     <li class="ant-menu-item poscollect" role="menuitem"
                                                         aria-selected="false" data-reactid="47"><a
-                                                            href="/studentcenter/collectioninfo" data-reactid="48"><i
+                                                            href="/student/star" data-reactid="48"><i
                                                             class="fa fa-bookmark"
                                                             data-reactid="49"></i><span
                                                             data-reactid="50">我的收藏</span></a></li>
                                                     <li class="ant-menu-item poscollect" role="menuitem"
                                                         aria-selected="false" data-reactid="51"><a
-                                                            href="/studentcenter/requestvalidate" data-reactid="52"><i
+                                                            href="/student/authentication" data-reactid="52"><i
                                                             class="fa fa-terminal"
                                                             data-reactid="53"></i><span
                                                             data-reactid="54">学生认证</span></a></li>
@@ -691,7 +691,7 @@ MAIN CONTENT
                                                                         <div data-jsx="3479566426" data-reactid="69">
                                                                             <span class="my-label">邮箱：</span>
                                                                             <div class="value" data-jsx="3479566426"
-                                                                                 data-reactid="70" ><span id="email"
+                                                                                 data-reactid="70" ><span id="mailbox"
                                                                                                          class="my-label" style="margin-left: 0px"></span>
                                                                             </div>
                                                                         </div>
@@ -1386,7 +1386,7 @@ MAIN CONTENT
                             <!-- react-empty: 448 -->
                             <!-- react-empty: 449 -->
                         </div>
-                        <link rel="stylesheet" href="../static/css/common/style.css" th:href="@{/css/stuinfo/style.css}" data-reactid="453"/>
+                        <link rel="stylesheet" href="../static/css/common/style.css" th:href="@{/css/common/style.css}" data-reactid="453"/>
                     </div>
                 </div>
             </div>
@@ -1407,9 +1407,9 @@ MAIN CONTENT
 
 <!--Javascript for this page-->
 <script type="text/javascript" src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
-<script type="text/javascript" src="../static/js/studentInfo/check.js" th:src="@{/js/stuinfo/check.js}"></script>
+<script type="text/javascript" src="../static/js/studentInfo/check.js" th:src="@{/js/studentInfo/check.js}"></script>
 <script type="text/javascript" src="../static/js/studentInfo/studentInfo.js" th:src="@{/js/studentInfo/studentInfo.js}"></script>
-<script type="text/javascript" src="../static/js/signOut/signOut.js" th:src="@{/js/signOut.js}"></script>
+<script type="text/javascript" src="../static/js/signOut/signOut.js" th:src="@{/js/signOut/signOut.js}"></script>
 <script type="text/javascript" src="../static/js/getUserName.js" th:src="@{/js/getUserName.js}"></script>
 
 

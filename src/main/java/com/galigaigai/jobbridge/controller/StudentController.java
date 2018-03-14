@@ -97,7 +97,7 @@ public class StudentController {
         }
         String id = request.getParameter("id");
         model.addAttribute("id", id);
-        return "studentrecruit";
+        return "recruitInfo";
     }
 
     /**
@@ -110,7 +110,7 @@ public class StudentController {
         if(loginUser == null || !(loginUser instanceof Student)){
             response.sendRedirect("/");
         }
-        return "studentauthentication";
+        return "studentAuthentication";
     }
 
     /**
@@ -123,7 +123,7 @@ public class StudentController {
         if(loginUser == null || !(loginUser instanceof Student)){
             response.sendRedirect("/");
         }
-        return "studentinfo";
+        return "studentInfo";
     }
 
     /**
@@ -136,7 +136,7 @@ public class StudentController {
         if(loginUser == null || !(loginUser instanceof Student)){
             response.sendRedirect("/");
         }
-        return "studentresumesend";
+        return "studentResumeSend";
     }
 
     /**
@@ -149,13 +149,13 @@ public class StudentController {
         if(loginUser == null || !(loginUser instanceof Student)){
             response.sendRedirect("/");
         }
-        return "studentstar";
+        return "studentStar";
     }
 
     /**
     * 学生详细信息保存操作
     * */
-    @PostMapping(value = "info")
+    @PostMapping(value = "/info")
     public void StudentSaveInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         request.setCharacterEncoding("UTF-8");
@@ -240,8 +240,13 @@ public class StudentController {
 //        1.先找到学生对应的简历号
         Resume resume = resumeRepository.findByStudentId(student.getStudentId());
 //        如果学生没写简历，则返回空数据
-        if(resume.getResumeContent() == null || resume.getResumeContent().equals("")){
-            json.put("resumeSenddata",resumeSendDataJson);
+        if (resume == null){
+            json.put("resumeSendData",resumeSendDataJson);
+            SendInfoUtil.render(json.toString(),"text/json",response);
+            return;
+        }
+        if(resume.getResumeContent() == null || "".equals(resume.getResumeContent())){
+            json.put("resumeSendData",resumeSendDataJson);
             SendInfoUtil.render(json.toString(),"text/json",response);
             return;
         }
@@ -249,7 +254,7 @@ public class StudentController {
         List<ResumeSend> deliverList = resumeSendRepository.findByResumeId(resume.getResumeId());
 //        如果学生没投递简历到任意公司，则返回空数据
         if(deliverList == null || deliverList.isEmpty()){
-            json.put("resumeSenddata",resumeSendDataJson);
+            json.put("resumeSendData",resumeSendDataJson);
             SendInfoUtil.render(json.toString(),"text/json",response);
             return;
         }
@@ -261,7 +266,7 @@ public class StudentController {
             Recruit recruit = recruitRepository.findByRecruitId(deliverList.get(i).getRecruitId());
             if(company == null || recruit == null){
                 System.out.println("内部查询出错：没找到投递记录所对应的公司或招聘信息");
-                json.put("resumeSenddata",resumeSendDataJson);
+                json.put("resumeSendData",resumeSendDataJson);
                 SendInfoUtil.render(json.toString(),"text/json",response);
                 return;
             }
@@ -276,7 +281,7 @@ public class StudentController {
             resumeSendDataJson.put(resumeSendJson);
         }
 //        4.将json数组添加到json对象里面,然后发回前端
-        json.put("resumeSenddata",resumeSendDataJson);
+        json.put("resumeSendData",resumeSendDataJson);
         SendInfoUtil.render(json.toString(),"text/json",response);
     }
 
@@ -383,7 +388,7 @@ public class StudentController {
         JSONObject studyJson = new JSONObject();
         JSONObject jobIntentionJson = new JSONObject();
 
-        infoJson.put("email",student.getMailbox());
+        infoJson.put("mailbox",student.getMailbox());
         //通过studentId获取student中的email
         //通过studentID获取studentDetail中的其他信息
         StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
@@ -570,7 +575,7 @@ public class StudentController {
             response.sendRedirect("/");
         }
         MailUtil mailUtil = new MailUtil();
-        String email = request.getParameter("stuemail");
+        String email = request.getParameter("mailbox");
         JSONObject SendStatusJson = new JSONObject();
         boolean isSuccess = true;
         System.out.println("email ="+email);
@@ -606,12 +611,13 @@ public class StudentController {
         Student student = (Student) loginUser;
         StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
         String result;
-        if (studentDetail.getAuthentication()) {
+
+        if (studentDetail != null && studentDetail.getAuthentication()) {
             System.out.println("已验证成功");
             result = "{\"authentication\":\"true\"}";
             SendInfoUtil.render(result, "text/json", response);
             return;
-        }
+    }
         result = "{\"authentication\":\"false\"}";
         SendInfoUtil.render(result, "text/json", response);
     }

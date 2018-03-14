@@ -8,8 +8,8 @@
     <link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}">
     <!--Loading bootstrap css-->
     <link type="text/css" rel="stylesheet" href="../static/css/common/font-awesome.min.css"
-          th:href="@{/css/font-awesome.min.css}">
-    <link type="text/css" rel="stylesheet" href="../static/css/common/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+          th:href="@{/css/common/font-awesome.min.css}">
+    <link type="text/css" rel="stylesheet" href="../static/css/common/bootstrap.min.css" th:href="@{/css/common/bootstrap.min.css}">
     <link type="text/css" rel="stylesheet" href="../static/css/common/main.css" th:href="@{/css/common/main.css}">
 </head>
 <body>
@@ -25,7 +25,7 @@
                 <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span
                         class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
                         class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a id="logo" href="/adminPage/addManager" class="navbar-brand"><span class="fa fa-rocket"></span><span
+                <a id="logo" href="/admin/add_admin" class="navbar-brand"><span class="fa fa-rocket"></span><span
                         class="logo-text">JobBridge</span><span style="display: none"
                                                                 class="logo-text-icon">µ</span></a></div>
             <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
@@ -37,7 +37,7 @@
                                                                                                id="user"></span></label>&nbsp;<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right">
-                            <li><a href="/adminPage/exit"><i class="fa fa-key"></i>退出</a></li>
+                            <li><a href="/sign_out"><i class="fa fa-key"></i>退出</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -81,12 +81,12 @@
                 <ul id="side-menu" class="nav">
 
                     <div class="clearfix"></div>
-                    <li><a href="/adminPage/addCompany"><i class="fa fa-sitemap fa-fw">
+                    <li><a href="/admin/add_company"><i class="fa fa-sitemap fa-fw">
                         <div class="icon-bg bg-dark"></div>
                     </i><span class="menu-title">设置企业信息</span></a>
                     </li>
 
-                    <li><a href="/adminPage/addAdmin"><i class="fa  fa-credit-card">
+                    <li><a href="/admin/add_admin"><i class="fa  fa-credit-card">
                         <div class="icon-bg bg-primary"></div>
                     </i><span class="menu-title">增加管理员</span></a>
                     </li>
@@ -181,8 +181,8 @@
     </div>
 
 </div>
-<script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/jquery-1.11.0.min.js}"></script>
-<script src="../static/js/common/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
+<script src="../static/js/common/bootstrap.min.js" th:src="@{/js/common/bootstrap.min.js}"></script>
 <!--侧边栏动画效果js-->
 <script src="../static/js/common/jquery-migrate-1.2.1.min.js" th:src="@{/js/common/jquery-migrate-1.2.1.min.js}"></script>
 <script src="../static/js/common/jquery.menu.js" th:src="@{/js/common/jquery.menu.js}"></script>

@@ -13,7 +13,7 @@
 
     <!-- Favicons
     ================================================== -->
-    <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon" th:href="@{/img/favicon.ico}">
+    <link rel="shortcut icon" href="../static/img/favicon/favicon.ico" type="image/x-icon" th:href="@{/img/favicon.ico}">
     <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png" th:href="@{/img/apple-touch-icon.png}">
     <link rel="apple-touch-icon" sizes="72x72" href="../static/img/apple-touch-icon-72x72.png" th:href="@{/img/apple-touch-icon-72x72.png}">
     <link rel="apple-touch-icon" sizes="114x114" href="../static/img/apple-touch-icon-114x114.png" th:href="@{/img/apple-touch-icon-114x114.png}">
@@ -58,8 +58,8 @@
     <ul class="nav navmenu-nav"> <!--- Menu -->
         <li><a href="#home" class="page-scroll"><span style="font-size: large;">主页</span></a></li>
         <li><a href="#meet-us" class="page-scroll"><span style="font-size: large">JobBridge</span></a></li>
-        <li><a href="#stu-entry" class="page-scroll"><span style="font-size: large">学生入口</span></a></li>
-        <li><a href="#com-entry" class="page-scroll"><span style="font-size: large">企业入口</span></a></li>
+        <li><a href="#stu-entry" class="page-scroll"><span style="font-size: large">登录入口</span></a></li>
+        <!--<li><a href="#com-entry" class="page-scroll"><span style="font-size: large">企业入口</span></a></li>-->
         <li><a href="#clients" class="page-scroll"><span style="font-size: large">合作伙伴</span></a></li>
         <li><a href="#about-us" class="page-scroll"><span style="font-size: large">团队介绍</span></a></li>
         <li><a href="#contact" class="page-scroll"><span style="font-size: large">联系我们</span></a></li>
@@ -127,7 +127,7 @@
                     <h2>学生入口</h2>
                     <hr>
                 </div>
-                <a href="/forLogin">
+                <a href="/sign_in">
                     <button type="button" class="btn btn-round btn-info">&nbsp;&nbsp;点我&nbsp;&nbsp;</button>
                 </a>
             </div>
@@ -166,89 +166,8 @@
     </div>
 </div>
 
-<!-- Call-to-Action Section -->
-<div id="cta">
-    <div class="container text-center">
-        <!--<a href="#" class="btn go-to-btn">回到顶部</a>-->
-    </div>
-</div>
 
-<!-- com-entry Section -->
-<div id="com-entry">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="section-title">
-                    <h2>企业入口</h2>
-                    <hr>
-                </div>
-                <a href="/forLogin/com">
-                <button type="button" class="btn btn-round btn-info">&nbsp;&nbsp;点我&nbsp;&nbsp;</button>
-                </a>
-            </div>
-        </div>
-        <div class="space"></div>
-    </div>
-    <!--<div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3 col-sm-6 nopadding">
-                <div class="portfolio-item">
-                    <div class="hover-bg">
-                        <a href="#">
-                            <div class="hover-text">
-                                <h5>Logo Design</h5>
-                                <p class="lead">Client Seal</p>
-                                <div class="hline"></div>
-                            </div>
-                            <img src="img/portfolio/01.jpg" class="img-responsive" alt="...">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 nopadding">
-                <div class="portfolio-item">
-                    <div class="hover-bg">
-                        <a href="#">
-                            <div class="hover-text">
-                                <h5>Stationery</h5>
-                                <p class="lead">Design Project</p>
-                                <div class="hline"></div>
-                            </div>
-                            <img src="img/portfolio/02.jpg" class="img-responsive" alt="...">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 nopadding">
-                <div class="portfolio-item">
-                    <div class="hover-bg">
-                        <a href="#">
-                            <div class="hover-text">
-                                <h5>Branding</h5>
-                                <p class="lead">Metalbrand</p>
-                                <div class="hline"></div>
-                            </div>
-                        </a>
-                        <img src="img/portfolio/03.jpg" class="img-responsive" alt="...">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 nopadding">
-                <div class="portfolio-item">
-                    <div class="hover-bg">
-                        <a href="#">
-                            <div class="hover-text">
-                                <h5>Business Card</h5>
-                                <p class="lead">Clothing Line</p>
-                                <div class="hline"></div>
-                            </div>
-                        </a>
-                        <img src="img/portfolio/04.jpg" class="img-responsive" alt="...">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>-->
+
     <div class="container text-center">
         <div class="row">
             <div class="col-md-4 col-sm-4">
@@ -475,7 +394,7 @@
 <script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
 <script type="text/javascript" src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script type="text/javascript" src="../static/js/common/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+<script type="text/javascript" src="../static/js/common/bootstrap.js" th:src="@{/js/common/bootstrap.js}"></script>
 <script type="text/javascript" src="../static/js/common/SmoothScroll.js" th:src="@{/js/common/SmoothScroll.js}"></script>
 <script type="text/javascript" src="../static/js/common/jasny-bootstrap.min.js" th:src="@{/js/common/jasny-bootstrap.min.js}"></script>
 
@@ -495,7 +414,7 @@
 
 <!-- Javascripts
 ================================================== -->
-<script type="text/javascript" src="../static/js/index.js" th:src="@{/js/index.js}"></script>
+<!--<script type="text/javascript" src="../static/js/index.js" th:src="@{/js/index.js}"></script>-->
 
 </body>
 </html>

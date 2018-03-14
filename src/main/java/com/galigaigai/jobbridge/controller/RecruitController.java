@@ -48,7 +48,7 @@ public class RecruitController {
     @GetMapping(value = "/info")
     public String recruit(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
-        return "jobs";
+        return "recruitSea";
     }
 
 //    /**

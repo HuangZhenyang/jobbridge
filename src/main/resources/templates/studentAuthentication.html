@@ -10,13 +10,13 @@
     <title>Job-Bridge</title>
     <link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}">
     <!-- Bootstrap core CSS -->
-    <link href="../static/css/common/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link href="../static/css/common/bootstrap.css" rel="stylesheet" th:href="@{/css/common/bootstrap.css}">
     <!--external css-->
-    <link href="../static/css/common/font-awesome.css" rel="stylesheet" th:href="@{/css/font-awesome.css}">
+    <link href="../static/css/common/font-awesome.css" rel="stylesheet" th:href="@{/css/common/font-awesome.css}">
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/common/style-init.css" rel="stylesheet" th:href="@{/css/style.css}">
-    <link href="../static/css/common/style-responsive.css" rel="stylesheet" th:href="@{/css/style-responsive.css}">
+    <link href="../static/css/common/style-init.css" rel="stylesheet" th:href="@{/css/common/style.css}">
+    <link href="../static/css/common/style-responsive.css" rel="stylesheet" th:href="@{/css/common/style-responsive.css}">
     <link href="../static/font-awesome-4.2.0/css/font-awesome.css" th:href="@{/font-awesome-4.2.0/css/font-awesome.css}">
     <link href="../static/font-awesome-4.2.0/fonts/fontawesome-webfont.ttf" th:href="@{/font-awesome-4.2.0/fonts/fontawesome-webfont.ttf}">
 
@@ -108,7 +108,7 @@
             width: 30px;
             height: 30px;
             vertical-align: middle;
-            background: url(../static/img/bg1.jpg) no-repeat;
+            background: url(../static/img/index/bg1.jpg) no-repeat;
             background-size: contain;
         }
 
@@ -600,15 +600,15 @@ TOP BAR CONTENT & NOTIFICATIONS
                 <li><a class="logout" href="signIn.html">Logout</a></li>
             </ul>-->
             <ol class="breadcrumb" style="float: right;margin-top: 12px;">
-                <li><a href="/studentcenter/info">个人中心</a></li>
-                <li><a href="/studentcenter/info"><span id="header-userName"></span></a></li>
-                <li><a class="logout" href="/exit"><span>Logout</span></a></li>
+                <li><a href="/student/info">个人中心</a></li>
+                <li><a href="/student/info"><span id="header-userName"></span></a></li>
+                <li><a class="logout" href="/sign_out"><span>SignOut</span></a></li>
             </ol>
         </div>
         <div class="container-fluid" style="float: right;">
             <div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/recruitinfo">
+                    <li class="active"><a href="/recruit/info">
                         <button type="button" class="btn btn-round btn-info fa fa-search ">&nbsp;&nbsp;职海</button>
                     </a></li>
                 </ul>
@@ -639,30 +639,30 @@ MAIN CONTENT
                                                     role="menu" tabindex="0" data-reactid="34">
                                                     <li class="ant-menu-item poscollect" role="menuitem"
                                                         aria-selected="false" data-reactid="51"><a
-                                                            href="/studentcenter/info" data-reactid="52"><i
+                                                            href="/student/info" data-reactid="52"><i
                                                             class="fa fa-user"
                                                             data-reactid="53"></i><span
                                                             data-reactid="54">我的信息</span></a></li>
                                                     <li class="ant-menu-item resume" role="menuitem"
                                                         aria-selected="false" data-reactid="39"><a
-                                                            href="/studentcenter/resume" data-reactid="40"><i
+                                                            href="/student/resume" data-reactid="40"><i
                                                             class="fa fa-file-pdf-o" data-reactid="41"></i><span
                                                             data-reactid="42">我的简历</span></a></li>
                                                     <li class="ant-menu-item posdeliver" role="menuitem"
                                                         aria-selected="false" data-reactid="43"><a
-                                                            href="/studentcenter/sendinfo" data-reactid="44"><i
+                                                            href="/student/resume_send" data-reactid="44"><i
                                                             class="fa fa-book"
                                                             data-reactid="45"></i><span
                                                             data-reactid="46">投递的职位</span></a></li>
                                                     <li class="ant-menu-item poscollect" role="menuitem"
                                                         aria-selected="false" data-reactid="47"><a
-                                                            href="/studentcenter/collectioninfo" data-reactid="48"><i
+                                                            href="/student/star" data-reactid="48"><i
                                                             class="fa fa-bookmark"
                                                             data-reactid="49"></i><span
                                                             data-reactid="50">我的收藏</span></a></li>
 
                                                     <li class="ant-menu-item info" role="menuitem" aria-selected="true"
-                                                        data-reactid="35"><a href="/studentcenter/requestvalidate"
+                                                        data-reactid="35"><a href="/student/authentication"
                                                                              data-reactid="36"><i
                                                             class="fa fa-terminal" data-reactid="37"></i><span
                                                             data-reactid="38" style="color:#00a2ae">学生认证</span></a></li>
@@ -691,7 +691,7 @@ MAIN CONTENT
                                                                             <span class="my-label">学生邮箱：</span>
                                                                             <div class="value" data-jsx="3479566426"
                                                                                  style="padding-left: 0px;">
-                                                                                <div class="input-group"><input id="stuemail"
+                                                                                <div class="input-group"><input id="mailbox"
                                                                                                                 type="text"
                                                                                                                 class="form-control"
                                                                                                                 style="width: 399px;height: 34px;">
@@ -724,7 +724,7 @@ MAIN CONTENT
                             <!-- react-empty: 448 -->
                             <!-- react-empty: 449 -->
                         </div>
-                        <link rel="stylesheet" href="../static/css/common/style.css" data-reactid="453" th:href="@{/css/stuinfo/style.css}">
+                        <link rel="stylesheet" href="../static/css/common/style.css" data-reactid="453" th:href="@{/css/common/style.css}">
                     </div>
                 </div>
             </div>
@@ -746,7 +746,7 @@ MAIN CONTENT
 <!--Javascript for this page-->
 <script type="text/javascript" src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
 <script type="text/javascript" src="../static/js/studentAuthentication/studentAuthentication.js" th:src="@{/js/studentAuthentication/studentAuthentication.js}"></script>
-<script type="text/javascript" src="../static/js/signOut/signOut.js" th:src="@{/js/signOut.js}"></script>
+<script type="text/javascript" src="../static/js/signOut/signOut.js" th:src="@{/js/signOut/signOut.js}"></script>
 <script type="text/javascript" src="../static/js/getUserName.js" th:src="@{/js/getUserName.js}"></script>
 
 <!--邮箱填写提示-->

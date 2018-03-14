@@ -13,7 +13,7 @@ $(document).ready(function () {
  * */
 function getInfo() {
     $.ajax({
-        url: '/studentcenter/showinfo',
+        url: '/student/detail_info',
         type: 'get',
         dataType: 'json'
     }).done(function (data) {
@@ -29,20 +29,20 @@ function getInfo() {
  * */
 function setInfo(infoData) {
     if(getJSONLength(infoData)===1){
-        var email = infoData.email;
-        $('#userName').text(infoData.email);
-        $('#email').text(infoData.email);
+        let mailbox = infoData.mailbox;
+        $('#userName').text(infoData.mailbox);
+        $('#mailbox').text(infoData.mailbox);
     }else{
-        var info = infoData.info;
-        var study = infoData.study;
-        var jobintention = infoData.jobintention;
-        var city = jobintention.city;
-        var industry = jobintention.industry;
-        var func = jobintention.func;
-        var str = "";
+        let info = infoData.info;
+        let study = infoData.study;
+        let jobintention = infoData.jobintention;
+        let city = jobintention.city;
+        let industry = jobintention.industry;
+        let func = jobintention.func;
+        let str = "";
 
-        $('#userName').text(info.email);
-        $('#email').text(info.email);
+        $('#userName').text(info.mailbox);
+        $('#mailbox').text(info.mailbox);
         $('#phone').attr('value',info.phone);
 
         $('#school').attr('value',study.school);
@@ -121,7 +121,7 @@ function save() {
             }
         });
         $.ajax({
-            url: '/studentcenter/saveinfo',
+            url: '/student/info',
             type: 'post',
             dataType: 'json',
             // contentType: "application/json;charset=utf-8",

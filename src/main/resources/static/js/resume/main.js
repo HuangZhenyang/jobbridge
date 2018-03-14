@@ -409,7 +409,7 @@
         var data = INSTANCE;
         data = JSON.stringify(data);
         $.ajax({
-            url: '/studentcenter/saveresume',
+            url: '/student/resume',
             type: 'post',
             data: {
                 "content":data
@@ -785,7 +785,7 @@ $('.edus').find('div.oper').find('a.add').on('click', function () {
         '<div class="col-xs-3 text-right">' +
         $('.edus').children('.add-blank').find('.col-xs-3 ').html() +
         '</div>' +
-        '<div class="oper"> 								<div class="box">									<a class="minus" href="javascript:;"> 		<img src="http://localhost:8080/public/assets/img/resume/minus.png"> 									</a> 								</div> 							</div>' +
+        '<div class="oper"> 								<div class="box">									<a class="minus" href="javascript:;"> 		<img src="../static/img/resume/minus.png" th:src="@{/img/resume/minus.png}"> 									</a> 								</div> 							</div>' +
         '</div>');
 
 
@@ -806,7 +806,7 @@ $('.works').find('div.oper').find('a.add').on('click', function () {
         '<div class="col-xs-3 text-right">' +
         $('.works').children('.add-blank').find('.col-xs-3').html() +
         '</div>' +
-        '<div class="oper">                                                         <div class="box">									                        <a class="minus" href="javascript:;"> 										<img src="http://localhost:8080/public/assets/img/resume/minus.png"> 								   </a> 																</div> 															</div>' +
+        '<div class="oper">                                                         <div class="box">									                        <a class="minus" href="javascript:;"> 										<img src="../static/img/resume/minus.png" th:src="@{/img/resume/minus.png}"> 								   </a> 																</div> 															</div>' +
         '</div>');
 
     //绑定减号事件
@@ -826,7 +826,7 @@ $('.leader').find('.organization').find('div.oper').find('a.add').on('click', fu
         '<div class="col-xs-3 text-right">' +
         $('.leader').children('.organization').find('.col-xs-3').html() +
         '</div>' +
-        '<div class="oper">                                                         <div class="box">									                        <a class="minus" href="javascript:;"> 										<img src="http://localhost:8080/public/assets/img/resume/minus.png"> 								   </a> 																</div> 															</div>' +
+        '<div class="oper">                                                         <div class="box">									                        <a class="minus" href="javascript:;"> 										<img src="../static/img/resume/minus.png" th:src="@{/img/resume/minus.png}"> 								   </a> 																</div> 															</div>' +
         '</div>');
 
     //绑定减号事件
@@ -844,7 +844,7 @@ $('.leader').find('.club').find('div.oper').find('a.add').on('click', function (
         '<div class="col-xs-3 text-right">' +
         $('.leader').children('.club').find('.col-xs-3').html() +
         '</div>' +
-        '<div class="oper">                                                         <div class="box">									                        <a class="minus" href="javascript:;"> 										<img src="http://localhost:8080/public/assets/img/resume/minus.png"> 								   </a> 																</div> 															</div>' +
+        '<div class="oper">                                                         <div class="box">									                        <a class="minus" href="javascript:;"> 										<img src="../static/img/resume/minus.png" th:src="@{/img/resume/minus.png}"> 								   </a> 																</div> 															</div>' +
         '</div>');
 
     //绑定减号事件
@@ -891,7 +891,7 @@ function getData() {
 
     $.ajax({
 
-        url: '/studentcenter/showresume',
+        url: '/student/request_resume',
         type: 'get',
         dataType: 'json',
     }).done(function (data) {
@@ -981,7 +981,7 @@ function insertDomIntoEdus(eduLen) {
             '<div class="col-xs-3 text-right">' +
             $('.edus').children('.add-blank').find('.col-xs-3 ').html() +
             '</div>' +
-            '<div class="oper"> 								<div class="box">									<a class="minus" href="javascript:;"> 		<img src="http://localhost:8080/public/assets/img/resume/minus.png"> 									</a> 								</div> 							</div>' +
+            '<div class="oper"> 								<div class="box">									<a class="minus" href="javascript:;"> 		<img src="../static/img/resume/minus.png" th:src="@{/img/resume/minus.png}"> 									</a> 								</div> 							</div>' +
             '</div>');
 
         //绑定减号事件
@@ -1023,7 +1023,7 @@ function insertDomIntoWorks(worksLen) {
             '<div class="col-xs-3 text-right">' +
             $('.works').children('.add-blank').find('.col-xs-3').html() +
             '</div>' +
-            '<div class="oper">                                                         <div class="box">									                        <a class="minus" href="javascript:;"> 										<img src="http://localhost:8080/public/assets/img/resume/minus.png"> 								   </a> 																</div> 															</div>' +
+            '<div class="oper">                                                         <div class="box">									                        <a class="minus" href="javascript:;"> 										<img src="../static/img/resume/minus.png" th:src="@{/img/resume/minus.png}"> 								   </a> 																</div> 															</div>' +
             '</div>');
 
         //绑定减号事件
@@ -1070,7 +1070,7 @@ function insertDomIntoOrganization(organizationLen) {
             '<div class="col-xs-3 text-right">' +
             $('.leader').children('.organization').find('.col-xs-3').html() +
             '</div>' +
-            '<div class="oper">                                                         <div class="box">									                        <a class="minus" href="javascript:;"> 										<img src="http://localhost:8080/public/assets/img/resume/minus.png"> 								   </a> 																</div> 															</div>' +
+            '<div class="oper">                                                         <div class="box">									                        <a class="minus" href="javascript:;"> 										<img src="../static/img/resume/minus.png" th:src="@{/img/resume/minus.png}"> 								   </a> 																</div> 															</div>' +
             '</div>');
 
         //绑定减号事件
@@ -1107,7 +1107,7 @@ function insertDomIntoClub(clubLen) {
             '<div class="col-xs-3 text-right">' +
             $('.leader').children('.club').find('.col-xs-3').html() +
             '</div>' +
-            '<div class="oper">                                                         <div class="box">									                        <a class="minus" href="javascript:;"> 										<img src="http://localhost:8080/public/assets/img/resume/minus.png"> 								   </a> 																</div> 															</div>' +
+            '<div class="oper">                                                         <div class="box">									                        <a class="minus" href="javascript:;"> 										<img src="../static/img/resume/minus.png" th:src="@{/img/resume/minus.png}"> 								   </a> 																</div> 															</div>' +
             '</div>');
 
         //绑定减号事件

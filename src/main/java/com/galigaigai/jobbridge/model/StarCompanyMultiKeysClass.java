@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 
 public class StarCompanyMultiKeysClass implements Serializable {
-    private Long enterpriseId;  //被收藏的公司ID
+    private Long companyId;  //被收藏的公司ID
     private Long studentId;     //发起收藏请求的学生ID
 
     // constructor
@@ -16,18 +16,9 @@ public class StarCompanyMultiKeysClass implements Serializable {
 
     }
 
-    public StarCompanyMultiKeysClass(Long enterpriseId, Long studentId){
-        this.enterpriseId = enterpriseId;
+    public StarCompanyMultiKeysClass(Long companyId, Long studentId){
+        this.companyId = companyId;
         this.studentId = studentId;
-    }
-
-    // getter and setter
-    public Long getEnterpriseId() {
-        return enterpriseId;
-    }
-
-    public void setEnterpriseId(Long enterpriseId) {
-        this.enterpriseId = enterpriseId;
     }
 
     public Long getStudentId() {
@@ -38,12 +29,20 @@ public class StarCompanyMultiKeysClass implements Serializable {
         this.studentId = studentId;
     }
 
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
     // 重写hashcode 和 equals方法
     @Override
     public int hashCode() {
         final int PRIME = 31;
         int result = 1;
-        result = PRIME * result + ((enterpriseId == null) ? 0 : enterpriseId.hashCode());
+        result = PRIME * result + ((companyId == null) ? 0 : companyId.hashCode());
         result = PRIME * result + ((studentId == null) ? 0 : studentId.hashCode());
         return result;
     }
@@ -61,11 +60,11 @@ public class StarCompanyMultiKeysClass implements Serializable {
         }
 
         final StarCompanyMultiKeysClass other = (StarCompanyMultiKeysClass)obj;
-        if(enterpriseId == null){
-            if(other.enterpriseId != null){
+        if(companyId == null){
+            if(other.companyId != null){
                 return false;
             }
-        }else if(!enterpriseId.equals(other.enterpriseId)){
+        }else if(!companyId.equals(other.companyId)){
             return false;
         }
 

@@ -19,15 +19,15 @@ $(document).ready(function () {
  * @author:Huangzhenyang
  * 获取jobinfo的id
  * */
-function getJobInfoId() {
-    return $('#jobInfoId').text();
+function getRecruitInfoId() {
+    return $('#recruitInfoId').text();
 }
 
 function  getData() {
     //var jobId = getUrlParameter('id');
-    let jobId = getJobInfoId();
+    let jobId = getRecruitInfoId();
     $.ajax({
-        url: '/studentcenter/showrecruitinfo?id='+jobId,
+        url: '/student/request_recruit?id='+jobId,
         type: 'get',
         dataType: 'json'
     }).done(function (data) {
@@ -72,7 +72,7 @@ function setData(data) {
 function starButtonFunc(evt) {
     if($(evt).text().trim() === "收藏"){
         $.ajax({
-            url:'/studentcenter/collectenterprise',
+            url:'/student/star',
             type:'post',
             dataType:'json',
             data:{
@@ -89,7 +89,7 @@ function starButtonFunc(evt) {
         });
     }else if($(evt).text().trim() === "已收藏"){ //取消收藏
         $.ajax({
-            url:'/studentcenter/collection/delete?id='+$(evt).attr('id'),
+            url:'/student/collection/delete?id='+$(evt).attr('id'),
             type:'get',
             dataType:'json',
         }).done(function (data) {
@@ -113,7 +113,7 @@ function starButtonFunc(evt) {
  * */
 function send(evt) {
     $.ajax({
-        url:'/studentcenter/deliver',
+        url:'/student/resume_send',
         type:'post',
         dataType:'json',
         data:{

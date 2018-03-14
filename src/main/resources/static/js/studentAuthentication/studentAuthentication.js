@@ -14,7 +14,7 @@ $(document).ready(function () {
  * */
 function getValidation() {
     $.ajax({
-        url:'/studentcenter/validationstate',
+        url:'/student/request_authentication',
         type:'get',
         dataType:'json'
     }).done(function (data) {
@@ -23,7 +23,7 @@ function getValidation() {
         if(data.validation === 'true'){ //如果已验证通过，插入Dom
             stuValidation = "&emsp;您已通过学生认证";
             spanColor = '<span style="color: black">';
-            $('#stuemail').attr('disabled',true);
+            $('#mailbox').attr('disabled',true);
             $('#submitButton').attr('disabled',true); //设置按钮不能点
         }else{
             spanColor = '<span style="color: red">';
@@ -51,7 +51,7 @@ function getValidation() {
 *  @author: HuangZhenyang
 *  填写邮箱提示toast
 * */
-$('#stuemail').on('click', function () {
+$('#mailbox').on('click', function () {
     $('#submitTip').text('');
     $.toast({
         heading: '<strong>填写小贴士</strong>',
@@ -73,15 +73,15 @@ $('#stuemail').on('click', function () {
 *  提交学生邮箱的函数
 * */
 function submitFunc() {
-    var stuEmail = $('#stuemail').val();
-    if(checkStuEmail(stuEmail)){
+    var mailbox = $('#mailbox').val();
+    if(checkStuEmail(mailbox)){
         $('#submitButton').attr('disabled',true);
         $.ajax({
-            url: '/studentcenter/valid',
+            url: '/student/authentication',
             type: 'post',
             dataType:'json',
             data:{
-                "stuemail":stuEmail
+                "mailbox":mailbox
             }
         }).done(function (data) {
             if(data.ok === true){

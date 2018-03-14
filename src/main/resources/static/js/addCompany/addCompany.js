@@ -33,16 +33,16 @@
 function addCompanyFunc(){
     if(checkInputFunc()){
         $.ajax({
-            url: '/register',
+            url: '/sign_up',
             type: 'post',
             dataType: 'json',
             data: {
                 userName:   $('#userName').val(),
                 password:   $('#password').val(),
-                name:       $('#name').val(),
-                email:      $('#email').val(),
+                name:       $('#companyName').val(),
+                email:      $('#mailbox').val(),
                 phoneNum:   $('#phoneNum').val(),
-                enterpriseIntroduction: $('#enterpriseIntroduction').val(),
+                enterpriseIntroduction: $('#companyIntroduction').val(),
                 identity:   'e',
             },
         }).done(function (data) {

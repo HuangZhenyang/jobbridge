@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'icomoon';
   src:
-    url('icomoon.ttf?vq2ki0') format('truetype'),
-    url('icomoon.woff?vq2ki0') format('woff'),
-    url('icomoon.svg?vq2ki0#icomoon') format('svg');
+    /*url('icomoon.ttf?vq2ki0') format('truetype'),*/
+    /*url('icomoon.woff?vq2ki0') format('woff'),*/
+    /*url('icomoon.svg?vq2ki0#icomoon') format('svg');*/
   font-weight: normal;
   font-style: normal;
 }
@@ -222,7 +222,7 @@ td,
 }
 /*header end*/
 
-/*jobs start*/
+/*recruitSea.js start*/
 .jobs .banner .jumbotron {
 	padding: 0;
 	margin: 0;
@@ -385,7 +385,7 @@ td,
     /* white-space: normal;
     vertical-align: -webkit-baseline-middle; */
 }
-/*jobs end*/
+/*recruitSea.js end*/
 /*resume start*/
 .opts{
 	background-color:#fff;
@@ -452,10 +452,10 @@ td,
 }
 .resume .content .user-photo .btn-remove-photo,
 .resume .content .block .remove-item .opt-btns .btn-remove {
-	background-image: url("/static/imgs/icon/rubbish_blue.png");
+	/*background-image: url("/static/imgs/icon/rubbish_blue.png");*/
 }
 .resume .content .block .remove-item .opt-btns .btn-add {
-	background-image: url("/static/imgs/icon/recover_blue.png");
+	/*background-image: url("/static/imgs/icon/recover_blue.png");*/
 }
 .resume .content .block .remove-item .opt-btns .btn-remove,
 .resume .content .block .remove-item .opt-btns .btn-remove:ACTIVE,
@@ -1011,7 +1011,7 @@ textarea{
     vertical-align:middle;
     width:40px;
     height:40px;
-    background:url(../imgs/login/login_logo.png) no-repeat;
+    /*background:url(../imgs/login/login_logo.png) no-repeat;*/
     background-size:contain;
 }
 .topbar-logo .text{
@@ -1020,7 +1020,7 @@ textarea{
     width:190px;
     height:35px;
     margin-left:5px;
-    background:url(../imgs/login/topbar_text.png) no-repeat;
+    /*background:url(../imgs/login/topbar_text.png) no-repeat;*/
     background-size:contain;
 }
 .topbar-menu{
@@ -1132,7 +1132,7 @@ textarea{
     height: 50px;
     border: solid 1px #ddd;
     border-bottom: none;
-    background: url("../imgs/base/elevator_code.png") 0 0/100% 100% no-repeat;
+    /*background: url("../imgs/base/elevator_code.png") 0 0/100% 100% no-repeat;*/
     overflow: hidden;
 }
 .my-elevator .code:hover{
@@ -1148,20 +1148,20 @@ textarea{
     display: block;
     border: solid 1px #ddd;
     border-bottom: none;
-    background: url("../imgs/base/elevator_advice.png") 0 0/100% 100% no-repeat;
+    /*background: url("../imgs/base/elevator_advice.png") 0 0/100% 100% no-repeat;*/
 }
 .my-elevator .advice:hover{
-    background: url("../imgs/base/elevator_res.png") 0 0/100% 100% no-repeat;
+    /*background: url("../imgs/base/elevator_res.png") 0 0/100% 100% no-repeat;*/
 }
 .my-elevator .totop{
     width: 50px;
     height: 50px;
     border: solid 1px #ddd;
     display: block;
-    background: url("../imgs/base/elevator_tips.png") 0 0/100% 100% no-repeat;
+    /*background: url("../imgs/base/elevator_tips.png") 0 0/100% 100% no-repeat;*/
 }
 .my-elevator .totop:hover{
-    background: url("../imgs/base/elevator_lcw.png") 0 0/100% 100% no-repeat;
+    /*background: url("../imgs/base/elevator_lcw.png") 0 0/100% 100% no-repeat;*/
 }
 .my-elevator .codeimg{
     width: 165px;
@@ -1204,7 +1204,7 @@ textarea{
     top:-77px;
     width:67px;
     height:67px;
-    background:url(/static/imgs/activity/close.png) no-repeat;
+    /*background:url(/static/imgs/activity/close.png) no-repeat;*/
     cursor:pointer;
     opacity:1;
 }

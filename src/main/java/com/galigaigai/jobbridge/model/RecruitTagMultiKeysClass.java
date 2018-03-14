@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 
 public class RecruitTagMultiKeysClass implements Serializable{
-    private Long recruitInfoId;
+    private Long recruitId;
     private Integer tagId;
 
     // constructor
@@ -16,18 +16,17 @@ public class RecruitTagMultiKeysClass implements Serializable{
 
     }
 
-    public RecruitTagMultiKeysClass(Long recruitInfoId, Integer tagId) {
-        this.recruitInfoId = recruitInfoId;
+    public RecruitTagMultiKeysClass(Long recruitId, Integer tagId) {
+        this.recruitId = recruitId;
         this.tagId = tagId;
     }
 
-    // getter and setter
-    public Long getRecruitInfoId() {
-        return recruitInfoId;
+    public Long getRecruitId() {
+        return recruitId;
     }
 
-    public void setRecruitInfoId(Long recruitInfoId) {
-        this.recruitInfoId = recruitInfoId;
+    public void setRecruitId(Long recruitId) {
+        this.recruitId = recruitId;
     }
 
     public Integer getTagId() {
@@ -43,7 +42,7 @@ public class RecruitTagMultiKeysClass implements Serializable{
     public int hashCode() {
         final int PRIME = 31;
         int result = 1;
-        result = PRIME * result + ((recruitInfoId == null) ? 0 : recruitInfoId.hashCode());
+        result = PRIME * result + ((recruitId == null) ? 0 : recruitId.hashCode());
         result = PRIME * result + ((tagId == null) ? 0 : tagId.hashCode());
         return result;
     }
@@ -62,11 +61,11 @@ public class RecruitTagMultiKeysClass implements Serializable{
 
         final RecruitTagMultiKeysClass other = (RecruitTagMultiKeysClass)obj;
 
-        if(recruitInfoId == null){
-            if(other.recruitInfoId != null){
+        if(recruitId == null){
+            if(other.recruitId != null){
                 return false;
             }
-        }else if(!recruitInfoId.equals(other.recruitInfoId)){
+        }else if(!recruitId.equals(other.recruitId)){
             return false;
         }
 

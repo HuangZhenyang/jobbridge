@@ -77,7 +77,7 @@ public class CompanyController {
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
         }
-        return "companyPublishedJob";
+        return "companyPublishRecruit";
     }
 
     /**
@@ -280,7 +280,7 @@ public class CompanyController {
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
         }
-        return "companyMessage";
+        return "companyReceivedResume";
     }
 
 //    /**
@@ -371,7 +371,7 @@ public class CompanyController {
     /**
      * 公司请求投递信息对应的简历信息
      */
-    @GetMapping(value = "/resume_received/resume")
+    @PostMapping(value = "/resume_received/resume")
     public void showCompanyReceivedResumeDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");

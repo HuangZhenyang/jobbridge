@@ -1,8 +1,8 @@
-function loginFunc() {
-    if (checkLoginInput()) {
+function signInFunc() {
+    if (checkSignInInput()) {
         $.ajax({
             type: 'post',
-            url: '/login',
+            url: '/sign_in',
             dataType: 'json',
             data: {
                 userName: $('#userName').val(),
@@ -10,14 +10,14 @@ function loginFunc() {
             }
         }).done(function (data) {
             console.log('成功, 收到的数据: ' + JSON.stringify(data, null, '  '));
-            var result = data;
+            let result = data;
             if (result.ok === "true") {
                 if(result.identity === "s"){
-                    window.location.href = "/recruitinfo";
+                    window.location.href = "/student/info";
                 }else if(result.identity === "a"){
-                    window.location.href = "/adminPage/addEnterprise";
+                    window.location.href = "/admin/add_company";
                 }else if(result.identity === "e"){
-                    window.location.href = "/enterprise/info";
+                    window.location.href = "/company/info";
                 }
 
             } else {
@@ -33,7 +33,7 @@ function loginFunc() {
 /*
  *     检查用户输入规范
  */
-function checkLoginInput() {
+function checkSignInInput() {
     if ($('#userName').val() === null || $('#userName').val() === '') {
         $('#loginTip').text("请输入用户名");
         return false;
