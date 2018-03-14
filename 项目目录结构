@@ -1,0 +1,74 @@
+.
+├── jobbridge.iml
+├── JobBridge.sql
+├── LICENSE
+├── pom.xml
+├── README.md
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── com
+    │   │       └── galigaigai
+    │   │           └── jobbridge
+    │   │               ├── controller 
+    │   │               ├── JobbridgeApplication.java
+    │   │               ├── model
+    │   │               ├── repository
+    │   │               ├── service
+    │   │               └── util
+    │   └── resources
+    │       ├── application.yml 项目的配置文件:数据库配置,端口配置,Thymeleaf配置等等
+    │       ├── static 静态资源文件
+    │       │   ├── css
+    │       │   │   ├── common 一些被很多html引用的css文件,如bootstrap等
+    │       │   │   ├── img index.html背景图片,未找到引用路径
+    │       │   │   ├── index
+    │       │   │   ├── resume
+    │       │   │   ├── studentInfo
+    │       │   │   └── studentSend
+    │       │   ├── font-awesome-4.2.0
+    │       │   ├── fonts
+    │       │   ├── img 图片
+    │       │   └── js
+    │       │       ├── addAdmin
+    │       │       ├── addCompany
+    │       │       ├── common 一些被很多html引用的js文件,如jquery等
+    │       │       ├── companyInfo
+    │       │       ├── companyMessage
+    │       │       ├── companyPublishedRecruit
+    │       │       ├── companyReview
+    │       │       ├── getUserName.js
+    │       │       ├── jobs
+    │       │       ├── recruitInfo
+    │       │       ├── resume
+    │       │       ├── signIn
+    │       │       ├── signOut
+    │       │       ├── signUp
+    │       │       ├── studentAuthentication
+    │       │       ├── studentInfo
+    │       │       ├── studentSend
+    │       │       └── studentStar
+    │       └── templates HTML文件
+    │           ├── addAdmin.html
+    │           ├── addCompany.html
+    │           ├── companyInfo.html
+    │           ├── companyMessage.html
+    │           ├── companyPublishedRecruit.html
+    │           ├── companyPublishRecruit.html
+    │           ├── companyReview.html
+    │           ├── index.html
+    │           ├── recruitInfo.html
+    │           ├── recruits.html
+    │           ├── resume.html
+    │           ├── signIn.html
+    │           ├── signUp.html
+    │           ├── studentAuthentication.html
+    │           ├── studentInfo.html
+    │           ├── studentSend.html
+    │           └── studentStar.html
+    └── test
+        └── java
+            └── com
+                └── galigaigai
+                    └── jobbridge
+                        └── JobbridgeApplicationTests.java
