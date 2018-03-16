@@ -89,7 +89,7 @@ public class SignController {
                 request.getSession().setAttribute("loginUser",student);
             }
         }else if (com != null){
-            Company company = new Company();
+            Company company = (Company)com;
             if(!CryptoUtil.validPassword(password, company.getPassword())){
                 result = "{\"ok\":\"false\",\"reason\":\"用户不存在或密码错误\"}";     //密码错误
             }else{
