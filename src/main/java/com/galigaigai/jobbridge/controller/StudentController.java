@@ -181,7 +181,7 @@ public class StudentController {
         String intentionFunction = jobintentionJson.get("func").toString();
 
         StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
-//        1.根据学生id号查询学生详细信息，如果为空，则创建一个新的学生详细信息并添入数据库；否则取出原来的，保留简历号和验证标志再更新
+//        1.根据学生id号查询学生详细信息，如果为空，则创建一个新的学生详细信息并添入数据库；否则取出原来的，保留学生邮箱和验证标志再更新
         if (studentDetail == null) {
             StudentDetail newStudentDetail = new StudentDetail(student.getStudentId(), null, phoneNum,
                     universityName, major, grade, intentionCity, intentionIndustry, intentionFunction, false);
@@ -190,6 +190,7 @@ public class StudentController {
             studentDetail.setPhoneNum(phoneNum);
             studentDetail.setUniversityName(universityName);
             studentDetail.setMajor(major);
+            studentDetail.setGrade(grade);
             studentDetail.setIntentionCity(intentionCity);
             studentDetail.setIntentionIndustry(intentionIndustry);
             studentDetail.setIntentionFunction(intentionFunction);
