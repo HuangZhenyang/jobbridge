@@ -17,7 +17,7 @@ public class MailUtil {
     private JavaMailSenderImpl mailSender;
     private Properties p;
     private int timeout = 25000;
-    private String url = "http://localhost:8080/student/confirm";
+    private String url = "http://localhost:8080/student/confirm_authentication";
     private String subject = "JobBridge学生账号验证";
     private StringBuilder content;
     public MailUtil(){
@@ -44,7 +44,7 @@ public class MailUtil {
         content.append("Thanks for using our platform, please click the website to verify your account</span></p>\n");
         content.append("<a href=\"");
         content.append(url);
-        content.append("\"><span style=\"font-size:25px\">Verification Website</span></a><br>");
+        content.append("\"><span style=\"font-size:25px\">Authentication Website</span></a><br>");
         content.append("<span style=\"font-size:20px\">Thanks</span></body>");
     }
 

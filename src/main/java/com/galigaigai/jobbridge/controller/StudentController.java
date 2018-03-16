@@ -652,6 +652,10 @@ public class StudentController {
         }
         Student student = (Student) loginUser;
         Resume resume = resumeRepository.findByStudentId(student.getStudentId());
+        if(resume == null){
+            resume = new Resume(0L,student.getStudentId(),"");
+            resumeService.addResume(resume);
+        }
         String content = request.getParameter("content");
         resume.setResumeContent(content);
         resumeService.updateResume(resume);
