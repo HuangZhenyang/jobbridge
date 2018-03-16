@@ -18,7 +18,7 @@ $(document).ready(function () {
 * */
 function getData() {
     $.ajax({
-        url:'/recruit/showinfo',
+        url:'/recruit/show_info',
         type:'get',
         dataType:'json'
     }).done(function (data) {
@@ -50,20 +50,20 @@ function setData(data) {
     var iconAddress = "";
 
     for(let i=0;i<data.length;i++){
-        jobTitle = data[i].jobtitle;
-        jobId = data[i].jobid;
-        companyName = data[i].companyname;
+        jobTitle = data[i].jobTitle;
+        jobId = data[i].jobId;
+        companyName = data[i].companyName;
         location = data[i].location;
         time = data[i].time;
-        companyDesc = data[i].companydesc;
-        iconAddress = data[i].iconaddress;
+        companyDesc = data[i].companyDesc;
+        iconAddress = data[i].iconAddress;
 
         eachDom =   "<div class='ant-col-12 gutter-row'>" +
                         "<div class='ant-card media ant-card-bordered'>"+
                             "<div class='ant-card-body'>" +
-                                "<a class='media-left' style='height:80px;' href='/student/recruitinfo?id=" + jobId + "' target='_blank' data-jsx='1812380509'><img style='width: 80px;height:80px;' src='http://localhost:8080"+ iconAddress +"' data-jsx='1812380509'/></a>" +
+                                "<a class='media-left' style='height:80px;' href='/student/recruit?id=" + jobId + "' target='_blank' data-jsx='1812380509'><img style='width: 80px;height:80px;' src='http://localhost:8080"+ iconAddress +"' data-jsx='1812380509'/></a>" +
                                 "<div class='media-body' data-jsx='1812380509' style='width: 301px;'>" +
-                                "<a href='/student/recruitinfo?id="+jobId +"' target='_blank' data-jsx='1812380509'>" +
+                                "<a href='/student/recruit?id="+jobId +"' target='_blank' data-jsx='1812380509'>" +
                                     "<dl data-jsx='1812380509'>" +
                                         "<dt class='line-clamp' data-jsx='1812380509'>" + jobTitle +"</dt>" +
                                         "<dd data-jsx='1812380509'>"+companyName + "</dd>" +
@@ -72,7 +72,7 @@ function setData(data) {
                                     "</dl>"+
                                 "</a>" +
                                 "</div>" +
-                            "<div class='comment' data-jsx='1812380509'><label class='my-pull-left lab' data-jsx='1812380509'>JobBridge说：</label><a href='/student/recruitinfo?id="+jobId +"' target='_blank' data-jsx='1812380509'>" +
+                            "<div class='comment' data-jsx='1812380509'><label class='my-pull-left lab' data-jsx='1812380509'>JobBridge说：</label><a href='/student/recruit?id="+jobId +"' target='_blank' data-jsx='1812380509'>" +
                                 "<span class='line-clamp2 cont' title='" + companyDesc +"' data-jsx='1812380509'>" + companyDesc + "</span></a>" +
                             "</div>"+
                             "</div>" +
@@ -192,17 +192,17 @@ function getDataByCondition(optionList) {
     }
 
     var sendData = JSON.stringify({
-        "numberofpage":pageNumber*10,
-        "optionlist":{
-            "citylist":cityList,
-            "industrylist":industryList
+        "numberOfPage":pageNumber*10,
+        "optionList":{
+            "cityList":cityList,
+            "industryList":industryList
         }
     });
 
     console.log(sendData);
 
     $.ajax({
-        url:'/recruit/showinfobycondition',
+        url:'/recruit/info',
         type:'post',
         dataType:'json',
         data:{
@@ -224,10 +224,10 @@ function getDataByCondition(optionList) {
 * */
 function setPagePrtition(data) {
     let numberOfPage = 1;
-    if(parseInt(data.numberofpage) === 0){
+    if(parseInt(data.numberOfPage) === 0){
         numberOfPage = 1;
     }else{
-        numberOfPage = data.numberofpage;
+        numberOfPage = data.numberOfPage;
     }
 
     var options = {
