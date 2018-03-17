@@ -20,9 +20,10 @@ function checkInputFunc() {
  * 添加管理员的函数
  * */
 function addAdminFunc(){
+
     if(checkInputFunc()){
         $.ajax({
-            url: '/signUp',
+            url: '/sign_up',
             type: 'post',
             dataType: 'json',
             data: {
@@ -34,7 +35,7 @@ function addAdminFunc(){
             console.log('成功, 收到的数据: ' + JSON.stringify(data, null, '  '));
             let result = data;
             if(result.ok === "true"){
-                //window.location.href = "/adminPage/addCompany";
+                window.location.href = "/sign_in";
             }else{
                 $('#addAdminTip').text(result.reason);
             }
