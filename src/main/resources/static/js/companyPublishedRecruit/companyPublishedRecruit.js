@@ -40,6 +40,7 @@ function getPublishedJobsData() {
  *  插入Dom
  * */
 function setPublishedJobsData(data) {
+
     let eachDataDom = "";
     let dataDom = "";
     let recruitList = data.recruitList;
@@ -51,6 +52,7 @@ function setPublishedJobsData(data) {
 
 
     for(let i=0;i<recruitList.length;i++){
+        console.log(recruitList[i]);
         publishedId = recruitList[i].publishedRecruitId;
         publishedTime = recruitList[i].publishedRecruitTime;
         publishedJobTitle = recruitList[i].jobTitle;
