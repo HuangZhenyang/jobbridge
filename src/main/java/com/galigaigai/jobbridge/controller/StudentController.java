@@ -536,7 +536,7 @@ public class StudentController {
         }
 //        查询简历表，判断是否已经填写简历
         Resume resume = resumeRepository.findByStudentId(student.getStudentId());
-        if (resume.getResumeContent() == null || resume.getResumeContent().equals("")) {
+        if (resume == null || resume.getResumeContent() == null || resume.getResumeContent().equals("")) {
             result = "{\"ok\":\"false\",\"reason\":\"你还没有填写简历\"}";
             SendInfoUtil.render(result, "text/json", response);
             return;
