@@ -621,8 +621,9 @@ public class StudentController {
         Student student = (Student) loginUser;
         StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
         String result;
-        Boolean studentAuthenticationState = studentDetail.getAuthentication(); // 当前学生的验证状态
+
         if(studentDetail != null){
+            Boolean studentAuthenticationState = studentDetail.getAuthentication(); // 当前学生的验证状态
             if ((studentAuthenticationState != null) && (studentAuthenticationState)) {
                 System.out.println("已验证成功");
                 result = "{\"authentication\":\"true\"}";
