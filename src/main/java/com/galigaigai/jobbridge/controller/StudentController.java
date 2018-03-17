@@ -465,10 +465,10 @@ public class StudentController {
             contentJson.put("jobDescribe", recruit.getJobDescribe());
             contentJson.put("jobRequire", recruit.getJobRequire());
 
-            json.put("havestar", haveStar);
-            json.put("companyid", recruit.getCompanyId());
+            json.put("haveStar", haveStar);
+            json.put("companyId", recruit.getCompanyId());
             json.put("content", contentJson);
-            json.put("jobid", recruitId);
+            json.put("jobId", recruitId);
 
             System.out.println(json);
             SendInfoUtil.render(json.toString(), "text/json", response);

@@ -39,9 +39,9 @@ function  getData() {
 
 
 function setData(data) {
-    let haveCollect = data.havecollect;
-    let companyId = data.companyid;
-    let jobId = data.jobid;
+    let haveCollect = data.haveStar;
+    let companyId = data.companyId;
+    let jobId = data.jobId;
     let content = data.content;
 
     if(haveCollect === 'true'){
@@ -89,8 +89,8 @@ function starButtonFunc(evt) {
         });
     }else if($(evt).text().trim() === "已收藏"){ //取消收藏
         $.ajax({
-            url:'/student/collection/delete?id='+$(evt).attr('id'),
-            type:'get',
+            url:'/student/star?id='+$(evt).attr('id'),
+            type:'delete',
             dataType:'json',
         }).done(function (data) {
             if(data.ok==='true'){
