@@ -20,7 +20,7 @@ function getValidation() {
     }).done(function (data) {
         var stuValidation = "";
         var spanColor = "";
-        if(data.validation === 'true'){ //如果已验证通过，插入Dom
+        if(data.authentication === 'true'){ //如果已验证通过，插入Dom
             stuValidation = "&emsp;您已通过学生认证";
             spanColor = '<span style="color: black">';
             $('#mailbox').attr('disabled',true);

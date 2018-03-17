@@ -51,71 +51,71 @@ public class RecruitController {
         return "recruitSea";
     }
 
-//    /**
-//     * 这里可以无登录访问
-//     * 职海之showinfo
-//     * */
-//    @GetMapping(value = "/show_info")
-//    public void showrecruit(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        response.setHeader("Access-Control-Allow-Origin", "*");
-////        定义数据结构
-//        JSONObject json = new JSONObject();
-//        JSONArray dataJson = new JSONArray();
-//        int recruitNum = (int)recruitRepository.count();
-//        if(recruitNum == 0){
-//            json.put("numberofpage",0);
-//            json.put("data",dataJson);
-//            SendInfoUtil.render(json.toString(),"text/json",response);
-//            return;
-//        }
-//        /*Map<String,Object> map = new HashMap<>();
-//        map.put("offset",0);*/
-//        int limit = 0;
-//        if(recruitNum < 10){
-////            map.put("limit",recruitNum);
-//            limit = recruitNum;
-//        }else{
-////            map.put("limit",10);
-//            limit = 10;
-//        }
-//        List<recruit> recruitList = recruitRepository.findrecruitOrderByTime(0, limit);
-//        if(recruitList == null || recruitList.isEmpty() || (recruitList.size() == 1 && recruitList.get(0) == null)){
-//            json.put("numberofpage",0);
-//            json.put("data",dataJson);
-//            SendInfoUtil.render(json.toString(),"text/json",response);
-//            return;
-//        }
-////        对这10个（可能少于10个）招聘信息进行处理
-//        for(recruit recruit:recruitList){
-//            Enterprise enterprise = enterpriseRepository.findByEnterpriseId(recruit.getEnterpriseId());
-//            if(enterprise == null){
-//                System.out.println("内部错误");
-//                json.put("numberofpage",0);
-//                json.put("data",new JSONArray());
-//                SendInfoUtil.render(json.toString(),"text/json",response);
-//                return;
-//            }
-//            JSONObject recruitJson = new JSONObject();
-//            recruitJson.put("jobTitle",recruit.getJobName());
-//            recruitJson.put("jobid",recruit.getrecruitId());
-//            recruitJson.put("companyname",enterprise.getName());
-//            recruitJson.put("location",recruit.getLocation());
-//            recruitJson.put("time",recruit.getDateTime());
-//            recruitJson.put("companydesc",enterprise.getEnterpriseIntroduction());
-//            recruitJson.put("iconaddress",enterprise.getIconAddress());
-//            dataJson.put(recruitJson);
-//        }
-//        int pageNum = 0;
-//        if(recruitNum % 10 == 0){
-//            pageNum = recruitNum/10;
-//        }
-//        else{
-//            pageNum = recruitNum/10 + 1;
-//        }
-//        json.put("numberofpage",pageNum);
-//        json.put("data",dataJson);
-//        SendInfoUtil.render(json.toString(),"text/json",response);
-//    }
+    /**
+     * 这里可以无登录访问
+     * 职海之showinfo
+     * */
+    @GetMapping(value = "/show_info")
+    public void showrecruit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+//        定义数据结构
+        JSONObject json = new JSONObject();
+        JSONArray dataJson = new JSONArray();
+        int recruitNum = (int)recruitRepository.count();
+        if(recruitNum == 0){
+            json.put("numberOfPage",0);
+            json.put("data",dataJson);
+            SendInfoUtil.render(json.toString(),"text/json",response);
+            return;
+        }
+        /*Map<String,Object> map = new HashMap<>();
+        map.put("offset",0);*/
+        int limit = 0;
+        if(recruitNum < 10){
+//            map.put("limit",recruitNum);
+            limit = recruitNum;
+        }else{
+//            map.put("limit",10);
+            limit = 10;
+        }
+        List<Recruit> recruitList = recruitRepository.findRecruitOrderByTime(0, limit);
+        if(recruitList == null || recruitList.isEmpty() || (recruitList.size() == 1 && recruitList.get(0) == null)){
+            json.put("numberOfPage",0);
+            json.put("data",dataJson);
+            SendInfoUtil.render(json.toString(),"text/json",response);
+            return;
+        }
+//        对这10个（可能少于10个）招聘信息进行处理
+        for(Recruit recruit:recruitList){
+            Company company = companyRepository.findByCompanyId(recruit.getCompanyId());
+            if(company == null){
+                System.out.println("内部错误");
+                json.put("numberOfPage",0);
+                json.put("data",new JSONArray());
+                SendInfoUtil.render(json.toString(),"text/json",response);
+                return;
+            }
+            JSONObject recruitJson = new JSONObject();
+            recruitJson.put("jobTitle",recruit.getJobName());
+            recruitJson.put("jobId",recruit.getRecruitId());
+            recruitJson.put("companyName",company.getName());
+            recruitJson.put("location",recruit.getLocation());
+            recruitJson.put("time",recruit.getDateTime());
+            recruitJson.put("companyDesc",company.getCompanyIntroduction());
+            recruitJson.put("iconAddress",company.getIconAddress());
+            dataJson.put(recruitJson);
+        }
+        int pageNum = 0;
+        if(recruitNum % 10 == 0){
+            pageNum = recruitNum/10;
+        }
+        else{
+            pageNum = recruitNum/10 + 1;
+        }
+        json.put("numberOfPage",pageNum);
+        json.put("data",dataJson);
+        SendInfoUtil.render(json.toString(),"text/json",response);
+    }
     /**
      * 这里可以无登录访问
      * 职海之条件筛选页面
@@ -345,7 +345,7 @@ public class RecruitController {
                 sendRecruitJson.put("jobId",recruit.getRecruitId());
                 sendRecruitJson.put("location",recruit.getLocation());
                 sendRecruitJson.put("time",recruit.getDateTime());
-                sendRecruitJson.put("companyIntro",company.getCompanyIntroduction());
+                sendRecruitJson.put("companyDesc",company.getCompanyIntroduction());
                 sendRecruitJson.put("iconAddress",company.getIconAddress());
                 sendRecruitJson.put("companyName",company.getName());
                 sendDataJson.put(sendRecruitJson);

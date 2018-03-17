@@ -37,7 +37,7 @@ create table student_detail(
 	intention_city  			VARCHAR(300),
 	intention_industry  		VARCHAR(300),
 	intention_function  		VARCHAR(300),
-	validation  				BOOLEAN,
+	authentication 				BOOLEAN,
 	primary key(student_id),
 	foreign key(student_id) references student(student_id)
 );
