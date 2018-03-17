@@ -12,6 +12,7 @@ $(document).ready(function () {
 *  获取数据
 * */
 function getData() {
+
     $.ajax({
         url:'/company/request_resume_received',
         type:'get',
@@ -49,7 +50,7 @@ function setData(data) {
 
         eachDataDom = "<li class='"+liClass[i%liClass.length] + "' id='"+ resumeReceiveId+"'>" +
             "<i class='fa fa-ellipsis-v'></i>"+
-            "<div class='job-title'>"+ "<a href='/companyReceivedResumeDetail.html?id="+resumeReceiveId+"'>" +
+            "<div class='job-title'>"+ "<a href='/company/resume_received/resume?id="+resumeReceiveId+"'>" +
 
             "<span class='task-title-sp'>" + jobTitle + "</span>" + "<span>&nbsp from: " + studentUserName +"&nbsp;&nbsp;</span>" +
             "<span class='badge " + bgThemes[i%bgThemes.length] + "'>" + resumeReceiveTime + "</span>" +
