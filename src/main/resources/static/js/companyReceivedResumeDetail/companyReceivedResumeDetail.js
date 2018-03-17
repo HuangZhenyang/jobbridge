@@ -3,6 +3,7 @@
  */
 
 $(document).ready(function () {
+    console.log("companyReceivedResumeDetail.js");
     getData();
 });
 
@@ -27,7 +28,7 @@ function getData() {
     let resumeSendId = getUrlParameter('id');
 
     $.ajax({
-        url: '/resume_received/resume',
+        url: '/company/resume_received/resume',
         type: 'post',
         dataType: 'json',
         data: {

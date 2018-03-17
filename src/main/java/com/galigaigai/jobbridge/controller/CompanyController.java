@@ -390,7 +390,7 @@ public class CompanyController {
                 } else {
                     //此处Json对应companyReceiveResume.js处json
                     JSONObject resumeSendJson = new JSONObject();
-                    resumeSendJson.put("resumeSendId", resumeSend.getResumeId());
+                    resumeSendJson.put("resumeSendId", resumeSend.getResumeSendId());
                     resumeSendJson.put("resumeSendTime", resumeSend.getDateTime());
                     Recruit recruit = recruitRepository.findByRecruitId(resumeSend.getRecruitId());
                     resumeSendJson.put("jobTitle", recruit.getJobName());
@@ -409,7 +409,7 @@ public class CompanyController {
 
                 }
             }
-            json.put("data", resumeSendListJsonArray);
+            json.put("resumeSendList", resumeSendListJsonArray);
         }
         System.out.println(json);
         SendInfoUtil.render(json.toString(), "text/json", response);
@@ -443,7 +443,7 @@ public class CompanyController {
      * 公司请求投递信息对应的简历信息
      */
     @PostMapping(value = "/resume_received/resume")
-    public void showCompanyReceivedResumeDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void showCompanyReceivedResumeDetailData(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
@@ -458,11 +458,31 @@ public class CompanyController {
         }
         Long resumeSendId = Long.parseLong(resumeSendStr);
         ResumeSend resumeSend = resumeSendRepository.findByResumeSendId(resumeSendId);
-        System.out.println(resumeSend);
+        //进入页面请求简历信息时，说明该公司已经看过该简历，所以修改HaveRead标记为true
+        resumeSendService.updateHaveReadByResumeSendId(resumeSendId);
+
         Long resumeId = resumeSend.getResumeId();
 //        查找简历
         Resume resume = resumeRepository.findByResumeId(resumeId);
         SendInfoUtil.render(resume.getResumeContent(), "text/json", response);
 
+    }
+
+    /**
+     * 请求投递信息具体简历页面
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @GetMapping(value = "/resume_received/resume")
+    public String showCompanyReceivedResumeDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if (loginUser == null || !(loginUser instanceof Company)) {
+            response.sendRedirect("/");
+        }
+
+        return "companyReceivedResumeDetail";
     }
 }

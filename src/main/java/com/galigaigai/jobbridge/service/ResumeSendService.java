@@ -19,7 +19,7 @@ public class ResumeSendService {
     private ResumeSendRepository resumeSendRepository;
 
     /**
-     * 更新
+     * 更新是否删除标记
      * */
     @Transactional
     @Modifying
@@ -29,6 +29,20 @@ public class ResumeSendService {
             System.out.println("该resumeSend不存在");
         }else{
             resumeSend.setHaveDelete(true);
+            resumeSendRepository.save(resumeSend);
+        }
+    }
+    /**
+     * 更新是否阅读标记
+     * */
+    @Transactional
+    @Modifying
+    public void updateHaveReadByResumeSendId(Long resumeSendId){
+        ResumeSend resumeSend = resumeSendRepository.findByResumeSendId(resumeSendId);
+        if(resumeSend == null){
+            System.out.println("该resumeSend不存在");
+        }else{
+            resumeSend.setHaveRead(true);
             resumeSendRepository.save(resumeSend);
         }
     }
