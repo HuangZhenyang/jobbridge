@@ -597,7 +597,7 @@ TOP BAR CONTENT & NOTIFICATIONS
             </ul>-->
             <ol class="breadcrumb" style="float: right;margin-top: 12px;">
                 <li><a href="/company/info">企业首页</a></li>
-                <li><a href="/company/info"><span id="head-userName"></span></a></li>
+                <li><a href="/company/info"><span id="head-userName" th:text="${company.userName}"></span></a></li>
                 <li><a class="signOut" href="/sign_out"><span>退出</span></a></li>
             </ol>
         </div>
@@ -682,7 +682,7 @@ MAIN CONTENT
                                                                         <div data-jsx="3479566426" data-reactid="69">
                                                                             <span class="my-label">企业名字：</span>
                                                                             <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px; margin-left: 0px"  >
-                                                                                <label><span id="name" class="my-label" style="margin-left: 0px"></span></label>
+                                                                                <label><span id="name" class="my-label" style="margin-left: 0px" th:text="${company.name}"></span></label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -694,7 +694,7 @@ MAIN CONTENT
                                                                         <div data-jsx="3479566426" data-reactid="69">
                                                                             <span class="my-label">登录账号：</span>
                                                                             <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px; margin-left: 0px"  >
-                                                                                <label><span id="userName" class="my-label" style="margin-left: 0px"></span></label>
+                                                                                <label><span id="userName" class="my-label" style="margin-left: 0px" th:text="${company.userName}"></span></label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -706,7 +706,7 @@ MAIN CONTENT
                                                                         <div data-jsx="3479566426" data-reactid="69">
                                                                             <span class="my-label">企业邮箱：</span>
                                                                             <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px;margin-left: 0px"  >
-                                                                                <label><span id="mailbox" class="my-label" style="margin-left: 0px"></span></label>
+                                                                                <label><span id="mailbox" class="my-label" style="margin-left: 0px" th:text="${company.mailbox}"></span></label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -718,7 +718,7 @@ MAIN CONTENT
                                                                         <div data-jsx="3479566426" data-reactid="69">
                                                                             <span class="my-label">联系方式：</span>
                                                                             <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px;margin-left: 0px"  >
-                                                                                <label><span id="phoneNum" class="my-label" style="margin-left: 0px"></span></label>
+                                                                                <label><span id="phoneNum" class="my-label" style="margin-left: 0px" th:text="${company.phoneNum}"></span></label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -731,7 +731,7 @@ MAIN CONTENT
                                                                             <span class="my-label">公司介绍：</span>
                                                                             <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px;margin-left: 0px"  >
                                                                                <!--<textarea id="companyIntroduction" class="my-label" style="margin-left: 0px;word-break:normal;width: 522.16px;display:block;white-space:pre-wrap;word-wrap : break-word;overflow: hidden;height: 510.4px;"></textarea>-->
-                                                                                <label id="companyIntroduction" style="font-size: medium"></label>
+                                                                                <label id="companyIntroduction" style="font-size: medium" th:text="${company.companyIntroduction}"></label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -769,8 +769,8 @@ MAIN CONTENT
 <!--Javascript for this page-->
 <script type="text/javascript" src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
 <script type="text/javascript" src="../static/js/studentInfo/check.js" th:src="@{/js/studentInfo/check.js}"></script>
-<script type="text/javascript" src="../static/js/companyInfo/companyInfo.js" th:src="@{/js/companyInfo/companyInfo.js}"></script>
-<script type="text/javascript" src="../static/js/getUserName.js" th:src="@{/js/getUserName.js}"></script>
+<!--<script type="text/javascript" src="../static/js/companyInfo/companyInfo.js" th:src="@{/js/companyInfo/companyInfo.js}"></script>-->
+
 
 <!-- 测试 -->
 <!--<script src="http://mockjs.com/dist/mock.js"></script>

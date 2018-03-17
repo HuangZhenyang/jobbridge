@@ -10,12 +10,14 @@ import com.galigaigai.jobbridge.util.CryptoUtil;
 import com.galigaigai.jobbridge.util.SendInfoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
@@ -41,8 +43,15 @@ public class SignController {
      * @return
      */
     @GetMapping(value = "/")
-    public String showIndex(HttpServletResponse response) {
+    public String showIndex(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if (loginUser == null || !(loginUser instanceof Company)) {
+            //response.sendRedirect("/");
+        }else{
+            model.addAttribute("loginUser", loginUser);
+        }
+
         return "index";
     }
 
