@@ -1,0 +1,245 @@
+<!DOCTYPE html><html><head><link rel="preload" href="/_next/2afd8b15-e526-4b9b-9a99-336eead531e7/page/job/detail" as="script"/><link rel="preload" href="/_next/2afd8b15-e526-4b9b-9a99-336eead531e7/page/_error" as="script"/><link rel="preload" href="/_next/54605f38d84c9bf4482009e8b2744452/app.js" as="script"/><meta charset="UTF-8" class="next-head"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" class="next-head"/><meta name="renderer" content="webkit" class="next-head"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui" class="next-head"/><meta name="apple-mobile-web-app-capable" content="yes" class="next-head"/><meta name="apple-mobile-web-app-status-bar-style" content="black" class="next-head"/><meta name="wap-font-scale" content="no" class="next-head"/><meta name="format-detection" content="telephone=no" class="next-head"/><meta name="description" content="小灶计划，小灶教育，Xiaozao，小灶求职顾问，靠谱的职业探索教育平台，领先的求职辅导品牌，一站式职位申请、求职辅导平台，基于关系的职业发展教育平台，提供个性化、定制化、线上线下结合的求职服务，广泛的导师资源，丰富的求职干货，全网最靠谱的名企实习、校招职位信息" class="next-head"/><meta name="keywords" content="小灶计划，小灶教育，小灶求职，求职路上，靠谱小灶，网申，简历，笔试，面试，求职信，四大，咨询，快消，银行，金融，互联网，实习，校招，全职，名企，500强，安永，毕马威，普华永道，德勤，埃森哲，麦肯锡，内推，职位，小灶求职顾问" class="next-head"/><meta name="baidu-site-verification" content="s11uW32gRy" class="next-head"/><link rel="shortcut icon" type="image/x-icon" href="/static/img/common/xiaozao.ico" class="next-head"/><title class="next-head">城市中心实习生 + 国家发改委实习 + 北京实习 + 小灶求职</title><link rel="stylesheet" href="/static/lib/antd/dist/antd.min.css" class="next-head"/><style id="__jsx-style-474867637">.recommend_a[data-jsx="474867637"] {color: #333333;}.com_img[data-jsx="474867637"] {width: 30%;padding-right: 10px;}.com_img[data-jsx="474867637"] .img[data-jsx="474867637"] {width: 100%;height: auto;}.rem_content[data-jsx="474867637"] {width: 70%;}.recommend_title[data-jsx="474867637"] {margin-bottom: 5px;}.block[data-jsx="474867637"] {padding: 10px;}.info[data-jsx="474867637"] {font-weight:200;line-height: 26px;}.top[data-jsx="474867637"] {}.top[data-jsx="474867637"] .tool[data-jsx="474867637"] {}.collection[data-jsx="474867637"] {margin-right: 15px;}.top[data-jsx="474867637"] .block3[data-jsx="474867637"] {color: #ffbf00;}.top[data-jsx="474867637"] .block2[data-jsx="474867637"] {padding-top: 15px;border-top: 1px dashed #d9d9d9;}.top[data-jsx="474867637"] .block1[data-jsx="474867637"] {padding: 15px 0;line-height: 30px;}.top[data-jsx="474867637"] .comment-label[data-jsx="474867637"] {background-color: #3E84E0;border-radius: 25px;color: #fff;padding: 2px 6px;}.top[data-jsx="474867637"] .comment[data-jsx="474867637"] {width: 780px;line-height: 26px;}.location[data-jsx="474867637"] {width: 70px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;float: left;}.date[data-jsx="474867637"] {float:right;}</style><style id="__jsx-style-810721492">.right-block[data-jsx="810721492"] {margin-left: 15px;}.logo[data-jsx="810721492"] {width: 120px;height: auto;}.tags[data-jsx="810721492"] {margin-top: 15px;}</style><style id="__jsx-style-1459043078">.job[data-jsx="1459043078"] {background-color: '#F9F9F9';}</style><style id="__jsx-style-1949554143">.box[data-jsx="1949554143"]{position:relative;z-index:10;background-color:#fff;box-shadow:0 1px 5px rgba(0,0,0,0.075);}.logo[data-jsx="1949554143"]{margin-right:10px;}.logo[data-jsx="1949554143"] .icon[data-jsx="1949554143"]{width:30px;height:auto;}.logo[data-jsx="1949554143"] .text[data-jsx="1949554143"]{width:170px;height:auto;margin-left:5px;}.mitem[data-jsx="1949554143"]{display:block;padding:0 10px;height:70px;line-height:62px;border-top:4px solid transparent;color:#333;-webkit-transition:all 0.2s ease-in-out;-moz-transition:all 0.2s ease-in-out;-ms-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}.mitem[data-jsx="1949554143"]:hover{border-top-color:#337ab7;box-shadow:0 0 2px rgba(0,0,0,0.1);}.mitem[data-jsx="1949554143"] .img[data-jsx="1949554143"]{width:30px;height:30px;border-radius:50%;vertical-align:middle;}.mitem[data-jsx="1949554143"] .text[data-jsx="1949554143"]{margin:0 -5px 0 5px;vertical-align:middle;}.mitem[data-jsx="1949554143"] .icon[data-jsx="1949554143"]{display:inline-block;width:30px;height:30px;vertical-align:middle;background:url(/static/img/common/arrow.png) no-repeat;background-size:contain;}.mitem[data-jsx="1949554143"] .head-img[data-jsx="1949554143"],.mitem[data-jsx="1949554143"] .drop-down[data-jsx="1949554143"]{width: 30px;height: 30px;vertical-align: middle;}.mitem[data-jsx="1949554143"] .name[data-jsx="1949554143"]{vertical-align: middle;margin-left: 5px;max-width: 80px;}.badge[data-jsx="1949554143"]{color:#ffffff;background-color:#3E84E0;padding:3px 5px;line-height:1;font-size:12px;border-radius:20px;}</style><style id="__jsx-style-2597945739">.box[data-jsx="2597945739"]{position:fixed;z-index:10;right:56px;bottom:160px;}.backtop[data-jsx="2597945739"]{display:block;width:28px;cursor:pointer;}</style><style id="__jsx-style-3932515010">
+                .job .job-info {
+                    margin-bottom: 15px;
+                }
+                .pm-help {
+                    margin-top: 15px;
+                }
+                .pm-help .p {
+
+                }
+                .pm-help .img {
+                    width: 120px;
+                }
+                .collection-icon {
+                    display: inline-flex;
+                }
+                .mailing .ant-modal-footer {
+                    display: none;
+                }
+                .tags .ant-tag {
+                    margin-top: 5px;
+                }
+                .recommend__block {
+                    margin: 10px 0 0 10px;
+                }
+                .recommend_row {
+                    margin-left: -10px;
+                }
+                .recommend_row .ant-card-body {
+                    padding: 0;
+                }
+            </style><style id="__jsx-style-4042860639">.box[data-jsx="4042860639"]{margin-top: 20px;padding-top: 30px;padding-bottom: 20px;color: #d9d9d9;background-color: #373737;}.logo-box[data-jsx="4042860639"]{width:450px;}.logo[data-jsx="4042860639"]{display:block;}.logo[data-jsx="4042860639"] .icon[data-jsx="4042860639"]{width:40px;height:40px;}.logo[data-jsx="4042860639"] .text[data-jsx="4042860639"]{width:195px;height:35px;margin-left:5px;}.descr[data-jsx="4042860639"]{margin-top: 10px;font-size:12px;}.menu-box[data-jsx="4042860639"]{width:350px;}.menu[data-jsx="4042860639"]{text-align:center;}.menu[data-jsx="4042860639"] .link[data-jsx="4042860639"]{font-size:12px;margin-top:15px;}.contact[data-jsx="4042860639"]{margin-top:20px;}.contact[data-jsx="4042860639"] .copyright[data-jsx="4042860639"]{font-size:12px;text-align:right;}</style><style id="__jsx-style-4224132704">
+                
+.ant-breadcrumb {
+    margin: 15px 0;
+}
+.ant-breadcrumb,.ant-breadcrumb a,.ant-breadcrumb>span:last-child{
+    color:inherit;
+}
+.ant-breadcrumb>span:last-child{
+    font-weight:normal;
+}
+.ant-tabs{
+    color:inherit;
+}
+.ant-radio-group, .ant-radio-wrapper, .ant-checkbox-group, .ant-checkbox-wrapper {
+    font-size: inherit;
+}
+.ant-radio, .ant-radio + *, .ant-checkbox, .ant-checkbox + * {
+    vertical-align: middle;
+}
+.ant-btn-danger {
+    color: #fff;
+    background-color: #F7412D;
+    border-color: #F7412D;
+}
+.ant-btn-danger:focus, .ant-btn-danger:hover {
+    background-color: #f46e65;
+    border-color: #f46e65;
+}
+.ant-btn-danger:active{
+    background-color: #d73435;
+    border-color: #d73435;
+}
+.ant-card{
+    font-size:inherit;
+    background-color:transparent;
+}
+.ant-table{
+    font-size:inherit;
+}
+.ant-modal-body{
+    font-size:inherit;
+}
+.ant-select{
+    font-size:inherit;
+}
+.ant-select-dropdown{
+    font-size:inherit;
+}
+.ant-input{
+    font-size:inherit;
+}
+
+.my-color-primary{
+    color:#3E84E0 !important;
+}
+.my-color-gray{
+    color:#767676 !important;
+}
+.my-color-danger{
+    color:#F7412D !important;
+}
+.my-color-success{
+    color:#00C160 !important;
+}
+.my-color-white{
+    color:#ffffff !important;
+}
+.my-color-black{
+    color:#333333 !important;
+}
+.my-color-border{
+    color:#d9d9d9 !important;
+}
+.my-bgcolor-primary{
+    color:#ffffff !important;
+    background-color:#3E84E0 !important;
+}
+.my-bgcolor-gray{
+    background-color:#F9F9F9 !important;
+}
+.my-bgcolor-danger{
+    color:#ffffff !important;
+    background-color:#F7412D !important;
+}
+.my-bgcolor-success{
+    color:#ffffff !important;
+    background-color:#00C160 !important;
+}
+
+body{
+    color:#333333;
+    font-size:14px;
+}
+a,
+a:active,
+a:hover,
+a:focus {
+  outline: 0;
+  text-decoration: none;
+}
+
+/*主体内容容器*/
+.my-container {
+    width: 1208px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.my-container-box {
+    min-width: 1208px;
+}
+/*文本位置*/
+.my-text-left{
+    text-align:left;
+}
+.my-text-center{
+    text-align:center;
+}
+.my-text-right{
+    text-align:right;
+}
+/*文本单行*/
+.my-text-rowsingle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*图片宽度限制*/
+.my-img-full img{
+    max-width:100%;
+}
+/*快速浮动和清除浮动*/
+.my-clearfix:before,
+.my-clearfix:after {
+    content: ' ';
+    display: table;
+}
+.my-clearfix:after {
+    clear: both;
+}
+.my-pull-left {
+  float: left !important;
+}
+.my-pull-right {
+  float: right !important;
+}
+/*限制行数，多余内容省略号*/
+.line-clamp {
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+.line-clamp2 {
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.line-clamp3 {
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+.line-clamp4 {
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+}
+/*文本动换行*/
+.line {
+	word-break: break-all;
+	word-wrap:break-word;
+}
+/*提示登录框*/
+.my-modal-login .ant-confirm-btns{
+    margin-top:15px;
+}
+.my-modal-login .ant-btn{
+    margin-bottom:0;
+}
+.my-modal-login .anticon{
+    display:none;
+}
+.my-modal-login .ant-confirm-content{
+    margin-left:0;
+}
+
+                .browser-tips {
+                    background-color: #3E84E0;
+                    color: #fff;
+                    border-radius: 0;
+                    border: 0;
+                }
+                .browser-tips a,
+                .browser-tips i.anticon-cross {
+                    color: #fff;
+                    text-decoration: underline;
+                }
+            </style></head><body><div><div id="__next"><div data-reactroot="" data-reactid="1" data-react-checksum="-356662650"><div data-reactid="2"><!-- react-empty: 3 --><div data-reactid="4"><div class="box" data-jsx="1949554143" data-reactid="5"><div class="my-container" data-jsx="1949554143" data-reactid="6"><div class="ant-row-flex ant-row-flex-space-between" data-reactid="7"><div class="ant-row-flex ant-row-flex-middle" data-reactid="8"><a class="logo" href="/" data-jsx="1949554143" data-reactid="9"><div class="ant-row-flex ant-row-flex-middle" data-reactid="10"><img class="icon" src="/static/img/common/logo.png" data-jsx="1949554143" data-reactid="11"/><img class="text" src="/static/img/common/logo_text.png" data-jsx="1949554143" data-reactid="12"/></div></a><a class="mitem my-color-primary" href="/job/internship" data-jsx="1949554143" data-reactid="13">名企实习</a><a class="mitem" href="/school" data-jsx="1949554143" data-reactid="14"><span data-jsx="1949554143" data-reactid="15">校招管家</span><span class="badge" data-jsx="1949554143" data-reactid="16">BETA版</span></a><a class="mitem" href="/course" data-jsx="1949554143" data-reactid="17">求职课程</a><a class="mitem" href="/exam" data-jsx="1949554143" data-reactid="18">笔试题库</a><a class="mitem" href="/jianli" data-jsx="1949554143" data-reactid="19">制作简历</a><a class="mitem" href="/explore/1" data-jsx="1949554143" data-reactid="20">求职探索</a><a class="mitem" href="/company" data-jsx="1949554143" data-reactid="21">企业入口</a></div><div class="ant-row-flex ant-row-flex-middle" data-reactid="22"><a class="mitem" href="/user/registerCode" data-jsx="1949554143" data-reactid="23">注册</a><a class="mitem" href="/user/loginCode" data-jsx="1949554143" data-reactid="24">登录</a></div></div></div><!-- react-empty: 25 --></div><div class="job" data-jsx="1459043078" data-reactid="26"><div class="my-container" data-jsx="1459043078" data-reactid="27"><div class="ant-breadcrumb" data-reactid="28"><span data-reactid="29"><span class="ant-breadcrumb-link" data-reactid="30"><a href="/job/internship" data-reactid="31">名企实习</a></span><span class="ant-breadcrumb-separator" data-reactid="32">/</span></span><span data-reactid="33"><span class="ant-breadcrumb-link" data-reactid="34">城市中心实习生</span><span class="ant-breadcrumb-separator" data-reactid="35">/</span></span></div><div class="ant-row" data-reactid="36"><div class="ant-col-18" data-reactid="37"><div class="top" data-jsx="474867637" data-reactid="38"><div class="ant-card job-info ant-card-bordered" data-reactid="39"><div class="ant-card-body" data-reactid="40"><h3 class="title" data-jsx="474867637" data-reactid="41">城市中心实习生</h3><div class="my-clearfix block1" data-jsx="474867637" data-reactid="42"><i class="anticon anticon-environment-o" data-reactid="43"></i><!-- react-text: 44 --> <!-- /react-text --><!-- react-text: 45 -->北京<!-- /react-text --><!-- react-text: 46 --> <!-- /react-text --><i class="anticon anticon-clock-circle-o" data-reactid="47"></i><!-- react-text: 48 --> <!-- /react-text --><!-- react-text: 49 -->07月27日发布<!-- /react-text --><!-- react-text: 50 -->  <!-- /react-text --><div class="tool my-pull-right" data-jsx="474867637" data-reactid="51"><a href="javascript:;" class="collection" data-jsx="474867637" data-reactid="52"><i class="anticon anticon-star-o collection-icon" data-reactid="53"> 收藏</i></a><!-- react-text: 54 --><!-- /react-text --><button type="button" class="ant-btn ant-btn-primary" data-reactid="55"><span data-reactid="56">立即投递</span></button></div></div><!-- react-text: 57 --><!-- /react-text --></div></div><div class="ant-card content ant-card-bordered" data-reactid="58"><div class="ant-card-body" data-reactid="59"><div data-jsx="474867637" data-reactid="60"><div data-jsx="474867637" data-reactid="61"><p>因工作需要，国家发改委城市和小城镇改革发展中心拟招聘实习生1名，协助从事新型城镇化规划、特色小镇规划、产业规划的研究工作，具体要求如下：</p><p><br/>一、招聘条件<br/>1. 本科、研究生均为985、211高校及海外知名高校的在校大学生或应届毕业生，所学专业为城市规划、经济地理或经济学，硕士学历以上。<br/>2. 具有独立科研能力，参与过城市规划、新型城镇化规划、产业规划等相关研究，具有相关论文、竞赛学术成果者优先。<br/>3. 具有较强的文字表达和PPT编写能力。<br/>4. 学习能力、理解能力、抗压能力强，有责任心、上进心，做事有始有终。</p><p><br/>二、报名方法<br/>1. 请将个人简历电子版发送至邮箱<br/><br/>三、相关事业<br/>1. 实习时间至少3个月以上。<br/>2. 可以提供实习证明。实习表现优秀者可考虑留用。<br/>3. 面试依据简历投递时间择优安排。<br/>4. 具体待遇面议。<br/></p></div></div></div></div><br data-jsx="474867637" data-reactid="62"/><h4 data-jsx="474867637" data-reactid="63">相关实习推荐</h4><div class="ant-row recommend_row" data-reactid="64"><div class="ant-col-6 gutter-row" data-reactid="65"><a href="/job/18281" class="recommend_a" target="_blank" data-jsx="474867637" data-reactid="66"><div class="ant-card recommend__block ant-card-bordered" data-reactid="67"><div class="ant-card-body" data-reactid="68"><div class="clearfix block" data-jsx="474867637" data-reactid="69"><div class="com_img my-pull-left" data-jsx="474867637" data-reactid="70"><img class="img" src="/upload/comp/161222/14823834682678723611069729132272.ori.jpg" alt="英语翻译实习生" data-jsx="474867637" data-reactid="71"/></div><div class="rem_content my-pull-right" data-jsx="474867637" data-reactid="72"><h4 class="my-text-rowsingle recommend_title" title="英语翻译实习生" data-jsx="474867637" data-reactid="73">英语翻译实习生</h4><span class="info line-clamp" title="今日头条" data-jsx="474867637" data-reactid="74">今日头条</span><span class="info" data-jsx="474867637" data-reactid="75"><span class="location" title="北京" data-jsx="474867637" data-reactid="76">北京</span><span class="date" data-jsx="474867637" data-reactid="77">07月27日</span></span></div></div></div></div></a></div><div class="ant-col-6 gutter-row" data-reactid="78"><a href="/job/18272" class="recommend_a" target="_blank" data-jsx="474867637" data-reactid="79"><div class="ant-card recommend__block ant-card-bordered" data-reactid="80"><div class="ant-card-body" data-reactid="81"><div class="clearfix block" data-jsx="474867637" data-reactid="82"><div class="com_img my-pull-left" data-jsx="474867637" data-reactid="83"><img class="img" src="/upload/comp/170324/14903558856638970983533335037429.ori.jpg" alt="实习生" data-jsx="474867637" data-reactid="84"/></div><div class="rem_content my-pull-right" data-jsx="474867637" data-reactid="85"><h4 class="my-text-rowsingle recommend_title" title="实习生" data-jsx="474867637" data-reactid="86">实习生</h4><span class="info line-clamp" title="Index Capital指数资本" data-jsx="474867637" data-reactid="87">Index Capital指数资本</span><span class="info" data-jsx="474867637" data-reactid="88"><span class="location" title="北京,上海" data-jsx="474867637" data-reactid="89">北京,上海</span><span class="date" data-jsx="474867637" data-reactid="90">07月27日</span></span></div></div></div></div></a></div><div class="ant-col-6 gutter-row" data-reactid="91"><a href="/job/18280" class="recommend_a" target="_blank" data-jsx="474867637" data-reactid="92"><div class="ant-card recommend__block ant-card-bordered" data-reactid="93"><div class="ant-card-body" data-reactid="94"><div class="clearfix block" data-jsx="474867637" data-reactid="95"><div class="com_img my-pull-left" data-jsx="474867637" data-reactid="96"><img class="img" src="/upload/comp/161222/14823834682678723611069729132272.ori.jpg" alt="英语翻译实习生" data-jsx="474867637" data-reactid="97"/></div><div class="rem_content my-pull-right" data-jsx="474867637" data-reactid="98"><h4 class="my-text-rowsingle recommend_title" title="英语翻译实习生" data-jsx="474867637" data-reactid="99">英语翻译实习生</h4><span class="info line-clamp" title="今日头条" data-jsx="474867637" data-reactid="100">今日头条</span><span class="info" data-jsx="474867637" data-reactid="101"><span class="location" title="北京" data-jsx="474867637" data-reactid="102">北京</span><span class="date" data-jsx="474867637" data-reactid="103">07月27日</span></span></div></div></div></div></a></div><div class="ant-col-6 gutter-row" data-reactid="104"><a href="/job/18283" class="recommend_a" target="_blank" data-jsx="474867637" data-reactid="105"><div class="ant-card recommend__block ant-card-bordered" data-reactid="106"><div class="ant-card-body" data-reactid="107"><div class="clearfix block" data-jsx="474867637" data-reactid="108"><div class="com_img my-pull-left" data-jsx="474867637" data-reactid="109"><img class="img" src="/upload/comp/170309/14890644047236112007496439233726.ori.jpg" alt="信息管理部暑期实习生" data-jsx="474867637" data-reactid="110"/></div><div class="rem_content my-pull-right" data-jsx="474867637" data-reactid="111"><h4 class="my-text-rowsingle recommend_title" title="信息管理部暑期实习生" data-jsx="474867637" data-reactid="112">信息管理部暑期实习生</h4><span class="info line-clamp" title="中国外运" data-jsx="474867637" data-reactid="113">中国外运</span><span class="info" data-jsx="474867637" data-reactid="114"><span class="location" title="北京" data-jsx="474867637" data-reactid="115">北京</span><span class="date" data-jsx="474867637" data-reactid="116">07月27日</span></span></div></div></div></div></a></div><div class="ant-col-6 gutter-row" data-reactid="117"><a href="/job/18308" class="recommend_a" target="_blank" data-jsx="474867637" data-reactid="118"><div class="ant-card recommend__block ant-card-bordered" data-reactid="119"><div class="ant-card-body" data-reactid="120"><div class="clearfix block" data-jsx="474867637" data-reactid="121"><div class="com_img my-pull-left" data-jsx="474867637" data-reactid="122"><img class="img" src="/upload/comp/170527/14958541578324760377627252547651.ori.jpg" alt="资本市场部多岗位" data-jsx="474867637" data-reactid="123"/></div><div class="rem_content my-pull-right" data-jsx="474867637" data-reactid="124"><h4 class="my-text-rowsingle recommend_title" title="资本市场部多岗位" data-jsx="474867637" data-reactid="125">资本市场部多岗位</h4><span class="info line-clamp" title="渤海汇金证券资产管理" data-jsx="474867637" data-reactid="126">渤海汇金证券资产管理</span><span class="info" data-jsx="474867637" data-reactid="127"><span class="location" title="北京,上海,深圳" data-jsx="474867637" data-reactid="128">北京,上海,深圳</span><span class="date" data-jsx="474867637" data-reactid="129">07月27日</span></span></div></div></div></div></a></div><div class="ant-col-6 gutter-row" data-reactid="130"><a href="/job/18401" class="recommend_a" target="_blank" data-jsx="474867637" data-reactid="131"><div class="ant-card recommend__block ant-card-bordered" data-reactid="132"><div class="ant-card-body" data-reactid="133"><div class="clearfix block" data-jsx="474867637" data-reactid="134"><div class="com_img my-pull-left" data-jsx="474867637" data-reactid="135"><img class="img" src="/upload/comp/170626/14984436358215416854040072792316.ori.png" alt="律所实习生" data-jsx="474867637" data-reactid="136"/></div><div class="rem_content my-pull-right" data-jsx="474867637" data-reactid="137"><h4 class="my-text-rowsingle recommend_title" title="律所实习生" data-jsx="474867637" data-reactid="138">律所实习生</h4><span class="info line-clamp" title="万慧达律师事务所" data-jsx="474867637" data-reactid="139">万慧达律师事务所</span><span class="info" data-jsx="474867637" data-reactid="140"><span class="location" title="北京" data-jsx="474867637" data-reactid="141">北京</span><span class="date" data-jsx="474867637" data-reactid="142">07月27日</span></span></div></div></div></div></a></div><div class="ant-col-6 gutter-row" data-reactid="143"><a href="/job/18403" class="recommend_a" target="_blank" data-jsx="474867637" data-reactid="144"><div class="ant-card recommend__block ant-card-bordered" data-reactid="145"><div class="ant-card-body" data-reactid="146"><div class="clearfix block" data-jsx="474867637" data-reactid="147"><div class="com_img my-pull-left" data-jsx="474867637" data-reactid="148"><img class="img" src="/upload/comp/170626/14984436358215416854040072792316.ori.png" alt="律所实习生" data-jsx="474867637" data-reactid="149"/></div><div class="rem_content my-pull-right" data-jsx="474867637" data-reactid="150"><h4 class="my-text-rowsingle recommend_title" title="律所实习生" data-jsx="474867637" data-reactid="151">律所实习生</h4><span class="info line-clamp" title="万慧达律师事务所" data-jsx="474867637" data-reactid="152">万慧达律师事务所</span><span class="info" data-jsx="474867637" data-reactid="153"><span class="location" title="北京" data-jsx="474867637" data-reactid="154">北京</span><span class="date" data-jsx="474867637" data-reactid="155">07月27日</span></span></div></div></div></div></a></div><div class="ant-col-6 gutter-row" data-reactid="156"><a href="/job/18269" class="recommend_a" target="_blank" data-jsx="474867637" data-reactid="157"><div class="ant-card recommend__block ant-card-bordered" data-reactid="158"><div class="ant-card-body" data-reactid="159"><div class="clearfix block" data-jsx="474867637" data-reactid="160"><div class="com_img my-pull-left" data-jsx="474867637" data-reactid="161"><img class="img" src="/upload/comp/170510/14943849732366713692099444054087.ori.jpg" alt="实习生" data-jsx="474867637" data-reactid="162"/></div><div class="rem_content my-pull-right" data-jsx="474867637" data-reactid="163"><h4 class="my-text-rowsingle recommend_title" title="实习生" data-jsx="474867637" data-reactid="164">实习生</h4><span class="info line-clamp" title="新华网" data-jsx="474867637" data-reactid="165">新华网</span><span class="info" data-jsx="474867637" data-reactid="166"><span class="location" title="北京" data-jsx="474867637" data-reactid="167">北京</span><span class="date" data-jsx="474867637" data-reactid="168">07月27日</span></span></div></div></div></div></a></div></div><!-- react-empty: 169 --></div></div><div class="ant-col-6" data-reactid="170"><div class="right-block" data-jsx="810721492" data-reactid="171"><div class="ant-card ant-card-bordered" data-reactid="172"><div class="ant-card-body" data-reactid="173"><div class="my-text-center" data-jsx="810721492" data-reactid="174"><img class="logo" src="/upload/comp/170727/15011189710168638085855102702427.ori.jpg" data-jsx="810721492" data-reactid="175"/><h2 data-jsx="810721492" data-reactid="176">国家发改委</h2></div><div class="tags" data-jsx="810721492" data-reactid="177"></div></div></div><div class="ant-card pm-help my-text-center ant-card-bordered" data-reactid="178"><div class="ant-card-body" data-reactid="179"><p class="p" data-jsx="810721492" data-reactid="180">投递职位遇到问题</p><img class="img" src="/static/img/common/wechatIHelper.jpg" data-jsx="810721492" data-reactid="181"/><p class="p" data-jsx="810721492" data-reactid="182">扫描添加小灶产品经理</p><p class="p" data-jsx="810721492" data-reactid="183">Frank微信好友帮助解决</p></div></div><!-- react-empty: 184 --></div></div></div></div><!-- react-empty: 185 --><!-- react-empty: 186 --></div><div class="box my-container-box" data-jsx="4042860639" data-reactid="187"><div class="my-container" data-jsx="4042860639" data-reactid="188"><div class="ant-row-flex ant-row-flex-space-between" data-reactid="189"><div class="logo-box" data-jsx="4042860639" data-reactid="190"><a class="logo" href="/" data-jsx="4042860639" data-reactid="191"><div class="ant-row-flex ant-row-flex-middle" data-reactid="192"><img class="icon" src="/static/img/common/logo.png" data-jsx="4042860639" data-reactid="193"/><img class="text" src="/static/img/common/logo_text.png" data-jsx="4042860639" data-reactid="194"/></div></a><div class="descr" data-jsx="4042860639" data-reactid="195">小灶教育是北美顶尖MBA团队创建的面向大学生的一站式定制化职业发展教育平台。在这里，学生可以获得匹配个人职业发展需求的一站式解决方案：包括职业探索指导、线上线下课程、求职工具、以及职位信息等。</div></div><div class="menu-box" data-jsx="4042860639" data-reactid="196"><div class="ant-row-flex ant-row-flex-space-between" data-reactid="197"><div class="menu" data-jsx="4042860639" data-reactid="198"><div data-jsx="4042860639" data-reactid="199">小灶教育</div><div class="link" data-jsx="4042860639" data-reactid="200"><a class="my-color-gray" href="/" data-jsx="4042860639" data-reactid="201">网站首页</a></div><div class="link" data-jsx="4042860639" data-reactid="202"><a class="my-color-gray" href="/explore/1" data-jsx="4042860639" data-reactid="203">求职探索</a></div></div><div class="menu" data-jsx="4042860639" data-reactid="204"><div data-jsx="4042860639" data-reactid="205">职位投递</div><div class="link" data-jsx="4042860639" data-reactid="206"><a class="my-color-gray" href="/job" data-jsx="4042860639" data-reactid="207">名企实习</a></div><div class="link" data-jsx="4042860639" data-reactid="208"><a class="my-color-gray" href="/school" data-jsx="4042860639" data-reactid="209">校招日历</a></div></div><div class="menu" data-jsx="4042860639" data-reactid="210"><div data-jsx="4042860639" data-reactid="211">求职课程</div><div class="link" data-jsx="4042860639" data-reactid="212"><a class="my-color-gray" href="/course" data-jsx="4042860639" data-reactid="213">线上课程</a></div><div class="link" data-jsx="4042860639" data-reactid="214"><a class="my-color-gray" href="/exam" data-jsx="4042860639" data-reactid="215">笔试题库</a></div></div><div class="menu" data-jsx="4042860639" data-reactid="216"><div data-jsx="4042860639" data-reactid="217">求职工具</div><div class="link" data-jsx="4042860639" data-reactid="218"><a class="my-color-gray" href="/jianli" data-jsx="4042860639" data-reactid="219">制作简历</a></div></div></div></div></div><div class="contact" data-jsx="4042860639" data-reactid="220"><div class="ant-row-flex ant-row-flex-space-between ant-row-flex-bottom" data-reactid="221"><div data-jsx="4042860639" data-reactid="222"><span data-jsx="4042860639" data-reactid="223">联系邮箱：</span><a class="my-color-border" href="mailto:info@xiaozao.org" data-jsx="4042860639" data-reactid="224">info@xiaozao.org</a></div><div class="copyright my-color-gray" data-jsx="4042860639" data-reactid="225"><div data-jsx="4042860639" data-reactid="226">京ICP备15065001号-1</div><div data-jsx="4042860639" data-reactid="227">Copyright © 2015-2017 xiaozao. All Rights Reserved.</div></div></div></div></div><!-- react-empty: 228 --></div><div class="box" data-jsx="2597945739" data-reactid="229"><img class="backtop" src="/static/img/common/backtop_top.png" title="返回顶部" data-jsx="2597945739" data-reactid="230"/><!-- react-empty: 231 --></div></div><!-- react-empty: 232 --><script src="/static/js/common.js" data-reactid="233"></script><script src="/static/js/service.js" data-reactid="234"></script><script src="/static/js/statis.js" data-reactid="235"></script></div></div></div><div id="__next-error"></div></div><div><script>
+          __NEXT_DATA__ = {"props":{"appData":{"user":null,"browser":{"isH5":false,"isChrome":true}},"job":{"address":"北京","createTime":"2017-07-27T09:30:07","demand":"实习生应聘—学校 专业 姓名","des":"\u003cp\u003e因工作需要，国家发改委城市和小城镇改革发展中心拟招聘实习生1名，协助从事新型城镇化规划、特色小镇规划、产业规划的研究工作，具体要求如下：\u003c/p\u003e\u003cp\u003e\u003cbr/\u003e一、招聘条件\u003cbr/\u003e1. 本科、研究生均为985、211高校及海外知名高校的在校大学生或应届毕业生，所学专业为城市规划、经济地理或经济学，硕士学历以上。\u003cbr/\u003e2. 具有独立科研能力，参与过城市规划、新型城镇化规划、产业规划等相关研究，具有相关论文、竞赛学术成果者优先。\u003cbr/\u003e3. 具有较强的文字表达和PPT编写能力。\u003cbr/\u003e4. 学习能力、理解能力、抗压能力强，有责任心、上进心，做事有始有终。\u003c/p\u003e\u003cp\u003e\u003cbr/\u003e二、报名方法\u003cbr/\u003e1. 请将个人简历电子版发送至邮箱\u003cbr/\u003e\u003cbr/\u003e三、相关事业\u003cbr/\u003e1. 实习时间至少3个月以上。\u003cbr/\u003e2. 可以提供实习证明。实习表现优秀者可考虑留用。\u003cbr/\u003e3. 面试依据简历投递时间择优安排。\u003cbr/\u003e4. 具体待遇面议。\u003cbr/\u003e\u003c/p\u003e","jobId":18374,"title":"城市中心实习生","mailingUrl":"","salary":"","section":"其他","companyComment":"","companyLogo":"/upload/comp/170727/15011189710168638085855102702427.ori.jpg","companyName":"国家发改委","companyTrade":null,"collection":false,"endTime":"2017-08-03T09:30:07","status":1,"tagList":[],"jobMailingNum":1},"recommend":{"totalSize":8,"data":[{"id":18281,"companyId":1791,"companyName":"今日头条","title":"英语翻译实习生","address":"北京","comment":"今日头条是一家技术驱动的移动互联网公司，总部地址位于北京。由公司独立研发的今日头条APP是一款基于数据挖掘的推荐引擎产品，为用户推荐有价值的、个性化的信息，提供连接人与信息的新型服务，是国内移动互联网领域成长最快的产品服务。今日头条的应届生校园招聘开始较早，网申时间一般为每年的8月8日-9月15日，通过面试的同学10月之前会得到offer。","companyLogo":"/upload/comp/161222/14823834682678723611069729132272.ori.jpg","tagName":null,"trade":"媒体/文化/休闲","createTime":"2017-07-27T08:32:48","inside":null},{"id":18272,"companyId":2536,"companyName":"Index Capital指数资本","title":"实习生","address":"北京,上海","comment":"","companyLogo":"/upload/comp/170324/14903558856638970983533335037429.ori.jpg","tagName":null,"trade":"金融","createTime":"2017-07-27T08:30:00","inside":null},{"id":18280,"companyId":1791,"companyName":"今日头条","title":"英语翻译实习生","address":"北京","comment":"今日头条是一家技术驱动的移动互联网公司，总部地址位于北京。由公司独立研发的今日头条APP是一款基于数据挖掘的推荐引擎产品，为用户推荐有价值的、个性化的信息，提供连接人与信息的新型服务，是国内移动互联网领域成长最快的产品服务。今日头条的应届生校园招聘开始较早，网申时间一般为每年的8月8日-9月15日，通过面试的同学10月之前会得到offer。","companyLogo":"/upload/comp/161222/14823834682678723611069729132272.ori.jpg","tagName":null,"trade":"媒体/文化/休闲","createTime":"2017-07-27T08:32:34","inside":null},{"id":18283,"companyId":33,"companyName":"中国外运","title":"信息管理部暑期实习生","address":"北京","comment":"","companyLogo":"/upload/comp/170309/14890644047236112007496439233726.ori.jpg","tagName":null,"trade":"交通/物流/航天/航空","createTime":"2017-07-27T08:33:34","inside":null},{"id":18308,"companyId":19913,"companyName":"渤海汇金证券资产管理","title":"资本市场部多岗位","address":"北京,上海,深圳","comment":"","companyLogo":"/upload/comp/170527/14958541578324760377627252547651.ori.jpg","tagName":null,"trade":"金融","createTime":"2017-07-27T08:44:44","inside":null},{"id":18401,"companyId":20414,"companyName":"万慧达律师事务所","title":"律所实习生","address":"北京","comment":"","companyLogo":"/upload/comp/170626/14984436358215416854040072792316.ori.png","tagName":null,"trade":"专业服务(会计师/咨询/法律/人力资源/其他)","createTime":"2017-07-27T10:37:11","inside":null},{"id":18403,"companyId":20414,"companyName":"万慧达律师事务所","title":"律所实习生","address":"北京","comment":"","companyLogo":"/upload/comp/170626/14984436358215416854040072792316.ori.png","tagName":null,"trade":"专业服务(会计师/咨询/法律/人力资源/其他)","createTime":"2017-07-27T10:40:52","inside":null},{"id":18269,"companyId":5182,"companyName":"新华网","title":"实习生","address":"北京","comment":"","companyLogo":"/upload/comp/170510/14943849732366713692099444054087.ori.jpg","tagName":null,"trade":"互联网","createTime":"2017-07-27T08:28:44","inside":null}]},"user":null},"pathname":"/job/detail","query":{},"buildId":"2afd8b15-e526-4b9b-9a99-336eead531e7","buildStats":{"app.js":{"hash":"54605f38d84c9bf4482009e8b2744452"}},"assetPrefix":"","err":null}
+          module={}
+          __NEXT_LOADED_PAGES__ = []
+
+          __NEXT_REGISTER_PAGE = function (route, fn) {
+            __NEXT_LOADED_PAGES__.push({ route: route, fn: fn })
+          }
+        </script><script async="" type="text/javascript" src="/_next/2afd8b15-e526-4b9b-9a99-336eead531e7/page/job/detail"></script><script async="" type="text/javascript" src="/_next/2afd8b15-e526-4b9b-9a99-336eead531e7/page/_error"></script><script type="text/javascript" src="/_next/54605f38d84c9bf4482009e8b2744452/app.js" async=""></script></div></body></html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<!-- /.website title -->
+	<title>用户登录</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}">
+	<!-- CSS Files -->
+	<link href="../static/css/common/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/common/bootstrap.min.css}">
+	<link href="../static/css/common/font-awesome.min.css" rel="stylesheet" th:href="@{/css/common/font-awesome.min.css}">
+	<!--<link href="../static/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" th:href="@{/fonts/icon-7-stroke/css/pe-icon-7-stroke.css}">-->
+
+	<!-- Colors -->
+	<link href="../static/css/common/css-index.css" rel="stylesheet" media="screen" th:href="@{/css/common/css-index.css}">
+
+
+	<!-- Google Fonts --谷歌的字体>
+    <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" />-->
+
+</head>
+
+<body data-spy="scroll" data-target="#navbar-scroll">
+
+	<!-- /.preloader -->
+	<div id="preloader"></div>
+	<div id="top"></div>
+
+	<!-- /.parallax full screen background image -->
+	<!--'../static/img/lo-re/bg.jpg'-->
+	<div class="fullscreen landing parallax" style="background-image:url('../static/img/lo-re/bg.jpg')" th:style="'background-image:url(' + @{/img/lo-re/bg.jpg} + ');'" data-img-width="2000" data-img-height="1333" data-diff="100">
+
+		<div class="overlay">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+
+						<!-- /.logo -->
+						<div class="logo wow fadeInDown">
+							<a class="logo" href="/" data-jsx="1727466106" data-reactid="9"><img class="icon" src="../static/img/favicon/f2.ico" th:src="@{/img/favicon/f2.ico}" data-jsx="1727466106" data-reactid="11">
+							</a>
+						</div>
+
+						<!-- /.main title -->
+						<h1 class="wow fadeInLeft">
+							JobBrige
+						</h1>
+
+						<!-- /.header paragraph -->
+						<div class="landing-text wow fadeInUp">
+							<p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 一站式服务平台&nbsp&nbsp&nbsp&nbsp&nbsp助力Offer
+							</p>
+						</div>
+
+					</div>
+
+					<!-- /.signup form -->
+					<div class="col-md-5">
+						<div class="signup-header wow fadeInUp">
+							<h3 class="form-title text-center">用户登录</h3>
+							<div class="form-header"  role="form" method="POST" id="#">
+								<input type="hidden" name="u" value="503bdae81fde8612ff4944435">
+								<input type="hidden" name="id" value="bfdba52708">
+								<div class="form-group">
+									<input class="form-control input-lg" name="MERGE1" id="userName" type="text" placeholder="用户名/邮箱" required>
+								</div>
+								<div class="form-group">
+									<input class="form-control input-lg" name="MERGE0" id="password" type="password" placeholder="密码" required>
+								</div>
+								<div>
+									<label style="float:left" ><span id="loginTip" style="color: red"></span></label>
+								</div>
+								<div class="privacy text-center" >
+									<!--<label style="float:left"><span id="loginTip" style="color: red"></span></label>-->
+									<p style="float: right">
+										<a href="">忘记密码</a></p>
+								</div>
+								<div class="form-group last">
+									<input onclick="signInFunc()" type="submit" class="btn btn-warning btn-block btn-lg" value="登录">
+								</div>
+								<p class="privacy text-center">还没有账号吗，<a href="/sign_up">立即注册</a></p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- /.footer -->
+	<footer id="footer">
+		<div class="container">
+			<div class="col-sm-4 col-sm-offset-4">
+				<!-- /.social links -->
+				<div class="social text-center">
+					<ul>
+						<li><a class="wow fadeInUp" ><i class="fa fa-weibo"></i></a></li>
+						<li><a class="wow fadeInUp"data-wow-delay="0.2s"><i class="fa fa-qq"></i></a></li>
+						<li><a class="wow fadeInUp"  data-wow-delay="0.4s"><i class="fa fa-weixin"></i></a></li>
+					</ul>
+				</div>
+				<div class="text-center wow fadeInUp" style="font-size: 14px;"><a href="www.baidu.com">About us</a></div>
+				<div class="text-center wow fadeInUp" style="font-size: 14px;">Copyright JobBrige 2017</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- /.javascript files -->
+	<script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
+	<script src="../static/js/common/bootstrap.min.js" th:src="@{/js/common/bootstrap.min.js}"></script>
+	<script src="../static/js/common/custom.js" th:src="@{/js/common/custom.js}"></script>
+	<script src="../static/js/common/jquery.sticky.js" th:src="@{/js/common/jquery.sticky.js}"></script>
+	<script src="../static/js/common/owl.carousel.min.js" th:src="@{/js/common/owl.carousel.min.js}"></script>
+	<script src="../static/js/signIn/signIn.js" th:src="@{/js/signIn/signIn.js}"></script>
+
+</body>
+
+</html>

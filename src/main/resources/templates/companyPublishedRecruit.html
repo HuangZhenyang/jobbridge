@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Job-Bridge">
+    <meta name="author" content="HuangZhenyang">
+    <link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}">
+    <title>企业信息</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/common/bootstrap.css" rel="stylesheet" th:href="@{/css/common/bootstrap.css}">
+    <!--external css-->
+    <link href="../static/css/common/font-awesome.css" rel="stylesheet" th:href="@{/css/common/font-awesome.css}">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/common/style-init.css" rel="stylesheet" th:href="@{/css/common/style-init.css}">
+    <link href="../static/css/common/style-responsive.css" rel="stylesheet" th:href="@{/css/common/style-responsive.css}">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!--my class-->
+    <link href="../static/css/common/style.css" th:href="@{/css/common/style.css}">
+
+    <!--stuinfo-->
+    <link rel="stylesheet" href="../static/css/common/antd.min.css" class="next-head" th:href="@{/css/common/antd.min.css}">
+    <link href="../static/css/common/bootstrap.css" rel="stylesheet" th:href="@{/css/common/bootstrap.css}">
+    <style id="__jsx-style-515442552">
+        .ucenter[data-jsx="515442552"] {
+            margin-top: 30px;
+        }
+
+        .box[data-jsx="515442552"] {
+            border: 1px solid #d9d9d9;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.075);
+            border-radius: 10px;
+            min-height: 800px;
+        }
+
+        .ucenter[data-jsx="515442552"] .box[data-jsx="515442552"] .content[data-jsx="515442552"] {
+            padding: 20px 30px;
+        }
+
+    </style>
+    <style id="__jsx-style-1727466106">
+        .box[data-jsx="1727466106"] {
+            position: relative;
+            z-index: 10;
+            background-color: #fff;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.075);
+        }
+
+        .logo[data-jsx="1727466106"] {
+            margin-right: 10px;
+        }
+
+        .logo[data-jsx="1727466106"] .icon[data-jsx="1727466106"] {
+            width: 30px;
+            height: auto;
+        }
+
+        .logo[data-jsx="1727466106"] .text[data-jsx="1727466106"] {
+            width: 170px;
+            height: auto;
+            margin-left: 5px;
+        }
+
+        .mitem[data-jsx="1727466106"] {
+            display: block;
+            padding: 0 10px;
+            height: 70px;
+            line-height: 62px;
+            border-top: 4px solid transparent;
+            color: #333;
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -ms-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .mitem[data-jsx="1727466106"]:hover {
+            border-top-color: #337ab7;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .mitem[data-jsx="1727466106"] .img[data-jsx="1727466106"] {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .mitem[data-jsx="1727466106"] .text[data-jsx="1727466106"] {
+            margin: 0 -5px 0 5px;
+            vertical-align: middle;
+        }
+
+        .mitem[data-jsx="1727466106"] .icon[data-jsx="1727466106"] {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+            background: url(/static/img/index/bg1.jpg) no-repeat;
+            background-size: contain;
+        }
+
+        .mitem[data-jsx="1727466106"] .head-img[data-jsx="1727466106"],
+        .mitem[data-jsx="1727466106"] .drop-down[data-jsx="1727466106"] {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+        }
+
+        .mitem[data-jsx="1727466106"] .name[data-jsx="1727466106"] {
+            vertical-align: middle;
+            margin-left: 5px;
+            max-width: 80px;
+        }
+
+    </style>
+    <style id="__jsx-style-2255456950">
+        .line {
+            height: 1px;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .ant-select-selection {
+            width: 400px;
+            padding: 6px 12px;
+        }
+
+        .ant-select-selection--multiple .ant-select-selection__rendered {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .ant-checkbox + span {
+            line-height: 200%;
+        }
+
+        .ant-select-selection--single {
+            height: auto;
+        }
+
+        .content .wrapper .detail .trade label.ant-checkbox-group-item.ant-checkbox-wrapper,
+        .content .wrapper .detail .section label.ant-checkbox-group-item.ant-checkbox-wrapper {
+            width: 220px;
+            vertical-align: top;
+        }
+
+    </style>
+    <style id="__jsx-style-2597945739">
+        .box[data-jsx="2597945739"] {
+            position: fixed;
+            z-index: 10;
+            right: 56px;
+            bottom: 160px;
+        }
+
+        .backtop[data-jsx="2597945739"] {
+            display: block;
+            width: 28px;
+            cursor: pointer;
+        }
+
+    </style>
+    <style id="__jsx-style-3196015672">
+        .user-center-menu {
+            padding-left: 20px;
+            padding-right: 30px;
+        }
+
+        .user-center-menu .ant-menu-vertical {
+            border: none;
+        }
+
+        .user-center-menu .ant-menu-vertical .ant-menu-item {
+            font-size: 14px;
+        }
+
+        .user-center-menu .ant-menu .info {
+            border-bottom: 1px solid #e9e9e9;
+        }
+
+        .user-center-menu .ant-menu-item i {
+            font-size: 26px;
+            vertical-align: middle;
+            padding: 0 10px;
+        }
+
+    </style>
+    <style id="__jsx-style-3479566426">
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .category[data-jsx="3479566426"],
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .detail[data-jsx="3479566426"],
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .no-school[data-jsx="3479566426"] {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .no-school[data-jsx="3479566426"] {
+            width: 170px;
+            cursor: pointer;
+            padding: 68px 0;
+            color: #3E84E0;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .no-school[data-jsx="3479566426"]:hover span[data-jsx="3479566426"] {
+            text-decoration: underline;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .no-school[data-jsx="3479566426"] span[data-jsx="3479566426"] {
+            display: inline-block;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .category[data-jsx="3479566426"] {
+            padding-top: 10px;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .detail[data-jsx="3479566426"] .label[data-jsx="3479566426"] {
+            width: 140px;
+            text-align: right;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .detail[data-jsx="3479566426"] .label[data-jsx="3479566426"] strong[data-jsx="3479566426"] {
+            color: #F7412D;
+            margin-right: 5px;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .detail[data-jsx="3479566426"] .value[data-jsx="3479566426"] {
+            width: 450px;
+            padding-left: 30px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .detail[data-jsx="3479566426"] .trade[data-jsx="3479566426"] .value[data-jsx="3479566426"],
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .detail[data-jsx="3479566426"] .section[data-jsx="3479566426"] .value[data-jsx="3479566426"] {
+            width: 500px;
+        }
+
+        .form-group[data-jsx="3479566426"] {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .error[data-jsx="3479566426"] {
+            text-align: center;
+            color: red;
+        }
+
+        .submit[data-jsx="3479566426"] {
+            text-align: center;
+        }
+
+    </style>
+    <style id="__jsx-style-4042860639">
+        .box[data-jsx="4042860639"] {
+            margin-top: 20px;
+            padding-top: 30px;
+            padding-bottom: 20px;
+            color: #d9d9d9;
+            background-color: #373737;
+        }
+
+        .logo-box[data-jsx="4042860639"] {
+            width: 450px;
+        }
+
+        .logo[data-jsx="4042860639"] {
+            display: block;
+        }
+
+        .logo[data-jsx="4042860639"] .icon[data-jsx="4042860639"] {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo[data-jsx="4042860639"] .text[data-jsx="4042860639"] {
+            width: 195px;
+            height: 35px;
+            margin-left: 5px;
+        }
+
+        .descr[data-jsx="4042860639"] {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .menu-box[data-jsx="4042860639"] {
+            width: 350px;
+        }
+
+        .menu[data-jsx="4042860639"] {
+            text-align: center;
+        }
+
+        .menu[data-jsx="4042860639"] .link[data-jsx="4042860639"] {
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        .contact[data-jsx="4042860639"] {
+            margin-top: 20px;
+        }
+
+        .contact[data-jsx="4042860639"] .copyright[data-jsx="4042860639"] {
+            font-size: 12px;
+            text-align: right;
+        }
+
+    </style>
+    <style id="__jsx-style-4224132704">
+        .ant-breadcrumb {
+            margin: 15px 0;
+        }
+
+        .ant-breadcrumb,
+        .ant-breadcrumb a,
+        .ant-breadcrumb > span:last-child {
+            color: inherit;
+        }
+
+        .ant-breadcrumb > span:last-child {
+            font-weight: normal;
+        }
+
+        .ant-tabs {
+            color: inherit;
+        }
+
+        .ant-radio-group,
+        .ant-radio-wrapper,
+        .ant-checkbox-group,
+        .ant-checkbox-wrapper {
+            font-size: inherit;
+        }
+
+        .ant-radio,
+        .ant-radio + *,
+        .ant-checkbox,
+        .ant-checkbox + * {
+            vertical-align: middle;
+        }
+
+        .ant-btn-danger {
+            color: #fff;
+            background-color: #F7412D;
+            border-color: #F7412D;
+        }
+
+        .ant-btn-danger:focus,
+        .ant-btn-danger:hover {
+            background-color: #f46e65;
+            border-color: #f46e65;
+        }
+
+        .ant-btn-danger:active {
+            background-color: #d73435;
+            border-color: #d73435;
+        }
+
+        .ant-card {
+            font-size: inherit;
+            background-color: transparent;
+        }
+
+        .ant-table {
+            font-size: inherit;
+        }
+
+        .ant-modal-body {
+            font-size: inherit;
+        }
+
+        .ant-select {
+            font-size: inherit;
+        }
+
+        .ant-select-dropdown {
+            font-size: inherit;
+        }
+
+        .ant-input {
+            font-size: inherit;
+        }
+
+        .my-color-primary {
+            color: #3E84E0 !important;
+        }
+
+        .my-color-gray {
+            color: #767676 !important;
+        }
+
+        .my-color-danger {
+            color: #F7412D !important;
+        }
+
+        .my-color-success {
+            color: #00C160 !important;
+        }
+
+        .my-color-white {
+            color: #ffffff !important;
+        }
+
+        .my-color-black {
+            color: #333333 !important;
+        }
+
+        .my-color-border {
+            color: #d9d9d9 !important;
+        }
+
+        .my-bgcolor-primary {
+            color: #ffffff !important;
+            background-color: #3E84E0 !important;
+        }
+
+        .my-bgcolor-gray {
+            background-color: #F9F9F9 !important;
+        }
+
+        .my-bgcolor-danger {
+            color: #ffffff !important;
+            background-color: #F7412D !important;
+        }
+
+        .my-bgcolor-success {
+            color: #ffffff !important;
+            background-color: #00C160 !important;
+        }
+
+        body {
+            color: #333333;
+            font-size: 14px;
+        }
+
+        a,
+        a:active,
+        a:hover,
+        a:focus {
+            outline: 0;
+            text-decoration: none;
+        }
+
+        /*主体内容容器*/
+
+        .my-container {
+            width: 1208px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .my-container-box {
+            min-width: 1208px;
+        }
+
+        /*文本位置*/
+
+        .my-text-left {
+            text-align: left;
+        }
+
+        .my-text-center {
+            text-align: center;
+        }
+
+        .my-text-right {
+            text-align: right;
+        }
+
+        /*文本单行*/
+
+        .my-text-rowsingle {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /*图片宽度限制*/
+
+        .my-img-full img {
+            max-width: 100%;
+        }
+
+        /*快速浮动和清除浮动*/
+
+        .my-clearfix:before,
+        .my-clearfix:after {
+            content: ' ';
+            display: table;
+        }
+
+        .my-clearfix:after {
+            clear: both;
+        }
+
+        .my-pull-left {
+            float: left !important;
+        }
+
+        .my-pull-right {
+            float: right !important;
+        }
+
+        /*限制行数，多余内容省略号*/
+
+        .line-clamp {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        .line-clamp2 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .line-clamp3 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        /*文本动换行*/
+
+        .line {
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+
+        /*提示登录框*/
+
+        .my-modal-login .ant-confirm-btns {
+            margin-top: 15px;
+        }
+
+        .my-modal-login .ant-btn {
+            margin-bottom: 0;
+        }
+
+        .my-modal-login .anticon {
+            display: none;
+        }
+
+        .my-modal-login .ant-confirm-content {
+            margin-left: 0;
+        }
+
+        .browser-tips {
+            background-color: #3E84E0;
+            color: #fff;
+            border-radius: 0;
+            border: 0;
+        }
+
+        .browser-tips a,
+        .browser-tips i.anticon-cross {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+    </style>
+    <!--/stuinfo-->
+
+</head>
+
+<body>
+
+<section id="container">
+    <!-- **********************************************************************************************************************************************************
+TOP BAR CONTENT & NOTIFICATIONS
+*********************************************************************************************************************************************************** -->
+    <!--header start-->
+    <header class="header my-nav">
+        <!--logo start-->
+        <a href="/" class="logo"><b><span style="color: black">JobBridge</span></b></a>
+        <!--logo end-->
+
+        <div class="top-menu">
+            <!--<ul class="nav pull-right top-menu">
+                <li><a class="signOut" href="signIn.html">Logout</a></li>
+            </ul>-->
+            <ol class="breadcrumb" style="float: right;margin-top: 12px;">
+                <li><a href="/company/info">企业首页</a></li>
+                <li><a href="/company/info"><span id="header-userName"></span></a></li>
+                <li><a class="signOut" href="/sign_out"><span>退出</span></a></li>
+            </ol>
+        </div>
+        <!--<div class="container-fluid" style="float: right;">
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">
+                        <button type="button" class="btn btn-round btn-info fa fa-search ">&nbsp;&nbsp;职海</button>
+                    </a></li>
+                </ul>
+            </div>
+        </div>-->
+    </header>
+    <!--header end-->
+
+    <!-- **********************************************************************************************************************************************************
+MAIN CONTENT
+*********************************************************************************************************************************************************** -->
+    <!--main content start-->
+    <section id="main-content" style="margin-left: 1px;">
+        <section class="wrapper">
+            <!-- page start-->
+            <div id="__next">
+                <div data-reactroot="" data-reactid="1" data-react-checksum="-1332626374">
+                    <div data-reactid="2">
+                        <div data-reactid="3">
+                            <!-- react-empty: 4 -->
+                            <div data-reactid="13">
+                                <div class="ucenter my-container" data-jsx="515442552" data-reactid="38">
+                                    <div class="ant-row" data-reactid="39">
+                                        <!--侧边栏-->
+                                        <div class="ant-col-6" data-reactid="32">
+                                            <div class="user-center-menu" data-reactid="33">
+                                                <ul class="ant-menu ant-menu-vertical  ant-menu-light ant-menu-root"
+                                                    role="menu" tabindex="0" data-reactid="34">
+                                                    <!--等项目完工时需要修改这几个按钮的超链接-->
+                                                    <li class="ant-menu-item posdeliver" role="menuitem"
+                                                        aria-selected="false" data-reactid="43"><a
+                                                            href="/company/info" data-reactid="44"><i
+                                                            class="fa fa-user"
+                                                            data-reactid="45"></i><span
+                                                            data-reactid="46">&nbsp;企业信息</span></a></li>
+                                                    <li class="ant-menu-item resume" role="menuitem"
+                                                        aria-selected="false" data-reactid="39"><a
+                                                            href="/company/new_recruit" data-reactid="40"><i
+                                                            class="fa fa-paper-plane" data-reactid="41"></i><span
+                                                            data-reactid="42">发布招聘信息</span></a></li>
+                                                    <li class="ant-menu-item info" role="menuitem" aria-selected="true"
+
+                                                        data-reactid="35"><a href="/company/recruit"
+                                                                             data-reactid="36"><i
+                                                            class="fa fa-search-plus" data-reactid="37"></i><span
+                                                            data-reactid="38" style="color:#00a2ae">已发布的信息</span></a></li>
+                                                    <li class="ant-menu-item posdeliver" role="menuitem"
+                                                        aria-selected="false" data-reactid="43"><a
+                                                            href="/company/resume_received" data-reactid="44"><i
+                                                            class="fa fa-envelope"
+                                                            data-reactid="45"></i><span
+                                                            data-reactid="46">查看投递信息</span></a></li>
+                                                    <!--等项目完工时需要修改这几个按钮的超链接-->
+                                                </ul>
+                                                <!-- react-empty: 51 -->
+                                            </div>
+                                        </div>
+                                        <!--主要内容-->
+                                        <div class="ant-col-18" data-reactid="60">
+                                            <div class="box" data-jsx="515442552" data-reactid="61">
+                                                <div class="content" data-jsx="515442552" data-reactid="62">
+                                                    <div class="my-info" data-jsx="3479566426" data-reactid="63">
+                                                        <div class="content" data-jsx="3479566426" data-reactid="64">
+                                                            <!--企业已发布的招聘信息-->
+                                                            <div class="wrapper" style="margin-top: 0px;">
+                                                            <div class="row mt">
+                                                                <div class="col-md-12">
+                                                                    <section class="task-panel tasks-widget">
+                                                                        <div class="panel-heading">
+                                                                            <div class="pull-left"><h4><i class="fa fa-tasks"></i> 已发布的招聘信息</h4></div>
+                                                                            <br>
+                                                                        </div>
+                                                                        <div class="panel-body">
+                                                                            <div class="task-content">
+                                                                                <ul id="sortable" class="task-list ui-sortable">
+                                                                                    <!--<li class="list-primary">
+                                                                                        <i class=" fa fa-ellipsis-v"></i>
+                                                                                        <div class="task-title">
+                                                                                            <span class="task-title-sp">Dashgum - Admin Panel Theme</span>
+                                                                                            <span class="badge bg-theme">Done</span>
+                                                                                            <div class="pull-right hidden-phone">
+                                                                                                <button class="btn btn-success btn-xs fa fa-check"></button>
+                                                                                                <button class="btn btn-primary btn-xs fa fa-pencil"></button>
+                                                                                                <button class="btn btn-danger btn-xs fa fa-trash-o"></button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </li>
+                                                                                    <li class="list-danger">
+                                                                                        <i class=" fa fa-ellipsis-v"></i>
+                                                                                        <div class="task-title">
+                                                                                            <span class="task-title-sp">Extensive collection of plugins</span>
+                                                                                            <span class="badge bg-warning">Cool</span>
+                                                                                            <div class="pull-right hidden-phone">
+                                                                                                <button class="btn btn-success btn-xs fa fa-check"></button>
+                                                                                                <button class="btn btn-primary btn-xs fa fa-pencil"></button>
+                                                                                                <button class="btn btn-danger btn-xs fa fa-trash-o"></button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </li>
+                                                                                    <li class="list-success">
+                                                                                        <i class=" fa fa-ellipsis-v"></i>
+                                                                                        <div class="task-title">
+                                                                                            <span class="task-title-sp">Free updates always, no extra fees.</span>
+                                                                                            <span class="badge bg-success">2 Days</span>
+                                                                                            <div class="pull-right hidden-phone">
+                                                                                                <button class="btn btn-success btn-xs fa fa-check"></button>
+                                                                                                <button class="btn btn-primary btn-xs fa fa-pencil"></button>
+                                                                                                <button class="btn btn-danger btn-xs fa fa-trash-o"></button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </li>
+                                                                                    <li class="list-warning">
+                                                                                        <i class=" fa fa-ellipsis-v"></i>
+                                                                                        <div class="task-title">
+                                                                                            <span class="task-title-sp">More features coming soon</span>
+                                                                                            <span class="badge bg-info">Tomorrow</span>
+                                                                                            <div class="pull-right hidden-phone">
+                                                                                                <button class="btn btn-success btn-xs fa fa-check"></button>
+                                                                                                <button class="btn btn-primary btn-xs fa fa-pencil"></button>
+                                                                                                <button class="btn btn-danger btn-xs fa fa-trash-o"></button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </li>
+                                                                                    <li class="list-info">
+                                                                                        <i class=" fa fa-ellipsis-v"></i>
+                                                                                        <div class="task-title">
+                                                                                            <span class="task-title-sp">Hey, seriously, you should buy this Dashboard</span>
+                                                                                            <span class="badge bg-important">Now</span>
+                                                                                            <div class="pull-right hidden-phone">
+                                                                                                <button class="btn btn-success btn-xs fa fa-check"></button>
+                                                                                                <button class="btn btn-primary btn-xs fa fa-pencil"></button>
+                                                                                                <button class="btn btn-danger btn-xs fa fa-trash-o"></button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </li>-->
+                                                                                </ul>
+                                                                            </div>
+                                                                            <div class=" add-task-row">
+                                                                                <a data-toggle="modal" href="companyPublishedRecruit.html#myModal" class="btn btn-success btn-sm pull-left" onclick="changeWhichButton()">Add New Tasks</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </section>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                            <!--企业已发布的招聘信息-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <link rel="stylesheet" href="../static/css/common/style.css" data-reactid="453" th:href="@{/css/common/style.css}">
+                    </div>
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+    </section>
+    <!-- /MAIN CONTENT -->
+
+    <!-- Modal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 902px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">发布招聘信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="content" data-jsx="515442552" data-reactid="62">
+                        <div class="my-info" data-jsx="3479566426" data-reactid="63">
+                            <div class="content" data-jsx="3479566426" data-reactid="64">
+                                <!--职位的基本信息-->
+                                <div class="wrapper" data-jsx="3479566426"
+                                     data-reactid="73">
+                                    <div class="category" data-jsx="3479566426"
+                                         data-reactid="74">基本信息
+                                    </div>
+                                    <div class="detail" data-jsx="3479566426"
+                                         data-reactid="75">
+                                        <div class="school form-group" data-jsx="3479566426"
+                                             data-reactid="76">
+                                            <div class="my-label" data-jsx="3479566426"
+                                                 data-reactid="77"
+                                                 ><strong
+                                                    data-jsx="3479566426"><span
+                                                    style="color:red;"><span
+                                                    style="color:red;">*</span></span></strong>
+                                                职位名称：
+                                            </div>
+                                            <div class="value" data-jsx="3479566426"
+                                                 data-reactid="80">
+                                                <div class="input-group">
+                                                    <input id="jobName" type="text"
+                                                           class="form-control"
+                                                           style="width: 399px;height: 34px;float: right;">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!--行业-->
+                                        <div class="trade form-group" data-jsx="3479566426"
+                                             data-reactid="194">
+                                            <div class="my-label" data-jsx="3479566426"
+                                                 data-reactid="195"><strong
+                                                    data-jsx="3479566426"
+                                                    data-reactid="196"><span
+                                                    style="color:red;">*</span></strong>
+                                                <!-- react-text: 197 -->行业：
+                                                <!-- /react-text -->
+                                            </div>
+                                            <div class="value" data-jsx="3479566426"
+                                                 data-reactid="198" style="margin-left: 40px;">
+                                                <div class="ant-checkbox-group"
+                                                     data-reactid="199">
+                                                    <label class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                           data-reactid="200"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="互联网"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">互联网</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="205"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="交通/物流/航天/航空"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">交通/物流/航天/航空</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="210"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="媒体/文化/休闲"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">媒体/文化/休闲</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="215"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="能源/资源"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">能源/资源</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="220"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="医疗/医药"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">医疗/医药</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="225"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="地产/建筑/施工材料"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">地产/建筑/施工材料</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="230"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="多元化"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">多元化</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="235"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="奢侈品"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">奢侈品</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="240"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="工业/机械/化工"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">工业/机械/化工</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="245"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="汽车/汽车部件"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">汽车/汽车部件</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="250"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="消费品"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">消费品</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="255"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="生产/制造/纺织"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">生产/制造/纺织</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="260"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="电子/电器/家电"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">电子/电器/家电</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="265"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="通信/计算设备/软件"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">通信/计算设备/软件</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="270"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="金融"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">金融</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="275"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="零售/贸易"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">零售/贸易</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="280"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="粮油食品"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">粮油食品</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="285"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="公用事业"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">公用事业</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="290"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="军工"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">军工</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="295"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="专业服务(会计师/咨询/法律/人力资源/其他)"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">专业服务(会计师/咨询/法律/人力资源/其他)</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="300"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="其他"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">其他</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="305"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="广告/公关"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">广告/公关</span>
+                                                    </label>
+                                                    <label
+                                                            class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                            data-reactid="310"><input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            value="教育/科研/非盈利"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;"><span
+                                                            style="margin-left: 6px;vertical-align:middle;">教育/科研/非盈利</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/行业-->
+                                        <div class="major form-group" data-jsx="3479566426"
+                                             data-reactid="91">
+                                            <div class="my-label" data-jsx="3479566426"
+                                                 data-reactid="92"><strong
+                                                    data-jsx="3479566426" data-reactid="93"><span
+                                                    style="color:red;"><span
+                                                    style="color:red;">*</span></span></strong>
+                                                <!-- react-text: 94 -->工作地点：
+                                                <!-- /react-text -->
+                                            </div>
+                                            <div class="value" data-jsx="3479566426"
+                                                 data-reactid="95">
+                                                <div class="input-group">
+                                                    <input id="location" type="text"
+                                                           class="form-control"
+                                                           style="width: 399px;height: 34px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grade form-group" data-jsx="3479566426"
+                                             data-reactid="106">
+                                            <div class="my-label" data-jsx="3479566426"
+                                                 data-reactid="107"><strong
+                                                    data-jsx="3479566426"
+                                                    data-reactid="108"><span
+                                                    style="color:red;">*</span></strong>
+                                                <!-- react-text: 109 -->最低薪金：
+                                                <!-- /react-text -->
+                                            </div>
+                                            <div class="value" data-jsx="3479566426"
+                                                 data-reactid="110">
+                                                <div class="input-group">
+                                                    <input id="lowSalary" type="number"
+                                                           class="form-control"
+                                                           style="width: 399px;height: 34px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grade form-group" data-jsx="3479566426"
+                                             data-reactid="106">
+                                            <div class="my-label" data-jsx="3479566426"
+                                                 data-reactid="107"><strong
+                                                    data-jsx="3479566426"
+                                                    data-reactid="108"><span
+                                                    style="color:red;">*</span></strong>
+                                                <!-- react-text: 109 -->最高薪金：
+                                                <!-- /react-text -->
+                                            </div>
+                                            <div class="value" data-jsx="3479566426"
+                                                 data-reactid="110">
+                                                <div class="input-group">
+                                                    <input id="highSalary" type="number"
+                                                           class="form-control"
+                                                           style="width: 399px;height: 34px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grade form-group" data-jsx="3479566426"
+                                             data-reactid="106">
+                                            <div class="my-label" data-jsx="3479566426"
+                                                 data-reactid="107"><strong
+                                                    data-jsx="3479566426"
+                                                    data-reactid="108"><span
+                                                    style="color:red;">*</span></strong>
+                                                <!-- react-text: 109 -->截止日期：
+                                                <!-- /react-text -->
+                                            </div>
+                                            <div class="value" data-jsx="3479566426"
+                                                 data-reactid="110">
+                                                <div class="input-group">
+                                                    <input id="deadline" type="date"
+                                                           class="form-control"
+                                                           style="width: 399px;height: 34px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--分割线-->
+                                <div class="split form-group" data-jsx="3479566426"
+                                     data-reactid="118">
+                                    <div class="line" data-jsx="3479566426"
+                                         data-reactid="119"></div>
+                                </div>
+                                <!--具体要求-->
+                                <div class="content" data-jsx="3479566426" data-reactid="64">
+                                    <!--职位的基本信息-->
+                                    <div class="wrapper" data-jsx="3479566426"
+                                         data-reactid="73">
+                                        <div class="category" data-jsx="3479566426"
+                                             data-reactid="74">具体要求
+                                        </div>
+                                        <div class="detail" data-jsx="3479566426"
+                                             data-reactid="75">
+                                            <div class="school form-group" data-jsx="3479566426"
+                                                 data-reactid="76">
+                                                <div class="my-label" data-jsx="3479566426"
+                                                     data-reactid="77"><strong
+                                                        data-jsx="3479566426"><span
+                                                        style="color:red;"><span
+                                                        style="color:red;">*</span></span></strong>
+                                                    工作职责：
+                                                    <!-- /react-text -->
+                                                </div>
+                                                <div class="value" data-jsx="3479566426"
+                                                     data-reactid="80">
+                                                    <div class="input-group">
+                                                                                    <textarea id="jobDescribe" type="text"
+                                                                                              class="form-control"
+                                                                                              style="width: 399px;height: 150px;"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="school form-group" data-jsx="3479566426"
+                                                 data-reactid="76">
+                                                <div class="my-label" data-jsx="3479566426"
+                                                     data-reactid="77"><strong
+                                                        data-jsx="3479566426"><span
+                                                        style="color:red;"><span
+                                                        style="color:red;">*</span></span></strong>
+                                                    职位要求：
+                                                    <!-- /react-text -->
+                                                </div>
+                                                <div class="value" data-jsx="3479566426"
+                                                     data-reactid="80">
+                                                    <div class="input-group">
+                                                                                    <textarea id="jobRequire" type="text"
+                                                                                              class="form-control"
+                                                                                              style="width: 399px;height: 150px;"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="submit form-group" data-jsx="3479566426"
+                         data-reactid="402" style="text-align: center;margin-bottom: 15px;">
+                        <input onclick="save(this)" type="submit" class="ant-btn ant-btn-primary"
+                               data-reactid="403" value="提交"><br>
+                        <label><span id="saveTip" style="color:red;"></span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
+
+
+    <!--footer start-->
+    <footer class="site-footer">
+        <div class="text-center">2017 © 出任CEO. All Rights Reserved. <a href="#main-content" class="go-top"> <i
+                class="fa fa-angle-up"></i>
+        </a></div>
+    </footer>
+    <!--footer end-->
+</section>
+
+<!--Javascript for this page-->
+<script type="text/javascript" src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
+<script type="text/javascript" src="../static/js/companyPublishedRecruit/companyPublishedRecruit.js" th:src="@{/js/companyPublishedRecruit/companyPublishedRecruit.js}"></script>
+<script type="text/javascript" src="../static/js/common/bootstrap.min.js" th:src="@{/js/common/bootstrap.min.js}"></script>
+<script type="text/javascript" src="../static/js/companyPublishedRecruit/check.js" th:src="@{/js/companyPublishedRecruit/check.js}"></script>
+<script src="../static/js/getUserName.js" th:src="@{/js/getUserName.js}"></script>
+
+<!-- 测试 -->
+
+<!--/测试-->
+
+</body>
+
+</html>

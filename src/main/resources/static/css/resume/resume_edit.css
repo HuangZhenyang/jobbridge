@@ -1,0 +1,15 @@
+body{
+    background-color: #f5f5f5;
+}
+.resume-tips .tipsgb{
+    font-size: 22px;
+    color: #5186bf;
+    opacity: 0.7;
+}
+.resume-content-tips {
+	position: absolute;
+	background-color: gray;
+	color: #fff;
+	padding: 2px 5px;
+	display: none;
+}

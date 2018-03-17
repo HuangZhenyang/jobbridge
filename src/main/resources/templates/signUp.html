@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+	<meta charset="UTF-8">
+	<!-- /.website title -->
+	<title>账号注册</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}">
+	<!-- CSS Files -->
+	<link href="../static/css/common/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/common/bootstrap.min.css}">
+	<link href="../static/css/common/font-awesome.min.css" rel="stylesheet" th:href="@{/css/common/font-awesome.min.css}">
+
+	<!-- Colors -->
+	<link href="../static/css/common/css-index.css" rel="stylesheet" media="screen" th:href="@{/css/common/css-index.css}">
+
+
+</head>
+
+<body data-spy="scroll" data-target="#navbar-scroll">
+
+	<!-- /.preloader -->
+	<div id="preloader"></div>
+	<div id="top"></div>
+
+	<!-- /.parallax full screen background image -->
+	<div class="fullscreen landing parallax" style="background-image:url('../static/img/lo-re/bg.jpg')" th:style="'background-image:url(' + @{/img/lo-re/bg.jpg} + ');'" data-img-width="2000" data-img-height="1333" data-diff="100">
+
+		<div class="overlay">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+
+						<!-- /.logo -->
+						<div class="logo wow fadeInDown">
+							<img src="../static/img/lo-re/logo2.png" alt="logo" th:src="@{/img/lo-re/logo2.png}"></a>
+						</div>
+
+						<!-- /.main title -->
+						<h1 class="wow fadeInLeft">
+							JobBrige
+						</h1>
+
+						<!-- /.header paragraph -->
+						<div class="landing-text wow fadeInUp">
+							<p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 一站式服务平台&nbsp&nbsp&nbsp&nbsp&nbsp助力Offer
+							</p>
+						</div>
+
+					</div>
+
+					<!-- /.signup form -->
+					<div class="col-md-5">
+
+						<div class="signup-header wow fadeInUp">
+							<h3 class="form-title text-center">账号注册</h3>
+							<form class="form-header" role="form" method="POST" id="#">
+								<input type="hidden" name="u" value="503bdae81fde8612ff4944435">
+								<input type="hidden" name="id" value="bfdba52708">
+								<div class="form-group">
+									<input class="form-control input-lg" name="MERGE1" id="userName" type="text" placeholder="用户名" required>
+								</div>
+								<div class="form-group">
+									<input class="form-control input-lg" name="MERGE1" id="mailbox" type="email" placeholder="邮箱" required>
+								</div>
+								<div class="form-group">
+									<input class="form-control input-lg" name="MERGE0" id="password" type="password" placeholder="密码" required>
+								</div>
+								<div class="form-group">
+									<input class="form-control input-lg" name="MERGE0" id="password1" type="password" placeholder="再次输入密码" required>
+								</div>
+								<div>
+									<label style="float:left"><span id="signUpTip" style="color: red"></span></label>
+								</div>
+								<div class="form-group last">
+									<input onclick="signUpFunc()" class="btn btn-warning btn-block btn-lg" value="注册">
+								</div>
+								<p class="privacy text-center">已经有账号，<a href="/sign_in">立即登录</a></p>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+			<!-- /.footer -->
+			<footer id="footer">
+				<div class="container">
+					<div class="col-sm-4 col-sm-offset-4">
+						<!-- /.social links -->
+						<div class="social text-center">
+							<ul>
+								<li><a class="wow fadeInUp" href="https://www.baidu.com/"><i class="fa fa-weibo"></i></a></li>
+								<li><a class="wow fadeInUp" href="https://www.facebook.com/" data-wow-delay="0.2s"><i class="fa fa-qq"></i></a></li>
+								<li><a class="wow fadeInUp" href="https://plus.google.com/" data-wow-delay="0.4s"><i class="fa fa-weixin"></i></a></li>
+							</ul>
+						</div>
+						<div class="text-center wow fadeInUp" style="font-size: 14px;"><a href="www.baidu.com">About us</a></div>
+						<div class="text-center wow fadeInUp" style="font-size: 14px;">Copyright JobBrige 2017</div>
+
+						<a href="#" class="scrollToTop"><i class="pe-7s-up-arrow pe-va"></i></a>
+					</div>
+				</div>
+			</footer>
+
+			<!-- /.javascript files -->
+			<script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
+			<script src="../static/js/common/bootstrap.min.js" th:src="@{/js/common/bootstrap.min.js}"></script>
+			<script src="../static/js/common/custom.js" th:src="@{/js/common/custom.js}"></script>
+			<script src="../static/js/common/jquery.sticky.js" th:src="@{/js/common/jquery.sticky.js}"></script>
+			<script src="../static/js/common/owl.carousel.min.js" th:src="@{/js/common/owl.carousel.min.js}"></script>
+			<script src="../static/js/signUp/signUp.js" th:src="@{/js/signUp/signUp.js}"></script>
+
+			<!-- 测试 -->
+			<!--<script src="http://mockjs.com/dist/mock.js"></script>
+			<script type="text/javascript">
+				var data = {
+					"ok": false,
+					"reason":"email"
+				};
+				Mock.mock('/register', data);
+
+			</script>-->
+			<!-- /测试 -->
+
+
+
+</body>
+
+</html>

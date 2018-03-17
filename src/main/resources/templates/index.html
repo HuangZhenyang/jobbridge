@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <!--[if IE]>
+    <meta http-equiv="x-ua-compatible" content="IE=9"/><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Job-Bridge</title>
+    <meta name="description" content="Your Description Here">
+    <link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}">
+
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="../static/img/favicon/favicon.ico" type="image/x-icon" th:href="@{/img/favicon.ico}">
+    <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png" th:href="@{/img/apple-touch-icon.png}">
+    <link rel="apple-touch-icon" sizes="72x72" href="../static/img/apple-touch-icon-72x72.png" th:href="@{/img/apple-touch-icon-72x72.png}">
+    <link rel="apple-touch-icon" sizes="114x114" href="../static/img/apple-touch-icon-114x114.png" th:href="@{/img/apple-touch-icon-114x114.png}">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="../static/css/common/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" href="../static/font-awesome-4.2.0/css/font-awesome.css" th:href="@{/font-awesome-4.2.0/css/font-awesome.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/common/jasny-bootstrap.min.css" th:href="@{/css/common/jasny-bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+
+    <!-- Slider
+    ================================================== -->
+    <link href="../static/css/owl.carousel.css" rel="stylesheet" media="screen" th:href="@{/css/owl.carousel.css}">
+    <link href="../static/css/owl.theme.css" rel="stylesheet" media="screen" th:href="@{/css/owl.theme.css}">
+
+    <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css" href="../static/css/index/style.css" th:href="@{/css/index/style.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/common/responsive.css" th:href="@{/css/common/responsive.css}">
+
+
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="../static/js/common/modernizr.custom.js" th:src="@{/js/common/modernizr.custom.js}"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<!-- Off Canvas Navigation
+================================================== -->
+<div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->
+    <div class="close" data-toggle="offcanvas" data-target=".navmenu">
+        <span class="fa fa-close"></span>
+    </div>
+    <div class="add-margin"></div>
+    <ul class="nav navmenu-nav"> <!--- Menu -->
+        <li><a href="#home" class="page-scroll"><span style="font-size: large;">主页</span></a></li>
+        <li><a href="#meet-us" class="page-scroll"><span style="font-size: large">JobBridge</span></a></li>
+        <li><a href="#stu-entry" class="page-scroll"><span style="font-size: large">登录入口</span></a></li>
+        <!--<li><a href="#com-entry" class="page-scroll"><span style="font-size: large">企业入口</span></a></li>-->
+        <li><a href="#clients" class="page-scroll"><span style="font-size: large">合作伙伴</span></a></li>
+        <li><a href="#about-us" class="page-scroll"><span style="font-size: large">团队介绍</span></a></li>
+        <li><a href="#contact" class="page-scroll"><span style="font-size: large">联系我们</span></a></li>
+    </ul><!--- End Menu -->
+</div> <!--- End Off Canvas Side Menu -->
+
+<!-- Home Section -->
+<div id="home">
+    <div class="container text-center">
+        <!-- Navigation -->
+        <nav id="menu" data-toggle="offcanvas" data-target=".navmenu">
+            <span class="fa fa-bars"></span>
+        </nav>
+
+        <div class="content">
+            <h1>Job Bridge</h1>
+            <hr>
+            <div class="header-text btn">
+                <h1><span id="head-title"></span></h1>
+            </div>
+        </div>
+
+        <a href="#meet-us" class="down-btn page-scroll">
+            <span class="fa fa-angle-down"></span>
+        </a>
+    </div>
+</div>
+
+<!-- Meet Us Section -->
+<div id="meet-us">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="section-title">
+                    <h2>JobBridge</h2>
+                    <hr>
+                </div>
+                <p>JobBridge是一座连接求职大学生与企业Offer的桥梁</p>
+                <a href="#stu-entry" class="down-btn page-scroll">
+                    <span class="fa fa-angle-down"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Overview Video Section -->
+<div id="overview-video">
+    <div class="overlay">
+        <div class="container">
+            <a href="#">
+                <span class="fa fa-play"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- stu-entry Section -->
+<div id="stu-entry">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="section-title">
+                    <br>
+                    <h2>学生入口</h2>
+                    <hr>
+                </div>
+                <a href="/sign_in">
+                    <button type="button" class="btn btn-round btn-info">&nbsp;&nbsp;点我&nbsp;&nbsp;</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="space"></div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="service">
+                    <span class="fa fa-file-pdf-o fa-3x"></span>
+                    <h4>在线简历</h4>
+                    <p>专业模板，专业提示；在线简历生成导出，在线投递简历，一站式服务</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="service">
+                    <span class="fa fa-newspaper-o fa-3x"></span>
+                    <h4>招聘信息</h4>
+                    <p>海量招聘信息，覆盖各行各业；招聘信息推送，让你不再错过</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="service">
+                    <span class="fa fa-check fa-3x"></span>
+                    <h4>优质服务</h4>
+                    <p>JobBridge平台将会提供优质的服务，请放心食用 </p>
+                </div>
+            </div>
+        </div>
+        <a href="#com-entry" class="down-btn page-scroll">
+            <span class="fa fa-angle-down"></span>
+        </a>
+    </div>
+</div>
+
+
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="service">
+                    <span class="fa fa-users fa-3x"></span>
+                    <h4>发现人才</h4>
+                    <p>人才汇聚、地灵人杰；借助JobBridge将更轻松方便的发现挖掘你想要的人才&nbsp;&nbsp;&nbsp;</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="service">
+                    <span class="fa fa-tags fa-3x"></span>
+                    <h4>发布信息</h4>
+                    <p>发布招聘信息，吸引优质人才；信息推送，快速架起企业与求职大学生之间的桥梁</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="service">
+                    <span class="fa fa-desktop fa-3x"></span>
+                    <h4>简历查看</h4>
+                    <p>在JobBridge中在线查看求职大学生投递的简历，方便快捷；学生身份认证，保证简历的真实性</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space"></div>
+    <div class="text-center">
+        <!--<a href="#" class="btn read-more-btn">Check on Dribbble</a>-->
+        <br>
+        <a href="#clients" class="down-btn page-scroll"><span class="fa fa-angle-down"></span></a>
+    </div>
+</div>
+
+<!-- Clients Section -->
+<div id="clients">
+    <div class="overlay">
+        <div class="container text-center">
+            <div class="section-title">
+                <h2>Our Partners</h2>
+                <hr>
+            </div>
+
+            <ul class="clients">
+                <li><a href="#"><img src="../static/img/index/clients/01.png" class="img-responsive" alt="..." th:src="@{/img/index/clients/01.png}"></a></li>
+                <li><a href="#"><img src="../static/img/index/clients/02.png" class="img-responsive" alt="..." th:src="@{/img/index/clients/02.png}"></a></li>
+                <li><a href="#"><img src="../static/img/index/clients/03.png" class="img-responsive" alt="..." th:src="@{/img/index/clients/03.png}"></a></li>
+                <li><a href="#"><img src="../static/img/index/clients/04.png" class="img-responsive" alt="..." th:src="@{/img/index/clients/04.png}"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- About Us Section -->
+<div id="about-us">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="section-title">
+                    <h2>[出任CEO] 团队介绍</h2>
+                    <hr>
+                </div>
+                <p>出任CEO由富有激情热情爱情的<s>四个</s>哦不，五个小伙伴组成</p>
+            </div>
+        </div>
+        <div class="space"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3">
+                        <div class="team">
+                            <img src="../static/img/index/team/02.jpg" class="img-responsive img-circle" alt="..." th:src="@{/img/index/team/02.jpg}">
+                            <br>
+                            <h4>黄振洋</h4>
+                            <p class="small">CEO/Founder</p>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-3">
+                        <div class="team">
+                            <img src="../static/img/index/team/04.jpg" class="img-responsive img-circle" alt="..." th:src="@{/img/index/team/04.jpg}">
+                            <br>
+                            <h4>何正晗</h4>
+                            <p class="small">Team Leader</p>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="team">
+                            <img src="../static/img/index/team/03.jpg" class="img-responsive img-circle" alt="..." th:src="@{/img/index/team/03.jpg}">
+                            <br>
+                            <h4>沈云柯</h4>
+                            <p class="small">Team Leader</p>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="team">
+                            <img src="../static/img/index/team/03.jpg" class="img-responsive img-circle" alt="..." th:src="@{/img/index/team/03.jpg}">
+                            <br>
+                            <h4>廖文斌</h4>
+                            <p class="small">Programmer/Web</p>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="team">
+                            <img src="../static/img/index/team/03.jpg" class="img-responsive img-circle" alt="..." th:src="@{/img/index/team/03.jpg}">
+                            <br>
+                            <h4>霍海容</h4>
+                            <p class="small">Quality Engineer（暂时掉线中）</p>
+                            <hr>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="#contact" class="page-scroll down-btn">
+                <span class="fa fa-angle-down"></span>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Testimonial Section -->
+<!--  <div id="testimonials">
+      <div class="overlay">
+          <div class="container">
+              <div class="section-title">
+                  <h2>What my Clients Say...</h2>
+                  <hr>
+              </div>
+
+              <div id="testimonial" class="owl-carousel owl-theme">
+                <div class="item">
+                  <h3>Et iusto odio dignissimos ducimus qui blanditiis <br>praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint <br>occaecati cupiditate non provident. </h3>
+                  <br>
+                  <h6>LJ, Abc Company</h6>
+                </div>
+
+                <div class="item">
+                  <h3>Fusce dapibus, tellus ac cursus commodo, tortor<br> mauris condimentum. Duis mollis, est non commodo luctus, nisi erat </h3>
+                  <br>
+                  <h6>Kai, Web Geekster</h6>
+                </div>
+
+                <div class="item">
+                  <h3>Cras justo odio, dapibus ac facilisis in, egestas <br>eget quam. Donec id elit non mi porta gravida at eget metus.</h3>
+                  <br>
+                  <h6>Jenn, Coders' Playground</h6>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>-->
+
+<!-- Contact Section -->
+<div id="contact">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>联系我们</h2>
+            <hr>
+        </div>
+        <div class="space"></div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <address>
+                    <strong>地点</strong><br>
+                    <br>
+                    四川省成都市双流县四川大学江安校区<br>
+                    电话号码：800-820-8820<br>
+                    什么看不懂？<br>
+                    那我用英文再来一遍<br>
+                    Si Chuan Univ,Chengdu,China<br>
+                    Tel: 800-820-8820
+                    <ul class="social">
+                        <li><a href="#"><span class="fa fa-wechat"></span></a></li>
+                        <li><a href="#"><span class="fa fa-weibo"></span></a></li>
+                        <li><a href="#"><span class="fa fa-github"></span></a></li>
+                    </ul>
+                </address>
+            </div>
+
+            <div class="col-md-9">
+                <form autocomplete="off">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="姓名">
+                            <input type="text" class="form-control" placeholder="电话号码">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="邮箱">
+                            <input type="text" class="form-control" placeholder="主题">
+                        </div>
+                    </div>
+                    <textarea class="form-control" rows="4" placeholder="正文"></textarea>
+                    <div class="text-right">
+                        <a href="#" class="btn send-btn">发送</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav id="footer">
+    <div class="container">
+        <div class="pull-left">
+            <p>2017 © 出任CEO. All Rights Reserved.</p>
+        </div>
+        <div class="pull-right">
+            <a href="#home" class="page-scroll">Back to Top <span class="fa fa-angle-up"></span></a>
+        </div>
+    </div>
+</nav>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
+<script type="text/javascript" src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="../static/js/common/bootstrap.js" th:src="@{/js/common/bootstrap.js}"></script>
+<script type="text/javascript" src="../static/js/common/SmoothScroll.js" th:src="@{/js/common/SmoothScroll.js}"></script>
+<script type="text/javascript" src="../static/js/common/jasny-bootstrap.min.js" th:src="@{/js/common/jasny-bootstrap.min.js}"></script>
+
+<script src="../static/js/common/owl.carousel.js" th:src="@{/js/common/owl.carousel.js}"></script>
+<script src="../static/js/common/typed.js" th:src="@{/js/common/typed.js}"></script>
+<script>
+    $(function () {
+        $("#head-title").typed({
+            strings: ["睁大眼睛^10", "不要眨眼^20", "这一次^10，因为热爱^500", "出任CEO团队原班人马将带来^500",
+                "颠覆^1500", "整个求职行业的伟大产品^1500", "踏上JobBridge^1000,遇见心仪Offer^2000！^800"],
+            typeSpeed: 100,
+            loop: true,
+            startDelay: 100
+        });
+    });
+</script>
+
+<!-- Javascripts
+================================================== -->
+<!--<script type="text/javascript" src="../static/js/index.js" th:src="@{/js/index.js}"></script>-->
+
+</body>
+</html>

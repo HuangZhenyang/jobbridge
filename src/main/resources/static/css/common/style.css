@@ -1,0 +1,109 @@
+@font-face {
+  font-family: 'icomoon';
+  src:
+    url('fonts/icomoon.ttf?2pb2od') format('truetype'),
+    url('fonts/icomoon.woff?2pb2od') format('woff'),
+    url('fonts/icomoon.svg?2pb2od#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="my-icomoon-"], [class*=" my-icomoon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.my-icomoon-school:before {
+  content: "\e900";
+}
+.my-icomoon-address:before {
+  content: "\e901";
+}
+.my-icomoon-resume:before {
+  content: "\e902";
+}
+.my-icomoon-package:before {
+  content: "\e903";
+}
+.my-icomoon-lock:before {
+  content: "\e904";
+}
+.my-icomoon-user:before {
+  content: "\e905";
+}
+.my-icomoon-info:before {
+  content: "\e906";
+}
+.my-icomoon-order:before {
+  content: "\e907";
+}
+.my-icomoon-star:before {
+  content: "\e908";
+}
+.my-icomoon-start-empty:before {
+  content: "\e909";
+}
+.my-icomoon-search:before {
+  content: "\e90a";
+}
+.my-icomoon-time:before {
+  content: "\e90b";
+}
+.my-icomoon-close:before {
+  content: "\e90c";
+}
+
+
+/*My class
+* @author: Huang Zhenyang
+*/
+.my-label{
+  margin-left: 60px;
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 120%;
+  line-height: 1;
+  color: #000000;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.category{
+  display: inline;
+  color: black;
+  font-size: large;
+}
+
+.checkbox-bg{
+  color: whitesmoke;
+  width:15px;
+  height: 15px;
+}
+
+.nav-black-font{
+  color: black;
+}
+
+.my-footer{
+  background: #fff;
+  color: #000;
+  padding: 10px 0;
+  height: 210px;
+}
+
+.my-nav{
+  background: #ffffff;
+  border-bottom: 1px solid #c9aa5f;
+}
