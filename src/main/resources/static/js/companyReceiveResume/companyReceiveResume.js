@@ -13,7 +13,7 @@ $(document).ready(function () {
 * */
 function getData() {
     $.ajax({
-        url:'/enterprise/showsendinfo',
+        url:'/company/request_resume_received',
         type:'get',
         dataType:'json'
     }).done(function (data) {
@@ -31,31 +31,31 @@ function getData() {
 function setData(data) {
     let eachDataDom = "";
     let dataDom = "";
-    let sendId = "";
-    let sendTime = "";
+    let resumeReceiveId = "";
+    let resumeReceiveTime = "";
     let jobTitle = "";
-    let userName = "";
-    let status = "";
+    let studentUserName = "";
+    let readStatus = "";
     let liClass = ["list-primary","list-danger","list-success","list-warning","list-info"];
     let bgThemes = ["bg-theme","bg-warning","bg-success","bg-info","bg-important"];
-    let data = data.data;
+    let resumeReceiveList = data.resumeSendList;
 
-    for(let i=0;i<data.length;i++){
-        sendId = data[i].sendid;
-        sendTime = data[i].sendtime;
-        jobTitle = data[i].jobtitle;
-        userName = data[i].username;
-        status = data[i].status;
+    for(let i=0;i<resumeReceiveList.length;i++){
+        resumeReceiveId = resumeReceiveList[i].resumeSendId;
+        resumeReceiveTime = resumeReceiveList[i].resumeSendTime;
+        jobTitle = resumeReceiveList[i].jobTitle;
+        studentUserName = resumeReceiveList[i].studentUserName;
+        readStatus = resumeReceiveList[i].readStatus;
 
-        eachDataDom = "<li class='"+liClass[i%liClass.length] + "' id='"+ sendId+"'>" +
+        eachDataDom = "<li class='"+liClass[i%liClass.length] + "' id='"+ resumeReceiveId+"'>" +
             "<i class='fa fa-ellipsis-v'></i>"+
-            "<div class='job-title'>"+ "<a href='/companyReceivedResumeDetail.html?id="+sendId+"'>" +
+            "<div class='job-title'>"+ "<a href='/companyReceivedResumeDetail.html?id="+resumeReceiveId+"'>" +
 
-            "<span class='task-title-sp'>" + jobTitle + "</span>" + "<span>&nbsp from: " + userName +"&nbsp;&nbsp;</span>" +
-            "<span class='badge " + bgThemes[i%bgThemes.length] + "'>" + sendTime + "</span>" +
+            "<span class='task-title-sp'>" + jobTitle + "</span>" + "<span>&nbsp from: " + studentUserName +"&nbsp;&nbsp;</span>" +
+            "<span class='badge " + bgThemes[i%bgThemes.length] + "'>" + resumeReceiveTime + "</span>" +
             "</a>"+
             "<div class='pull-right hidden-phone'>" +
-            "<span class='badge'>"+status+"</span>"+"<span>&nbsp;&nbsp;</span>"+
+            "<span class='badge'>"+readStatus+"</span>"+"<span>&nbsp;&nbsp;</span>"+
             "<button class='btn btn-danger btn-xs fa fa-trash-o' onclick='del(this)'></button>" +
             "</div>"+
             "</div>"+
@@ -75,7 +75,7 @@ function setData(data) {
 function del(evt) {
     //console.log($(evt).parent().parent().parent().attr('id'));
     $.ajax({
-        url: '/enterprise/send/delete?id='+ $(evt).parent().parent().parent().attr('id'),
+        url: '/company/resume_received?id='+ $(evt).parent().parent().parent().attr('id'),
         type:'delete',
         dataType:'json'
     }).done(function (data) {

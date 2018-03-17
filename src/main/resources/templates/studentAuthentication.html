@@ -17,8 +17,7 @@
     <!-- Custom styles for this template -->
     <link href="../static/css/common/style-init.css" rel="stylesheet" th:href="@{/css/common/style-init.css}">
     <link href="../static/css/common/style-responsive.css" rel="stylesheet" th:href="@{/css/common/style-responsive.css}">
-    <!--<link href="../static/font-awesome-4.2.0/css/font-awesome.css" th:href="@{/font-awesome-4.2.0/css/font-awesome.css}">-->
-    <!--<link href="../static/font-awesome-4.2.0/fonts/fontawesome-webfont.ttf" th:href="@{/font-awesome-4.2.0/fonts/fontawesome-webfont.ttf}">-->
+
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -597,12 +596,12 @@ TOP BAR CONTENT & NOTIFICATIONS
 
         <div class="top-menu">
             <!--<ul class="nav pull-right top-menu">
-                <li><a class="logout" href="signIn.html">Logout</a></li>
+                <li><a class="signOut" href="signIn.html">Logout</a></li>
             </ul>-->
             <ol class="breadcrumb" style="float: right;margin-top: 12px;">
                 <li><a href="/student/info">个人中心</a></li>
                 <li><a href="/student/info"><span id="header-userName"></span></a></li>
-                <li><a class="logout" href="/sign_out"><span>退出</span></a></li>
+                <li><a class="signOut" href="/sign_out"><span>退出</span></a></li>
             </ol>
         </div>
         <div class="container-fluid" style="float: right;">
@@ -642,12 +641,12 @@ MAIN CONTENT
                                                             href="/student/info" data-reactid="52"><i
                                                             class="fa fa-user"
                                                             data-reactid="53"></i><span
-                                                            data-reactid="54">我的信息</span></a></li>
+                                                            data-reactid="54"><span style="padding-left:3px;"></span>我的信息</span></a></li>
                                                     <li class="ant-menu-item resume" role="menuitem"
                                                         aria-selected="false" data-reactid="39"><a
                                                             href="/student/resume" data-reactid="40"><i
                                                             class="fa fa-file-pdf-o" data-reactid="41"></i><span
-                                                            data-reactid="42">我的简历</span></a></li>
+                                                            data-reactid="42"><span style="padding-left: 2px;">我的简历</span></span></a></li>
                                                     <li class="ant-menu-item posdeliver" role="menuitem"
                                                         aria-selected="false" data-reactid="43"><a
                                                             href="/student/resume_send" data-reactid="44"><i
@@ -659,7 +658,7 @@ MAIN CONTENT
                                                             href="/student/star" data-reactid="48"><i
                                                             class="fa fa-bookmark"
                                                             data-reactid="49"></i><span
-                                                            data-reactid="50">我的收藏</span></a></li>
+                                                            data-reactid="50"><span style="padding-left: 5px;">我的收藏</span></span></a></li>
 
                                                     <li class="ant-menu-item info" role="menuitem" aria-selected="true"
                                                         data-reactid="35"><a href="/student/authentication"
@@ -688,13 +687,11 @@ MAIN CONTENT
                                                                     <div class="phone-num form-group"
                                                                          data-jsx="3479566426" data-reactid="68">
                                                                         <div data-jsx="3479566426" data-reactid="69">
-                                                                            <span class="my-label">学生邮箱：</span>
+                                                                            <span class="my-label"">学生邮箱：</span>
                                                                             <div class="value" data-jsx="3479566426"
                                                                                  style="padding-left: 0px;">
-                                                                                <div class="input-group"><input id="mailbox"
-                                                                                                                type="text"
-                                                                                                                class="form-control"
-                                                                                                                style="width: 399px;height: 34px;">
+                                                                                <div class="input-group">
+                                                                                    <input id="mailbox" type="text" class="form-control" style="width: 399px;height: 34px; margin-top: -7px;">
                                                                                 </div>
                                                                             </div>
                                                                         </div>

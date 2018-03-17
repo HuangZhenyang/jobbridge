@@ -8,9 +8,11 @@ import com.galigaigai.jobbridge.service.ResumeSendService;
 import com.galigaigai.jobbridge.service.TagService;
 import com.galigaigai.jobbridge.util.ParseStringUtil;
 import com.galigaigai.jobbridge.util.SendInfoUtil;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,22 +52,49 @@ public class CompanyController {
     private ResumeSendService resumeSendService;
     @Autowired
     private ResumeRepository resumeRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
 
     /**
      * 请求公司信息页面
      */
     @GetMapping(value = "/info")
-    public String showCompanyInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String showCompanyInfo(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
         }
+        // huangzhenyang
+        Company company = (Company)loginUser;
+        model.addAttribute("company", company);
+
         return "companyInfo";
     }
 
+    /**
+     * 请求公司信息数据
+     */
 
+    /*@GetMapping(value = "/request_info")
+    public void companyShowInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if(loginUser == null || !(loginUser instanceof Company)){
+            response.sendRedirect("/");
+            return;
+        }
+        Company company = (Company)loginUser;
+        JSONObject json = new JSONObject();
+        json.put("name",company.getName());
+        json.put("userName",company.getUserName());
+        json.put("mailbox",company.getMailbox());
+        json.put("phoneNum",company.getPhoneNum());
+        json.put("companyIntroduction",company.getCompanyIntroduction());
+        SendInfoUtil.render(json.toString(),"text/json",response);
+    }*/
     /**
      * 请求公司编辑与发布
      * 新的招聘信息页面
@@ -84,14 +113,60 @@ public class CompanyController {
      * 请求公司已发布的招聘信息页面
      */
     @GetMapping(value = "/recruit")
-    public String showrecruit(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String showRecruit(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
         }
+
+        Company company = (Company) loginUser;
+        List<Recruit> recruitList = recruitRepository.findByCompanyId(company.getCompanyId());
+
+
         return "companyPublishedRecruit";
     }
+
+
+    /**
+     * 请求公司已发布的招聘信息列表
+     * */
+    @GetMapping(value = "/request_recruit_list")
+    public void requestCompanyRecruitList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if(loginUser == null || !(loginUser instanceof Company)){
+            response.sendRedirect("/");
+            return;
+        }
+        Company company = (Company) loginUser;
+        //定义数据结构
+        JSONObject json = new JSONObject();
+        JSONArray recruitListJsonArray = new JSONArray();
+//        根据公司号查询所有招聘信息
+        List<Recruit> recruitList = recruitRepository.findByCompanyId(company.getCompanyId());
+//        如果没有招聘信息，则返回空数据
+        if(recruitList == null || recruitList.isEmpty() ||
+                (recruitList.size() == 1 && recruitList.get(0) == null)){
+            json.put("recruitList",recruitListJsonArray);
+            SendInfoUtil.render(json.toString(),"text/json",response);
+            return;
+        }
+//        对于每个未删除的招聘信息，查询招聘信息号、职位名称和发布时间作为json对象添加进入json数组中
+        for(Recruit recruit:recruitList){
+            if(recruit.getHaveDelete()){
+                continue;
+            }
+            JSONObject recruitJson = new JSONObject();
+            recruitJson.put("publishedId",recruit.getRecruitId());
+            recruitJson.put("publishedTime",recruit.getDateTime().toString());
+            recruitJson.put("jobTitle",recruit.getJobName());
+            recruitListJsonArray.put(recruit);
+        }
+        json.put("recruitList",recruitListJsonArray);
+        SendInfoUtil.render(json.toString(),"text/json",response);
+    }
+
 
     /**
      * 公司删除已发布的招聘信息操作
@@ -121,7 +196,7 @@ public class CompanyController {
      * 公司发布或修改招聘信息操作
      */
     @PostMapping(value = "/recruit")
-    public void companyModifyrecruit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void companyModifyRecruit(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
@@ -224,8 +299,8 @@ public class CompanyController {
     /**
      * 请求公司已发布的招聘信息详细
      */
-    @GetMapping(value = "/recruit_info")
-    public void showCompanyrecruitDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @GetMapping(value = "/request_recruit")
+    public void showCompanyRecruitDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
@@ -270,6 +345,7 @@ public class CompanyController {
         SendInfoUtil.render(json.toString(), "text/json", response);
     }
 
+
     /**
      * 请求公司查看投递信息页面
      */
@@ -283,66 +359,61 @@ public class CompanyController {
         return "companyReceivedResume";
     }
 
-//    /**
-//     * 请求公司收到的投递信息
-//     */
-//    @RequestMapping(value = "/enterprise/showdeliveryinfo", method = RequestMethod.GET)
-//    public void enterpriseForDeliverInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        response.setHeader("Access-Control-Allow-Origin", "*");
-//        Object loginUser = request.getSession().getAttribute("loginUser");
-//        if (loginUser == null || !(loginUser instanceof Company)) {
-//            response.sendRedirect("/");
-//            return;
-//        }
-//        Company company = (Company) loginUser;
-//        System.out.println("已经进入公司投递信息显示操作");
-//        //定义数据结构
-//        JSONObject json = new JSONObject();
-//        JSONArray dataJsonArray = new JSONArray();
-////        根据公司号查询所有招聘信息
-//        List<ResumeSend> deliverList = deliverRepository
-//                .findByEnterpriseId(company.getCompanyId()eId());
-//        //空值判定
-//        if (deliverList == null || deliverList.isEmpty() ||
-//                (deliverList.size() == 1 && deliverList.get(0) == null)) {
-//            json.put("data", dataJsonArray);
-//            //SendInfoUtil.render(json.toString(),"text/json",response);
-//        } else {
-//            for (Deliver tempDeliver : deliverList) {
-//                if (tempDeliver.getHaveDelete()) {
-//                    continue;
-//                } else {
-//                    JSONObject dataJson = new JSONObject();
-//                    //deliveryid
-//                    dataJson.put("deliveryid", tempDeliver.getDeliverId());
-//                    //deliverytime
-//                    dataJson.put("deliverytime", tempDeliver.getDateTime());
-//                    //jobtitle
-//                    recruit recruit = recruitRepository
-//                            .findByrecruitId(tempDeliver.getrecruitId());
-//                    dataJson.put("jobtitle", recruit.getJobName());
-//                    //username
-//                    Resume resume = resumeRepository
-//                            .findByResumeId(tempDeliver.getResumeId());
-//                    Student student = studentRepository
-//                            .findByStudentId(resume.getStudentId());
-//                    dataJson.put("username", student.getUserName());
-//                    //status
-//                    if (tempDeliver.getHaveRead()) {
-//                        dataJson.put("status", "已读");
-//                    } else {
-//                        dataJson.put("status", "未读");
-//                    }
-//
-//                    dataJsonArray.put(dataJson);
-//
-//                }
-//            }
-//            json.put("data", dataJsonArray);
-//        }
-//        System.out.println(json);
-//        SendInfoUtil.render(json.toString(), "text/json", response);
-//    }
+    /**
+     * 请求公司收到的投递信息
+     */
+    @GetMapping(value = "request_resume_received")
+    public void companyForDeliverInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if (loginUser == null || !(loginUser instanceof Company)) {
+            response.sendRedirect("/");
+            return;
+        }
+        Company company = (Company) loginUser;
+        System.out.println("已经进入公司投递信息显示操作");
+        //定义数据结构
+        JSONObject json = new JSONObject();
+        JSONArray resumeSendListJsonArray = new JSONArray();
+//        根据公司号查询所有招聘信息
+        List<ResumeSend> resumeSendList = resumeSendRepository
+                .findByCompanyId(company.getCompanyId());
+        //空值判定
+        if (resumeSendList == null || resumeSendList.isEmpty() ||
+                (resumeSendList.size() == 1 && resumeSendList.get(0) == null)) {
+            json.put("resumeSendList", resumeSendListJsonArray);
+            //SendInfoUtil.render(json.toString(),"text/json",response);
+        } else {
+            for (ResumeSend resumeSend : resumeSendList) {
+                if (resumeSend.getHaveDelete()) {
+                    continue;
+                } else {
+                    //此处Json对应companyReceiveResume.js处json
+                    JSONObject resumeSendJson = new JSONObject();
+                    resumeSendJson.put("resumeSendId", resumeSend.getResumeId());
+                    resumeSendJson.put("resumeSendTime", resumeSend.getDateTime());
+                    Recruit recruit = recruitRepository.findByRecruitId(resumeSend.getRecruitId());
+                    resumeSendJson.put("jobTitle", recruit.getJobName());
+                    //username
+                    Resume resume = resumeRepository.findByResumeId(resumeSend.getResumeId());
+                    Student student = studentRepository.findByStudentId(resume.getStudentId());
+                    resumeSendJson.put("studentUserName", student.getUserName());
+                    //status
+                    if (resumeSend.getHaveRead()) {
+                        resumeSendJson.put("readStatus", "已读");
+                    } else {
+                        resumeSendJson.put("readStatus", "未读");
+                    }
+
+                    resumeSendListJsonArray.put(resumeSendJson);
+
+                }
+            }
+            json.put("data", resumeSendListJsonArray);
+        }
+        System.out.println(json);
+        SendInfoUtil.render(json.toString(), "text/json", response);
+    }
 
     /**
      * 公司删除学生投递信息操作

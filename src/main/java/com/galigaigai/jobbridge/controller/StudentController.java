@@ -275,7 +275,7 @@ public class StudentController {
             JSONObject resumeSendJson = new JSONObject();
             resumeSendJson.put("time", deliverList.get(i).getDateTime());
             resumeSendJson.put("comname", company.getName());
-            resumeSendJson.put("jobtitle", recruit.getJobName());
+            resumeSendJson.put("jobTitle", recruit.getJobName());
             resumeSendJson.put("jobdesc", recruit.getJobDescribe());
             resumeSendJson.put("jobhref", "/student/recruit?id=" + recruit.getRecruitId());
             resumeSendJson.put("havedel", recruit.getHaveDelete());
@@ -361,7 +361,7 @@ public class StudentController {
             for (StarTag tempStarTag : starTagList) {
                 JSONObject tagJson = new JSONObject();
                 Tag tag = tagRepository.findByTagId(tempStarTag.getTagId());
-                tagJson.put("jobtitle", tag.getName());
+                tagJson.put("jobTitle", tag.getName());
                 tagJsonArray.put(tagJson);
             }
             json.put("job", tagJsonArray);
@@ -629,8 +629,9 @@ public class StudentController {
         Student student = (Student) loginUser;
         StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
         String result;
-        Boolean studentAuthenticationState = studentDetail.getAuthentication(); // 当前学生的验证状态
+
         if(studentDetail != null){
+            Boolean studentAuthenticationState = studentDetail.getAuthentication(); // 当前学生的验证状态
             if ((studentAuthenticationState != null) && (studentAuthenticationState)) {
                 System.out.println("已验证成功");
                 result = "{\"authentication\":\"true\"}";
