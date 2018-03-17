@@ -171,7 +171,7 @@ public class StudentController {
         JSONObject json = new JSONObject(content);
         JSONObject infoJson = json.getJSONObject("info");
         JSONObject studyJson = json.getJSONObject("study");
-        JSONObject jobintentionJson = json.getJSONObject("jobintention");
+        JSONObject jobintentionJson = json.getJSONObject("jobIntention");
         String phoneNum = infoJson.get("phone").toString();
         String universityName = studyJson.get("school").toString();
         String major = studyJson.get("major").toString();
@@ -274,11 +274,11 @@ public class StudentController {
 //            3.3 添加到json数组中
             JSONObject resumeSendJson = new JSONObject();
             resumeSendJson.put("time", resumeSendList.get(i).getDateTime());
-            resumeSendJson.put("comname", company.getName());
+            resumeSendJson.put("companyName", company.getName());
             resumeSendJson.put("jobTitle", recruit.getJobName());
-            resumeSendJson.put("jobdesc", recruit.getJobDescribe());
-            resumeSendJson.put("jobhref", "/student/recruit?id=" + recruit.getRecruitId());
-            resumeSendJson.put("havedel", recruit.getHaveDelete());
+            resumeSendJson.put("jobDescribe", recruit.getJobDescribe());
+            resumeSendJson.put("jobHref", "/student/recruit?id=" + recruit.getRecruitId());
+            resumeSendJson.put("haveDelete", recruit.getHaveDelete());
             resumeSendDataJson.put(resumeSendJson);
         }
 //        4.将json数组添加到json对象里面,然后发回前端
@@ -409,7 +409,7 @@ public class StudentController {
 
             json.put("info", infoJson);
             json.put("study", studyJson);
-            json.put("jobintention", jobIntentionJson);
+            json.put("jobIntention", jobIntentionJson);
         }
         SendInfoUtil.render(json.toString(), "text/json", response);
     }
