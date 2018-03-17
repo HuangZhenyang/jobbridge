@@ -200,7 +200,7 @@ public class SignController {
             return;
         }
         request.getSession().removeAttribute("loginUser");
-        response.sendRedirect("/");
+        response.sendRedirect("/sign_in");
 
     }
 

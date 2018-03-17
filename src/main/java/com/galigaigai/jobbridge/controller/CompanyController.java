@@ -121,7 +121,7 @@ public class CompanyController {
         }
 
         Company company = (Company) loginUser;
-        List<Recruit> recruitList = recruitRepository.findByCompanyId(company.getCompanyId());
+//        List<Recruit> recruitList = recruitRepository.findByCompanyId(company.getCompanyId());
 
 
         return "companyPublishedRecruit";
@@ -158,10 +158,10 @@ public class CompanyController {
                 continue;
             }
             JSONObject recruitJson = new JSONObject();
-            recruitJson.put("publishedId",recruit.getRecruitId());
-            recruitJson.put("publishedTime",recruit.getDateTime().toString());
+            recruitJson.put("publishedRecruitId",recruit.getRecruitId());
+            recruitJson.put("publishedRecruitTime",recruit.getDateTime().toString());
             recruitJson.put("jobTitle",recruit.getJobName());
-            recruitListJsonArray.put(recruit);
+            recruitListJsonArray.put(recruitJson);
         }
         json.put("recruitList",recruitListJsonArray);
         SendInfoUtil.render(json.toString(),"text/json",response);
