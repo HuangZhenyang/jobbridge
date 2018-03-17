@@ -3,34 +3,35 @@
  */
 ;function checkInputFunc() {
     if ($('#userName').val() === null || $('#userName').val() === '') {
-        $('#comregisterTip').text("请输入账户 ");
+        $('#companySignUpTip').text("请输入账户 ");
         return false;
     } else if ($('#password').val() === null || $('#password').val() === '') {
-        $('#comregisterTip').text("请输入密码");
+        $('#companySignUpTip').text("请输入密码");
         return false;
     } else if(!($('#password').val().length>=6 && $('#password').val().length<=16)){
-        $('#comregisterTip').text("密码不能少于6个字符或多于16个字符");
+        $('#companySignUpTip').text("密码不能少于6个字符或多于16个字符");
         return false;
     }else if ($('#name').val() === null || $('#name').val() === '') {
-        $('#comregisterTip').text("请输入公司名字");
+        $('#companySignUpTip').text("请输入公司名字");
         return false;
-    }else if ($('#email').val() === null || $('#email').val() === '') {
-        $('#comregisterTip').text("请输入公司邮箱 ");
+    }else if ($('#mailbox').val() === null || $('#mailbox').val() === '') {
+        $('#companySignUpTip').text("请输入公司邮箱 ");
         return false;
     }else if(!checkIsEmail()){
-        $('#comregisterTip').text("请输入正确的邮箱 ");
+        $('#companySignUpTip').text("请输入正确的邮箱 ");
         return false;
     }else if ($('#phoneNum').val() === null || $('#phoneNum').val() === '') {
-        $('#comregisterTip').text("请输入公司号码 ");
+        $('#companySignUpTip').text("请输入公司号码 ");
         return false;
-    }else if ($('#enterpriseIntroduction').val() === null || $('#enterpriseIntroduction').val() === '') {
-        $('#comregisterTip').text("请输入公司介绍 ");
+    }else if ($('#companyIntroduction').val() === null || $('#companyIntroduction').val() === '') {
+        $('#companySignUpTip').text("请输入公司介绍 ");
         return false;
     }
     return true;
 }
 
 function addCompanyFunc(){
+    console.log("");
     if(checkInputFunc()){
         $.ajax({
             url: '/sign_up',
@@ -40,23 +41,23 @@ function addCompanyFunc(){
                 userName:   $('#userName').val(),
                 password:   $('#password').val(),
                 name:       $('#companyName').val(),
-                email:      $('#mailbox').val(),
+                mailbox:    $('#mailbox').val(),
                 phoneNum:   $('#phoneNum').val(),
-                enterpriseIntroduction: $('#companyIntroduction').val(),
+                companyIntroduction: $('#companyIntroduction').val(),
                 identity:   'e',
             },
         }).done(function (data) {
             console.log('成功, 收到的数据: ' + JSON.stringify(data, null, '  '));
-            var result = data;
+            let result = data;
             if(result.ok === "true"){
-                window.location.href = "/adminPage/addEnterprise";
+                window.location.href = "/sign_in";
             }else{
-                $('#comregisterTip').text(result.reason);
+                $('#companySignUpTip').text(result.reason);
             }
         });
     }
 }
 function checkIsEmail() {
-    var reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
-    return reg.test($('#email').val());
+    let reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+    return reg.test($('#mailbox').val());
 }

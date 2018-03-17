@@ -4,9 +4,9 @@ $(document).ready(function () {
 });
 
 
-function  showCompanyInfo() {
+function showCompanyInfo() {
     $.ajax({
-        url: '/company/show_info',
+        url: '/company/request_info',
         type: 'get',
         dataType: 'json'
     }).done(function (data) {

@@ -12,7 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../static/css/common/bootstrap.css" rel="stylesheet" th:href="@{/css/common/bootstrap.css}">
     <!--external css-->
-    <link href="../static/css/common/font-awesome.css" rel="stylesheet" th:href="@{/css/font-awesome.css}"/>
+    <link href="../static/css/common/font-awesome.css" rel="stylesheet" th:href="@{/css/common/font-awesome.css}"/>
 
     <!-- Custom styles for this template -->
     <link href="../static/css/common/style-init.css" rel="stylesheet" th:href="@{/css/common/style-init.css}">
@@ -595,12 +595,12 @@ TOP BAR CONTENT & NOTIFICATIONS
 
         <div class="top-menu">
             <!--<ul class="nav pull-right top-menu">
-                <li><a class="logout" href="signIn.html">Logout</a></li>
+                <li><a class="signOut" href="signIn.html">Logout</a></li>
             </ul>-->
             <ol class="breadcrumb" style="float: right;margin-top: 12px;">
-                <li><a href="/enterprise/info">个人中心</a></li>
-                <li><a href="/enterprise/info"><span id="header-userName"></span></a></li>
-                <li><a class="logout" href="/exit"><span>Logout</span></a></li>
+                <li><a href="/company/info">企业首页</a></li>
+                <li><a href="/company/info"><span id="header-userName"></span></a></li>
+                <li><a class="signOut" href="/sign_out"><span>退出</span></a></li>
             </ol>
         </div>
         <!--<div class="container-fluid" style="float: right;">
@@ -638,25 +638,25 @@ MAIN CONTENT
                                                     <!--等项目完工时需要修改这几个按钮的超链接-->
                                                     <li class="ant-menu-item posdeliver" role="menuitem"
                                                         aria-selected="false" data-reactid="43"><a
-                                                            href="/enterprise/info" data-reactid="44"><i
+                                                            href="/company/info" data-reactid="44"><i
                                                             class="fa fa-user"
                                                             data-reactid="45"></i><span
                                                             data-reactid="46">&nbsp;企业信息</span></a></li>
                                                     <li class="ant-menu-item resume" role="menuitem"
                                                         aria-selected="false" data-reactid="39"><a
-                                                            href="/enterprise/newrecruitinfopage" data-reactid="40"><i
+                                                            href="/company/new_recruit" data-reactid="40"><i
                                                             class="fa fa-paper-plane" data-reactid="41"></i><span
                                                             data-reactid="42">发布招聘信息</span></a></li>
                                                     <li class="ant-menu-item posdeliver" role="menuitem"
                                                         aria-selected="false" data-reactid="43"><a
-                                                            href="/enterprise/recruitinfo" data-reactid="44"><i
+                                                            href="/company/recruit" data-reactid="44"><i
                                                             class="fa fa-search-plus"
                                                             data-reactid="45"></i><span
                                                             data-reactid="46">已发布的信息</span></a></li>
 
                                                     <li class="ant-menu-item info" role="menuitem" aria-selected="true"
 
-                                                        data-reactid="35"><a href="/enterprise/deliverinfo"
+                                                        data-reactid="35"><a href="/company/resume_received"
                                                                              data-reactid="36"><i
                                                             class="fa fa-envelope" data-reactid="37"></i><span
                                                             data-reactid="38" style="color:#00a2ae">查看投递信息</span></a></li>
@@ -806,7 +806,7 @@ MAIN CONTENT
 <script type="text/javascript" src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
 <script type="text/javascript" src="../static/js/companyReceiveResume/companyReceiveResume.js" th:src="@{/js/companyReceiveResume/companyReceiveResume.js}"></script>
 <script type="text/javascript" src="../static/js/common/bootstrap.min.js" th:src="@{/js/common/bootstrap.min.js}"></script>
-<script type="text/javascript" src="../static/js/signOut/signOut.js" th:src="@{/js/signOut.js}"></script>
+<script type="text/javascript" src="../static/js/signOut/signOut.js" th:src="@{/js/signOut/signOut.js}"></script>
 <script type="text/javascript" src="../static/js/getUserName.js" th:src="@{/js/getUserName.js}"></script>
 
 <!-- 测试 -->
@@ -816,16 +816,16 @@ MAIN CONTENT
         "data":[{
             "sendid": "007",
             "sendtime":"2017-7-22",
-            "jobtitle":"人工智能",
+            "jobTitle":"人工智能",
             "userName": "和干事",
             "status": "已读"},{
             "sendid": "009",
             "sendtime":"2017-7-22",
-            "jobtitle":"大数据",
+            "jobTitle":"大数据",
             "userName": "六六六",
             "status": "未读"}]
     };
-    Mock.mock('/enterprise/sendinfo', data);
+    Mock.mock('/company/sendinfo', data);
 </script>-->
 <!--/测试-->
 

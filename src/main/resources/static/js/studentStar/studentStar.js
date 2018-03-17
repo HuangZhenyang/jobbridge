@@ -79,7 +79,7 @@ function setData(data) {
     dom="";
     //插入收藏的职位（大类）
     for(let i=0;i<job.length;i++){
-        jobTitle = job[i].jobtitle;
+        jobTitle = job[i].jobTitle;
         eachDom = "<div class='col-lg-6'><span>"+jobTitle+"</span></div>";
         dom+=eachDom;
     }
