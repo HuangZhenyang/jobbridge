@@ -57,7 +57,7 @@ function setsendData(data) {
                 eachsendDataDom = "<article class='" + position + "'>" +
                     contentDom +
                     "<div class='timeline-entry-inner'>" +
-                    "<div style='-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);' class='timeline-icon'><a href='/recruitinfo'><i class='fa fa-plus'></i></a></div>" +
+                    "<div style='-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);' class='timeline-icon'><a href='/recruit/info'><i class='fa fa-plus'></i></a></div>" +
                     "</div>" +
                     "</article>";
             } else {

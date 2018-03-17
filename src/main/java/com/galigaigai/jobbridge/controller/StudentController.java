@@ -277,7 +277,7 @@ public class StudentController {
             resumeSendJson.put("comname", company.getName());
             resumeSendJson.put("jobtitle", recruit.getJobName());
             resumeSendJson.put("jobdesc", recruit.getJobDescribe());
-            resumeSendJson.put("jobhref", "../../static/jobinfo.html?id=" + recruit.getRecruitId());
+            resumeSendJson.put("jobhref", "/student/recruit?id=" + recruit.getRecruitId());
             resumeSendJson.put("havedel", recruit.getHaveDelete());
             resumeSendDataJson.put(resumeSendJson);
         }
@@ -541,6 +541,14 @@ public class StudentController {
             SendInfoUtil.render(result, "text/json", response);
             return;
         }
+//        判断是否已投过该简历
+        ResumeSend resumeSend = resumeSendRepository.findByResumeIdAndRecruitId(resume.getResumeId(),Long.parseLong(recruitId));
+        if(resumeSend != null){
+            System.out.println("已向该职位投递过简历，请勿重复投递");
+            result = "{\"ok\":\"false\",\"reason\":\"已向该职位投递过简历，请勿重复投递\"}";
+            SendInfoUtil.render(result, "text/json", response);
+            return;
+        }
 //        查询发布招聘信息的公司
         Recruit recruit = recruitRepository.findByRecruitId(Long.parseLong(recruitId));
         if (recruit == null) {
@@ -558,9 +566,9 @@ public class StudentController {
         }
         System.out.println("recruitid:" + recruitId);
         Timestamp dateTime = new Timestamp(System.currentTimeMillis());
-        ResumeSend deliver = new ResumeSend(Long.parseLong("0"), resume.getResumeId(), company.getCompanyId(),
+        resumeSend = new ResumeSend(Long.parseLong("0"), resume.getResumeId(), company.getCompanyId(),
                 Long.parseLong(recruitId), dateTime, false, false);
-        resumeSendService.addResumeSend(deliver);
+        resumeSendService.addResumeSend(resumeSend);
         result = "{\"ok\":\"true\"}";
         SendInfoUtil.render(result, "text/json", response);
     }

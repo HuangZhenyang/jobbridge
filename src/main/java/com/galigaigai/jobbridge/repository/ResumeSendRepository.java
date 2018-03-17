@@ -26,4 +26,7 @@ public interface ResumeSendRepository extends JpaRepository<ResumeSend, Long>{
     //根据简历号查询投递信息
     List<ResumeSend> findByResumeId(Long resumeId);
 
+    //根据学生id和招聘信息id查询投递信息
+    ResumeSend findByResumeIdAndRecruitId(Long resumeId, Long RecruitId);
+
 }
