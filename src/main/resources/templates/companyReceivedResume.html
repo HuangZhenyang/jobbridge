@@ -12,7 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../static/css/common/bootstrap.css" rel="stylesheet" th:href="@{/css/common/bootstrap.css}">
     <!--external css-->
-    <link href="../static/css/common/font-awesome.css" rel="stylesheet" th:href="@{/css/font-awesome.css}"/>
+    <link href="../static/css/common/font-awesome.css" rel="stylesheet" th:href="@{/css/common/font-awesome.css}"/>
 
     <!-- Custom styles for this template -->
     <link href="../static/css/common/style-init.css" rel="stylesheet" th:href="@{/css/common/style-init.css}">
@@ -598,7 +598,7 @@ TOP BAR CONTENT & NOTIFICATIONS
                 <li><a class="signOut" href="signIn.html">Logout</a></li>
             </ul>-->
             <ol class="breadcrumb" style="float: right;margin-top: 12px;">
-                <li><a href="/company/info">个人中心</a></li>
+                <li><a href="/company/info">企业首页</a></li>
                 <li><a href="/company/info"><span id="header-userName"></span></a></li>
                 <li><a class="signOut" href="/sign_out"><span>退出</span></a></li>
             </ol>
@@ -806,7 +806,7 @@ MAIN CONTENT
 <script type="text/javascript" src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
 <script type="text/javascript" src="../static/js/companyReceiveResume/companyReceiveResume.js" th:src="@{/js/companyReceiveResume/companyReceiveResume.js}"></script>
 <script type="text/javascript" src="../static/js/common/bootstrap.min.js" th:src="@{/js/common/bootstrap.min.js}"></script>
-<script type="text/javascript" src="../static/js/signOut/signOut.js" th:src="@{/js/signOut.js}"></script>
+<script type="text/javascript" src="../static/js/signOut/signOut.js" th:src="@{/js/signOut/signOut.js}"></script>
 <script type="text/javascript" src="../static/js/getUserName.js" th:src="@{/js/getUserName.js}"></script>
 
 <!-- 测试 -->
@@ -825,7 +825,7 @@ MAIN CONTENT
             "userName": "六六六",
             "status": "未读"}]
     };
-    Mock.mock('/enterprise/sendinfo', data);
+    Mock.mock('/company/sendinfo', data);
 </script>-->
 <!--/测试-->
 

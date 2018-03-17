@@ -33,7 +33,7 @@ function stuLogout() {
  * */
 function comLogout() {
     $.ajax({
-        url: '/enterprise/exit',
+        url: '/company/exit',
         type: 'get',
         dataType: 'json'
     }).done(function (data) {

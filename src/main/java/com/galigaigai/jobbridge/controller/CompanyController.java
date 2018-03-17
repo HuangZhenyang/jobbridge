@@ -52,6 +52,8 @@ public class CompanyController {
     private ResumeSendService resumeSendService;
     @Autowired
     private ResumeRepository resumeRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
 
     /**
@@ -74,8 +76,10 @@ public class CompanyController {
     /**
      * 请求公司信息数据
      */
-/*    @GetMapping(value = "/request_info")
-    public void enterpriseShowInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+    /*@GetMapping(value = "/request_info")
+    public void companyShowInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if(loginUser == null || !(loginUser instanceof Company)){
@@ -342,8 +346,6 @@ public class CompanyController {
     }
 
 
-
-
     /**
      * 请求公司查看投递信息页面
      */
@@ -361,58 +363,56 @@ public class CompanyController {
      * 请求公司收到的投递信息
      */
     @GetMapping(value = "request_resume_received")
-    public void enterpriseForDeliverInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        response.setHeader("Access-Control-Allow-Origin", "*");
-//        Object loginUser = request.getSession().getAttribute("loginUser");
-//        if (loginUser == null || !(loginUser instanceof Company)) {
-//            response.sendRedirect("/");
-//            return;
-//        }
-//        Company company = (Company) loginUser;
-//        System.out.println("已经进入公司投递信息显示操作");
-//        //定义数据结构
-//        JSONObject json = new JSONObject();
-//        JSONArray dataJsonArray = new JSONArray();
-////        根据公司号查询所有招聘信息
-//        List<ResumeSend> resumeSendList = resumeSendRepository
-//                .findByCompanyId(company.getCompanyId());
-//        //空值判定
-//        if (resumeSendList == null || resumeSendList.isEmpty() ||
-//                (resumeSendList.size() == 1 && resumeSendList.get(0) == null)) {
-//            json.put("data", dataJsonArray);
-//            //SendInfoUtil.render(json.toString(),"text/json",response);
-//        } else {
-//            for (ResumeSend resumeSend : resumeSendList) {
-//                if (resumeSend.getHaveDelete()) {
-//                    continue;
-//                } else {
-//                    JSONObject dataJson = new JSONObject();
-//                    dataJson.put("deliveryid", resumeSend.getResumeId());
-//                    dataJson.put("deliverytime", resumeSend.getDateTime());
-//                    Recruit recruit = recruitRepository
-//                            .findByrecruitId(tempDeliver.getrecruitId());
-//                    dataJson.put("jobTitle", recruit.getJobName());
-//                    //username
-//                    Resume resume = resumeRepository
-//                            .findByResumeId(tempDeliver.getResumeId());
-//                    Student student = studentRepository
-//                            .findByStudentId(resume.getStudentId());
-//                    dataJson.put("username", student.getUserName());
-//                    //status
-//                    if (tempDeliver.getHaveRead()) {
-//                        dataJson.put("status", "已读");
-//                    } else {
-//                        dataJson.put("status", "未读");
-//                    }
-//
-//                    dataJsonArray.put(dataJson);
-//
-//                }
-//            }
-//            json.put("data", dataJsonArray);
-//        }
-//        System.out.println(json);
-//        SendInfoUtil.render(json.toString(), "text/json", response);
+    public void companyForDeliverInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if (loginUser == null || !(loginUser instanceof Company)) {
+            response.sendRedirect("/");
+            return;
+        }
+        Company company = (Company) loginUser;
+        System.out.println("已经进入公司投递信息显示操作");
+        //定义数据结构
+        JSONObject json = new JSONObject();
+        JSONArray resumeSendListJsonArray = new JSONArray();
+//        根据公司号查询所有招聘信息
+        List<ResumeSend> resumeSendList = resumeSendRepository
+                .findByCompanyId(company.getCompanyId());
+        //空值判定
+        if (resumeSendList == null || resumeSendList.isEmpty() ||
+                (resumeSendList.size() == 1 && resumeSendList.get(0) == null)) {
+            json.put("resumeSendList", resumeSendListJsonArray);
+            //SendInfoUtil.render(json.toString(),"text/json",response);
+        } else {
+            for (ResumeSend resumeSend : resumeSendList) {
+                if (resumeSend.getHaveDelete()) {
+                    continue;
+                } else {
+                    //此处Json对应companyReceiveResume.js处json
+                    JSONObject resumeSendJson = new JSONObject();
+                    resumeSendJson.put("resumeSendId", resumeSend.getResumeId());
+                    resumeSendJson.put("resumeSendTime", resumeSend.getDateTime());
+                    Recruit recruit = recruitRepository.findByRecruitId(resumeSend.getRecruitId());
+                    resumeSendJson.put("jobTitle", recruit.getJobName());
+                    //username
+                    Resume resume = resumeRepository.findByResumeId(resumeSend.getResumeId());
+                    Student student = studentRepository.findByStudentId(resume.getStudentId());
+                    resumeSendJson.put("studentUserName", student.getUserName());
+                    //status
+                    if (resumeSend.getHaveRead()) {
+                        resumeSendJson.put("readStatus", "已读");
+                    } else {
+                        resumeSendJson.put("readStatus", "未读");
+                    }
+
+                    resumeSendListJsonArray.put(resumeSendJson);
+
+                }
+            }
+            json.put("data", resumeSendListJsonArray);
+        }
+        System.out.println(json);
+        SendInfoUtil.render(json.toString(), "text/json", response);
     }
 
     /**

@@ -24,7 +24,7 @@ $(document).ready(function () {
  * */
 function getPublishedJobsData() {
     $.ajax({
-        url:'/enterprise/request_recruit',
+        url:'/company/request_recruit_list',
         type:'get',
         dataType:'json'
     }).done(function (data) {
@@ -44,21 +44,21 @@ function setPublishedJobsData(data) {
     let dataDom = "";
     let recruitList = data.recruitList;
     let publishedId = "";
-    let publishTime = "";
-    let jobTitle = "";
+    let publishedTime = "";
+    let publishedJobTitle = "";
     let liClass = ["list-primary","list-danger","list-success","list-warning","list-info"];
     let bgThemes = ["bg-theme","bg-warning","bg-success","bg-info","bg-important"];
 
 
-    for(let i=0;i<data.length;i++){
-        publishedId = recruitList[i].publishedId;
-        publishTime = recruitList[i].publishedTime;
-        jobTitle = recruitList[i].jobTitle;
+    for(let i=0;i<recruitList.length;i++){
+        publishedId = recruitList[i].publishedRecruitId;
+        publishedTime = recruitList[i].publishedRecruitTime;
+        publishedJobTitle = recruitList[i].jobTitle;
         eachDataDom = "<li class='"+liClass[i%liClass.length] + "' id='"+ publishedId+"'>"  +
             "<i class='fa fa-ellipsis-v'></i>"+
             "<div class='job-title'>"+
-            "<span class='task-title-sp'>" + jobTitle + "</span>" + "<span>&nbsp</span>" +
-            "<span class='badge " + bgThemes[i%bgThemes.length] + "'>" + publishTime + "</span>" +
+            "<span class='task-title-sp'>" + publishedJobTitle + "</span>" + "<span>&nbsp</span>" +
+            "<span class='badge " + bgThemes[i%bgThemes.length] + "'>" + publishedTime + "</span>" +
             "<div class='pull-right hidden-phone'> " +
             "<button class='btn btn-primary btn-xs fa fa-pencil' onclick='modify(this)' data-toggle='modal' data-target='#myModal'></button>" + "<span>&nbsp</span>"+
             "<button class='btn btn-danger btn-xs fa fa-trash-o' onclick='del(this)'></button>" +
@@ -111,19 +111,19 @@ function delPublishedJob(evt) {
  * */
 function modify(evt) {
     whichButton = "modify";
-    let publishedId = $(evt).parent().parent().parent().attr('id');
+    let publishedRecruitId = $(evt).parent().parent().parent().attr('id');
     //设置publishedId在按钮的id
-    $("input[value='提交']").attr('id',publishedId);
-    showcominfo(publishedId);
+    $("input[value='提交']").attr('id',publishedRecruitId);
+    modifyRecruit(publishedRecruitId);
 }
 
 
 
 //提交请求信息
-function  showcominfo(publishedId) {
+function  modifyRecruit(publishedRecruitId) {
 
     $.ajax({
-        url: '/company/recruit?id='+publishedId,
+        url: '/company/request_recruit?id='+publishedRecruitId,
         type: 'get',
         dataType: 'json'
     }).done(function (data) {
