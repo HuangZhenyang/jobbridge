@@ -13,7 +13,7 @@ $(document).ready(function () {
 * */
 function getData() {
     $.ajax({
-        url:'/enterprise/showsendinfo',
+        url:'/company/showsendinfo',
         type:'get',
         dataType:'json'
     }).done(function (data) {
@@ -43,7 +43,7 @@ function setData(data) {
     for(let i=0;i<data.length;i++){
         sendId = data[i].sendid;
         sendTime = data[i].sendtime;
-        jobTitle = data[i].jobtitle;
+        jobTitle = data[i].jobTitle;
         userName = data[i].username;
         status = data[i].status;
 

@@ -48,7 +48,7 @@ function setsendData(data) {
             contentDom = "<div class='timeline-entry-inner'>" +
                 "<time class='timeline-time'><span>" + data[i].time + "</span>" + "</time>" +
                 "<div class='timeline-icon " + bg[i % bg.length] + "'>" + "<i class='fa " + icon[i % icon.length] + "'></i></div>" +
-                "<div class='timeline-label " + bg[i % bg.length] + "'>" + "<h4 class='timeline-title'>" +"<a href='"+data[i].jobhref+"'>"+ "<span style='color: #ffffff'>"+data[i].jobtitle + "  " + data[i].comname + "</span></a>"+"<span style='float: right' class='badge " + bgThemes[i%bgThemes.length] + "'>" + havedel + "</span>"  +"</h4><hr>" +
+                "<div class='timeline-label " + bg[i % bg.length] + "'>" + "<h4 class='timeline-title'>" +"<a href='"+data[i].jobhref+"'>"+ "<span style='color: #ffffff'>"+data[i].jobTitle + "  " + data[i].comname + "</span></a>"+"<span style='float: right' class='badge " + bgThemes[i%bgThemes.length] + "'>" + havedel + "</span>"  +"</h4><hr>" +
                 "<p>" + data[i].jobdesc + ".</p></div>" +
                 "</div>";
 

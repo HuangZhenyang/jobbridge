@@ -275,7 +275,7 @@ public class StudentController {
             JSONObject resumeSendJson = new JSONObject();
             resumeSendJson.put("time", deliverList.get(i).getDateTime());
             resumeSendJson.put("comname", company.getName());
-            resumeSendJson.put("jobtitle", recruit.getJobName());
+            resumeSendJson.put("jobTitle", recruit.getJobName());
             resumeSendJson.put("jobdesc", recruit.getJobDescribe());
             resumeSendJson.put("jobhref", "../../static/jobinfo.html?id=" + recruit.getRecruitId());
             resumeSendJson.put("havedel", recruit.getHaveDelete());
@@ -361,7 +361,7 @@ public class StudentController {
             for (StarTag tempStarTag : starTagList) {
                 JSONObject tagJson = new JSONObject();
                 Tag tag = tagRepository.findByTagId(tempStarTag.getTagId());
-                tagJson.put("jobtitle", tag.getName());
+                tagJson.put("jobTitle", tag.getName());
                 tagJsonArray.put(tagJson);
             }
             json.put("job", tagJsonArray);

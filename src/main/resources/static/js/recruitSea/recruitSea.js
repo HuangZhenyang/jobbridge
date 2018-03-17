@@ -50,7 +50,7 @@ function setData(data) {
     var iconAddress = "";
 
     for(let i=0;i<data.length;i++){
-        jobTitle = data[i].jobtitle;
+        jobTitle = data[i].jobTitle;
         jobId = data[i].jobid;
         companyName = data[i].companyname;
         location = data[i].location;

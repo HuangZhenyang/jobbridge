@@ -24,7 +24,7 @@ $(document).ready(function () {
  * */
 function getPublishedJobsData() {
     $.ajax({
-        url:'/enterprise/publishedjobs',
+        url:'/enterprise/request_recruit',
         type:'get',
         dataType:'json'
     }).done(function (data) {
@@ -42,7 +42,7 @@ function getPublishedJobsData() {
 function setPublishedJobsData(data) {
     let eachDataDom = "";
     let dataDom = "";
-    let data = data.data;
+    let recruitList = data.recruitList;
     let publishedId = "";
     let publishTime = "";
     let jobTitle = "";
@@ -51,9 +51,9 @@ function setPublishedJobsData(data) {
 
 
     for(let i=0;i<data.length;i++){
-        publishedId = data[i].publishedid;
-        publishTime = data[i].pubtime;
-        jobTitle = data[i].jobtitle;
+        publishedId = recruitList[i].publishedId;
+        publishTime = recruitList[i].publishedTime;
+        jobTitle = recruitList[i].jobTitle;
         eachDataDom = "<li class='"+liClass[i%liClass.length] + "' id='"+ publishedId+"'>"  +
             "<i class='fa fa-ellipsis-v'></i>"+
             "<div class='job-title'>"+
@@ -78,8 +78,8 @@ function setPublishedJobsData(data) {
  * */
 function del(evt) {
     $.ajax({
-        url: '/enterprise/recruit/delete?id='+$(evt).parent().parent().parent().attr('id'),
-        type:'get',
+        url: '/company/recruit?id='+$(evt).parent().parent().parent().attr('id'),
+        type:'delete',
         dataType:'json'
     }).done(function (data) {
 
@@ -112,7 +112,7 @@ function delPublishedJob(evt) {
 function modify(evt) {
     whichButton = "modify";
     let publishedId = $(evt).parent().parent().parent().attr('id');
-    //设置publishedid在按钮的id
+    //设置publishedId在按钮的id
     $("input[value='提交']").attr('id',publishedId);
     showcominfo(publishedId);
 }
@@ -123,7 +123,7 @@ function modify(evt) {
 function  showcominfo(publishedId) {
 
     $.ajax({
-        url: '/enterprise/showrecruitinfo?id='+publishedId,
+        url: '/company/recruit?id='+publishedId,
         type: 'get',
         dataType: 'json'
     }).done(function (data) {
@@ -214,7 +214,7 @@ function save(evt){
 
         $.ajax({
             type: 'post',
-            url: '/enterprise/recruitinfo/save?id='+publishedId,
+            url: '/company/recruit?id='+publishedId,
             dataType: 'json',
             data: sendData,
         }).done(function (data) {

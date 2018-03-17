@@ -96,7 +96,7 @@ public class RecruitController {
 //                return;
 //            }
 //            JSONObject recruitJson = new JSONObject();
-//            recruitJson.put("jobtitle",recruit.getJobName());
+//            recruitJson.put("jobTitle",recruit.getJobName());
 //            recruitJson.put("jobid",recruit.getrecruitId());
 //            recruitJson.put("companyname",enterprise.getName());
 //            recruitJson.put("location",recruit.getLocation());

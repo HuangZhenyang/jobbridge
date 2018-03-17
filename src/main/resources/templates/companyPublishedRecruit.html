@@ -594,12 +594,12 @@ TOP BAR CONTENT & NOTIFICATIONS
 
         <div class="top-menu">
             <!--<ul class="nav pull-right top-menu">
-                <li><a class="logout" href="signIn.html">Logout</a></li>
+                <li><a class="signOut" href="signIn.html">Logout</a></li>
             </ul>-->
             <ol class="breadcrumb" style="float: right;margin-top: 12px;">
-                <li><a href="/enterprise/info">个人中心</a></li>
-                <li><a href="/enterprise/info"><span id="header-userName"></span></a></li>
-                <li><a class="logout" href="/exit"><span>Logout</span></a></li>
+                <li><a href="/company/info">个人中心</a></li>
+                <li><a href="/company/info"><span id="header-userName"></span></a></li>
+                <li><a class="signOut" href="/sign_out"><span>退出</span></a></li>
             </ol>
         </div>
         <!--<div class="container-fluid" style="float: right;">
@@ -637,24 +637,24 @@ MAIN CONTENT
                                                     <!--等项目完工时需要修改这几个按钮的超链接-->
                                                     <li class="ant-menu-item posdeliver" role="menuitem"
                                                         aria-selected="false" data-reactid="43"><a
-                                                            href="/enterprise/info" data-reactid="44"><i
+                                                            href="/company/info" data-reactid="44"><i
                                                             class="fa fa-user"
                                                             data-reactid="45"></i><span
                                                             data-reactid="46">&nbsp;企业信息</span></a></li>
                                                     <li class="ant-menu-item resume" role="menuitem"
                                                         aria-selected="false" data-reactid="39"><a
-                                                            href="/enterprise/newrecruitinfopage" data-reactid="40"><i
+                                                            href="/company/new_recruit" data-reactid="40"><i
                                                             class="fa fa-paper-plane" data-reactid="41"></i><span
                                                             data-reactid="42">发布招聘信息</span></a></li>
                                                     <li class="ant-menu-item info" role="menuitem" aria-selected="true"
 
-                                                        data-reactid="35"><a href="/enterprise/recruitinfo"
+                                                        data-reactid="35"><a href="/company/recruit"
                                                                              data-reactid="36"><i
                                                             class="fa fa-search-plus" data-reactid="37"></i><span
                                                             data-reactid="38" style="color:#00a2ae">已发布的信息</span></a></li>
                                                     <li class="ant-menu-item posdeliver" role="menuitem"
                                                         aria-selected="false" data-reactid="43"><a
-                                                            href="/enterprise/deliverinfo" data-reactid="44"><i
+                                                            href="/company/resume_received" data-reactid="44"><i
                                                             class="fa fa-envelope"
                                                             data-reactid="45"></i><span
                                                             data-reactid="46">查看投递信息</span></a></li>
@@ -761,7 +761,7 @@ MAIN CONTENT
                                 </div>
                             </div>
                         </div>
-                        <link rel="stylesheet" href="../static/css/common/style.css" data-reactid="453" th:href="@{/css/stuinfo/style.css}">
+                        <link rel="stylesheet" href="../static/css/common/style.css" data-reactid="453" th:href="@{/css/common/style.css}">
                     </div>
                 </div>
             </div>
@@ -1223,28 +1223,13 @@ MAIN CONTENT
 
 <!--Javascript for this page-->
 <script type="text/javascript" src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
-<script type="text/javascript" src="../static/js/companyPublishedRecruit/companyPublishedRecruit.js" th:src="@{/js/compubedjob/companyPublishedRecruit.js}"></script>
+<script type="text/javascript" src="../static/js/companyPublishedRecruit/companyPublishedRecruit.js" th:src="@{/js/companyPublishedRecruit/companyPublishedRecruit.js}"></script>
 <script type="text/javascript" src="../static/js/common/bootstrap.min.js" th:src="@{/js/common/bootstrap.min.js}"></script>
-<script type="text/javascript" src="../static/js/companyPublishedRecruit/check.js" th:src="@{/js/compubedjob/check.js}"></script>
+<script type="text/javascript" src="../static/js/companyPublishedRecruit/check.js" th:src="@{/js/companyPublishedRecruit/check.js}"></script>
 <script src="../static/js/getUserName.js" th:src="@{/js/getUserName.js}"></script>
 
 <!-- 测试 -->
-<!--<script src="http://mockjs.com/dist/mock.js"></script>
-<script type="text/javascript">
-    var data = {
-        "data":[{
-            "publishedid":"007",
-            "pubtime":"2017-7-22",
-            "jobtitle":"人工智能"
 
-        },{
-            "publishedid":"007",
-            "pubtime":"2017-7-22",
-            "jobtitle":"人工智能"
-        }]
-    };
-    Mock.mock('/enterprise/publishedjobs', data);
-</script>-->
 <!--/测试-->
 
 </body>

@@ -164,8 +164,8 @@ public class SignController {
                 case "e":
                     String name = request.getParameter("name");
                     String phoneNum = request.getParameter("phoneNum");
-                    String enterpriseIntroduction = request.getParameter("enterpriseIntroduction");
-                    Company company = new Company(userName, name, mailbox, phoneNum, cryptoPassword, enterpriseIntroduction, "", "e");
+                    String companyIntroduction = request.getParameter("companyIntroduction");
+                    Company company = new Company(userName, name, mailbox, phoneNum, cryptoPassword, companyIntroduction, "", "e");
                     companyService.addCompany(company);
                     break;
             }
