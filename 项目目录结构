@@ -39,7 +39,7 @@
     │       │       ├── companyReview
     │       │       ├── getUserName.js
     │       │       ├── jobs
-    │       │       ├── recruitInfo
+    │       │       ├── recruit
     │       │       ├── resume
     │       │       ├── signIn
     │       │       ├── signOut
@@ -57,7 +57,7 @@
     │           ├── companyPublishRecruit.html
     │           ├── companyReview.html
     │           ├── index.html
-    │           ├── recruitInfo.html
+    │           ├── recruit.html
     │           ├── recruits.html
     │           ├── resume.html
     │           ├── signIn.html

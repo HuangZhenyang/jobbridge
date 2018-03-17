@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Created by huangzhenyang on 2018/3/13.
- * CollectEnterprise的复合主键类
+ * StarCompany的复合主键类
  */
 
 public class StarCompanyMultiKeysClass implements Serializable {

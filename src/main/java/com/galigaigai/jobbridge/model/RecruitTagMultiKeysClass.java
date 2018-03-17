@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Created by huangzhenyang on 2018/3/13.
- * RecruitInfoTag的复合主键类
+ * RecruitTag的复合主键类
  */
 
 public class RecruitTagMultiKeysClass implements Serializable{
