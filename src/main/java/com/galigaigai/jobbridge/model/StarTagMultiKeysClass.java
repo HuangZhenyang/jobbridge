@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Created by huangzhenyang on 2018/3/13.
- * CollectTag的复合主键类
+ * StarTag的复合主键类
  */
 
 

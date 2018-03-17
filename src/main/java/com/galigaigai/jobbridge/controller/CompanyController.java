@@ -363,7 +363,7 @@ public class CompanyController {
      * 请求公司收到的投递信息
      */
     @GetMapping(value = "request_resume_received")
-    public void companyForDeliverInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void companyForResumeSendInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
