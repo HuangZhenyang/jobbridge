@@ -35,10 +35,10 @@ function setInfo(infoData) {
     }else{
         let info = infoData.info;
         let study = infoData.study;
-        let jobintention = infoData.jobintention;
-        let city = jobintention.city;
-        let industry = jobintention.industry;
-        let func = jobintention.func;
+        let jobIntention = infoData.jobIntention;
+        let city = jobIntention.city;
+        let industry = jobIntention.industry;
+        let func = jobIntention.func;
         let str = "";
 
         $('#userName').text(info.mailbox);
@@ -114,7 +114,7 @@ function save() {
                 "major": major,
                 "grade": grade
             },
-            "jobintention":{
+            "jobIntention":{
                 "city":city,
                 "industry":industry,
                 "func":func
