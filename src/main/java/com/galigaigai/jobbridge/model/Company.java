@@ -3,7 +3,6 @@ package com.galigaigai.jobbridge.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.sql.Timestamp;
 
 /**
  * Created by SYunk on 2018/3/13.
@@ -15,7 +14,6 @@ public class Company {
     @GeneratedValue
     private Long companyId;
 
-    private Timestamp applyTime;
     private String userName;
     private String name;
     private String mailbox;
@@ -30,8 +28,7 @@ public class Company {
 
     }
 
-    public Company(Timestamp applyTime, String userName, String name, String mailbox, String phoneNum, String password, String companyIntroduction, String iconAddress, String identity, Boolean auditing) {
-        this.applyTime = applyTime;
+    public Company(String userName, String name, String mailbox, String phoneNum, String password, String companyIntroduction, String iconAddress, String identity, Boolean auditing) {
         this.userName = userName;
         this.name = name;
         this.mailbox = mailbox;
@@ -45,9 +42,6 @@ public class Company {
 
     public Long getCompanyId() {
         return companyId;
-    }
-    public Timestamp getApplyTime() {
-        return applyTime;
     }
     public Boolean getAuditing() {
         return auditing;
@@ -76,9 +70,6 @@ public class Company {
 
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
-    }
-    public void setApplyTime(Timestamp applyTime) {
-        this.applyTime = applyTime;
     }
     public void setAuditing(Boolean auditing) {
         this.auditing = auditing;
