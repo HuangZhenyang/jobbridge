@@ -116,6 +116,7 @@ public class RecruitController {
         json.put("data",dataJson);
         SendInfoUtil.render(json.toString(),"text/json",response);
     }
+    
     /**
      * 这里可以无登录访问
      * 职海之条件筛选页面

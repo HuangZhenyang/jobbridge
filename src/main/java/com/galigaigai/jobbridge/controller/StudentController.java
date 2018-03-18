@@ -5,6 +5,7 @@ import com.galigaigai.jobbridge.model.Tag;
 import com.galigaigai.jobbridge.repository.*;
 import com.galigaigai.jobbridge.service.*;
 import com.galigaigai.jobbridge.util.*;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,12 +78,18 @@ public class StudentController {
      * 请求学生简历页面
      */
     @GetMapping(value = "/resume")
-    public String studentResume(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String studentResume(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
-            response.sendRedirect("/");
+            return "index";
         }
+        Student student = (Student) loginUser;
+        Resume resume = resumeRepository.findByStudentId(student.getStudentId());
+        if(resume == null){
+            return "resume";
+        }
+        model.addAttribute("resumeContent",resume.getResumeContent());
         return "resume";
     }
 
@@ -93,10 +101,42 @@ public class StudentController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
-            response.sendRedirect("/");
+            return "index";
         }
-        String id = request.getParameter("id");
-        model.addAttribute("id", id);
+        Student student = (Student) loginUser;
+        Long recruitId;
+        if (request.getParameter("id") == null) {
+            System.out.println("getParameter error");
+        } else {
+            recruitId = Long.parseLong(request.getParameter("id"));
+            String haveStar = "false";
+            // 查找招聘信息
+            Recruit recruit = recruitRepository.findByRecruitId(recruitId);
+            if(recruit == null){
+                return "recruit";
+            }
+            model.addAttribute("recruit",recruit);
+            // 查找公司
+            Company company = companyRepository.findByCompanyId(recruit.getCompanyId());
+            if(company == null){
+                return "recruit";
+            }
+            model.addAttribute("company",company);
+            // 判定是否已经收藏
+            List<StarCompany> starCompanyList = starCompanyRepository.findByStudentId(student.getStudentId());
+            if (starCompanyList == null || starCompanyList.isEmpty()
+                    || (starCompanyList.size() == 1 && starCompanyList.get(0) == null)) {
+                System.out.println("starCompanyList is error");
+                return "recruit";
+            }
+            for (StarCompany starCompany : starCompanyList) {
+                if (starCompany.getCompanyId() == recruit.getCompanyId()) {
+                    haveStar = "true";
+                    break;
+                }
+            }
+            model.addAttribute("haveStar",haveStar);
+        }
         return "recruit";
     }
 
@@ -104,12 +144,21 @@ public class StudentController {
      * 学生请求验证页面
      */
     @GetMapping(value = "/authentication")
-    public String studentAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String studentAuthentication(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
-            response.sendRedirect("/");
+            return "index";
         }
+        Student student = (Student) loginUser;
+        StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
+        if(studentDetail == null){
+            model.addAttribute("authentication","false");
+            System.out.println("请求验证页面时，学生未填写详细信息");
+            return "studentAuthentication";
+        }
+        Boolean studentAuthenticationState = studentDetail.getAuthentication(); // 当前学生的验证状态
+        model.addAttribute("authentication",studentAuthenticationState.toString());
         return "studentAuthentication";
     }
 
@@ -117,12 +166,30 @@ public class StudentController {
      * 请求学生信息页面
      */
     @GetMapping(value = "/info")
-    public String studentInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String studentInfo(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
-            response.sendRedirect("/");
+            return "index";
         }
+        Student student = (Student) loginUser;
+
+        //通过studentId获取student中的email
+        String mailbox = student.getMailbox();
+        model.addAttribute("mailbox",mailbox);
+
+        //通过studentID获取studentDetail中的其他信息
+        StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
+        if (studentDetail == null) {
+            return "studentInfo";
+        }
+        String[] intentionCity = ParseStringUtil.parseString(studentDetail.getIntentionCity());
+        String[] intentionIndustry = ParseStringUtil.parseString(studentDetail.getIntentionIndustry());
+        String[] intentionFunction = ParseStringUtil.parseString(studentDetail.getIntentionFunction());
+        model.addAttribute("studentDetail",studentDetail);
+        model.addAttribute("intentionCity",intentionCity);
+        model.addAttribute("intentionIndustry",intentionIndustry);
+        model.addAttribute("intentionFunction",intentionFunction);
         return "studentInfo";
     }
 
@@ -130,12 +197,52 @@ public class StudentController {
      * 请求学生投递信息页面
      */
     @GetMapping(value = "/resume_send")
-    public String studentResumeSend(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String studentResumeSend(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
-            response.sendRedirect("/");
+            return "index";
         }
+        Student student = (Student) loginUser;
+//        定义数据结构
+        List<String> timeList = new ArrayList<>();
+        List<String> companyNameList = new ArrayList<>();
+        List<Recruit> recruitList = new ArrayList<>();
+//        查询学生投递信息:
+//        1.先找到学生对应的简历号
+        Resume resume = resumeRepository.findByStudentId(student.getStudentId());
+//        如果学生没写简历，则返回空数据
+        if (resume == null) {
+            return "studentResumeSend";
+        }
+        if (resume.getResumeContent() == null || "".equals(resume.getResumeContent())) {
+            return "studentResumeSend";
+        }
+//        2.根据简历号查询该学生的所有投递记录的公司号和招聘信息号
+        List<ResumeSend> resumeSendList = resumeSendRepository.findByResumeId(resume.getResumeId());
+//        如果学生没投递简历到任意公司，则返回空数据
+        if (resumeSendList == null || resumeSendList.isEmpty()) {
+            return "studentResumeSend";
+        }
+//        3.对每个投递记录，查找公司名（即查找公司），职位名称、描述（即招聘信息），然后传回前端
+        for (int i = 0; i < resumeSendList.size(); i++) {
+//            3.1 查找公司名
+            Company company = companyRepository.findByCompanyId(resumeSendList.get(i).getCompanyId());
+//            3.2 查找职位
+            Recruit recruit = recruitRepository.findByRecruitId(resumeSendList.get(i).getRecruitId());
+            if (company == null || recruit == null) {
+                System.out.println("内部查询出错：没找到投递记录所对应的公司或招聘信息");
+                return "studentResumeSend";
+            }
+//            3.3 添加到list中
+            timeList.add(resumeSendList.get(i).getDateTime().toString());
+            companyNameList.add(company.getName());
+            recruitList.add(recruit);
+        }
+//        4.将list添加到model对象里面,然后发回前端
+        model.addAttribute("timeList",timeList);
+        model.addAttribute("companyNameList",companyNameList);
+        model.addAttribute("recruitList",recruitList);
         return "studentResumeSend";
     }
 
@@ -143,11 +250,44 @@ public class StudentController {
      * 请求学生收藏信息页面
      */
     @GetMapping(value = "/star")
-    public String studentStar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String studentStar(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
-            response.sendRedirect("/");
+            return "index";
+        }
+        Student student = (Student) loginUser;
+        //定义数据结构
+        List<Company> companyList = new ArrayList<>();
+        List<String> functionNameList = new ArrayList<>();
+
+        //通过学生ID获取到收藏公司的List
+        List<StarCompany> starCompanyList = starCompanyRepository
+                .findByStudentId(student.getStudentId());
+        //通过学生ID获取到收藏标签的List
+        List<StarTag> starTagList = starTagRepository
+                .findByStudentId(student.getStudentId());
+        //有无收藏的公司
+        if (starCompanyList == null || starCompanyList.isEmpty() ||
+                (starCompanyList.size() == 1 && starCompanyList.get(0) == null)) {
+            System.out.println("无收藏的公司");
+        } else {
+            for (StarCompany tempStarCompany : starCompanyList) {
+                Company company = companyRepository.findByCompanyId(tempStarCompany.getCompanyId());
+                companyList.add(company);
+            }
+            model.addAttribute("companyList",companyList);
+        }
+        // 有无收藏的tag
+        if (starTagList == null || starTagList.isEmpty()
+                || (starTagList.size() == 1 && starTagList.get(0) == null)) {
+            return "studentStar";
+        } else {
+            for (StarTag tempStarTag : starTagList) {
+                Tag tag = tagRepository.findByTagId(tempStarTag.getTagId());
+                functionNameList.add(tag.getName());
+            }
+            model.addAttribute("functionNameList",functionNameList);
         }
         return "studentStar";
     }
@@ -222,71 +362,6 @@ public class StudentController {
     }
 
     /**
-     * 请求学生投递过的招聘信息
-     */
-    @GetMapping(value = "/request_resume_send")
-    public void StudentRequestResumeSend(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        request.setCharacterEncoding("UTF-8");
-        Object loginUser = request.getSession().getAttribute("loginUser");
-        if (loginUser == null || !(loginUser instanceof Student)) {
-            response.sendRedirect("/");
-            return;
-        }
-//        先建立好要传回前端的数据结构
-        Student student = (Student) loginUser;
-        JSONObject json = new JSONObject();
-        JSONArray resumeSendDataJson = new JSONArray();
-//        查询学生投递信息:
-//        1.先找到学生对应的简历号
-        Resume resume = resumeRepository.findByStudentId(student.getStudentId());
-//        如果学生没写简历，则返回空数据
-        if (resume == null) {
-            json.put("resumeSendData", resumeSendDataJson);
-            SendInfoUtil.render(json.toString(), "text/json", response);
-            return;
-        }
-        if (resume.getResumeContent() == null || "".equals(resume.getResumeContent())) {
-            json.put("resumeSendData", resumeSendDataJson);
-            SendInfoUtil.render(json.toString(), "text/json", response);
-            return;
-        }
-//        2.根据简历号查询该学生的所有投递记录的公司号和招聘信息号
-        List<ResumeSend> resumeSendList = resumeSendRepository.findByResumeId(resume.getResumeId());
-//        如果学生没投递简历到任意公司，则返回空数据
-        if (resumeSendList == null || resumeSendList.isEmpty()) {
-            json.put("resumeSendData", resumeSendDataJson);
-            SendInfoUtil.render(json.toString(), "text/json", response);
-            return;
-        }
-//        3.对每个投递记录，查找公司名（即查找公司），职位名称、描述（即招聘信息），然后传回前端
-        for (int i = 0; i < resumeSendList.size(); i++) {
-//            3.1 查找公司名
-            Company company = companyRepository.findByCompanyId(resumeSendList.get(i).getCompanyId());
-//            3.2 查找职位
-            Recruit recruit = recruitRepository.findByRecruitId(resumeSendList.get(i).getRecruitId());
-            if (company == null || recruit == null) {
-                System.out.println("内部查询出错：没找到投递记录所对应的公司或招聘信息");
-                json.put("resumeSendData", resumeSendDataJson);
-                SendInfoUtil.render(json.toString(), "text/json", response);
-                return;
-            }
-//            3.3 添加到json数组中
-            JSONObject resumeSendJson = new JSONObject();
-            resumeSendJson.put("time", resumeSendList.get(i).getDateTime());
-            resumeSendJson.put("companyName", company.getName());
-            resumeSendJson.put("jobTitle", recruit.getJobName());
-            resumeSendJson.put("jobDescribe", recruit.getJobDescribe());
-            resumeSendJson.put("jobHref", "/student/recruit?id=" + recruit.getRecruitId());
-            resumeSendJson.put("haveDelete", recruit.getHaveDelete());
-            resumeSendDataJson.put(resumeSendJson);
-        }
-//        4.将json数组添加到json对象里面,然后发回前端
-        json.put("resumeSendData", resumeSendDataJson);
-        SendInfoUtil.render(json.toString(), "text/json", response);
-    }
-
-    /**
      * 学生收藏公司操作
      */
     @PostMapping(value = "/star")
@@ -304,176 +379,6 @@ public class StudentController {
         starCompanyService.addStarCompany(starCompany);
         String result = "{\"ok\":\"true\"}";
         SendInfoUtil.render(result, "text/json", response);
-    }
-
-    /**
-     * 请求收藏的公司以及收藏的标签
-     */
-    @GetMapping(value = "/request_star")
-    public void StudentRequestStars(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        request.setCharacterEncoding("UTF-8");
-        Object loginUser = request.getSession().getAttribute("loginUser");
-        if (loginUser == null || !(loginUser instanceof Student)) {
-            response.sendRedirect("/");
-            return;
-        }
-        //定义
-        Student student = (Student) loginUser;
-        JSONObject json = new JSONObject();
-        JSONArray companyJsonArray = new JSONArray();
-        JSONArray tagJsonArray = new JSONArray();
-
-        //通过学生ID获取到收藏公司的List
-        List<StarCompany> starCompanyList = starCompanyRepository
-                .findByStudentId(student.getStudentId());
-        //通过学生ID获取到收藏标签的List
-        List<StarTag> starTagList = starTagRepository
-                .findByStudentId(student.getStudentId());
-        //空值判定
-        if (starCompanyList == null || starCompanyList.isEmpty() ||
-                (starCompanyList.size() == 1 && starCompanyList.get(0) == null)) {
-            json.put("company", companyJsonArray);
-            //SendInfoUtil.render(json.toString(),"text/json",response);
-            //return;
-
-        } else {
-            for (StarCompany tempStarCompany : starCompanyList) {
-                JSONObject companyJson = new JSONObject();
-                Company company = companyRepository
-                        .findByCompanyId(tempStarCompany.getCompanyId());
-                companyJson.put("starcomid", company.getCompanyId());
-                companyJson.put("comname", company.getName());
-                companyJson.put("email", company.getMailbox());
-                companyJson.put("phonenum", company.getPhoneNum());
-                companyJson.put("comdesc", company.getCompanyIntroduction());
-                companyJson.put("iconaddress", company.getIconAddress());
-                companyJsonArray.put(companyJson);
-            }
-            json.put("company", companyJsonArray);
-
-        }
-
-        if (starTagList == null || starTagList.isEmpty()
-                || (starTagList.size() == 1 && starTagList.get(0) == null)) {
-            json.put("job", tagJsonArray);
-        } else {
-            for (StarTag tempStarTag : starTagList) {
-                JSONObject tagJson = new JSONObject();
-                Tag tag = tagRepository.findByTagId(tempStarTag.getTagId());
-                tagJson.put("jobTitle", tag.getName());
-                tagJsonArray.put(tagJson);
-            }
-            json.put("job", tagJsonArray);
-        }
-        SendInfoUtil.render(json.toString(), "text/json", response);
-    }
-
-    /**
-     * 请求学生用户详细信息
-     * 若第一次进入页面则都为空
-     */
-    @GetMapping(value = "/detail_info")
-    public void studentDetailInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        request.setCharacterEncoding("UTF-8");
-        Object loginUser = request.getSession().getAttribute("loginUser");
-        if (loginUser == null || !(loginUser instanceof Student)) {
-            response.sendRedirect("/");
-            return;
-        }
-        //        先建立好要传回前端的数据结构
-        Student student = (Student) loginUser;
-        JSONObject json = new JSONObject();
-        JSONObject infoJson = new JSONObject();
-        JSONObject studyJson = new JSONObject();
-        JSONObject jobIntentionJson = new JSONObject();
-
-        infoJson.put("mailbox", student.getMailbox());
-        //通过studentId获取student中的email
-        //通过studentID获取studentDetail中的其他信息
-        StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
-        if (studentDetail == null) {
-            json.put("info", infoJson);
-        } else {
-            infoJson.put("phone", studentDetail.getPhoneNum());
-            studyJson.put("school", studentDetail.getUniversityName());
-            studyJson.put("major", studentDetail.getMajor());
-            studyJson.put("grade", studentDetail.getGrade());
-            String[] intentionCitys = ParseStringUtil.parseString(studentDetail.getIntentionCity());
-            String[] intentionIndustry = ParseStringUtil.parseString(studentDetail.getIntentionIndustry());
-            String[] intentionFunc = ParseStringUtil.parseString(studentDetail.getIntentionFunction());
-            jobIntentionJson.put("city", intentionCitys);
-            jobIntentionJson.put("industry", intentionIndustry);
-            jobIntentionJson.put("func", intentionFunc);
-
-            json.put("info", infoJson);
-            json.put("study", studyJson);
-            json.put("jobIntention", jobIntentionJson);
-        }
-        SendInfoUtil.render(json.toString(), "text/json", response);
-    }
-
-    /**
-     * 学生查看具体的招聘信息
-     */
-    @GetMapping(value = "/request_recruit")
-    public void studentRequestRecruit(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        Object loginUser = request.getSession().getAttribute("loginUser");
-        if (loginUser == null || !(loginUser instanceof Student)) {
-            response.sendRedirect("/");
-        }
-        Student student = (Student) loginUser;
-        Long recruitId;
-        if (request.getParameter("id") == null) {
-            System.out.println("getParameter error");
-        } else {
-            recruitId = Long.parseLong(request.getParameter("id"));
-            JSONObject json = new JSONObject();
-            JSONObject contentJson = new JSONObject();
-            String haveStar = "false";
-            Recruit recruit = recruitRepository.findByRecruitId(recruitId);
-            Company company = companyRepository
-                    .findByCompanyId(recruit.getCompanyId());
-
-
-            List<StarCompany> starCompanyList = starCompanyRepository
-                    .findByStudentId(student.getStudentId());
-            //List空值判定
-            if (starCompanyList == null || starCompanyList.isEmpty()
-                    || (starCompanyList.size() == 1 && starCompanyList.get(0) == null)) {
-                System.out.println("starCompanyList is error");
-            } else {
-                for (StarCompany starCompany : starCompanyList) {
-                    if (starCompany.getCompanyId() == recruit.getCompanyId()) {
-                        haveStar = "true";
-                        break;
-                    }
-                }
-            }
-
-            //haveStarJson.put("havestar",havestar);
-            //companyIdJson.put("companyid",recruit.getCompanyId());
-            contentJson.put("jobName", recruit.getJobName());
-            contentJson.put("name", company.getName());
-            contentJson.put("location", recruit.getLocation());
-            contentJson.put("lowSalary", recruit.getLowSalary());
-            contentJson.put("highSalary", recruit.getHighSalary());
-            contentJson.put("companyIntroduction", company.getCompanyIntroduction());
-            contentJson.put("deadline", recruit.getDeadline());
-            contentJson.put("jobDescribe", recruit.getJobDescribe());
-            contentJson.put("jobRequire", recruit.getJobRequire());
-
-            json.put("haveStar", haveStar);
-            json.put("companyId", recruit.getCompanyId());
-            json.put("content", contentJson);
-            json.put("jobId", recruitId);
-
-            System.out.println(json);
-            SendInfoUtil.render(json.toString(), "text/json", response);
-
-        }
     }
 
     /**
@@ -617,34 +522,6 @@ public class StudentController {
     }
 
     /**
-     * 请求学生邮箱验证状态
-     */
-    @GetMapping(value = "/request_authentication")
-    public void studentRequestAuthentication(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        Object loginUser = request.getSession().getAttribute("loginUser");
-        if (loginUser == null || !(loginUser instanceof Student)) {
-            response.sendRedirect("/");
-        }
-        Student student = (Student) loginUser;
-        StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
-        String result;
-
-        if(studentDetail != null){
-            Boolean studentAuthenticationState = studentDetail.getAuthentication(); // 当前学生的验证状态
-            if ((studentAuthenticationState != null) && (studentAuthenticationState)) {
-                System.out.println("已验证成功");
-                result = "{\"authentication\":\"true\"}";
-                SendInfoUtil.render(result, "text/json", response);
-                return;
-            }
-        }
-
-        result = "{\"authentication\":\"false\"}";
-        SendInfoUtil.render(result, "text/json", response);
-    }
-
-    /**
      * 学生在邮箱里点击了确认链接
      */
     @GetMapping(value = "/confirm_authentication")
@@ -683,9 +560,14 @@ public class StudentController {
         resumeService.updateResume(resume);
     }
 
+
+
+
+
+
     /**
      * 加载简历
-     */
+     *//*
     @GetMapping(value = "/request_resume")
     public void studentRequestResume(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
@@ -697,5 +579,270 @@ public class StudentController {
         Student student = (Student) loginUser;
         Resume resume = resumeRepository.findByStudentId(student.getStudentId());
         SendInfoUtil.render(resume.getResumeContent(), "text/json", response);
-    }
+    }*/
+
+    /**
+     * 请求学生邮箱验证状态
+     */
+    /*@GetMapping(value = "/request_authentication")
+    public void studentRequestAuthentication(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if (loginUser == null || !(loginUser instanceof Student)) {
+            response.sendRedirect("/");
+        }
+        Student student = (Student) loginUser;
+        StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
+        String result;
+
+        if(studentDetail != null){
+            Boolean studentAuthenticationState = studentDetail.getAuthentication(); // 当前学生的验证状态
+            if ((studentAuthenticationState != null) && (studentAuthenticationState)) {
+                System.out.println("已验证成功");
+                result = "{\"authentication\":\"true\"}";
+                SendInfoUtil.render(result, "text/json", response);
+                return;
+            }
+        }
+
+        result = "{\"authentication\":\"false\"}";
+        SendInfoUtil.render(result, "text/json", response);
+    }*/
+    /**
+     * 学生查看具体的招聘信息
+     */
+    /*@GetMapping(value = "/request_recruit")
+    public void studentRequestRecruit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if (loginUser == null || !(loginUser instanceof Student)) {
+            response.sendRedirect("/");
+        }
+        Student student = (Student) loginUser;
+        Long recruitId;
+        if (request.getParameter("id") == null) {
+            System.out.println("getParameter error");
+        } else {
+            recruitId = Long.parseLong(request.getParameter("id"));
+            JSONObject json = new JSONObject();
+            JSONObject contentJson = new JSONObject();
+            String haveStar = "false";
+            Recruit recruit = recruitRepository.findByRecruitId(recruitId);
+            Company company = companyRepository
+                    .findByCompanyId(recruit.getCompanyId());
+
+
+            List<StarCompany> starCompanyList = starCompanyRepository
+                    .findByStudentId(student.getStudentId());
+            //List空值判定
+            if (starCompanyList == null || starCompanyList.isEmpty()
+                    || (starCompanyList.size() == 1 && starCompanyList.get(0) == null)) {
+                System.out.println("starCompanyList is error");
+            } else {
+                for (StarCompany starCompany : starCompanyList) {
+                    if (starCompany.getCompanyId() == recruit.getCompanyId()) {
+                        haveStar = "true";
+                        break;
+                    }
+                }
+            }
+
+            //haveStarJson.put("havestar",havestar);
+            //companyIdJson.put("companyid",recruit.getCompanyId());
+            contentJson.put("jobName", recruit.getJobName());
+            contentJson.put("name", company.getName());
+            contentJson.put("location", recruit.getLocation());
+            contentJson.put("lowSalary", recruit.getLowSalary());
+            contentJson.put("highSalary", recruit.getHighSalary());
+            contentJson.put("companyIntroduction", company.getCompanyIntroduction());
+            contentJson.put("deadline", recruit.getDeadline());
+            contentJson.put("jobDescribe", recruit.getJobDescribe());
+            contentJson.put("jobRequire", recruit.getJobRequire());
+
+            json.put("haveStar", haveStar);
+            json.put("companyId", recruit.getCompanyId());
+            json.put("content", contentJson);
+            json.put("jobId", recruitId);
+
+            System.out.println(json);
+            SendInfoUtil.render(json.toString(), "text/json", response);
+
+        }
+    }*/
+
+    /**
+     * 请求学生用户详细信息
+     * 若第一次进入页面则都为空
+     */
+    /*@GetMapping(value = "/detail_info")
+    public void studentDetailInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        request.setCharacterEncoding("UTF-8");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if (loginUser == null || !(loginUser instanceof Student)) {
+            response.sendRedirect("/");
+            return;
+        }
+        //        先建立好要传回前端的数据结构
+        Student student = (Student) loginUser;
+        JSONObject json = new JSONObject();
+        JSONObject infoJson = new JSONObject();
+        JSONObject studyJson = new JSONObject();
+        JSONObject jobIntentionJson = new JSONObject();
+
+        infoJson.put("mailbox", student.getMailbox());
+        //通过studentId获取student中的email
+        //通过studentID获取studentDetail中的其他信息
+        StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
+        if (studentDetail == null) {
+            json.put("info", infoJson);
+        } else {
+            infoJson.put("phone", studentDetail.getPhoneNum());
+            studyJson.put("school", studentDetail.getUniversityName());
+            studyJson.put("major", studentDetail.getMajor());
+            studyJson.put("grade", studentDetail.getGrade());
+            String[] intentionCitys = ParseStringUtil.parseString(studentDetail.getIntentionCity());
+            String[] intentionIndustry = ParseStringUtil.parseString(studentDetail.getIntentionIndustry());
+            String[] intentionFunc = ParseStringUtil.parseString(studentDetail.getIntentionFunction());
+            jobIntentionJson.put("city", intentionCitys);
+            jobIntentionJson.put("industry", intentionIndustry);
+            jobIntentionJson.put("func", intentionFunc);
+
+            json.put("info", infoJson);
+            json.put("study", studyJson);
+            json.put("jobIntention", jobIntentionJson);
+        }
+        SendInfoUtil.render(json.toString(), "text/json", response);
+    }*/
+
+
+    /**
+     * 请求收藏的公司以及收藏的标签
+     */
+   /* @GetMapping(value = "/request_star")
+    public void StudentRequestStars(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        request.setCharacterEncoding("UTF-8");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if (loginUser == null || !(loginUser instanceof Student)) {
+            response.sendRedirect("/");
+            return;
+        }
+        //定义
+        Student student = (Student) loginUser;
+        JSONObject json = new JSONObject();
+        JSONArray companyJsonArray = new JSONArray();
+        JSONArray tagJsonArray = new JSONArray();
+
+        //通过学生ID获取到收藏公司的List
+        List<StarCompany> starCompanyList = starCompanyRepository
+                .findByStudentId(student.getStudentId());
+        //通过学生ID获取到收藏标签的List
+        List<StarTag> starTagList = starTagRepository
+                .findByStudentId(student.getStudentId());
+        //空值判定
+        if (starCompanyList == null || starCompanyList.isEmpty() ||
+                (starCompanyList.size() == 1 && starCompanyList.get(0) == null)) {
+            json.put("company", companyJsonArray);
+            //SendInfoUtil.render(json.toString(),"text/json",response);
+            //return;
+
+        } else {
+            for (StarCompany tempStarCompany : starCompanyList) {
+                JSONObject companyJson = new JSONObject();
+                Company company = companyRepository
+                        .findByCompanyId(tempStarCompany.getCompanyId());
+                companyJson.put("starcomid", company.getCompanyId());
+                companyJson.put("comname", company.getName());
+                companyJson.put("email", company.getMailbox());
+                companyJson.put("phonenum", company.getPhoneNum());
+                companyJson.put("comdesc", company.getCompanyIntroduction());
+                companyJson.put("iconaddress", company.getIconAddress());
+                companyJsonArray.put(companyJson);
+            }
+            json.put("company", companyJsonArray);
+
+        }
+
+        if (starTagList == null || starTagList.isEmpty()
+                || (starTagList.size() == 1 && starTagList.get(0) == null)) {
+            json.put("job", tagJsonArray);
+        } else {
+            for (StarTag tempStarTag : starTagList) {
+                JSONObject tagJson = new JSONObject();
+                Tag tag = tagRepository.findByTagId(tempStarTag.getTagId());
+                tagJson.put("jobTitle", tag.getName());
+                tagJsonArray.put(tagJson);
+            }
+            json.put("job", tagJsonArray);
+        }
+        SendInfoUtil.render(json.toString(), "text/json", response);
+    }*/
+
+    /**
+     * 请求学生投递过的招聘信息
+     *//*
+    @GetMapping(value = "/request_resume_send")
+    public void StudentRequestResumeSend(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        request.setCharacterEncoding("UTF-8");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if (loginUser == null || !(loginUser instanceof Student)) {
+            response.sendRedirect("/");
+            return;
+        }
+//        先建立好要传回前端的数据结构
+        Student student = (Student) loginUser;
+        JSONObject json = new JSONObject();
+        JSONArray resumeSendDataJson = new JSONArray();
+//        查询学生投递信息:
+//        1.先找到学生对应的简历号
+        Resume resume = resumeRepository.findByStudentId(student.getStudentId());
+//        如果学生没写简历，则返回空数据
+        if (resume == null) {
+            json.put("resumeSendData", resumeSendDataJson);
+            SendInfoUtil.render(json.toString(), "text/json", response);
+            return;
+        }
+        if (resume.getResumeContent() == null || "".equals(resume.getResumeContent())) {
+            json.put("resumeSendData", resumeSendDataJson);
+            SendInfoUtil.render(json.toString(), "text/json", response);
+            return;
+        }
+//        2.根据简历号查询该学生的所有投递记录的公司号和招聘信息号
+        List<ResumeSend> resumeSendList = resumeSendRepository.findByResumeId(resume.getResumeId());
+//        如果学生没投递简历到任意公司，则返回空数据
+        if (resumeSendList == null || resumeSendList.isEmpty()) {
+            json.put("resumeSendData", resumeSendDataJson);
+            SendInfoUtil.render(json.toString(), "text/json", response);
+            return;
+        }
+//        3.对每个投递记录，查找公司名（即查找公司），职位名称、描述（即招聘信息），然后传回前端
+        for (int i = 0; i < resumeSendList.size(); i++) {
+//            3.1 查找公司名
+            Company company = companyRepository.findByCompanyId(resumeSendList.get(i).getCompanyId());
+//            3.2 查找职位
+            Recruit recruit = recruitRepository.findByRecruitId(resumeSendList.get(i).getRecruitId());
+            if (company == null || recruit == null) {
+                System.out.println("内部查询出错：没找到投递记录所对应的公司或招聘信息");
+                json.put("resumeSendData", resumeSendDataJson);
+                SendInfoUtil.render(json.toString(), "text/json", response);
+                return;
+            }
+//            3.3 添加到json数组中
+            JSONObject resumeSendJson = new JSONObject();
+            resumeSendJson.put("time", resumeSendList.get(i).getDateTime());
+            resumeSendJson.put("companyName", company.getName());
+            resumeSendJson.put("jobTitle", recruit.getJobName());
+            resumeSendJson.put("jobDescribe", recruit.getJobDescribe());
+            resumeSendJson.put("jobHref", "/student/recruit?id=" + recruit.getRecruitId());
+            resumeSendJson.put("haveDelete", recruit.getHaveDelete());
+            resumeSendDataJson.put(resumeSendJson);
+        }
+//        4.将json数组添加到json对象里面,然后发回前端
+        json.put("resumeSendData", resumeSendDataJson);
+        SendInfoUtil.render(json.toString(), "text/json", response);
+    }*/
 }
+
+
