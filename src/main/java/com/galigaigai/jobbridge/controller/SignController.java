@@ -72,7 +72,7 @@ public class SignController {
      * 执行登陆操作
      * @throws Exception
      */
-    @PostMapping("sign_in")
+    @PostMapping("/sign_in")
     public void doSignIn(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String result;
         response.setHeader("Access-Control-Allow-Origin", "*");
