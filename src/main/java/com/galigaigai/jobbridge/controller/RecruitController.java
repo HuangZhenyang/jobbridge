@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,17 +47,58 @@ public class RecruitController {
      * 请求职海页面
      * */
     @GetMapping(value = "/info")
-    public String recruit(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String recruit(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
+        // 定义数据结构
+        List<Recruit> recruitList = new ArrayList<>();
+        List<Company> companyList = new ArrayList<>();
+        int recruitNum = (int)recruitRepository.count();
+        if(recruitNum == 0){
+            model.addAttribute("numberOfPage",0);
+            return "recruitSea";
+        }
+        int limit = 0;
+        if(recruitNum < 10){
+            limit = recruitNum;
+        }else{
+            limit = 10;
+        }
+        recruitList = recruitRepository.findRecruitOrderByTime(0, limit);
+        if(recruitList == null || recruitList.isEmpty() || (recruitList.size() == 1 && recruitList.get(0) == null)){
+            model.addAttribute("numberOfPage",0);
+            return "recruitSea";
+        }
+//        对这10个（可能少于10个）招聘信息进行处理
+        for(Recruit recruit:recruitList){
+            Company company = companyRepository.findByCompanyId(recruit.getCompanyId());
+            if(company == null){
+                System.out.println("内部错误");
+                model.addAttribute("numberOfPage",0);
+                recruitList.remove(recruit);
+                recruitNum--;
+                continue;
+            }
+            companyList.add(company);
+        }
+        int pageNum = 0;
+        if(recruitNum % 10 == 0){
+            pageNum = recruitNum/10;
+        }
+        else{
+            pageNum = recruitNum/10 + 1;
+        }
+        model.addAttribute("numberOfPage",pageNum);
+        model.addAttribute("recruitList",recruitList);
+        model.addAttribute("companyList",companyList);
         return "recruitSea";
     }
 
     /**
      * 这里可以无登录访问
      * 职海之showinfo
-     * */
+     * *//*
     @GetMapping(value = "/show_info")
-    public void showrecruit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void showRecruit(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
 //        定义数据结构
         JSONObject json = new JSONObject();
@@ -68,14 +110,10 @@ public class RecruitController {
             SendInfoUtil.render(json.toString(),"text/json",response);
             return;
         }
-        /*Map<String,Object> map = new HashMap<>();
-        map.put("offset",0);*/
         int limit = 0;
         if(recruitNum < 10){
-//            map.put("limit",recruitNum);
             limit = recruitNum;
         }else{
-//            map.put("limit",10);
             limit = 10;
         }
         List<Recruit> recruitList = recruitRepository.findRecruitOrderByTime(0, limit);
@@ -115,14 +153,14 @@ public class RecruitController {
         json.put("numberOfPage",pageNum);
         json.put("data",dataJson);
         SendInfoUtil.render(json.toString(),"text/json",response);
-    }
-    
+    }*/
+
     /**
      * 这里可以无登录访问
      * 职海之条件筛选页面
      * */
     @PostMapping(value = "/info")
-    public void showrecruitByCondition(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void showRecruitByCondition(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         String content = request.getParameter("content");
 //        定义收到的数据结构
