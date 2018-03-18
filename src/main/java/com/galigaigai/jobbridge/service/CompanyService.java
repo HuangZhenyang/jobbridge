@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 /**
@@ -28,5 +29,12 @@ public class CompanyService {
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
+    }
+
+    /**
+     * 查询得到所有的公司
+     * */
+    public List<Company> findAllCompany(){
+        return companyRepository.findAll();
     }
 }

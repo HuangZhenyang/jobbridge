@@ -46,11 +46,14 @@ public class SignController {
     public String showIndex(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
-        if (loginUser == null || !(loginUser instanceof Company)) {
+
+        if (loginUser == null) {
             //response.sendRedirect("/");
         }else{
+            System.out.println(">>>  loginUser");
             model.addAttribute("loginUser", loginUser);
         }
+
 
         return "index";
     }
@@ -174,7 +177,7 @@ public class SignController {
                     String name = request.getParameter("name");
                     String phoneNum = request.getParameter("phoneNum");
                     String companyIntroduction = request.getParameter("companyIntroduction");
-                    Company company = new Company(userName, name, mailbox, phoneNum, cryptoPassword, companyIntroduction, "", "e");
+                    Company company = new Company(userName, name, mailbox, phoneNum, cryptoPassword, companyIntroduction, "", "e", false);
                     companyService.addCompany(company);
                     break;
             }
