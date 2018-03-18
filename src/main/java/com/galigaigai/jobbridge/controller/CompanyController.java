@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,19 +58,19 @@ public class CompanyController {
 
 
     /**
+     * @author:huangzhenyang
      * 请求公司信息页面
      */
     @GetMapping(value = "/info")
     public String showCompanyInfo(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
-        if (loginUser == null || !(loginUser instanceof Company)) {
+        if (loginUser == null) {
             response.sendRedirect("/");
         }
-        // huangzhenyang
+
         Company company = (Company)loginUser;
         model.addAttribute("company", company);
-
         return "companyInfo";
     }
 
@@ -110,6 +111,7 @@ public class CompanyController {
     }
 
     /**
+     * @author:huangzhenyang
      * 请求公司已发布的招聘信息页面
      */
     @GetMapping(value = "/recruit")
@@ -121,8 +123,24 @@ public class CompanyController {
         }
 
         Company company = (Company) loginUser;
-//        List<Recruit> recruitList = recruitRepository.findByCompanyId(company.getCompanyId());
+        List<Recruit> recruitList = recruitRepository.findByCompanyId(company.getCompanyId());
 
+        // 如果没有招聘信息，直接返回html页面
+        if(recruitList == null || recruitList.isEmpty() ||
+                (recruitList.size() == 1 && recruitList.get(0) == null)){
+            return "companyPublishedRecruit";
+        }else{
+            // 对于每个未删除的招聘信息，查询招聘信息号、职位名称和发布时间作为json对象添加进入json数组中
+            for(Recruit recruit:recruitList){
+                if(recruit.getHaveDelete()){ // 如果招聘信息已经删除的话, 就从recruitList中删除
+                    recruitList.remove(recruit);
+                }
+            }
+
+            model.addAttribute("recruitList", recruitList);
+        }
+
+        model.addAttribute("company", company);
 
         return "companyPublishedRecruit";
     }
@@ -131,7 +149,7 @@ public class CompanyController {
     /**
      * 请求公司已发布的招聘信息列表
      * */
-    @GetMapping(value = "/request_recruit_list")
+    /*@GetMapping(value = "/request_recruit_list")
     public void requestCompanyRecruitList(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
@@ -166,13 +184,13 @@ public class CompanyController {
         json.put("recruitList",recruitListJsonArray);
         SendInfoUtil.render(json.toString(),"text/json",response);
     }
-
+*/
 
     /**
      * 公司删除已发布的招聘信息操作
      */
     @DeleteMapping(value = "/recruit")
-    public void companyDeleterecruit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void companyDeleteRecruit(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
@@ -347,23 +365,90 @@ public class CompanyController {
 
 
     /**
+     * @author:huangzhenyang
      * 请求公司查看投递信息页面
      */
     @GetMapping(value = "/resume_received")
-    public String showCompanyReceivedResume(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String showCompanyReceivedResume(HttpServletRequest request, HttpServletResponse response,
+                                            Model model) throws IOException {
+
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
         }
+
+        Company company = (Company) loginUser;
+        //根据公司号查询所有招聘信息
+        List<ResumeSend> resumeSendList = resumeSendRepository
+                .findByCompanyId(company.getCompanyId());
+        List<String> jobTitleList = null;
+        List<String> studentNameList = null;
+        List<String> readStatusList = null;
+
+        //空值判定
+        if (resumeSendList == null || resumeSendList.isEmpty() ||
+                (resumeSendList.size() == 1 && resumeSendList.get(0) == null)) {
+            //json.put("resumeSendList", resumeSendListJsonArray);
+            return "companyReceivedResume";
+        } else {
+            for (ResumeSend resumeSend : resumeSendList) {
+                if (resumeSend.getHaveDelete()) {
+                    resumeSendList.remove(resumeSend);
+                } else {
+                    //此处Json对应companyReceiveResume.js处json
+//                    JSONObject resumeSendJson = new JSONObject();
+//                    resumeSendJson.put("resumeSendId", resumeSend.getResumeId());
+//                    resumeSendJson.put("resumeSendTime", resumeSend.getDateTime());
+                    Recruit recruit = recruitRepository.findByRecruitId(resumeSend.getRecruitId());
+                    jobTitleList.add(recruit.getJobName());
+                    //username
+                    Resume resume = resumeRepository.findByResumeId(resumeSend.getResumeId());
+                    Student student = studentRepository.findByStudentId(resume.getStudentId());
+                    // resumeSendJson.put("studentUserName", student.getUserName());
+                    studentNameList.add(student.getUserName());
+                    //status
+                    if (resumeSend.getHaveRead()) {
+                        readStatusList.add("已读");
+                    } else {
+                        readStatusList.add("未读");
+                    }
+                    // TODO: 暂定返回三个数组,resumeSendList,studentNameList以及readStatusList;
+                    // 前端遍历resumeSendList,通过th:each="obj,iterStat:${objList}"
+                    // th:each="user,userStat : ${list}"  的${userStat.index}的到下标,再去拿到其他两个数组的对应位置的数据
+                    //resumeSendListJsonArray.put(resumeSendJson);
+
+                }
+            }
+
+            if(resumeSendList != null){
+                model.addAttribute("resumeSendList", resumeSendList);
+            }
+
+            if(jobTitleList != null){
+                model.addAttribute("jobTitleList", jobTitleList);
+            }
+
+            if(studentNameList != null){
+                model.addAttribute("studentNameList", studentNameList);
+            }
+
+            if(readStatusList != null){
+                model.addAttribute("readStatusList", readStatusList);
+            }
+
+
+        }
+
         return "companyReceivedResume";
     }
 
     /**
      * 请求公司收到的投递信息
      */
-    @GetMapping(value = "request_resume_received")
-    public void companyForResumeSendInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    /*@GetMapping(value = "request_resume_received")
+    public void companyForDeliverInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+>>>>>>> Stashed changes
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
@@ -413,7 +498,7 @@ public class CompanyController {
         }
         System.out.println(json);
         SendInfoUtil.render(json.toString(), "text/json", response);
-    }
+    }*/
 
     /**
      * 公司删除学生投递信息操作
