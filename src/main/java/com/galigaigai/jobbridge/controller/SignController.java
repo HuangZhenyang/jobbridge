@@ -174,7 +174,7 @@ public class SignController {
                     String name = request.getParameter("name");
                     String phoneNum = request.getParameter("phoneNum");
                     String companyIntroduction = request.getParameter("companyIntroduction");
-                    Company company = new Company(userName, name, mailbox, phoneNum, cryptoPassword, companyIntroduction, "", "e");
+                    Company company = new Company(userName, name, mailbox, phoneNum, cryptoPassword, companyIntroduction, "", "e",false);
                     companyService.addCompany(company);
                     break;
             }
