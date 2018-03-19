@@ -82,14 +82,8 @@ public class StudentController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
-            return "index";
+            response.sendRedirect("/");
         }
-        Student student = (Student) loginUser;
-        Resume resume = resumeRepository.findByStudentId(student.getStudentId());
-        if(resume == null){
-            return "resume";
-        }
-        model.addAttribute("resumeContent",resume.getResumeContent());
         return "resume";
     }
 
@@ -561,13 +555,9 @@ public class StudentController {
     }
 
 
-
-
-
-
     /**
      * 加载简历
-     *//*
+     */
     @GetMapping(value = "/request_resume")
     public void studentRequestResume(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
@@ -579,7 +569,11 @@ public class StudentController {
         Student student = (Student) loginUser;
         Resume resume = resumeRepository.findByStudentId(student.getStudentId());
         SendInfoUtil.render(resume.getResumeContent(), "text/json", response);
-    }*/
+    }
+
+
+
+
 
     /**
      * 请求学生邮箱验证状态

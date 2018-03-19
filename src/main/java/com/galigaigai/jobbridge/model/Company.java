@@ -21,6 +21,7 @@ public class Company {
     private String password;
     private String companyIntroduction;
     private String iconAddress;
+    private Integer industryId;
     private String identity;
     private Boolean auditing;
 
@@ -28,7 +29,7 @@ public class Company {
 
     }
 
-    public Company(String userName, String name, String mailbox, String phoneNum, String password, String companyIntroduction, String iconAddress, String identity, Boolean auditing) {
+    public Company(String userName, String name, String mailbox, String phoneNum, String password, String companyIntroduction, String iconAddress, Integer industryId, String identity, Boolean auditing) {
         this.userName = userName;
         this.name = name;
         this.mailbox = mailbox;
@@ -36,6 +37,7 @@ public class Company {
         this.password = password;
         this.companyIntroduction = companyIntroduction;
         this.iconAddress = iconAddress;
+        this.industryId = industryId;
         this.identity = identity;
         this.auditing = auditing;
     }
@@ -67,6 +69,9 @@ public class Company {
     public String getIconAddress() {
         return iconAddress;
     }
+    public Integer getIndustryId() {
+        return industryId;
+    }
 
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
@@ -94,6 +99,9 @@ public class Company {
     }
     public void setIconAddress(String iconAddress) {
         this.iconAddress = iconAddress;
+    }
+    public void setIndustryId(Integer industryId) {
+        this.industryId = industryId;
     }
     public String getIdentity() {
         return identity;

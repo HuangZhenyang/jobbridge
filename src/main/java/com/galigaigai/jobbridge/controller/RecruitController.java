@@ -169,6 +169,96 @@ public class RecruitController {
         int pageNum = receiveJson.getInt("numberOfPage");
         receiveOptionJson = receiveJson.getJSONObject("optionList");
         String locations = receiveOptionJson.get("cityList").toString();
+        String functions = receiveOptionJson.get("functionList").toString();
+        String industries = receiveOptionJson.get("industryList").toString();
+        String[] locationList = ParseStringUtil.parseString(locations);
+        String[] tags = ParseStringUtil.parseString(functions);
+        if(pageNum < 10 || pageNum % 10 != 0){
+            System.out.println("前台项数错误");
+            return;
+        }
+//        定义发送的数据结构
+        JSONObject sendJson = new JSONObject();
+        JSONArray sendDataJson = new JSONArray();
+        List<Recruit> recruitList = new ArrayList<>();
+        int recruitNum = 0;
+//        1. 先限制城市
+        if(locationList.length == 1 && locationList[0].equals("不限")){
+            recruitList = recruitRepository.findAll();
+        }else{
+            for(int i = 0;i < locationList.length;i++){
+                List<Recruit> tempRecruitList = recruitRepository.findByLocation(locationList[i]);
+                if(!(tempRecruitList == null || tempRecruitList.isEmpty() ||
+                        (tempRecruitList.size() == 1 && tempRecruitList.get(0) == null))){
+                    recruitList.addAll(tempRecruitList);
+                }
+            }
+        }
+        if(recruitList.isEmpty()){
+            sendJson.put("numberOfPage",0);
+            sendJson.put("data",sendDataJson);
+            SendInfoUtil.render(sendJson.toString(),"text/json",response);
+            return;
+        }
+//        2. 再限制职能
+        if(!(tags.length == 1 && tags[0].equals("不限"))){
+            List<Recruit> RecruitTagCondition = new ArrayList<>();
+            for(int i = 0;i < tags.length;i++){
+                Tag tag = tagRepository.findByName(tags[i]);
+                List<RecruitTag> recruitTagList = null;
+                if(tag != null){
+                    recruitTagList = recruitTagRepository.findByTagId(tag.getTagId());
+                }
+                if(recruitTagList != null && !recruitTagList.isEmpty()){
+                    
+                }
+            }
+        }
+
+//        3. 最后限制行业
+
+
+//        处理最终要发送的数据
+        int page = 0;
+        if(recruitNum != 0 && recruitNum % 10 == 0){
+            page = recruitNum / 10;
+        }else if(recruitNum % 10 != 0){
+            page = recruitNum / 10 + 1;
+        }
+        sendJson.put("numberOfPage",page);
+        if(!recruitList.isEmpty()){
+            List<Recruit> resultList = RecruitUtil.orderByTime(recruitList);
+            for(Recruit recruit:resultList){
+                Company company = companyRepository.findByCompanyId(recruit.getCompanyId());
+                if(company == null){
+                    System.out.println("内部错误:找不到公司");
+                    return;
+                }
+                JSONObject sendRecruitJson = new JSONObject();
+                sendRecruitJson.put("jobTitle",recruit.getJobName());
+                sendRecruitJson.put("jobId",recruit.getRecruitId());
+                sendRecruitJson.put("location",recruit.getLocation());
+                sendRecruitJson.put("time",recruit.getDateTime());
+                sendRecruitJson.put("companyDesc",company.getCompanyIntroduction());
+                sendRecruitJson.put("iconAddress",company.getIconAddress());
+                sendRecruitJson.put("companyName",company.getName());
+                sendDataJson.put(sendRecruitJson);
+            }
+        }
+        sendJson.put("data",sendDataJson);
+        SendInfoUtil.render(sendJson.toString(),"text/json",response);
+    }
+
+    /*@PostMapping(value = "/info")
+    public void showRecruitByCondition(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        String content = request.getParameter("content");
+//        定义收到的数据结构
+        JSONObject receiveJson = new JSONObject(content);
+        JSONObject receiveOptionJson = null;
+        int pageNum = receiveJson.getInt("numberOfPage");
+        receiveOptionJson = receiveJson.getJSONObject("optionList");
+        String locations = receiveOptionJson.get("cityList").toString();
         String industries = receiveOptionJson.get("industryList").toString();
         String[] locationList = ParseStringUtil.parseString(locations);
         String[] tags = ParseStringUtil.parseString(industries);
@@ -392,5 +482,5 @@ public class RecruitController {
         }
         sendJson.put("data",sendDataJson);
         SendInfoUtil.render(sendJson.toString(),"text/json",response);
-    }
+    }*/
 }
