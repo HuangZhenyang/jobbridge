@@ -169,9 +169,10 @@ public class RecruitController {
         int pageNum = receiveJson.getInt("numberOfPage");
         receiveOptionJson = receiveJson.getJSONObject("optionList");
         String locations = receiveOptionJson.get("cityList").toString();
+        String functions = receiveOptionJson.get("functionList").toString();
         String industries = receiveOptionJson.get("industryList").toString();
         String[] locationList = ParseStringUtil.parseString(locations);
-        String[] tags = ParseStringUtil.parseString(industries);
+        String[] tags = ParseStringUtil.parseString(functions);
         if(pageNum < 10 || pageNum % 10 != 0){
             System.out.println("前台项数错误");
             return;
@@ -181,188 +182,42 @@ public class RecruitController {
         JSONArray sendDataJson = new JSONArray();
         List<Recruit> recruitList = new ArrayList<>();
         int recruitNum = 0;
-        if(tags.length == 1 && tags[0].equals("不限")){
-            if(locationList.length == 1 && locationList[0].equals("不限")){
-//                情况一：城市和行业都不限
-                recruitNum = (int)recruitRepository.count();
-                if(recruitNum != 0){
-                    int limit = recruitNum - pageNum + 10;
-                    if(limit >= 10){
-                        limit = 10;
-                    }
-                    recruitList = recruitRepository.findRecruitOrderByTime(pageNum - 10, limit);
-                }
-            }else{
-//                情况二：行业不限，限制城市
-                List<Recruit> recruitCityCondition = new ArrayList<>();
-                for(int i = 0;i<locationList.length;i++){
-                    List<Recruit> tempRecruitList = recruitRepository.findByLocation(locationList[i]);
-                    if(tempRecruitList == null || tempRecruitList.isEmpty() ||
-                            (tempRecruitList.size() == 1 && tempRecruitList.get(0) == null)){
-//                        这里不做处理
-                    }else{
-                        for(Recruit recruit:tempRecruitList){
-                            if(recruit != null){
-                                recruitCityCondition.add(recruit);
-                            }
-                        }
-                    }
-                }
-                recruitNum = recruitCityCondition.size();
-                if(recruitNum != 0){
-                    int limit = recruitNum - pageNum + 10;
-                    if(limit < 10){
-                        for(int i = pageNum - 10;i<pageNum - 10 + limit;i++){
-                            recruitList.add(recruitCityCondition.get(i));
-                        }
-                    }else{
-                        for(int i = pageNum - 10;i<pageNum;i++){
-                            recruitList.add(recruitCityCondition.get(i));
-                        }
-                    }
-                }
-            }
+//        1. 先限制城市
+        if(locationList.length == 1 && locationList[0].equals("不限")){
+            recruitList = recruitRepository.findAll();
         }else{
-            if(locationList.length == 1 && locationList[0].equals("不限")){
-//                情况三：城市不限，限制行业
-                boolean flag = true;
-                List<Recruit> recruitCondition = new ArrayList<>();
-                for(int i = 0;i< tags.length;i++){
-                    Tag tag = tagRepository.findByName(tags[i]);
-                    if(tag == null){
-                        continue;
-                    }
-                    List<RecruitTag> recruitTagList = recruitTagRepository.findByTagId(tag.getTagId());
-                    if(!(recruitTagList == null || recruitTagList.isEmpty() ||
-                            (recruitTagList.size() == 1 && recruitTagList.get(0) == null))){
-//                        还没有则加新的，有则在里面找还满足新条件的
-                        if(recruitCondition.isEmpty()){
-                            for(RecruitTag recruitTag:recruitTagList){
-                                if(recruitTag != null){
-                                    Recruit recruit = recruitRepository.findByRecruitId(recruitTag.getRecruitId());
-                                    if(recruit != null){
-                                        recruitCondition.add(recruit);
-                                    }
-                                }
-                            }
-//                            找还满足新条件的
-                        }else{
-                            List<Recruit> temp = new ArrayList<>();
-                            for(RecruitTag recruitTag:recruitTagList){
-                                if(recruitTag != null){
-                                    for(Recruit recruit:recruitCondition){
-                                        if(recruit.getRecruitId().equals(recruitTag.getRecruitId())){
-                                            temp.add(recruit);
-                                        }
-                                    }
-                                }
-                            }
-                            if(temp.isEmpty()){
-//                                这时没有满足交集条件的招聘信息了
-                                flag = false;
-                            }
-                            recruitCondition.clear();
-                            recruitCondition.addAll(temp);
-                        }
-                    }
-                }
-                if(flag){
-                    recruitNum = recruitCondition.size();
-                }else{
-                    recruitNum = 0;
-                    recruitCondition.clear();
-                }
-                if(recruitNum != 0){
-                    int limit = recruitNum - pageNum + 10;
-                    if(limit < 10){
-                        for(int i = pageNum - 10;i<pageNum - 10 + limit;i++){
-                            recruitList.add(recruitCondition.get(i));
-                        }
-                    }else{
-                        for(int i = pageNum - 10;i<pageNum;i++){
-                            recruitList.add(recruitCondition.get(i));
-                        }
-                    }
-                }
-            }else {
-//                情况四：城市和行业都限制
-//                先限制城市
-                List<Recruit> recruitCityCondition = new ArrayList<>();
-                for(int i = 0;i<locationList.length;i++){
-                    List<Recruit> temprecruitList = recruitRepository.findByLocation(locationList[i]);
-                    if(!(temprecruitList == null || temprecruitList.isEmpty() ||
-                            (temprecruitList.size() == 1 && temprecruitList.get(0) == null))){
-                        for(Recruit recruit:temprecruitList){
-                            if(recruit != null){
-                                recruitCityCondition.add(recruit);
-                            }
-                        }
-                    }
-                }
-//                再限制行业
-                boolean flag = true;
-                boolean anyTag = false;
-                for(int i = 0;i< tags.length;i++){
-                    Tag tag = tagRepository.findByName(tags[i]);
-                    if(tag == null){
-                        continue;
-                    }else{
-                        anyTag = true;
-                    }
-                    List<RecruitTag> recruitTagList = recruitTagRepository.findByTagId(tag.getTagId());
-                    if(!(recruitTagList == null || recruitTagList.isEmpty() ||
-                            (recruitTagList.size() == 1 && recruitTagList.get(0) == null))){
-//                        还没有则加新的，有则在里面找还满足新条件的
-                        if(recruitCityCondition.isEmpty() && i != 0){
-                            for(RecruitTag recruitTag:recruitTagList){
-                                if(recruitTag != null){
-                                    Recruit recruit = recruitRepository.findByRecruitId(recruitTag.getRecruitId());
-                                    if(recruit != null){
-                                        recruitCityCondition.add(recruit);
-                                    }
-                                }
-                            }
-//                            找还满足新条件的
-                        }else{
-                            List<Recruit> temp = new ArrayList<>();
-                            for(RecruitTag recruitTag:recruitTagList){
-                                if(recruitTag != null){
-                                    for(Recruit recruit:recruitCityCondition){
-                                        if(recruit.getRecruitId().equals(recruitTag.getRecruitId())){
-                                            temp.add(recruit);
-                                        }
-                                    }
-                                }
-                            }
-                            if(temp.isEmpty()){
-//                                这时没有满足交集条件的招聘信息了
-                                flag = false;
-                            }
-                            recruitCityCondition.clear();
-                            recruitCityCondition.addAll(temp);
-                        }
-                    }
-                }
-                if(flag && anyTag){
-                    recruitNum = recruitCityCondition.size();
-                }else{
-                    recruitNum = 0;
-                    recruitCityCondition.clear();
-                }
-                if(recruitNum != 0){
-                    int limit = recruitNum - pageNum + 10;
-                    if(limit < 10){
-                        for(int i = pageNum - 10;i<pageNum - 10 + limit;i++){
-                            recruitList.add(recruitCityCondition.get(i));
-                        }
-                    }else{
-                        for(int i = pageNum - 10;i<pageNum;i++){
-                            recruitList.add(recruitCityCondition.get(i));
-                        }
-                    }
+            for(int i = 0;i < locationList.length;i++){
+                List<Recruit> tempRecruitList = recruitRepository.findByLocation(locationList[i]);
+                if(!(tempRecruitList == null || tempRecruitList.isEmpty() ||
+                        (tempRecruitList.size() == 1 && tempRecruitList.get(0) == null))){
+                    recruitList.addAll(tempRecruitList);
                 }
             }
         }
+        if(recruitList.isEmpty()){
+            sendJson.put("numberOfPage",0);
+            sendJson.put("data",sendDataJson);
+            SendInfoUtil.render(sendJson.toString(),"text/json",response);
+            return;
+        }
+//        2. 再限制职能
+        if(!(tags.length == 1 && tags[0].equals("不限"))){
+            List<Recruit> RecruitTagCondition = new ArrayList<>();
+            for(int i = 0;i < tags.length;i++){
+                Tag tag = tagRepository.findByName(tags[i]);
+                List<RecruitTag> recruitTagList = null;
+                if(tag != null){
+                    recruitTagList = recruitTagRepository.findByTagId(tag.getTagId());
+                }
+                if(recruitTagList != null && !recruitTagList.isEmpty()){
+                    
+                }
+            }
+        }
+
+//        3. 最后限制行业
+
+
 //        处理最终要发送的数据
         int page = 0;
         if(recruitNum != 0 && recruitNum % 10 == 0){
