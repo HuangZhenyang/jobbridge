@@ -112,4 +112,9 @@ public class Recruit {
     public void setHaveDelete(Boolean haveDelete) {
         this.haveDelete = haveDelete;
     }
+
+    @Override
+    public boolean equals(Object o){
+        return (o instanceof Recruit) && ((Recruit) o).getRecruitId() == this.getRecruitId();
+    }
 }
