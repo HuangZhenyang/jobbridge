@@ -570,11 +570,12 @@ public class CompanyController {
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
         }
-        System.out.println((Company) loginUser);
         // 得到学生简历的id
         String resumeSendId = request.getParameter("id");
-        System.out.println(">>> resumeSendId:" + resumeSendId);
         model.addAttribute("resumeSendId", resumeSendId);
+
+        Company company = (Company) loginUser;
+        model.addAttribute("userName", company.getUserName());
 
         return "companyReceivedResumeDetail";
     }
