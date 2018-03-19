@@ -312,7 +312,7 @@ public class CompanyController {
                 RecruitTag recruitTag = new RecruitTag(Long.parseLong(recruitId), justTag.getTagId());
                 recruitTagService.addRecruitTag(recruitTag);
             }
-            result = "{\"ok\":\"true\"}";
+            result = "{\"ok\":\"true\", \"reason\":\"修改成功\"}";
             SendInfoUtil.render(result, "text/json", response);
         }
     }

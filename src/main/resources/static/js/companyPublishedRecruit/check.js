@@ -6,7 +6,7 @@ function checkSaveFunc(jobName,industry,location,lowSalary,highSalary,deadline,j
         $('#saveTip').text("请输入职位名称");
         return false;
     }else if(industry.length === 0){
-        $('#saveTip').text("请勾选行业");
+        $('#saveTip').text("请勾选职能");
         return false;
     } else if (location === null||location.trim() === '') {
         $('#saveTip').text("请输入工作地点");

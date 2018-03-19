@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Job-Bridge">
-    <meta name="author" content="HuangZhenyang">
-    <link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}">
+    <meta name="author" content="Kelv1nYu">
+
     <title>发布招聘信息</title>
 
     <!-- Bootstrap core CSS -->
@@ -26,6 +26,17 @@
 
     <!--my class-->
     <link href="../static/css/common/style.css" th:href="@{/css/common/style.css}">
+    <link href="../static/css/common/style.css" th:href="@{/css/common/style.css}"/>
+    <link rel="stylesheet" href="../static/css/common/common.css" th:href="@{/css/common/common.css}">
+    <style type="text/css">
+        .jobbridge-header{
+            background: #292c2d !important;
+        }
+        .interlayer{
+            width: 100%;
+            height: 36px;
+        }
+    </style>
 
     <!--stuinfo-->
     <link rel="stylesheet" href="../static/css/common/antd.min.css" class="next-head" th:href="@{/css/common/antd.min.css}">
@@ -587,30 +598,58 @@
 TOP BAR CONTENT & NOTIFICATIONS
 *********************************************************************************************************************************************************** -->
     <!--header start-->
-    <header class="header my-nav">
-        <!--logo start-->
-        <a href="/" class="logo"><b><span style="color: black">JobBridge</span></b></a>
-        <!--logo end-->
-
-        <div class="top-menu">
-            <!--<ul class="nav pull-right top-menu">
-                <li><a class="signOut" href="signIn.html">Logout</a></li>
-            </ul>-->
-            <ol class="breadcrumb" style="float: right;margin-top: 12px;">
-                <li><a href="/company/info">企业首页</a></li>
-                <li><a href="/company/info"><span id="header-userName"></span></a></li>
-                <li><a class="signOut" href="/sign_out"><span>退出</span></a></li>
-            </ol>
-        </div>
-        <!--<div class="container-fluid" style="float: right;">
-            <div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/recruit/info">
-                        <button type="button" class="btn btn-round btn-info fa fa-search ">&nbsp;&nbsp;职海</button>
-                    </a></li>
-                </ul>
+    <header class="jobbridge-header has-transition">
+        <div class="header-box">
+            <a href="/" class="logo" style="background: url('../static/img/comlogo/jobbridge.png') no-repeat" th:style="'background:url(' + @{/img/comlogo/jobbridge.png} + ') no-repeat;'"></a>
+            <div class="header-right">
+                <div class='user'>
+                    <a href='javascript:;' class='user-info'>
+                            <span class='uinfo'>
+                                <span class='uname'>
+                                    <i class="fa fa-user-o headshot"></i>
+                                    <b th:text="${userName}"></b>
+                                </span>
+                            </span>
+                    </a>
+                    <div class='user-control'>
+                        <div class ='uc-menu'>
+                            <ul class='uc-menu-ul'>
+                                <li class='uc-menu-li'>
+                                    <a href='#'>设置</a>
+                                </li>
+                                <li class='uc-menu-li'>
+                                    <a href='/sign_out'>退出</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>-->
+
+            <ul class="main-menu">
+                <span class="menu-line" hidden = "hidden"></span>
+                <li class="main-menu-li">
+                    <a href="#">
+                        <span>主页</span>
+                    </a>
+                </li>
+                <li class="main-menu-li">
+                    <a href="#">
+                        <span>职位与招聘</span>
+                    </a>
+                </li>
+                <li class="main-menu-li">
+                    <a href="#">
+                        <span>人脉</span>
+                    </a>
+                </li>
+                <li class="main-menu-li">
+                    <a href="#">
+                        <span>企业入口</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </header>
     <!--header end-->
 
@@ -620,6 +659,7 @@ MAIN CONTENT
     <!--main content start-->
     <section id="main-content" style="margin-left: 1px;">
         <section class="wrapper">
+            <div class="interlayer"></div>
             <!-- page start-->
             <div id="__next">
                 <div data-reactroot="" data-reactid="1" data-react-checksum="-1332626374">
@@ -697,7 +737,7 @@ MAIN CONTENT
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <!--行业-->
+                                                                    <!--职能-->
                                                                     <div class="trade form-group" data-jsx="3479566426"
                                                                          data-reactid="194">
                                                                         <div class="my-label" data-jsx="3479566426"
@@ -705,7 +745,7 @@ MAIN CONTENT
                                                                                 data-jsx="3479566426"
                                                                                 data-reactid="196"><span
                                                                                 style="color:red;">*</span></strong>
-                                                                            <!-- react-text: 197 -->行业：
+                                                                            <!-- react-text: 197 -->职能：
                                                                             <!-- /react-text -->
                                                                         </div>
                                                                         <div class="value" data-jsx="3479566426"
@@ -716,214 +756,84 @@ MAIN CONTENT
                                                                                        data-reactid="200"><input
                                                                                         name="industry"
                                                                                         type="checkbox"
-                                                                                        value="互联网"
+                                                                                        value="咨询/数据分析/行业研究/战略"
                                                                                         class="checkbox-bg"
                                                                                         style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">互联网</span>
+                                                                                        style="margin-left: 6px;vertical-align:middle;">咨询/数据分析/行业研究/战略</span>
                                                                                 </label>
                                                                                 <label
                                                                                         class="ant-checkbox-group-item ant-checkbox-wrapper"
                                                                                         data-reactid="205"><input
                                                                                         name="industry"
                                                                                         type="checkbox"
-                                                                                        value="交通/物流/航天/航空"
+                                                                                        value="市场与销售"
                                                                                         class="checkbox-bg"
                                                                                         style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">交通/物流/航天/航空</span>
+                                                                                        style="margin-left: 6px;vertical-align:middle;">市场与销售</span>
                                                                                 </label>
                                                                                 <label
                                                                                         class="ant-checkbox-group-item ant-checkbox-wrapper"
                                                                                         data-reactid="210"><input
                                                                                         name="industry"
                                                                                         type="checkbox"
-                                                                                        value="媒体/文化/休闲"
+                                                                                        value="运营"
                                                                                         class="checkbox-bg"
                                                                                         style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">媒体/文化/休闲</span>
+                                                                                        style="margin-left: 6px;vertical-align:middle;">运营</span>
                                                                                 </label>
                                                                                 <label
                                                                                         class="ant-checkbox-group-item ant-checkbox-wrapper"
                                                                                         data-reactid="215"><input
                                                                                         name="industry"
                                                                                         type="checkbox"
-                                                                                        value="能源/资源"
+                                                                                        value="财务/审计/税务/融资"
                                                                                         class="checkbox-bg"
                                                                                         style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">能源/资源</span>
+                                                                                        style="margin-left: 6px;vertical-align:middle;">财务/审计/税务/融资</span>
                                                                                 </label>
                                                                                 <label
                                                                                         class="ant-checkbox-group-item ant-checkbox-wrapper"
                                                                                         data-reactid="220"><input
                                                                                         name="industry"
                                                                                         type="checkbox"
-                                                                                        value="医疗/医药"
+                                                                                        value="银行/基金/保险/证券"
                                                                                         class="checkbox-bg"
                                                                                         style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">医疗/医药</span>
+                                                                                        style="margin-left: 6px;vertical-align:middle;">银行/基金/保险/证券</span>
                                                                                 </label>
                                                                                 <label
                                                                                         class="ant-checkbox-group-item ant-checkbox-wrapper"
                                                                                         data-reactid="225"><input
                                                                                         name="industry"
                                                                                         type="checkbox"
-                                                                                        value="地产/建筑/施工材料"
+                                                                                        value="记者/编辑/文案/策划"
                                                                                         class="checkbox-bg"
                                                                                         style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">地产/建筑/施工材料</span>
+                                                                                        style="margin-left: 6px;vertical-align:middle;">记者/编辑/文案/策划</span>
                                                                                 </label>
                                                                                 <label
                                                                                         class="ant-checkbox-group-item ant-checkbox-wrapper"
                                                                                         data-reactid="230"><input
                                                                                         name="industry"
                                                                                         type="checkbox"
-                                                                                        value="多元化"
+                                                                                        value="投资"
                                                                                         class="checkbox-bg"
                                                                                         style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">多元化</span>
+                                                                                        style="margin-left: 6px;vertical-align:middle;">投资</span>
                                                                                 </label>
                                                                                 <label
                                                                                         class="ant-checkbox-group-item ant-checkbox-wrapper"
                                                                                         data-reactid="235"><input
                                                                                         name="industry"
                                                                                         type="checkbox"
-                                                                                        value="奢侈品"
+                                                                                        value="产品"
                                                                                         class="checkbox-bg"
                                                                                         style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">奢侈品</span>
+                                                                                        style="margin-left: 6px;vertical-align:middle;">产品</span>
                                                                                 </label>
                                                                                 <label
                                                                                         class="ant-checkbox-group-item ant-checkbox-wrapper"
                                                                                         data-reactid="240"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="工业/机械/化工"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">工业/机械/化工</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="245"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="汽车/汽车部件"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">汽车/汽车部件</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="250"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="消费品"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">消费品</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="255"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="生产/制造/纺织"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">生产/制造/纺织</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="260"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="电子/电器/家电"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">电子/电器/家电</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="265"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="通信/计算设备/软件"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">通信/计算设备/软件</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="270"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="金融"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">金融</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="275"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="零售/贸易"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">零售/贸易</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="280"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="粮油食品"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">粮油食品</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="285"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="公用事业"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">公用事业</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="290"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="军工"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">军工</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="295"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="专业服务(会计师/咨询/法律/人力资源/其他)"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">专业服务(会计师/咨询/法律/人力资源/其他)</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="300"><input
-                                                                                        name="industry"
-                                                                                        type="checkbox"
-                                                                                        value="其他"
-                                                                                        class="checkbox-bg"
-                                                                                        style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">其他</span>
-                                                                                </label>
-                                                                                <label
-                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="305"><input
                                                                                         name="industry"
                                                                                         type="checkbox"
                                                                                         value="广告/公关"
@@ -933,18 +843,78 @@ MAIN CONTENT
                                                                                 </label>
                                                                                 <label
                                                                                         class="ant-checkbox-group-item ant-checkbox-wrapper"
-                                                                                        data-reactid="310"><input
+                                                                                        data-reactid="245"><input
                                                                                         name="industry"
                                                                                         type="checkbox"
-                                                                                        value="教育/科研/非盈利"
+                                                                                        value="项目管理"
                                                                                         class="checkbox-bg"
                                                                                         style="vertical-align:middle;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">教育/科研/非盈利</span>
+                                                                                        style="margin-left: 6px;vertical-align:middle;">项目管理</span>
+                                                                                </label>
+                                                                                <label
+                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                                                        data-reactid="250"><input
+                                                                                        name="industry"
+                                                                                        type="checkbox"
+                                                                                        value="人力资源"
+                                                                                        class="checkbox-bg"
+                                                                                        style="vertical-align:middle;"><span
+                                                                                        style="margin-left: 6px;vertical-align:middle;">人力资源</span>
+                                                                                </label>
+                                                                                <label
+                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                                                        data-reactid="255"><input
+                                                                                        name="industry"
+                                                                                        type="checkbox"
+                                                                                        value="行政"
+                                                                                        class="checkbox-bg"
+                                                                                        style="vertical-align:middle;"><span
+                                                                                        style="margin-left: 6px;vertical-align:middle;">行政</span>
+                                                                                </label>
+                                                                                <label
+                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                                                        data-reactid="260"><input
+                                                                                        name="industry"
+                                                                                        type="checkbox"
+                                                                                        value="技术"
+                                                                                        class="checkbox-bg"
+                                                                                        style="vertical-align:middle;"><span
+                                                                                        style="margin-left: 6px;vertical-align:middle;">技术</span>
+                                                                                </label>
+                                                                                <label
+                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                                                        data-reactid="265"><input
+                                                                                        name="industry"
+                                                                                        type="checkbox"
+                                                                                        value="采购/供应链"
+                                                                                        class="checkbox-bg"
+                                                                                        style="vertical-align:middle;"><span
+                                                                                        style="margin-left: 6px;vertical-align:middle;">采购/供应链</span>
+                                                                                </label>
+                                                                                <label
+                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                                                        data-reactid="270"><input
+                                                                                        name="industry"
+                                                                                        type="checkbox"
+                                                                                        value="设计"
+                                                                                        class="checkbox-bg"
+                                                                                        style="vertical-align:middle;"><span
+                                                                                        style="margin-left: 6px;vertical-align:middle;">设计</span>
+                                                                                </label>
+                                                                                <label
+                                                                                        class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                                                        data-reactid="275"><input
+                                                                                        name="industry"
+                                                                                        type="checkbox"
+                                                                                        value="其他"
+                                                                                        class="checkbox-bg"
+                                                                                        style="vertical-align:middle;"><span
+                                                                                        style="margin-left: 6px;vertical-align:middle;">其他</span>
                                                                                 </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <!--/行业-->
+                                                                    <!--/职能-->
                                                                     <div class="major form-group" data-jsx="3479566426"
                                                                          data-reactid="91">
                                                                         <div class="my-label" data-jsx="3479566426"
@@ -1114,7 +1084,7 @@ MAIN CONTENT
     <!--main content end-->
     <!--footer start-->
     <footer class="site-footer">
-        <div class="text-center">2017 © 出任CEO. All Rights Reserved. <a href="#main-content" class="go-top"> <i
+        <div class="text-center">2018 © galigaigai. All Rights Reserved. <a href="#main-content" class="go-top"> <i
                 class="fa fa-angle-up"></i>
         </a></div>
     </footer>
@@ -1127,6 +1097,43 @@ MAIN CONTENT
 <script src="../static/js/companyPublishedRecruit/check.js" th:src="@{/js/companyPublishedRecruit/check.js}"></script>
 <script src="../static/js/companyPublishedRecruit/companyPublishedRecruit.js" th:src="@{/js/companyPublishedRecruit/companyPublishedRecruit.js}"></script>
 <script src="../static/js/getUserName.js" th:src="@{/js/getUserName.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("ul.main-menu").mouseleave(
+            function () {
+                $("span.menu-line").attr("hidden", "hidden")
+                $("span.menu-line").css({"opacity": "0", "width": "0"});
+                $("span.menu-line").removeClass("transition");
+            }
+        );
+        $("ul>li.main-menu-li").hover(
+            function (e) {
+                e.stopPropagation();
+                $(this).addClass("hover");
+                var left = $(this).offset().left;
+                var width = $(this).width();
+                if ($("span.menu-line").attr("hidden")) {
+                    $("span.menu-line").removeAttr("hidden").offset({left: left}).css({
+                        "display": "inline",
+                        "opacity": "1"
+                    });
+                    $("span.menu-line").animate({width: width}, 'fast');
+                } else {
+                    $("span.menu-line").addClass("transition");
+                    $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
+                }
+            },
+            function (e) {
+                //e.stopPropagation();
+                $(this).removeClass("hover");
+                if (($("ul>li.main-menu-li").hasClass('hover'))) {
+                    $("span.menu-line").css({"opacity": "0", "width": "0"});
+                    $("span.menu-line").removeClass("transition");
+                }
+            }
+        );
+    });
+</script>
 
 <!-- 测试 -->
 
