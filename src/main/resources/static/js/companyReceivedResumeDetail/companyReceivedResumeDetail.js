@@ -13,8 +13,8 @@ $(document).ready(function () {
  * 获取url中的参数
  * */
 function getUrlParameter(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
+    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    let r = window.location.search.substr(1).match(reg);
     if (r != null)return unescape(r[2]);
     return null;
 }
@@ -25,8 +25,9 @@ function getUrlParameter(name) {
  * 获取简历信息
  * */
 function getData() {
-    let resumeSendId = getUrlParameter('id');
-
+    //let resumeSendId = getUrlParameter('id');
+    let resumeSendId = $('#resumeSendId').text();
+    console.log(">>> resumeSendId"+resumeSendId);
     $.ajax({
         url: '/company/resume_received/resume',
         type: 'post',

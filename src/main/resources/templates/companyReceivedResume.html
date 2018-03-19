@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Job-Bridge">
-    <meta name="author" content="HuangZhenyang">
+    <meta name="author" content="Kelv1nYu">
     <link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}"/>
     <title>企业信息</title>
 
@@ -30,7 +30,7 @@
 
     <!--stuinfo-->
     <link rel="stylesheet" href="../static/css/common/antd.min.css" class="next-head" th:href="@{/css/common/antd.min.css}"/>
-    <link href="../static/css/common/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link href="../static/css/common/bootstrap.css" rel="stylesheet" th:href="@{/css/common/bootstrap.css}">
     <style id="__jsx-style-515442552">
         .ucenter[data-jsx="515442552"] {
             margin-top: 30px;
@@ -683,6 +683,19 @@ MAIN CONTENT
                                                                             <div class="panel-body">
                                                                                 <div class="task-content">
                                                                                     <ul id="sortable" class="task-list ui-sortable">
+                                                                                        <li th:each="resumeSend,resumeSendStat:${resumeSendList}" th:class="${resumeSendStat.index%2}? 'list-warning':'list-info'" th:id="${resumeSend.resumeSendId}">
+                                                                                        <i class="fa fa-ellipsis-v"></i>
+                                                                                        <div class="job-title">
+                                                                                            <a th:href="@{'/company/resume_received/resume?id='+${resumeSend.resumeSendId}}">
+                                                                                            <span class="task-title-sp" th:text="${recruitTitleList[resumeSendStat.index]}"></span><span th:text="'&nbsp; from: '+${studentNameList[resumeSendStat.index]}+'&nbsp;&nbsp;'"></span>
+                                                                                            <span class="badge" th:classappend="${resumeSendStat.index%2}? 'bg-warning':'bg-info'" th:text="${resumeSend.dateTime}"></span>
+                                                                                            </a>
+                                                                                            <div class='pull-right hidden-phone'>
+                                                                                                <span class='badge bg-theme' th:text="${readStatusList[resumeSendStat.index]}"></span><span>&nbsp;&nbsp;</span>
+                                                                                                <button class='btn btn-danger btn-xs fa fa-trash-o' onclick='del(this)'></button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </li>
                                                                                         <!--<li class="list-primary" id="01">
                                                                                             <i class=" fa fa-ellipsis-v"></i>
                                                                                             <div class="task-title">
@@ -761,7 +774,7 @@ MAIN CONTENT
                                 </div>
                             </div>
                         </div>
-                        <link rel="stylesheet" href="../static/css/common/style.css" data-reactid="453" th:href="@{/css/stuinfo/common/style.css}">
+                        <link rel="stylesheet" href="../static/css/common/style.css" data-reactid="453" th:href="@{/css/common/style.css}">
                     </div>
                 </div>
             </div>

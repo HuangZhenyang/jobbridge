@@ -101,12 +101,15 @@ public class CompanyController {
      * 新的招聘信息页面
      */
     @GetMapping(value = "/new_recruit")
-    public String showCompanyNewRecruit(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String showCompanyNewRecruit(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
         }
+        Company company = (Company) loginUser;
+        model.addAttribute("userName", company.getUserName());
+
         return "companyPublishRecruit";
     }
 
@@ -140,7 +143,7 @@ public class CompanyController {
             model.addAttribute("recruitList", recruitList);
         }
 
-        model.addAttribute("company", company);
+        model.addAttribute("userName", company.getUserName());
 
         return "companyPublishedRecruit";
     }
@@ -382,9 +385,9 @@ public class CompanyController {
         //根据公司号查询所有招聘信息
         List<ResumeSend> resumeSendList = resumeSendRepository
                 .findByCompanyId(company.getCompanyId());
-        List<String> jobTitleList = null;
-        List<String> studentNameList = null;
-        List<String> readStatusList = null;
+        List<String> recruitTitleList = new ArrayList<>();
+        List<String> studentNameList = new ArrayList<>();
+        List<String> readStatusList = new ArrayList<>();
 
         //空值判定
         if (resumeSendList == null || resumeSendList.isEmpty() ||
@@ -401,7 +404,7 @@ public class CompanyController {
 //                    resumeSendJson.put("resumeSendId", resumeSend.getResumeId());
 //                    resumeSendJson.put("resumeSendTime", resumeSend.getDateTime());
                     Recruit recruit = recruitRepository.findByRecruitId(resumeSend.getRecruitId());
-                    jobTitleList.add(recruit.getJobName());
+                    recruitTitleList.add(recruit.getJobName());
                     //username
                     Resume resume = resumeRepository.findByResumeId(resumeSend.getResumeId());
                     Student student = studentRepository.findByStudentId(resume.getStudentId());
@@ -425,8 +428,8 @@ public class CompanyController {
                 model.addAttribute("resumeSendList", resumeSendList);
             }
 
-            if(jobTitleList != null){
-                model.addAttribute("jobTitleList", jobTitleList);
+            if(recruitTitleList != null){
+                model.addAttribute("recruitTitleList", recruitTitleList);
             }
 
             if(studentNameList != null){
@@ -440,6 +443,7 @@ public class CompanyController {
 
         }
 
+        model.addAttribute("userName", company.getUserName());
         return "companyReceivedResume";
     }
 
@@ -448,7 +452,6 @@ public class CompanyController {
      */
     /*@GetMapping(value = "request_resume_received")
     public void companyForDeliverInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
->>>>>>> Stashed changes
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
@@ -538,7 +541,7 @@ public class CompanyController {
         Company company = (Company)loginUser;
         System.out.println("公司请求投递信息对应得简历信息");
         String resumeSendStr = request.getParameter("resumeSendId");
-        if (resumeSendStr == null) {
+        if (resumeSendStr == null || resumeSendStr == "") {
             System.out.println("resumeSendStr is null");
         }
         Long resumeSendId = Long.parseLong(resumeSendStr);
@@ -561,12 +564,18 @@ public class CompanyController {
      * @throws Exception
      */
     @GetMapping(value = "/resume_received/resume")
-    public String showCompanyReceivedResumeDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String showCompanyReceivedResumeDetail(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
         }
+        // 得到学生简历的id
+        String resumeSendId = request.getParameter("id");
+        model.addAttribute("resumeSendId", resumeSendId);
+
+        Company company = (Company) loginUser;
+        model.addAttribute("userName", company.getUserName());
 
         return "companyReceivedResumeDetail";
     }
