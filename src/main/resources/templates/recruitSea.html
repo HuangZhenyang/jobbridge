@@ -985,60 +985,52 @@
     </div>
 </div>
 <div id="__next-error"></div>
+
+<div style="display: none">
+    <span id="initTotalPageNumber" th:text="${numberOfPage}">
+    </span>
 </div>
-<div>
 
-    <!--javascript for this page-->
-    <script type="text/javascript" src="../static/js/recruitSea/recruitSea.js"
-            th:src="@{/js/recruitSea/recruitSea.js}"></script>
-    <script type="text/javascript" src="../static/js/getUserName.js" th:src="@{/js/getUserName.js}"></script>
+<!--javascript for this page-->
+<script type="text/javascript" src="../static/js/recruitSea/recruitSea.js"
+        th:src="@{/js/recruitSea/recruitSea.js}"></script>
+<script type="text/javascript" src="../static/js/getUserName.js" th:src="@{/js/getUserName.js}"></script>
 
 
-    <!--分页-->
-    <link href="../static/css/common/bootstrap-combined.min.css" rel="stylesheet"
-          th:href="@{/css/common/bootstrap-combined.min.css}">
-    <script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
-    <script src="../static/js/common/bootstrap.min.js" th:src="@{/js/common/bootstrap.min.js}"></script>
-    <script src="../static/js/common/bootstrap-paginator.min.js"
-            th:src="@{/js/common/bootstrap-paginator.min.js}"></script>
-    <!--<script type='text/javascript'>
-        var options = {
-            currentPage: 1,
-            totalPages: 10,
-            alignment:'center',
-        }
+<!--分页-->
+<link href="../static/css/common/bootstrap-combined.min.css" rel="stylesheet"
+      th:href="@{/css/common/bootstrap-combined.min.css}">
+<script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
+<script src="../static/js/common/bootstrap.min.js" th:src="@{/js/common/bootstrap.min.js}"></script>
+<script src="../static/js/common/bootstrap-paginator.min.js"
+        th:src="@{/js/common/bootstrap-paginator.min.js}"></script>
 
-        $('#pages').bootstrapPaginator(options);
-    </script>-->
-
-    <!--测试-->
-    <!--<script src="http://mockjs.com/dist/mock.js"></script>
-    <script type="text/javascript">
-        var data = {
+<!--测试-->
+<!--<script src="http://mockjs.com/dist/mock.js"></script>
+<script type="text/javascript">
+    var data = {
+        "numberofpage": 10,
+        "data": [{
+            "jobTitle": "大数据风险分析实习僧",
+            "jobhref": "/enterpriseowrecruitinfo?id=1",
+            "companyname": "三六零",
+            "location": "北京市朝阳区那条小胡同",
+            "time": "2017-7-22",
+            "companydesc": "三六零是一家很牛逼很牛逼很牛逼重要的事情说三遍的公司",
+            "iconaddress": "/assets/img/360.png"
+        }, {
             "numberofpage": 10,
-            "data": [{
-                "jobTitle": "大数据风险分析实习僧",
-                "jobhref": "/enterpriseowrecruitinfo?id=1",
-                "companyname": "三六零",
-                "location": "北京市朝阳区那条小胡同",
-                "time": "2017-7-22",
-                "companydesc": "三六零是一家很牛逼很牛逼很牛逼重要的事情说三遍的公司",
-                "iconaddress": "/assets/img/360.png"
-            }, {
-                "numberofpage": 10,
-                "jobTitle": "大数据风险分析实习僧",
-                "jobhref": "/enterpriseowrecruitinfo?id=1",
-                "companyname": "三六零",
-                "location": "北京市朝阳区那条小胡同",
-                "time": "2017-7-22",
-                "companydesc": "三六零是一家很牛逼很牛逼很牛逼重要的事情说三遍的公司",
-                "iconaddress": "/assets/img/360.png"
-            }]
-        };
-        Mock.mock('/recruit/showinfo', data);
-    </script>-->
-    <!--/测试-->
-
-</div>
+            "jobTitle": "大数据风险分析实习僧",
+            "jobhref": "/enterpriseowrecruitinfo?id=1",
+            "companyname": "三六零",
+            "location": "北京市朝阳区那条小胡同",
+            "time": "2017-7-22",
+            "companydesc": "三六零是一家很牛逼很牛逼很牛逼重要的事情说三遍的公司",
+            "iconaddress": "/assets/img/360.png"
+        }]
+    };
+    Mock.mock('/recruit/showinfo', data);
+</script>-->
+<!--/测试-->
 </body>
 </html>

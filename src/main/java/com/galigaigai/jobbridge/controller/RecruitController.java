@@ -259,7 +259,7 @@ public class RecruitController {
                 end = pageNum - 10 + limit;
             }
             for(int i = pageNum - 10;i < end;i++){
-                resultList.add(resultList.get(i));
+                resultList.add(recruitList.get(i));
             }
         }
 //        处理最终要发送的数据
