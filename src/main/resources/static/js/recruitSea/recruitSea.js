@@ -1,7 +1,7 @@
 /**
  * Created by huangzhenyang on 2017/7/25.
  */
-var pageNumber = 1;
+let pageNumber = 1;
 
 
 $(document).ready(function () {
@@ -18,7 +18,7 @@ $(document).ready(function () {
 * */
 function getData() {
     $.ajax({
-        url:'/recruit/show_info',
+        url:'/recruit/info',
         type:'get',
         dataType:'json'
     }).done(function (data) {
@@ -38,16 +38,16 @@ function setData(data) {
     //删除原先  #job-list 里的东西，如果有的话 <(￣ˇ￣)/
     $('#job-list').children().remove();
 
-    var eachDom = "";
-    var dom = "";
-    var data = data.data;
-    var jobTitle = "";
-    var jobId = "";
-    var companyName = "";
-    var location = "";
-    var time = "";
-    var companyDesc = "";
-    var iconAddress = "";
+    let eachDom = "";
+    let dom = "";
+    let data = data.data;
+    let jobTitle = "";
+    let jobId = "";
+    let companyName = "";
+    let location = "";
+    let time = "";
+    let companyDesc = "";
+    let iconAddress = "";
 
     for(let i=0;i<data.length;i++){
         jobTitle = data[i].jobTitle;
@@ -61,19 +61,19 @@ function setData(data) {
         eachDom =   "<div class='ant-col-12 gutter-row'>" +
                         "<div class='ant-card media ant-card-bordered'>"+
                             "<div class='ant-card-body'>" +
-                                "<a class='media-left' style='height:80px;' href='/student/recruit?id=" + jobId + "' target='_blank' data-jsx='1812380509'><img style='width: 80px;height:80px;' src='http://localhost:8080"+ iconAddress +"' data-jsx='1812380509'/></a>" +
-                                "<div class='media-body' data-jsx='1812380509' style='width: 301px;'>" +
-                                "<a href='/student/recruit?id="+jobId +"' target='_blank' data-jsx='1812380509'>" +
-                                    "<dl data-jsx='1812380509'>" +
-                                        "<dt class='line-clamp' data-jsx='1812380509'>" + jobTitle +"</dt>" +
-                                        "<dd data-jsx='1812380509'>"+companyName + "</dd>" +
-                                        "<dd data-jsx='1812380509'><i class='anticon anticon-environment-o'></i>" + location + "</dd>"+
-                                        "<dd data-jsx='1812380509'><i class='anticon anticon-clock-circle-o'></i>" + time + "</dd>" +
+                                "<a class='media-left' style='height:80px;' href='/student/recruit?id=" + jobId + "' target='_blank' data-jsx='1812310509'><img style='width: 80px;height:80px;' src='http://localhost:8080"+ iconAddress +"' data-jsx='1812310509'/></a>" +
+                                "<div class='media-body' data-jsx='1812310509' style='width: 301px;'>" +
+                                "<a href='/student/recruit?id="+jobId +"' target='_blank' data-jsx='1812310509'>" +
+                                    "<dl data-jsx='1812310509'>" +
+                                        "<dt class='line-clamp' data-jsx='1812310509'>" + jobTitle +"</dt>" +
+                                        "<dd data-jsx='1812310509'>"+companyName + "</dd>" +
+                                        "<dd data-jsx='1812310509'><i class='anticon anticon-environment-o'></i>" + location + "</dd>"+
+                                        "<dd data-jsx='1812310509'><i class='anticon anticon-clock-circle-o'></i>" + time + "</dd>" +
                                     "</dl>"+
                                 "</a>" +
                                 "</div>" +
-                            "<div class='comment' data-jsx='1812380509'><label class='my-pull-left lab' data-jsx='1812380509'>JobBridge说：</label><a href='/student/recruit?id="+jobId +"' target='_blank' data-jsx='1812380509'>" +
-                                "<span class='line-clamp2 cont' title='" + companyDesc +"' data-jsx='1812380509'>" + companyDesc + "</span></a>" +
+                            "<div class='comment' data-jsx='1812310509'><label class='my-pull-left lab' data-jsx='1812310509'>JobBridge说：</label><a href='/student/recruit?id="+jobId +"' target='_blank' data-jsx='1812310509'>" +
+                                "<span class='line-clamp2 cont' title='" + companyDesc +"' data-jsx='1812310509'>" + companyDesc + "</span></a>" +
                             "</div>"+
                             "</div>" +
                         "</div>"+
@@ -96,7 +96,7 @@ function setData(data) {
  * 为每个选项设置事件
  * */
 function setOptionEvent() {
-    var optionList = getOptionList();
+    let optionList = getOptionList();
     //绑定事件
     for(let i=0;i<optionList.length;i++){
         //闭包
@@ -115,14 +115,14 @@ function setOptionEvent() {
                         }
                         //发送ajax请求
                         getDataByCondition("city",cityList);*/
-                    }else if(j>=15){    //industry
+                    }else if(j>=15){    //function
                         optionList[14].removeClass('ant-tag-checkable-checked'); //删除 不限 的样式
-                        /*for(let k=15;k<38;k++){
+                        /*for(let k=15;k<31;k++){
                             if(optionList[k].hasClass('ant-tag-checkable-checked')){
-                                industryList.push(optionList[k].text());
+                                functionList.push(optionList[k].text());
                             }
                         }
-                        getDataByCondition("industry",industryList);*/
+                        getDataByCondition("function",functionList);*/
                     }
 
                     //Toggle点击的Tag的样式
@@ -138,9 +138,9 @@ function setOptionEvent() {
                         if(flag){
                             optionList[0].addClass('ant-tag-checkable-checked');
                         }
-                        //如果取消了，15-137都没有checked,那么就给[14]加上checked
+                        //如果取消了，15-30都没有checked,那么就给[14]加上checked
                         flag=true;
-                        for(let i=15;i<=37;i++){
+                        for(let i=15;i<=30;i++){
                             if(optionList[i].hasClass('ant-tag-checkable-checked')){
                                 flag = false;
                             }
@@ -160,7 +160,7 @@ function setOptionEvent() {
                     optionList[j].addClass('ant-tag-checkable-checked');
                     getDataByCondition(optionList);
                 }else if(j === 14){ //点的是不限
-                    for(let k=j+1;k<38;k++){ //删除industry的其他的选择
+                    for(let k=j+1;k<31;k++){ //删除function的其他的选择
                         optionList[k].removeClass('ant-tag-checkable-checked');
                     }
                     optionList[j].addClass('ant-tag-checkable-checked');
@@ -177,25 +177,25 @@ function setOptionEvent() {
  * 根据条件请求事件
  * */
 function getDataByCondition(optionList) {
-    var cityList = new Array();
-    var industryList = new Array();
+    let cityList = new Array();
+    let functionList = new Array();
     for(let i=0;i<=13;i++){
         if(optionList[i].hasClass('ant-tag-checkable-checked')){
             cityList.push(optionList[i].text().trim());
         }
     }
 
-    for(let i=14;i<38;i++){
+    for(let i=14;i<31;i++){
         if(optionList[i].hasClass('ant-tag-checkable-checked')){
-            industryList.push(optionList[i].text().trim());
+            functionList.push(optionList[i].text().trim());
         }
     }
 
-    var sendData = JSON.stringify({
+    let sendData = JSON.stringify({
         "numberOfPage":pageNumber*10,
         "optionList":{
             "cityList":cityList,
-            "industryList":industryList
+            "functionList":functionList
         }
     });
 
@@ -230,13 +230,13 @@ function setPagePrtition(data) {
         numberOfPage = data.numberOfPage;
     }
 
-    var options = {
+    let options = {
         currentPage: 1,
         totalPages:  numberOfPage,
         alignment:'center',
         onPageClicked: function (e,originalEvent,type,page) {
             pageNumber = page;
-            var optionList = getOptionList();
+            let optionList = getOptionList();
             getDataByCondition(optionList);
         }
     };
@@ -249,7 +249,7 @@ function setPagePrtition(data) {
 * 获取用户选择的optionList
 * */
 function getOptionList() {
-    var optionList = $('div.ant-tag'); //获取的是dom对象的数组
+    let optionList = $('div.ant-tag'); //获取的是dom对象的数组
     //转成jquery对象
     for(let i=0;i<optionList.length;i++){
         optionList[i] = $(optionList[i]);

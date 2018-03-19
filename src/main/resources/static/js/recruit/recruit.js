@@ -1,6 +1,6 @@
 $(document).ready(function () {
     getHeaderUserName();
-    getData();
+    // getData();
 });
 
 
@@ -27,7 +27,7 @@ function  getData() {
     //var jobId = getUrlParameter('id');
     let jobId = getRecruitId();
     $.ajax({
-        url: '/student/request_recruit?id='+jobId,
+        url: '/student/recruit?id='+jobId,
         type: 'get',
         dataType: 'json'
     }).done(function (data) {

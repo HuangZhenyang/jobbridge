@@ -166,10 +166,10 @@ public class RecruitController {
         receiveOptionJson = receiveJson.getJSONObject("optionList");
         String location = receiveOptionJson.get("cityList").toString();
         String function = receiveOptionJson.get("functionList").toString();
-        String industry = receiveOptionJson.get("industryList").toString();
+//        String industry = receiveOptionJson.get("industryList").toString();
         String[] locations = ParseStringUtil.parseString(location);
         String[] tags = ParseStringUtil.parseString(function);
-        String[] industries = ParseStringUtil.parseString(industry);
+//        String[] industries = ParseStringUtil.parseString(industry);
         if(pageNum < 10 || pageNum % 10 != 0){
             System.out.println("前台项数错误");
             return;
@@ -228,7 +228,7 @@ public class RecruitController {
         }
 
 //        3. 最后限制行业
-        if(!(industries.length == 1 && industries[0].equals("不限"))){
+        /*if(!(industries.length == 1 && industries[0].equals("不限"))){
             List<Recruit> tempRecruitList = new ArrayList<>();
             for(int i = 0;i < industries.length;i++){
                 List<Company> companyList = null;
@@ -248,7 +248,7 @@ public class RecruitController {
             if(!tempRecruitList.isEmpty()){
                 recruitList.retainAll(tempRecruitList);
             }
-        }
+        }*/
 //        从结果中选择前台需要的招聘信息（分页）
         int recruitNum = recruitList.size();
         List<Recruit> resultList = new ArrayList<>();

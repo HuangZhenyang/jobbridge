@@ -13,7 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../static/css/common/bootstrap.css" rel="stylesheet" th:href="@{/css/common/bootstrap.css}">
     <!--external css-->
-    <link href="../static/css/common/font-awesome.css" rel="stylesheet" th:href="@{/css/common/font-awesome.css}">
+    <link href="../static/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
 
     <!-- Custom styles for this template -->
     <link href="../static/css/common/style-init.css" rel="stylesheet" th:href="@{/css/common/style-init.css}">
@@ -648,7 +648,7 @@ MAIN CONTENT
                                                                         <div data-jsx="3479566426" data-reactid="69">
                                                                             <span class="my-label" style="margin-left: 0px;padding-left: 0px"></span>
                                                                             <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px"   >
-                                                                                <label><span id="jobName" class="my-label" style="margin-left: 0px;font-size:x-large; padding-left: 0px"></span></label>
+                                                                                <label><span id="jobName" class="my-label" style="margin-left: 0px;font-size:x-large; padding-left: 0px" th:text="${recruit.jobName}"></span></label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -660,18 +660,18 @@ MAIN CONTENT
                                                                         <div data-jsx="3479566426" data-reactid="69">
                                                                             <i class="fa fa-map-marker"></i>
                                                                             <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px;width: 70px">
-                                                                                <label><span id="location" class="my-label" style="margin-left: 0px;padding-left: 0px"></span></label>
+                                                                                <label><span id="location" class="my-label" style="margin-left: 0px;padding-left: 0px;" th:text="${recruit.location}"></span></label>
                                                                             </div>
                                                                             <i class="fa fa-times"></i>
                                                                             <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px;width: 130px">
-                                                                                <label><span id="deadline" class="my-label" style="margin-left: 0px;padding-left: 0px"></span></label><strong>截止</strong>
+                                                                                <label><span id="deadline" class="my-label" style="margin-left: 0px;padding-left: 0px" th:text="${recruit.deadline}"></span></label><strong>截止</strong>
                                                                             </div>
                                                                             <i class="fa fa-rmb"></i>
                                                                             <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px;margin-left: 0px" >
-                                                                                <label><span id="lowSalary" class="my-label" style="margin-left: 0;padding-left: 0px"></span></label>—
-                                                                                <label><span id="highSalary" class="my-label" style="margin-left: 0;padding-left: 0px"></span></label>
+                                                                                <label><span id="lowSalary" class="my-label" style="margin-left: 0;padding-left: 0px" th:text="${recruit.lowSalary}"></span></label>—
+                                                                                <label><span id="highSalary" class="my-label" style="margin-left: 0;padding-left: 0px" th:text="${recruit.highSalary}"></span></label>
                                                                             </div>
-                                                                            <button onclick="starButtonFunc(this)" type="submit" class="ant-btn ant-btn-primary my-star-button" data-reactid="403" >
+                                                                            <button onclick="starButtonFunc(this)" type="submit" class="ant-btn ant-btn-primary my-star-button" th:id="${recruit.companyId}"  th:text="${haveStar=='true'} ? '已收藏' : '收藏'">
                                                                                 收藏
                                                                             </button>
                                                                         </div>
@@ -685,7 +685,7 @@ MAIN CONTENT
                                                                         <div data-jsx="3479566426" data-reactid="69">
                                                                             <span class="my-label" style="margin-left: 0px;padding-left: 0px">公司名称：</span>
                                                                             <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px;width: 700px"   >
-                                                                                <label id="name" style="font-size: medium"></label>
+                                                                                <label id="name" style="font-size: medium" th:text="${company.name}"></label>
                                                                             </div>
                                                                         </div>
 
@@ -697,7 +697,7 @@ MAIN CONTENT
                                                                                 <div data-jsx="3479566426" data-reactid="69">
                                                                                     <span class="my-label" style="margin-left: 0px;padding-left: 0px">公司简介：</span>
                                                                                     <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px;width: 700px"   >
-                                                                                        <label id="companyIntroduction" style="font-size: medium"></label>
+                                                                                        <label id="companyIntroduction" style="font-size: medium" th:text="${company.companyIntroduction}"></label>
                                                                                     </div>
                                                                                 </div>
                                                                                 <!--分割线-->
@@ -715,7 +715,7 @@ MAIN CONTENT
                                                                                         <div data-jsx="3479566426" data-reactid="69">
                                                                                             <span class="my-label" style="margin-left: 0px;padding-left: 0px">工作职责：</span>
                                                                                             <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px;width: 700px"   >
-                                                                                                <label id="jobRequire" style="font-size: medium"></label>
+                                                                                                <label id="jobDescribe" style="font-size: medium" th:text="${recruit.jobDescribe}"></label>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="detail" data-jsx="3479566426"
@@ -726,14 +726,14 @@ MAIN CONTENT
                                                                                                 <div data-jsx="3479566426" data-reactid="69">
                                                                                                     <span class="my-label" style="margin-left: 0px;padding-left: 0px">职位要求：</span>
                                                                                                     <div class="value" data-jsx="3479566426" data-reactid="70"  style="padding-left: 0px;width: 700px"   >
-                                                                                                        <label id="jobDescribe" style="font-size: medium"></label>
+                                                                                                        <label id="jobRequire" style="font-size: medium" th:text="${recruit.jobRequire}"></label>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <!--投递简历需要振洋修改-->
                                                                                                 <br><br><br><br>
                                                                                                 <div class="submit form-group" data-jsx="3479566426"
                                                                                                      data-reactid="402" style="text-align: center;margin-bottom: 15px;">
-                                                                                                    <button onclick="send(this)" type="submit" class="ant-btn ant-btn-primary my-send-button"
+                                                                                                    <button onclick="send(this)" type="submit" class="ant-btn ant-btn-primary my-send-button" th:id="${recruit.recruitId}"
                                                                                                             data-reactid="403" value="投递简历">投递简历</button><br>
                                                                                                     <label><span id="sendTip" style="color:red;"></span></label>
                                                                                                 </div>
@@ -766,10 +766,10 @@ MAIN CONTENT
                 </div>
             </div>
             <!-- page end-->
-            <div style="display: none" >
-                <span id="recruitId" th:text="${id}">
+            <!--<div style="display: none" >
+                <span id="recruitId" th:text="${recruitId}">
                 </span>
-            </div>
+            </div>-->
         </section>
     </section>
     <!-- /MAIN CONTENT -->
