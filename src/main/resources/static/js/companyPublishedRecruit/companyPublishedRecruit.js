@@ -223,6 +223,7 @@ function save(evt){
             console.log('成功, 收到的数据: ' + JSON.stringify(data, null, '  '));
             let result = data;
             if(result.ok === "true"){
+                alert(result.reason);
                 window.location.href = "";
             }else{
                 $('#saveTip').text(result.reason);

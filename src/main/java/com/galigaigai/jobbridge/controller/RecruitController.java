@@ -1,13 +1,7 @@
 package com.galigaigai.jobbridge.controller;
 
-import com.galigaigai.jobbridge.model.Company;
-import com.galigaigai.jobbridge.model.Recruit;
-import com.galigaigai.jobbridge.model.RecruitTag;
-import com.galigaigai.jobbridge.model.Tag;
-import com.galigaigai.jobbridge.repository.CompanyRepository;
-import com.galigaigai.jobbridge.repository.RecruitRepository;
-import com.galigaigai.jobbridge.repository.RecruitTagRepository;
-import com.galigaigai.jobbridge.repository.TagRepository;
+import com.galigaigai.jobbridge.model.*;
+import com.galigaigai.jobbridge.repository.*;
 import com.galigaigai.jobbridge.util.ParseStringUtil;
 import com.galigaigai.jobbridge.util.RecruitUtil;
 import com.galigaigai.jobbridge.util.SendInfoUtil;
@@ -41,6 +35,8 @@ public class RecruitController {
     private RecruitTagRepository recruitTagRepository;
     @Autowired
     private CompanyRepository companyRepository;
+    @Autowired
+    private IndustryRepository industryRepository;
 
     /**
      * 这里可以无登录访问
@@ -168,11 +164,12 @@ public class RecruitController {
         JSONObject receiveOptionJson = null;
         int pageNum = receiveJson.getInt("numberOfPage");
         receiveOptionJson = receiveJson.getJSONObject("optionList");
-        String locations = receiveOptionJson.get("cityList").toString();
-        String functions = receiveOptionJson.get("functionList").toString();
-        String industries = receiveOptionJson.get("industryList").toString();
-        String[] locationList = ParseStringUtil.parseString(locations);
-        String[] tags = ParseStringUtil.parseString(functions);
+        String location = receiveOptionJson.get("cityList").toString();
+        String function = receiveOptionJson.get("functionList").toString();
+//        String industry = receiveOptionJson.get("industryList").toString();
+        String[] locations = ParseStringUtil.parseString(location);
+        String[] tags = ParseStringUtil.parseString(function);
+//        String[] industries = ParseStringUtil.parseString(industry);
         if(pageNum < 10 || pageNum % 10 != 0){
             System.out.println("前台项数错误");
             return;
@@ -181,13 +178,12 @@ public class RecruitController {
         JSONObject sendJson = new JSONObject();
         JSONArray sendDataJson = new JSONArray();
         List<Recruit> recruitList = new ArrayList<>();
-        int recruitNum = 0;
 //        1. 先限制城市
-        if(locationList.length == 1 && locationList[0].equals("不限")){
+        if(locations.length == 1 && locations[0].equals("不限")){
             recruitList = recruitRepository.findAll();
         }else{
-            for(int i = 0;i < locationList.length;i++){
-                List<Recruit> tempRecruitList = recruitRepository.findByLocation(locationList[i]);
+            for(int i = 0;i < locations.length;i++){
+                List<Recruit> tempRecruitList = recruitRepository.findByLocation(locations[i]);
                 if(!(tempRecruitList == null || tempRecruitList.isEmpty() ||
                         (tempRecruitList.size() == 1 && tempRecruitList.get(0) == null))){
                     recruitList.addAll(tempRecruitList);
@@ -202,22 +198,76 @@ public class RecruitController {
         }
 //        2. 再限制职能
         if(!(tags.length == 1 && tags[0].equals("不限"))){
-            List<Recruit> RecruitTagCondition = new ArrayList<>();
+            List<Recruit> tempRecruitList = new ArrayList<>();
             for(int i = 0;i < tags.length;i++){
                 Tag tag = tagRepository.findByName(tags[i]);
                 List<RecruitTag> recruitTagList = null;
+//                从tag寻找recruit，将id存入到list中，可能有重复的
                 if(tag != null){
                     recruitTagList = recruitTagRepository.findByTagId(tag.getTagId());
                 }
                 if(recruitTagList != null && !recruitTagList.isEmpty()){
-                    
+                    for(RecruitTag recruitTag : recruitTagList){
+                        Recruit recruit = recruitRepository.findByRecruitId(recruitTag.getRecruitId());
+                        if(recruit != null){
+                            tempRecruitList.add(recruit);
+                        }
+                    }
                 }
             }
+//            与recruitList求交集
+            if(tempRecruitList.isEmpty()){
+                sendJson.put("numberOfPage",0);
+                sendJson.put("data",sendDataJson);
+                SendInfoUtil.render(sendJson.toString(),"text/json",response);
+                return;
+            }else{
+                recruitList.retainAll(tempRecruitList);
+            }
+        }
+        if(recruitList.isEmpty()){
+            sendJson.put("numberOfPage",0);
+            sendJson.put("data",sendDataJson);
+            SendInfoUtil.render(sendJson.toString(),"text/json",response);
+            return;
         }
 
 //        3. 最后限制行业
-
-
+        /*if(!(industries.length == 1 && industries[0].equals("不限"))){
+            List<Recruit> tempRecruitList = new ArrayList<>();
+            for(int i = 0;i < industries.length;i++){
+                List<Company> companyList = null;
+                Industry industry1 = industryRepository.findByName(industries[i]);
+                if(industry1 != null){
+                    companyList = companyRepository.findByIndustryId(industry1.getIndustryId());
+                }
+                if(companyList != null && !companyList.isEmpty()){
+                    for(Company company : companyList){
+                        List<Recruit> recruits = recruitRepository.findByCompanyId(company.getCompanyId());
+                        if(recruits != null){
+                            tempRecruitList.addAll(recruits);
+                        }
+                    }
+                }
+            }
+            if(!tempRecruitList.isEmpty()){
+                recruitList.retainAll(tempRecruitList);
+            }
+        }*/
+//        从结果中选择前台需要的招聘信息（分页）
+        int recruitNum = recruitList.size();
+        recruitList = RecruitUtil.orderByTime(recruitList);
+        List<Recruit> resultList = new ArrayList<>();
+        if(recruitNum != 0){
+            int limit = recruitNum - pageNum + 10;
+            int end = pageNum;
+            if(limit < 10){
+                end = pageNum - 10 + limit;
+            }
+            for(int i = pageNum - 10;i < end;i++){
+                resultList.add(recruitList.get(i));
+            }
+        }
 //        处理最终要发送的数据
         int page = 0;
         if(recruitNum != 0 && recruitNum % 10 == 0){
@@ -227,7 +277,6 @@ public class RecruitController {
         }
         sendJson.put("numberOfPage",page);
         if(!recruitList.isEmpty()){
-            List<Recruit> resultList = RecruitUtil.orderByTime(recruitList);
             for(Recruit recruit:resultList){
                 Company company = companyRepository.findByCompanyId(recruit.getCompanyId());
                 if(company == null){

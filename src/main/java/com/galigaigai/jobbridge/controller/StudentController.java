@@ -103,6 +103,7 @@ public class StudentController {
             System.out.println("getParameter error");
         } else {
             recruitId = Long.parseLong(request.getParameter("id"));
+            System.out.println(recruitId);
             String haveStar = "false";
             // 查找招聘信息
             Recruit recruit = recruitRepository.findByRecruitId(recruitId);

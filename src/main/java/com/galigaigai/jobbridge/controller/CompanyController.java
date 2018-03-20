@@ -126,7 +126,7 @@ public class CompanyController {
         }
 
         Company company = (Company) loginUser;
-        List<Recruit> recruitList = recruitRepository.findByCompanyId(company.getCompanyId());
+        List<Recruit> recruitList = recruitRepository.findByCompanyId(company.getCompanyId()); // 所有的recruit
 
         // 如果没有招聘信息，直接返回html页面
         if(recruitList == null || recruitList.isEmpty() ||
@@ -134,12 +134,12 @@ public class CompanyController {
             return "companyPublishedRecruit";
         }else{
             // 对于每个未删除的招聘信息，查询招聘信息号、职位名称和发布时间作为json对象添加进入json数组中
-            for(Recruit recruit:recruitList){
-                if(recruit.getHaveDelete()){ // 如果招聘信息已经删除的话, 就从recruitList中删除
-                    recruitList.remove(recruit);
+            for(int i=0; i<recruitList.size(); i++){
+                if(recruitList.get(i).getHaveDelete()){ // 如果招聘信息已经删除的话, 就从recruitList中删除
+                    recruitList.remove(i);
+                    i--; // 索引要减1,不然会报错java.util.ConcurrentModificationException
                 }
             }
-
             model.addAttribute("recruitList", recruitList);
         }
 
@@ -267,7 +267,7 @@ public class CompanyController {
                 RecruitTag recruitTag = new RecruitTag(justRecruit.getRecruitId(), justTag.getTagId());
                 recruitTagService.addRecruitTag(recruitTag);
             }
-            String result = "{\"ok\":\"true\"}";
+            String result = "{\"ok\":\"true\", \"reason\":\"提交成功\"}";
             SendInfoUtil.render(result, "text/json", response);
 //            2.如果是修改招聘信息
         } else {
@@ -312,7 +312,7 @@ public class CompanyController {
                 RecruitTag recruitTag = new RecruitTag(Long.parseLong(recruitId), justTag.getTagId());
                 recruitTagService.addRecruitTag(recruitTag);
             }
-            result = "{\"ok\":\"true\"}";
+            result = "{\"ok\":\"true\", \"reason\":\"修改成功\"}";
             SendInfoUtil.render(result, "text/json", response);
         }
     }

@@ -51,23 +51,23 @@ function setData(data) {
         companyDesc = company[i].comdesc;
         iconAddr = company[i].iconaddress;
 
-        eachDom = "<li data-jsx='183165769' id='"+  starCompanyId   +"'>"+
-                      "<div class='position' data-jsx='183165769'>"+
-                          "<div class='logo' data-jsx='183165769'>" +
-                              "<a href='#' target='_blank' data-jsx='183165769'>"+
-                                  "<img src='"+iconAddr+"' data-jsx='183165769'></a>"+
+        eachDom = "<li id='"+  starCompanyId   +"'>"+
+                      "<div class='position'>"+
+                          "<div class='logo'>" +
+                              "<a href='#' target='_blank' >"+
+                                  "<img src='"+iconAddr+"' ></a>"+
                           "</div>" +
-                          "<div class='detail' data-jsx='183165769'>"+
-                              "<div class='companyName' data-jsx='183165769'>" +
-                                  "<a href='#' target='_blank' data-jsx='183165769'>" + companyName + "</a>" +
+                          "<div class='detail' >"+
+                              "<div class='companyName' >" +
+                                  "<a href='#' target='_blank' >" + companyName + "</a>" +
                               "</div>" +
-                              "<div class='contact' data-jsx='183165769'><span>Email：" + email+ "</span>" + "<span>&emsp;Tel：" + phoneNumber +"</span>" +
+                              "<div class='contact' ><span>Email：" + email+ "</span>" + "<span>&emsp;Tel：" + phoneNumber +"</span>" +
                               "</div>" +
-                              "<div class='wrapper' data-jsx='183165769' style='margin-top: 10px;padding-left: 0px;'>" + companyDesc +
+                              "<div class='wrapper'  style='margin-top: 10px;padding-left: 0px;'>" + companyDesc +
                               "</div>"+
                           "</div>" +
-                          "<div class='action' data-jsx='183165769'>" +
-                              "<button type='button' class='ant-btn'><a href='#' data-jsx='183165769' onclick='cancel(this)'>取消收藏</a></button>" +
+                          "<div class='action' >" +
+                              "<button type='button' class='ant-btn'><a href='#'  onclick='cancel(this)'>取消收藏</a></button>" +
                           "</div>" +
                       "</div>" +
                   "</li>";
