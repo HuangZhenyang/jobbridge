@@ -34,7 +34,7 @@ public class CompanyService {
 
     /**
      * 查找已审核的公司与没有审核的公司
-     * @param AuditOrNot true为选择已审核过的所有公司，false为选择为审核的公司
+     * @param AuditOrNot true为选择已审核过的所有公司，false为选择未审核的公司
      * @return 根据AuditOrNot的值，返回不同的company List
      */
     @Transactional
@@ -47,5 +47,27 @@ public class CompanyService {
             }
         }
         return resultCompanyList;
+    }
+
+    /**
+     * 公司通过管理员的审核后，
+     * 通过公司ID来改变该公司的审核状态
+     */
+    @Transactional
+    public void updateAuditingByCompanyId(Long companyId) {
+        Company company = companyRepository.findByCompanyId(companyId);
+        if (company.getAuditing()){
+            System.out.println("该公司已经通过审核了，无需修改审核状态");
+        }else{
+            company.setAuditing(true);
+        }
+    }
+
+    /**
+     * 公司审核未通过，被拒绝，删除公司记录
+     * @param companyId
+     */
+    public void deleteCompanyByCompanyId(Long companyId) {
+        companyRepository.deleteById(companyId);
     }
 }

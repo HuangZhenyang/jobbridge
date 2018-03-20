@@ -18,5 +18,6 @@ public interface CompanyRepository extends JpaRepository<Company,Long> {
 
     Company findByMailbox(String mailbox); //根据邮箱查找公司
 
+
     List<Company> findAll(); // 得到所有的公司
 }
