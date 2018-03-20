@@ -7,7 +7,7 @@ let bgThemes = ["bg-theme","bg-warning","bg-success","bg-info","bg-important"];
 
 $(document).ready(function () {
     getHeaderUserName();
-    getData();
+    //getData();
 });
 
 //获取用户投递职位的信息
