@@ -624,141 +624,157 @@
                                     <li data-jsx="2300919215" data-reactid="113">
                                         <dl class="type clearfix" data-reactid="114">
                                             <dt class="label" data-reactid="115">城 市：</dt>
-                                            <dd class="option" data-reactid="116">
+
+                                            <dd class="option" data-reactid="116" style="width: 1050px">
+                                                <div class="ant-tag ant-tag-checkable "
+                                                     th:each="city, cityStat:${cityDictionary}"
+                                                     th:text="${city}"
+                                                     th:classappend="${cityStat.index == 0} ? 'ant-tag-checkable-checked' : ''">
+                                                </div>
+                                            </dd>
+
+                                            <!--<dd class="option" data-reactid="116">
                                                 <div class="ant-tag ant-tag-checkable ant-tag-checkable-checked"
-                                                     data-reactid="117"><!-- react-text: 118 -->不限
-                                                    <!-- /react-text --></div>
+                                                     data-reactid="117">&lt;!&ndash; react-text: 118 &ndash;&gt;不限
+                                                    &lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="119">
                                                 <div id="50" class="ant-tag ant-tag-checkable" data-reactid="120">
-                                                    <!-- react-text: 121 -->北京<!-- /react-text --></div>
+                                                    &lt;!&ndash; react-text: 121 &ndash;&gt;北京&lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="122">
                                                 <div id="51" class="ant-tag ant-tag-checkable" data-reactid="123">
-                                                    <!-- react-text: 124 -->上海<!-- /react-text --></div>
+                                                    &lt;!&ndash; react-text: 124 &ndash;&gt;上海&lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="125">
                                                 <div id="52" class="ant-tag ant-tag-checkable" data-reactid="126">
-                                                    <!-- react-text: 127 -->广州<!-- /react-text --></div>
+                                                    &lt;!&ndash; react-text: 127 &ndash;&gt;广州&lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="128">
                                                 <div id="53" class="ant-tag ant-tag-checkable" data-reactid="129">
-                                                    <!-- react-text: 130 -->深圳<!-- /react-text --></div>
+                                                    &lt;!&ndash; react-text: 130 &ndash;&gt;深圳&lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="131">
                                                 <div id="54" class="ant-tag ant-tag-checkable" data-reactid="132">
-                                                    <!-- react-text: 133 -->武汉<!-- /react-text --></div>
+                                                    &lt;!&ndash; react-text: 133 &ndash;&gt;武汉&lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="134">
                                                 <div id="55" class="ant-tag ant-tag-checkable" data-reactid="135">
-                                                    <!-- react-text: 136 -->南京<!-- /react-text --></div>
+                                                    &lt;!&ndash; react-text: 136 &ndash;&gt;南京&lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="137">
                                                 <div id="56" class="ant-tag ant-tag-checkable" data-reactid="138">
-                                                    <!-- react-text: 139 -->成都<!-- /react-text --></div>
+                                                    &lt;!&ndash; react-text: 139 &ndash;&gt;成都&lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="140">
                                                 <div id="57" class="ant-tag ant-tag-checkable" data-reactid="141">
-                                                    <!-- react-text: 142 -->天津<!-- /react-text --></div>
+                                                    &lt;!&ndash; react-text: 142 &ndash;&gt;天津&lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="143">
                                                 <div id="58" class="ant-tag ant-tag-checkable" data-reactid="144">
-                                                    <!-- react-text: 145 -->杭州<!-- /react-text --></div>
+                                                    &lt;!&ndash; react-text: 145 &ndash;&gt;杭州&lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="146">
                                                 <div id="155" class="ant-tag ant-tag-checkable" data-reactid="147">
-                                                    <!-- react-text: 148 -->苏州<!-- /react-text --></div>
+                                                    &lt;!&ndash; react-text: 148 &ndash;&gt;苏州&lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="149">
                                                 <div id="156" class="ant-tag ant-tag-checkable" data-reactid="150">
-                                                    <!-- react-text: 151 -->西安<!-- /react-text --></div>
+                                                    &lt;!&ndash; react-text: 151 &ndash;&gt;西安&lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="152">
                                                 <div id="154" class="ant-tag ant-tag-checkable" data-reactid="153">
-                                                    <!-- react-text: 154 -->大连<!-- /react-text --></div>
+                                                    &lt;!&ndash; react-text: 154 &ndash;&gt;大连&lt;!&ndash; /react-text &ndash;&gt;</div>
                                             </dd>
                                             <dd class="option" data-reactid="155">
                                                 <div id="59" class="ant-tag ant-tag-checkable" data-reactid="156">
-                                                    <!-- react-text: 157 -->其他<!-- /react-text --></div>
-                                            </dd>
+                                                    &lt;!&ndash; react-text: 157 &ndash;&gt;其他&lt;!&ndash; /react-text &ndash;&gt;</div>
+                                            </dd>-->
                                         </dl>
                                     </li>
-                                    <li data-jsx="2300919215" data-reactid="116">
-                                        <div data-reactid="117">
-                                            <dt class="label block-level" data-reactid="118">职 能：</dt>
-                                            <dl class="type clearfix" data-reactid="119">
-                                                <dd class="option" data-reactid="120">
+                                    <li data-jsx="2300919215" data-reactid="117">
+                                            <dl class="type clearfix" data-reactid="118">
+                                                <dt class="label block-level" data-reactid="118">职 能：</dt>
+                                                <dd class="option" data-reactid="119" style="width: 1050px">
+                                                    <div class="ant-tag ant-tag-checkable" data-reactid="124"
+                                                         th:each="function, functionIndex : ${functionDictionary}"
+                                                         th:text="${function}"
+                                                         th:classappend="${functionIndex.index == 0} ? 'ant-tag-checkable-checked' : ''">
+                                                    </div>
+                                                </dd>
+
+
+                                                <!--<dd class="option" data-reactid="120">
                                                     <div class="ant-tag ant-tag-checkable ant-tag-checkable-checked"
-                                                         data-reactid="121"><!-- react-text: 122 -->不限
-                                                        <!-- /react-text --></div>
+                                                         data-reactid="121">&lt;!&ndash; react-text: 122 &ndash;&gt;不限
+                                                        &lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="123">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="124">
-                                                        <!-- react-text: 125 -->咨询/数据分析/行业研究/战略
-                                                        <!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 125 &ndash;&gt;咨询/数据分析/行业研究/战略
+                                                        &lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="126">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="127">
-                                                        <!-- react-text: 128 -->市场与销售<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 128 &ndash;&gt;市场与销售&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="129">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="130">
-                                                        <!-- react-text: 131 -->运营<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 131 &ndash;&gt;运营&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="132">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="133">
-                                                        <!-- react-text: 134 -->财务/审计/税务/融资<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 134 &ndash;&gt;财务/审计/税务/融资&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="135">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="136">
-                                                        <!-- react-text: 137 -->银行/基金/保险/证券<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 137 &ndash;&gt;银行/基金/保险/证券&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="138">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="139">
-                                                        <!-- react-text: 140 -->记者/编辑/文案/策划<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 140 &ndash;&gt;记者/编辑/文案/策划&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="141">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="142">
-                                                        <!-- react-text: 143 -->投资<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 143 &ndash;&gt;投资&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="144">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="145">
-                                                        <!-- react-text: 146 -->产品<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 146 &ndash;&gt;产品&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="147">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="148">
-                                                        <!-- react-text: 149 -->广告/公关<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 149 &ndash;&gt;广告/公关&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="150">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="151">
-                                                        <!-- react-text: 152 -->项目管理<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 152 &ndash;&gt;项目管理&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="153">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="154">
-                                                        <!-- react-text: 155 -->人力资源<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 155 &ndash;&gt;人力资源&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="156">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="157">
-                                                        <!-- react-text: 158 -->行政<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 158 &ndash;&gt;行政&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="159">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="160">
-                                                        <!-- react-text: 161 -->技术<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 161 &ndash;&gt;技术&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="162">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="163">
-                                                        <!-- react-text: 164 -->采购/供应链<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 164 &ndash;&gt;采购/供应链&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="165">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="166">
-                                                        <!-- react-text: 167 -->设计<!-- /react-text --></div>
+                                                        &lt;!&ndash; react-text: 167 &ndash;&gt;设计&lt;!&ndash; /react-text &ndash;&gt;</div>
                                                 </dd>
                                                 <dd class="option" data-reactid="168">
                                                     <div class="ant-tag ant-tag-checkable" data-reactid="169">
-                                                        <!-- react-text: 170 -->其他<!-- /react-text --></div>
-                                                </dd>
+                                                        &lt;!&ndash; react-text: 170 &ndash;&gt;其他&lt;!&ndash; /react-text &ndash;&gt;</div>
+                                                </dd>-->
                                             </dl>
-                                        </div>
                                     </li>
                                     <!--<li data-jsx="2300919215" data-reactid="158">
                                         <div data-reactid="159">

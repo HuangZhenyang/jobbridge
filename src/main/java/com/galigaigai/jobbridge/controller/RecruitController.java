@@ -53,11 +53,11 @@ public class RecruitController {
         String[] functionDictionary = new String[tagList.size() + 1];
         cityDictionary[0] = "不限";
         functionDictionary[0] = "不限";
-        for(int i = 1;i <= cityList.size();i++){
-            cityDictionary[i] = cityList.get(i).getName();
+        for(int i = 0;i < cityList.size();i++){
+            cityDictionary[i + 1] = cityList.get(i).getName();
         }
-        for(int i = 1;i <= tagList.size();i++){
-            functionDictionary[i] = tagList.get(i).getName();
+        for(int i = 0;i < tagList.size();i++){
+            functionDictionary[i + 1] = tagList.get(i).getName();
         }
         model.addAttribute("cityDictionary",cityDictionary);
         model.addAttribute("functionDictionary",functionDictionary);
