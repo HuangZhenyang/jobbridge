@@ -216,7 +216,12 @@ public class RecruitController {
                 }
             }
 //            与recruitList求交集
-            if(!tempRecruitList.isEmpty()){
+            if(tempRecruitList.isEmpty()){
+                sendJson.put("numberOfPage",0);
+                sendJson.put("data",sendDataJson);
+                SendInfoUtil.render(sendJson.toString(),"text/json",response);
+                return;
+            }else{
                 recruitList.retainAll(tempRecruitList);
             }
         }
@@ -251,6 +256,7 @@ public class RecruitController {
         }*/
 //        从结果中选择前台需要的招聘信息（分页）
         int recruitNum = recruitList.size();
+        recruitList = RecruitUtil.orderByTime(recruitList);
         List<Recruit> resultList = new ArrayList<>();
         if(recruitNum != 0){
             int limit = recruitNum - pageNum + 10;
@@ -271,7 +277,6 @@ public class RecruitController {
         }
         sendJson.put("numberOfPage",page);
         if(!recruitList.isEmpty()){
-            resultList = RecruitUtil.orderByTime(resultList);
             for(Recruit recruit:resultList){
                 Company company = companyRepository.findByCompanyId(recruit.getCompanyId());
                 if(company == null){
