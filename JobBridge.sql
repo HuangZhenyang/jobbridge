@@ -188,7 +188,7 @@ insert into company
 		'今日头条是一款基于数据挖掘的推荐引擎产品，它为用户推荐有价值的、个性化的信息，提供连接人与信息的新型服务，是国内移动互联网领域成长最快的产品服务之一','/img/comlogo/jinritoutiao.png',1,'e',1);
 
 insert into student_detail
-	values(1,'2015141463140@stu.scu.edu.cn','17761279281','四川大学','软件工程',2015,'[上海,成都]','[互联网]','[项目管理,技术]',0);
+	values(1,'2015141463140@stu.scu.edu.cn','17761279281','四川大学','软件工程',2015,'[上海,成都]','[互联网]','[项目管理,技术]',1);
 
 insert into resume
 	values(1,1,'{"name":"何干事","address":"dad","phone":"1232341312321","mail":"312321232@qq.com","edus":[{"school":"斯坦佛大学","city":"试试","province":"飒飒","college":"2问问","end_time":"1212","grade":"4.0","honors":"12","related_course":"1212"}],"works":[{"company":"alimamama","city":"11","province":"112","position":"大佬","project":"支付宝","start_time":"121","end_time":"111","sentence_1":"牛皮","sentence_2":"西南地区第一ADC","sentence_3":"西南地区第一ADC","sentence_4":"西南地区第一ADC"},{"company":"腾讯","city":"成都","province":"四川","position":"HR","project":"找人","start_time":"11","end_time":"1111","sentence_1":"西南地区第一ADC","sentence_2":"西南地区第一ADC","sentence_3":"西南地区第一ADC","sentence_4":"西南地区第一ADC"}],"leader":{"organization":[{"name":"西南地区第一ADC","position":"西南地区第一ADC","start_time":"12","end_time":"122","sentence_1":"西南地区第一ADC","sentence_2":"西南地区第一ADC","sentence_3":"西南地区第一ADC"}],"club":[{"name":"西南地区第一ADC","position":"西南地区第一ADC","start_time":"11","end_time":"122","sentence_1":"西南地区第一ADC","sentence_2":"西南地区第一ADC"}]},"skill":{"language":"西南地区第一ADC","computer":"西南地区第一ADC","hobby":"西南地区第一ADC"}}');
