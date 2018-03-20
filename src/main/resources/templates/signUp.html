@@ -9,12 +9,12 @@
 	<link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}">
 	<!-- CSS Files -->
 	<link href="../static/css/common/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/common/bootstrap.min.css}">
-	<link href="../static/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
-
-	<!-- Colors -->
+	<link href="../static/css/common/font-awesome.min.css" rel="stylesheet" th:href="@{/css/common/font-awesome.min.css}">
 	<link href="../static/css/common/css-index.css" rel="stylesheet" media="screen" th:href="@{/css/common/css-index.css}">
-
-
+	<link href="../static/css/common/fileinput.css" media="all" rel="stylesheet"th:href="@{/css/common/fileinput.css}" />
+	<link href="../static/css/signUp/signUp.css" media="all" rel="stylesheet" th:href="@{/css/signUp/signUp.css}" />
+	<!-- Colors -->
+	
 </head>
 
 <body data-spy="scroll" data-target="#navbar-scroll">
@@ -29,31 +29,30 @@
 		<div class="overlay">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-7">
-
-						<!-- /.logo -->
+					<!-- <div class="col-md-7">
 						<div class="logo wow fadeInDown">
 							<img src="../static/img/lo-re/logo2.png" alt="logo" th:src="@{/img/lo-re/logo2.png}"></a>
 						</div>
 
-						<!-- /.main title -->
 						<h1 class="wow fadeInLeft">
 							JobBrige
 						</h1>
 
-						<!-- /.header paragraph -->
 						<div class="landing-text wow fadeInUp">
 							<p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 一站式服务平台&nbsp&nbsp&nbsp&nbsp&nbsp助力Offer
 							</p>
 						</div>
 
-					</div>
+					</div> -->
 
 					<!-- /.signup form -->
-					<div class="col-md-5">
-
-						<div class="signup-header wow fadeInUp">
-							<h3 class="form-title text-center">账号注册</h3>
+					<div class="col-md-12" id="panel">
+						<ul class="signup-list clearfix ">
+							<li><a href="#" name="#tab-1">个人注册</a></li>
+							<li><a href="#" name="#tab-2">企业注册</a></li>
+						</ul>
+						<div class="signup-header wow fadeInUp" id="tab-1">
+							<h3 class="form-title text-center">个人注册</h3>
 							<form class="form-header" role="form" method="POST" id="#">
 								<input type="hidden" name="u" value="503bdae81fde8612ff4944435">
 								<input type="hidden" name="id" value="bfdba52708">
@@ -70,15 +69,69 @@
 									<input class="form-control input-lg" name="MERGE0" id="password1" type="password" placeholder="再次输入密码" required>
 								</div>
 								<div>
-									<label style="float:left"><span id="signUpTip" style="color: red"></span></label>
+									<label style="float:left"><span id="studentSignUpTip" style="color: red"></span></label>
 								</div>
 								<div class="form-group last">
 									<input onclick="signUpFunc()" class="btn btn-warning btn-block btn-lg" value="注册">
 								</div>
-								<p class="privacy text-center">已经有账号，<a href="/sign_in">立即登录</a></p>
+								<p class="privacy text-center">已经有账号，<a href="../templates/signIn.html">立即登录</a></p>
 							</form>
 						</div>
-
+						<div class="signup-header wow fadeInUp" id="tab-2">
+							<h3 class="form-title text-center">企业注册</h3>
+							<form class="form-header" role="form" method="POST" id="#" enctype="multipart/form-data">
+								<input type="hidden" name="u" value="503bdae81fde8612ff4944435">
+								<input type="hidden" name="id" value="bfdba52708">
+								<div class="form-group">
+									<input class="form-control input-lg" name="MERGE1" id="userNameCompany" type="text" placeholder="用户名" required>
+								</div>
+								<div class="form-group">
+									<input class="form-control input-lg" name="MERGE1" id="mailboxCompany" type="email" placeholder="邮箱" required>
+								</div>
+								<div class="form-group">
+									<input class="form-control input-lg" name="MERGE0" id="passwordCompany" type="password" placeholder="密码" required>
+								</div>
+								<div class="form-group">
+									<input class="form-control input-lg" name="MERGE0" id="password1Company" type="password" placeholder="再次输入密码" required>
+								</div>
+								<div class="form-group">
+									<input class="form-control input-lg" name="MERGE0" id="companyName" type="text" placeholder="企业名称" required>
+								</div>
+								<div class="form-group">
+									<input class="form-control input-lg" name="MERGE0" id="tel" type="text" placeholder="联系方式" required>
+								</div>
+								<div class="form-group">
+									<select  class="form-control input-lg" name="MERGE0" id="industry">
+										<option value="1">互联网</option>
+										<option value="2">医疗/医药</option>
+										<option value="3">媒体/文化/休闲</option>
+										<option value="4">多元化</option>
+										<option value="5">通信/计算设备/软件</option>
+										<option value="6">生产/制造/纺织</option>
+										<option value="7">消费品</option>
+										<option value="8">能源/资源</option>
+										<option value="9">地产/建筑/施工材料</option>
+										<option value="10">奢侈品</option>
+										<option value="11">金融</option>
+										<option value="12">电子/电器/家电</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<textarea class="form-control input-lg" name="MERGE0" id="company_introduction" placeholder="请添加企业信息描述,建议150字以内" style="height:120px" required></textarea>
+								</div>
+								<div class="form-group" style="width:50%">
+									<span class="tip">请上传公司资质图片，建议200KB以下，格式为jpg，png。</span>
+									<input class="file" type="file" name="" id="icon_address" multiple data-overwrite-initial="false" dada-min-file-count="2">
+								</div>
+								<div>
+									<label style="float:left"><span id="companySignUpTip" style="color: red"></span></label>
+								</div>
+								<div class="form-group last">
+									<input onclick="signUpCompanyFunc()" class="btn btn-warning btn-block btn-lg" value="注册">
+								</div>
+								<p class="privacy text-center">已经有账号，<a href="../templates/signIn.html">立即登录</a></p>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -112,7 +165,7 @@
 			<script src="../static/js/common/jquery.sticky.js" th:src="@{/js/common/jquery.sticky.js}"></script>
 			<script src="../static/js/common/owl.carousel.min.js" th:src="@{/js/common/owl.carousel.min.js}"></script>
 			<script src="../static/js/signUp/signUp.js" th:src="@{/js/signUp/signUp.js}"></script>
-
+			<script src="../static/js/common/fileInput.js" th:src="@{js/common/fileInput.js}"></script>
 			<!-- 测试 -->
 			<!--<script src="http://mockjs.com/dist/mock.js"></script>
 			<script type="text/javascript">

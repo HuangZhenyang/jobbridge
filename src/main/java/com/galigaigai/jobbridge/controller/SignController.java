@@ -7,18 +7,21 @@ import com.galigaigai.jobbridge.repository.StudentRepository;
 import com.galigaigai.jobbridge.service.CompanyService;
 import com.galigaigai.jobbridge.service.StudentService;
 import com.galigaigai.jobbridge.util.CryptoUtil;
+import com.galigaigai.jobbridge.util.FileUploadUtil;
 import com.galigaigai.jobbridge.util.SendInfoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 /**
  * Created by HanrAx on 2018/3/13 0013.
@@ -135,7 +138,7 @@ public class SignController {
      * @throws Exception
      */
     @PostMapping("/sign_up")
-    public void doSignUp(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public void doSignUp(@RequestParam("img_file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception{
         response.setHeader("Access-Control-Allow-Origin", "*");
         String result = "";
         String userName = request.getParameter("userName");
@@ -174,13 +177,22 @@ public class SignController {
                     studentService.addStudent(manager);
                     break;
                 case "e":
-                    String name = request.getParameter("name");
-                    String phoneNum = request.getParameter("phoneNum");
-                    String companyIntroduction = request.getParameter("companyIntroduction");
-                    Integer industryId = Integer.parseInt(request.getParameter("industryId"));
-                    Company company = new Company(userName, name, mailbox, phoneNum, cryptoPassword, companyIntroduction, "",industryId, "e", false);
-                    companyService.addCompany(company);
-                    break;
+                    //处理公司logo上传
+                    if (!file.isEmpty()) {
+                        try {
+                            //获取上传文件存放的目录,无则创建
+                            FileUploadUtil.uploadFile(file);
+                            String name = request.getParameter("name");
+                            String phoneNum = request.getParameter("phoneNum");
+                            String companyIntroduction = request.getParameter("companyIntroduction");
+                            Integer industryId = Integer.parseInt(request.getParameter("industryId"));
+                            Company company = new Company(userName, name, mailbox, phoneNum, cryptoPassword, companyIntroduction, "/img/comlogo/"+file.getOriginalFilename(),industryId, "e", false);
+                            companyService.addCompany(company);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            break;
+                        }
+                    }
             }
         }
 
