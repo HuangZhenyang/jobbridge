@@ -684,6 +684,48 @@ MAIN CONTENT
                                                                 <div class="col-lg-12">
                                                                     <div id="timeline" class="timeline-centered timeline-sm" >
 
+
+
+                                                                        <article th:class="${timeStat.index % 2 == 0} ? 'timeline-entry' : 'timeline-entry left-aligned'" th:each="time, timeStat : ${timeList}">
+                                                                            <div class='timeline-entry-inner' >
+                                                                                <time class='timeline-time'>
+                                                                                    <span th:text="${time}">
+                                                                                    </span>
+                                                                                </time>
+                                                                                <div class="timeline-icon " th:classappend="${timeStat.index % 2} ? 'bg-violet' : 'bg-blue'">
+                                                                                    <i class="fa " th:classappend="${timeStat.index % 2} ? 'fa-group' : 'fa-paper-plane'">
+                                                                                    </i>
+                                                                                </div>
+                                                                                <div class="timeline-label " th:classappend="${timeStat.index % 2} ? 'bg-violet' : 'bg-blue'">
+                                                                                    <h4 class='timeline-title'>
+                                                                                        <a th:href="@{'/student/recruit?id=' + ${recruitList[timeStat.index].recruitId}}">
+                                                                                            <span style='color: #ffffff' th:text="${recruitList[timeStat.index].jobName} + ${companyNameList[timeStat.index]}">
+                                                                                            </span>
+                                                                                        </a>
+                                                                                        <span style="float: right" class="badge" th:classappend="${timeStat.index % 2} ? 'bg-theme' : 'bg-info'" th:text="${recruitList[timeStat.index] == 'true'} ?  '职位已删除' : ''">
+                                                                                        </span>
+                                                                                    </h4>
+                                                                                    <hr>
+                                                                                    <p th:text="${recruitList[timeStat.index].jobDescribe} + '.'">
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div th:if="${timeStat.index == timeStat.size - 1}">
+                                                                                <div class='timeline-entry-inner'>
+                                                                                    <div style='-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);' class='timeline-icon'>
+                                                                                        <a href='/recruit/info'>
+                                                                                            <i class='fa fa-plus'>
+                                                                                            </i>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </article>
+
+
+
+
+
                                                                     </div>
                                                                 </div>
                                                         <!-- react-empty: 405 -->
