@@ -692,7 +692,7 @@ MAIN CONTENT
                                                                             <span class="my-label">邮箱：</span>
                                                                             <div class="value" data-jsx="3479566426"
                                                                                  data-reactid="70" ><span id="mailbox"
-                                                                                                         class="my-label" style="margin-left: 0px"></span>
+                                                                                                         class="my-label" style="margin-left: 0px" th:text="${mailbox}"></span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -708,7 +708,7 @@ MAIN CONTENT
                                                                                 <div class="input-group"><input id="phone"
                                                                                                                 type="text"
                                                                                                                 class="form-control"
-                                                                                                                style="width: 399px;height: 34px;margin-top: -7px;">
+                                                                                                                style="width: 399px;height: 34px;margin-top: -7px;" th:value="${studentDetail.phoneNum}">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -744,7 +744,7 @@ MAIN CONTENT
                                                                             <div class="input-group">
                                                                                 <input id="school" type="text"
                                                                                        class="form-control"
-                                                                                       style="width: 399px;height: 34px;margin-top: -7px;">
+                                                                                       style="width: 399px;height: 34px;margin-top: -7px;" th:value="${studentDetail.universityName}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -763,7 +763,7 @@ MAIN CONTENT
                                                                             <div class="input-group">
                                                                                 <input id="major" type="text"
                                                                                        class="form-control"
-                                                                                       style="width: 399px;height: 34px;margin-top: -7px;">
+                                                                                       style="width: 399px;height: 34px;margin-top: -7px;" th:value="${studentDetail.major}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -782,7 +782,7 @@ MAIN CONTENT
                                                                             <div class="input-group">
                                                                                 <input id="grade" type="text"
                                                                                        class="form-control"
-                                                                                       style="width: 399px;height: 34px;margin-top: -7px;">
+                                                                                       style="width: 399px;height: 34px;margin-top: -7px;" th:value="${studentDetail.grade}">
                                                                             </div>
                                                                         </div>
                                                                     </div>

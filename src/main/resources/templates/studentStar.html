@@ -1045,99 +1045,33 @@ MAIN CONTENT
                                                         </div>
                                                         <div class="content" data-jsx="214730821" data-reactid="58">
                                                             <ul id="star" data-jsx="214730821" data-reactid="59">
-                                                                <!--<li data-jsx="183165769" data-reactid="60">
-                                                                    <div class="position" data-jsx="183165769"
-                                                                         data-reactid="61">
-                                                                        &lt;!&ndash;iconaddress&ndash;&gt;
-                                                                        <div class="logo" data-jsx="183165769"
-                                                                             data-reactid="62"><a href="/job/17959"
-                                                                                                  target="_blank"
-                                                                                                  data-jsx="183165769"
-                                                                                                  data-reactid="63"><img
-                                                                                src=""
-                                                                                data-jsx="183165769" data-reactid="64"></a>
+                                                                <li th:each="company, companyStat:${companyList}" th:id="${company.companyId}" >
+                                                                    <div class='position'>
+                                                                        <div class='logo'>
+                                                                            <a href='#' target='_blank'>
+                                                                                <img th:src="@{${company.iconAddress}}"></a>
                                                                         </div>
-                                                                        &lt;!&ndash;/iconaddress&ndash;&gt;
-                                                                        &lt;!&ndash;comname email phonenum comdesc&ndash;&gt;
-                                                                        <div class="detail" data-jsx="183165769"
-                                                                             data-reactid="65">
-                                                                            <div class="title" data-jsx="183165769"
-                                                                                 data-reactid="66"><a href="/job/17959"
-                                                                                                      target="_blank"
-                                                                                                      data-jsx="183165769"
-                                                                                                      data-reactid="67">实习生</a>
+                                                                        <div class='detail'>
+                                                                            <div class='companyName'>
+                                                                                <a href='#'
+                                                                                   target='_blank'><span th:text="${company.name}">name</span></a>
                                                                             </div>
-                                                                            <div class="company-name"
-                                                                                 data-jsx="183165769" data-reactid="68">
-                                                                                西门子
+                                                                            <div class='contact'>
+                                                                                Email:<span th:text="${company.mailbox}">mailbox</span>&emsp;Tel:<span th:text="${company.phoneNum}" >phoneNum</span>
                                                                             </div>
-                                                                            <div class="wrapper" data-jsx="183165769"
-                                                                                 data-reactid="69">
-                                                                                <div class="address"
-                                                                                     data-jsx="183165769"
-                                                                                     data-reactid="70">天津
-                                                                                </div>
-                                                                                <div class="time" data-jsx="183165769"
-                                                                                     data-reactid="71">2017年07月25日
-                                                                                </div>
+                                                                            <div class='wrapper'
+                                                                                 style='margin-top: 10px;padding-left: 0px;' th:text="${company.companyIntroduction}" >
+                                                                                companyIntroduction
                                                                             </div>
                                                                         </div>
-                                                                        <div class="action" data-jsx="183165769"
-                                                                             data-reactid="72">
-                                                                            <button type="button" class="ant-btn"
-                                                                                    data-reactid="73"><a
-                                                                                    href="/job/17959"
-                                                                                    data-jsx="183165769"
-                                                                                    data-reactid="74">取消收藏</a></button>
+                                                                        <div class='action'>
+                                                                            <button type='button' class='ant-btn'><a
+                                                                                    href='#'
+                                                                                    onclick='cancel(this)'>取消收藏</a>
+                                                                            </button>
                                                                         </div>
-                                                                    </div>&lt;!&ndash; react-empty: 76 &ndash;&gt;</li>
-                                                                <li data-jsx="183165769" data-reactid="77">
-                                                                    <div class="position" data-jsx="183165769"
-                                                                         data-reactid="78">
-                                                                        <div class="logo" data-jsx="183165769"
-                                                                             data-reactid="79"><a href="/job/17888"
-                                                                                                  target="_blank"
-                                                                                                  data-jsx="183165769"
-                                                                                                  data-reactid="80"><img
-                                                                                src="/upload/comp/161125/14800631821658264849770327529969.ori.jpg"
-                                                                                data-jsx="183165769" data-reactid="81"></a>
-                                                                        </div>
-                                                                        <div class="detail" data-jsx="183165769"
-                                                                             data-reactid="82">
-                                                                            <div class="title" data-jsx="183165769"
-                                                                                 data-reactid="83"><a href="/job/17888"
-                                                                                                      target="_blank"
-                                                                                                      data-jsx="183165769"
-                                                                                                      data-reactid="84">人力资源部实习生</a>
-                                                                            </div>
-                                                                            <div class="company-name"
-                                                                                 data-jsx="183165769" data-reactid="85">
-                                                                                宝马
-                                                                            </div>
-                                                                            <div class="wrapper" data-jsx="183165769"
-                                                                                 data-reactid="86">
-                                                                                <div class="address"
-                                                                                     data-jsx="183165769"
-                                                                                     data-reactid="87">北京
-                                                                                </div>
-                                                                                <div class="time" data-jsx="183165769"
-                                                                                     data-reactid="88">2017年07月25日
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="action" data-jsx="183165769"
-                                                                             data-reactid="89">
-                                                                            <button type="button" class="ant-btn"
-                                                                                    data-reactid="90"><a
-                                                                                    href="/job/17888"
-                                                                                    data-jsx="183165769"
-                                                                                    data-reactid="91">投个简历</a></button>
-                                                                            <div class="cancel-collect"
-                                                                                 data-jsx="183165769" data-reactid="92">
-                                                                                取消收藏
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>&lt;!&ndash; react-empty: 93 &ndash;&gt;</li>-->
+                                                                    </div>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                         <div class="pagination" data-jsx="214730821"
