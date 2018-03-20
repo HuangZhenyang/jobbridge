@@ -49,13 +49,14 @@ public class RecruitController {
         List<City> cityList = cityRepository.findAll();
         List<Tag> tagList = tagRepository.findAll();
 //        转化为string数组
-        String[] cityDictionary = new String[cityList.size()];
-        String[] functionDictionary = new String[tagList.size()];
-
-        for(int i = 0;i < cityList.size();i++){
+        String[] cityDictionary = new String[cityList.size() + 1];
+        String[] functionDictionary = new String[tagList.size() + 1];
+        cityDictionary[0] = "不限";
+        functionDictionary[0] = "不限";
+        for(int i = 1;i <= cityList.size();i++){
             cityDictionary[i] = cityList.get(i).getName();
         }
-        for(int i = 0;i < tagList.size();i++){
+        for(int i = 1;i <= tagList.size();i++){
             functionDictionary[i] = tagList.get(i).getName();
         }
         model.addAttribute("cityDictionary",cityDictionary);
