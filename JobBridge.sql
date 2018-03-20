@@ -5,6 +5,7 @@ drop table if exists review;
 drop table if exists inform_interview;
 drop table if exists recruit_tag;
 drop table if exists recruit;
+drop table if exists city;
 drop table if exists tag;
 drop table if exists company;
 drop table if exists industry;
@@ -69,6 +70,13 @@ create table tag(
 	name  						VARCHAR(20),
 	primary key(tag_id)
 );
+
+create table city(
+	city_id 					int AUTO_INCREMENT,
+	name 						VARCHAR(20),
+	primary key(city_id)
+);
+
 create table recruit(
 	recruit_id  				BIGINT(20) AUTO_INCREMENT,
 	company_id  				BIGINT(20),
@@ -195,6 +203,9 @@ insert into resume
 
 insert into tag
 	values(1,'咨询/数据分析/行业研究/战略'),(2,'市场与销售'),(3,'运营'),(4,'财务/审计/税务/融资'),(5,'银行/基金/保险/证券'),(6,'记者/编辑/文案/策划'),(7,'投资'),(8,'产品'),(9,'广告/公关'),(10,'项目管理'),(11,'人力资源'),(12,'行政'),(13,'技术'),(14,'采购/供应链'),(15,'设计'),(16,'其他');
+
+insert into city
+	values(1,"北京"),(2,"上海"),(3,"广州"),(4,"深圳"),(5,"武汉"),(6,"南京"),(7,"成都"),(8,"天津"),(9,"杭州"),(10,"苏州"),(11,"西安"),(12,"大连"),(13,"其他");
 
 insert into star_company
 	values(1,1);

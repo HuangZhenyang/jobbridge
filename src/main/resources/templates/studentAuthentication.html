@@ -691,7 +691,9 @@ MAIN CONTENT
                                                                             <div class="value" data-jsx="3479566426"
                                                                                  style="padding-left: 0px;">
                                                                                 <div class="input-group">
-                                                                                    <input id="mailbox" type="text" class="form-control" style="width: 399px;height: 34px; margin-top: -7px;">
+                                                                                    <input id="mailbox" type="text" class="form-control" style="width: 399px;height: 34px; margin-top: -7px;"
+                                                                                           th:value="${authentication == 'true'}? '您已通过学生认证' : '未通过认证'"
+                                                                                           th:disabled="${authentication}"/>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -703,8 +705,8 @@ MAIN CONTENT
                                                                  data-reactid="402" style="text-align: center;margin-bottom: 15px;">
                                                                 <button id="submitButton" type="button" class="ant-btn ant-btn-primary"
                                                                         onclick="submitFunc()"
-                                                                        data-reactid="403"><span
-                                                                        data-reactid="404">提 交</span>
+                                                                        data-reactid="403" th:disabled="${authentication}">
+                                                                    <span data-reactid="404">提 交</span>
                                                                 </button><br>
                                                                 <label><span id="submitTip" style="color:red;"></span></label>
                                                             </div>

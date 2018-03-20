@@ -1046,7 +1046,7 @@ MAIN CONTENT
                                                         <div class="content" data-jsx="214730821" data-reactid="58">
                                                             <ul id="star" data-jsx="214730821" data-reactid="59">
 
-                                                                <li th:each="company, companyStat:${companyList}" th:id="${company.companyId}" >
+                                                                <!--<li th:each="company, companyStat:${companyList}" th:id="${company.companyId}" >
                                                                     <div class='position'>
                                                                         <div class='logo'>
                                                                             <a href='#' target='_blank'>
@@ -1073,7 +1073,36 @@ MAIN CONTENT
                                                                             </button>
                                                                         </div>
                                                                     </div>
+                                                                </li>-->
+                                                                <li th:id="${company.companyId}" th:each="company, companyStat:${companyList}" data-jsx='183165769'>
+                                                                    <div class='position' data-jsx='183165769'>
+                                                                        <div class='logo' data-jsx='183165769'>
+                                                                            <a href='#' target='_blank' data-jsx='183165769'>
+                                                                                <img th:src="@{${company.iconAddress}}" data-jsx='183165769' />
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class='detail' data-jsx='183165769'>
+                                                                            <div class='companyName' data-jsx='183165769'>
+                                                                                <a href='#' target='_blank' data-jsx='183165769'>
+                                                                                    <span th:text="${company.name}">
+                                                                                    </span>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class='contact'  data-jsx='183165769'>
+                                                                                <span th:text="' Email:' + ${company.mailbox}">mailbox</span>
+                                                                                <span th:text="' Tel:' + ${company.phoneNum}" >phoneNum</span>
+                                                                            </div>
+                                                                            <div class='wrapper'  data-jsx='183165769'  style='margin-top: 10px;padding-left: 0px;' th:text="${company.companyIntroduction}" >
+                                                                                companyIntroduction
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class='action' data-jsx='183165769'>
+                                                                            <button type='button' class='ant-btn'><a href='#' onclick='cancel(this)'>取消收藏</a>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
                                                                 </li>
+
 
                                                             </ul>
                                                         </div>

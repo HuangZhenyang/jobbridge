@@ -108,8 +108,15 @@ public class CompanyController {
             response.sendRedirect("/");
         }
         Company company = (Company) loginUser;
+//        查找意向字典
+        List<Tag> tagList = tagRepository.findAll();
+//        转化为string数组
+        String[] functionDictionary = new String[tagList.size()];
+        for(int i = 0;i < tagList.size();i++){
+            functionDictionary[i] = tagList.get(i).getName();
+        }
+        model.addAttribute("functionDictionary",functionDictionary);
         model.addAttribute("userName", company.getUserName());
-
         return "companyPublishRecruit";
     }
 
@@ -143,6 +150,14 @@ public class CompanyController {
             model.addAttribute("recruitList", recruitList);
         }
 
+        //        查找意向字典
+        List<Tag> tagList = tagRepository.findAll();
+//        转化为string数组
+        String[] functionDictionary = new String[tagList.size()];
+        for(int i = 0;i < tagList.size();i++){
+            functionDictionary[i] = tagList.get(i).getName();
+        }
+        model.addAttribute("functionDictionary",functionDictionary);
         model.addAttribute("userName", company.getUserName());
 
         return "companyPublishedRecruit";

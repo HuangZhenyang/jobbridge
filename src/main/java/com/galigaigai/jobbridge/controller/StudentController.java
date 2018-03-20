@@ -74,6 +74,12 @@ public class StudentController {
     @Autowired
     private ResumeSendService resumeSendService;
 
+    @Autowired
+    private CityRepository cityRepository;
+
+    @Autowired
+    private IndustryRepository industryRepository;
+
     /**
      * 请求学生简历页面
      */
@@ -178,13 +184,41 @@ public class StudentController {
         if (studentDetail == null) {
             return "studentInfo";
         }
+//        找到该学生的意向
         String[] intentionCity = ParseStringUtil.parseString(studentDetail.getIntentionCity());
         String[] intentionIndustry = ParseStringUtil.parseString(studentDetail.getIntentionIndustry());
         String[] intentionFunction = ParseStringUtil.parseString(studentDetail.getIntentionFunction());
+//        查找意向字典
+        List<City> cityList = cityRepository.findAll();
+        List<Industry> industryList = industryRepository.findAll();
+        List<Tag> tagList = tagRepository.findAll();
+//        转化为string数组
+        String[] cityDictionary = new String[cityList.size()];
+        String[] industryDictionary = new String[industryList.size()];
+        String[] functionDictionary = new String[tagList.size()];
+
+        for(int i = 0;i < cityList.size();i++){
+            cityDictionary[i] = cityList.get(i).getName();
+        }
+        for(int i = 0;i < industryList.size();i++){
+            industryDictionary[i] = industryList.get(i).getName();
+        }
+        for(int i = 0;i < tagList.size();i++){
+            functionDictionary[i] = tagList.get(i).getName();
+        }
+//        调用函数，得到学生意向向量表
+        String[] intentionCityVector = StudentInfoUtil.getStudentIntention(cityDictionary,intentionCity);
+        String[] intentionIndustryVector = StudentInfoUtil.getStudentIntention(industryDictionary,intentionIndustry);
+        String[] intentionFunctionVector = StudentInfoUtil.getStudentIntention(functionDictionary,intentionFunction);
+
+//        返回渲染数据
         model.addAttribute("studentDetail",studentDetail);
-        model.addAttribute("intentionCity",intentionCity);
-        model.addAttribute("intentionIndustry",intentionIndustry);
-        model.addAttribute("intentionFunction",intentionFunction);
+        model.addAttribute("intentionCity",intentionCityVector);
+        model.addAttribute("intentionIndustry",intentionIndustryVector);
+        model.addAttribute("intentionFunction",intentionFunctionVector);
+        model.addAttribute("cityDictionary",cityDictionary);
+        model.addAttribute("industryDictionary",industryDictionary);
+        model.addAttribute("functionDictionary",functionDictionary);
         return "studentInfo";
     }
 

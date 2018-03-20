@@ -36,7 +36,7 @@ public class RecruitController {
     @Autowired
     private CompanyRepository companyRepository;
     @Autowired
-    private IndustryRepository industryRepository;
+    private CityRepository cityRepository;
 
     /**
      * 这里可以无登录访问
@@ -45,6 +45,22 @@ public class RecruitController {
     @GetMapping(value = "/info")
     public String recruit(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
+//        查找意向字典
+        List<City> cityList = cityRepository.findAll();
+        List<Tag> tagList = tagRepository.findAll();
+//        转化为string数组
+        String[] cityDictionary = new String[cityList.size()];
+        String[] functionDictionary = new String[tagList.size()];
+
+        for(int i = 0;i < cityList.size();i++){
+            cityDictionary[i] = cityList.get(i).getName();
+        }
+        for(int i = 0;i < tagList.size();i++){
+            functionDictionary[i] = tagList.get(i).getName();
+        }
+        model.addAttribute("cityDictionary",cityDictionary);
+        model.addAttribute("functionDictionary",functionDictionary);
+
         // 定义数据结构
         List<Recruit> recruitList = new ArrayList<>();
         List<Company> companyList = new ArrayList<>();
