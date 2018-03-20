@@ -1,3 +1,10 @@
+/**
+ * 全局变量
+ * */
+let bg = ["bg-violet", "bg-green", "bg-pink", "bg-blue"]; //设置背景色
+let icon = ["fa-group", "fa-paper-plane", "fa-coffee"]; //设置图标
+let bgThemes = ["bg-theme","bg-warning","bg-success","bg-info","bg-important"];
+
 $(document).ready(function () {
     getHeaderUserName();
     getData();
@@ -19,15 +26,15 @@ function getData() {
 
 //操作DOM,插入数据
 function setsendData(data) {
-    var sendDataDom = "";
-    var eachsendDataDom = "";
-    var contentDom = "";
-    var data = data.resumeSendData;
-    var position = "";
-    var haveDelete = "";
-    var bg = ["bg-violet", "bg-green", "bg-pink", "bg-blue"]; //设置背景色
-    var icon = ["fa-group", "fa-paper-plane", "fa-coffee"]; //设置图标
-    var bgThemes = ["bg-theme","bg-warning","bg-success","bg-info","bg-important"];
+    let sendDataDom = "";
+    let eachsendDataDom = "";
+    let contentDom = "";
+    let data = data.resumeSendData;
+    let position = "";
+    let haveDelete = "";
+    let bg = ["bg-violet", "bg-green", "bg-pink", "bg-blue"]; //设置背景色
+    let icon = ["fa-group", "fa-paper-plane", "fa-coffee"]; //设置图标
+    let bgThemes = ["bg-theme","bg-warning","bg-success","bg-info","bg-important"];
 
     if(data.length === 0){
         sendDataDom = "<h4> Oops! 你似乎还没投递任何简历哦</h4> ";
@@ -45,6 +52,7 @@ function setsendData(data) {
             } else {
                 position = "timeline-entry left-aligned";
             }
+
             contentDom = "<div class='timeline-entry-inner'>" +
                 "<time class='timeline-time'><span>" + data[i].time + "</span>" + "</time>" +
                 "<div class='timeline-icon " + bg[i % bg.length] + "'>" + "<i class='fa " + icon[i % icon.length] + "'></i></div>" +

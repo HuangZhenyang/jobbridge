@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,9 +33,41 @@ public class CompanyService {
     }
 
     /**
-     * 查询得到所有的公司
-     * */
-    public List<Company> findAllCompany(){
-        return companyRepository.findAll();
+     * 查找已审核的公司与没有审核的公司
+     * @param AuditOrNot true为选择已审核过的所有公司，false为选择未审核的公司
+     * @return 根据AuditOrNot的值，返回不同的company List
+     */
+    @Transactional
+    public List<Company> findCompanyAuditOrNot(Boolean AuditOrNot){
+        List<Company> companyList = companyRepository.findAll();
+        List<Company> resultCompanyList  = new ArrayList<>();
+        for (Company company : companyList) {
+            if (company.getAuditing() == AuditOrNot){
+                resultCompanyList.add(company);
+            }
+        }
+        return resultCompanyList;
+    }
+
+    /**
+     * 公司通过管理员的审核后，
+     * 通过公司ID来改变该公司的审核状态
+     */
+    @Transactional
+    public void updateAuditingByCompanyId(Long companyId) {
+        Company company = companyRepository.findByCompanyId(companyId);
+        if (company.getAuditing()){
+            System.out.println("该公司已经通过审核了，无需修改审核状态");
+        }else{
+            company.setAuditing(true);
+        }
+    }
+
+    /**
+     * 公司审核未通过，被拒绝，删除公司记录
+     * @param companyId
+     */
+    public void deleteCompanyByCompanyId(Long companyId) {
+        companyRepository.deleteById(companyId);
     }
 }
