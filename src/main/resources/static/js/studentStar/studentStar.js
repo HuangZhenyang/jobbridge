@@ -93,9 +93,9 @@ function setData(data) {
  *  取消收藏
  * */
 function cancel(evt) {
-    //alert($(evt).parent().parent().parent().parent().attr('id'));
+    alert($(evt).parent().parent().parent().parent().attr('id'));
     $.ajax({
-        url: '/student/star?id=' + $(evt).parent().parent().parent().parent().attr('id'),
+        url: '/student/star_company?companyId=' + $(evt).parent().parent().parent().parent().attr('id'),
         type: 'delete',
         dataType: 'json'
     }).done(function (data) {

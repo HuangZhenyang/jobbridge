@@ -71,12 +71,14 @@ function setData(data) {
 * */
 function starButtonFunc(evt) {
     if($(evt).text().trim() === "收藏"){
+        alert($('.my-send-button').attr('id'));
         $.ajax({
             url:'/student/star',
             type:'post',
             dataType:'json',
             data:{
-                "companyid":$(evt).attr('id')
+                "companyId" : $(evt).attr('id'),
+                "recruitId" : $('.my-send-button').attr('id')
             }
         }).done(function (data) {
             if(data.ok==='true'){
@@ -89,7 +91,7 @@ function starButtonFunc(evt) {
         });
     }else if($(evt).text().trim() === "已收藏"){ //取消收藏
         $.ajax({
-            url:'/student/star?id='+$(evt).attr('id'),
+            url:'/student/star?companyId='+$(evt).attr('id') + "&recruitId=" + $('.my-send-button').attr('id'),
             type:'delete',
             dataType:'json',
         }).done(function (data) {

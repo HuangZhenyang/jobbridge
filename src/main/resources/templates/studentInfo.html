@@ -995,7 +995,7 @@ MAIN CONTENT
 
 
                                                                                 <label class="ant-checkbox-group-item ant-checkbox-wrapper" th:each="industry, industryStat : ${industryDictionary}">
-                                                                                    <input name="city" type="checkbox" th:value="${industry}" class="checkbox-bg" style="vertical-align:middle;margin-top: -0.5px;" th:checked="${intentionIndustry[industryStat.index] == '1'} ? 'true' : 'false'"/>
+                                                                                    <input name="industry" type="checkbox" th:value="${industry}" class="checkbox-bg" style="vertical-align:middle;margin-top: -0.5px;" th:checked="${intentionIndustry[industryStat.index] == '1'} ? 'true' : 'false'"/>
                                                                                     <span style="margin-left: 6px;vertical-align:middle;" th:text="${industry}"></span>
                                                                                 </label>
 
@@ -1249,7 +1249,7 @@ MAIN CONTENT
                                                                                  data-reactid="320">
 
                                                                                 <label class="ant-checkbox-group-item ant-checkbox-wrapper" th:each="function, functionStat : ${functionDictionary}">
-                                                                                    <input name="city" type="checkbox" th:value="${function}" class="checkbox-bg" style="vertical-align:middle;margin-top: -0.5px;" th:checked="${intentionFunction[functionStat.index] == '1'} ? 'true' : 'false'"/>
+                                                                                    <input name="func" type="checkbox" th:value="${function}" class="checkbox-bg" style="vertical-align:middle;margin-top: -0.5px;" th:checked="${intentionFunction[functionStat.index] == '1'} ? 'true' : 'false'"/>
                                                                                     <span style="margin-left: 6px;vertical-align:middle;" th:text="${function}"></span>
                                                                                 </label>
 

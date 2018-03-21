@@ -1066,7 +1066,10 @@ MAIN CONTENT
                                                             class="fa fa-hand-o-right" data-reactid="37"></i><span
                                                             data-reactid="38" style="color:#00a2ae">收藏的职位</span></a></li>
                                                     <div class="row" id="star-job">
-
+                                                        <div class='col-lg-6' th:each="functionName : ${functionNameList}" style=" line-height: 25px; ">
+                                                            <span th:text="${functionName}">
+                                                            </span>
+                                                        </div>
                                                     </div>
 
 
