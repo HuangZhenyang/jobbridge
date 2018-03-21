@@ -186,7 +186,8 @@ public class SignController {
                             String phoneNum = request.getParameter("phoneNum");
                             String companyIntroduction = request.getParameter("companyIntroduction");
                             Integer industryId = Integer.parseInt(request.getParameter("industryId"));
-                            Company company = new Company(userName, name, mailbox, phoneNum, cryptoPassword, companyIntroduction, "/img/comlogo/"+file.getOriginalFilename(),industryId, "e", false);
+                            String iconAddress = "/img/comlogo/"+file.getOriginalFilename();
+                            Company company = new Company(userName, name, mailbox, phoneNum, cryptoPassword, companyIntroduction, iconAddress,industryId, "e", false);
                             companyService.addCompany(company);
                         } catch (IOException e) {
                             e.printStackTrace();
