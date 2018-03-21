@@ -1143,12 +1143,12 @@
         $("#companyEntrance").mouseup(function () {
             if (loginUser === null){
                 alert("您还没有登录，请先登录！");
-                $("#companyEntrance").attr("href","/");
+                $("#companyEntrance").attr("href","/recruit/info");
             }
             else{
                 if(loginUser.identity !== 'e'){
                     alert("您还没有注册公司账号，请先注册");
-                    $("#companyEntrance").attr("href","/");
+                    $("#companyEntrance").attr("href","/recruit/info");
                 }
             }
         });

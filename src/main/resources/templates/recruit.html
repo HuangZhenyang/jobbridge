@@ -28,6 +28,16 @@
 
     <!--my class-->
     <link href="../static/css/common/style.css" th:href="@{/css/common/style.css}">
+    <link rel="stylesheet" href="../static/css/common/common.css" th:href="@{/css/common/common.css}">
+    <style type="text/css">
+        .jobbridge-header{
+            background: #292c2d !important;
+        }
+        .interlayer{
+            width: 100%;
+            height: 36px;
+        }
+    </style>
 
     <!--stuinfo-->
     <link rel="stylesheet" href="../static/css/common/antd.min.css" class="next-head" th:href="@{/css/common/antd.min.css}">
@@ -589,29 +599,57 @@
 TOP BAR CONTENT & NOTIFICATIONS
 *********************************************************************************************************************************************************** -->
     <!--header start-->
-    <header class="header my-nav">
-        <!--logo start-->
-        <a href="../" class="logo"><b><span style="color: black">JobBridge</span></b></a>
-        <!--logo end-->
-
-        <div class="top-menu">
-            <!--<ul class="nav pull-right top-menu">
-                <li><a class="signOut" href="signIn.html">Logout</a></li>
-            </ul>-->
-            <ol class="breadcrumb" style="float: right;margin-top: 12px;">
-                <li><a href="/student/info">个人中心</a></li>
-                <li><a href="/student/info"><span id="header-userName"></span></a></li>
-                <li><a class="signOut" href="/sign_out"><span>退出</span></a></li>
-            </ol>
-        </div>
-        <div class="container-fluid" style="float: right;">
-            <div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/recruit/info">
-                        <button type="button" class="btn btn-round btn-info fa fa-search ">&nbsp;&nbsp;职海</button>
-                    </a></li>
-                </ul>
+    <header class="jobbridge-header has-transition">
+        <div class="header-box">
+            <a href="/" class="logo" style="background: url('../static/img/comlogo/jobbridge.png') no-repeat" th:style="'background:url(' + @{/img/comlogo/jobbridge.png} + ') no-repeat;'"></a>
+            <div class="header-right">
+                <div class='user'>
+                    <a href='javascript:;' class='user-info'>
+                        <span class='uinfo'>
+                            <span class='uname'>
+                                <i class="fa fa-user-o headshot"></i>
+                                <b th:text="${student.userName}"></b>
+                            </span>
+                        </span>
+                    </a>
+                    <div class='user-control'>
+                        <div class ='uc-menu'>
+                            <ul class='uc-menu-ul'>
+                                <li class='uc-menu-li'>
+                                    <a href='/student/info'>设置</a>
+                                </li>
+                                <li class='uc-menu-li'>
+                                    <a href='/sign_out'>退出</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <ul class="main-menu">
+                <span class="menu-line" hidden = "hidden"></span>
+                <li class="main-menu-li">
+                    <a href="/">
+                        <span>主页</span>
+                    </a>
+                </li>
+                <li class="main-menu-li">
+                    <a href="/recruit/info">
+                        <span>职位信息</span>
+                    </a>
+                </li>
+                <li class="main-menu-li">
+                    <a href="#">
+                        <span>人脉</span>
+                    </a>
+                </li>
+                <li class="main-menu-li">
+                    <a id = "companyEntrance" href="/recruit/info">
+                        <span>企业入口</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </header>
     <!--header end-->
@@ -622,6 +660,7 @@ MAIN CONTENT
     <!--main content start-->
     <section id="main-content" style="margin-left: 1px;">
         <section class="wrapper">
+            <div class="interlayer"></div>
             <!-- page start-->
             <div id="__next">
                 <div data-reactroot="" data-reactid="1" data-react-checksum="-1332626374">
@@ -789,6 +828,48 @@ MAIN CONTENT
 <script type="text/javascript" src="../static/js/studentInfo/check.js" th:src="@{/js/studentInfo/check.js}"></script>
 <script src="../static/js/recruit/recruit.js" th:src="@{/js/recruit/recruit.js}"></script>
 <script src="../static/js/getUserName.js" th:src="@{/js/getUserName.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("ul.main-menu").mouseleave(
+            function () {
+                $("span.menu-line").attr("hidden", "hidden")
+                $("span.menu-line").css({"opacity": "0", "width": "0"});
+                $("span.menu-line").removeClass("transition");
+            }
+        );
+        $("ul>li.main-menu-li").hover(
+            function (e) {
+                e.stopPropagation();
+                $(this).addClass("hover");
+                var left = $(this).offset().left;
+                var width = $(this).width();
+                if ($("span.menu-line").attr("hidden")) {
+                    $("span.menu-line").removeAttr("hidden").offset({left: left}).css({
+                        "display": "inline",
+                        "opacity": "1"
+                    });
+                    $("span.menu-line").animate({width: width}, 'fast');
+                } else {
+                    $("span.menu-line").addClass("transition");
+                    $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
+                }
+            },
+            function (e) {
+                //e.stopPropagation();
+                $(this).removeClass("hover");
+                if (($("ul>li.main-menu-li").hasClass('hover'))) {
+                    $("span.menu-line").css({"opacity": "0", "width": "0"});
+                    $("span.menu-line").removeClass("transition");
+                }
+            }
+        );
+        $("#companyEntrance").mouseup(
+            function () {
+                alert("您还没有注册公司账号，请先注册");
+            }
+        );
+    });
+</script>
 
  <!--测试-->
 <!--<script src="http://mockjs.com/dist/mock.js"></script>
