@@ -5,6 +5,7 @@ drop table if exists review;
 drop table if exists inform_interview;
 drop table if exists recruit_tag;
 drop table if exists recruit;
+drop table if exists city;
 drop table if exists tag;
 drop table if exists company;
 drop table if exists industry;
@@ -69,6 +70,13 @@ create table tag(
 	name  						VARCHAR(20),
 	primary key(tag_id)
 );
+
+create table city(
+	city_id 					int AUTO_INCREMENT,
+	name 						VARCHAR(20),
+	primary key(city_id)
+);
+
 create table recruit(
 	recruit_id  				BIGINT(20) AUTO_INCREMENT,
 	company_id  				BIGINT(20),
@@ -188,13 +196,16 @@ insert into company
 		'今日头条是一款基于数据挖掘的推荐引擎产品，它为用户推荐有价值的、个性化的信息，提供连接人与信息的新型服务，是国内移动互联网领域成长最快的产品服务之一','/img/comlogo/jinritoutiao.png',1,'e',1);
 
 insert into student_detail
-	values(1,'2015141463140@stu.scu.edu.cn','17761279281','四川大学','软件工程',2015,'[上海,成都]','[互联网]','[项目管理,技术]',0);
+	values(1,'2015141463140@stu.scu.edu.cn','17761279281','四川大学','软件工程',2015,'[上海,成都]','[互联网]','[项目管理,技术]',1);
 
 insert into resume
 	values(1,1,'{"name":"何干事","address":"dad","phone":"1232341312321","mail":"312321232@qq.com","edus":[{"school":"斯坦佛大学","city":"试试","province":"飒飒","college":"2问问","end_time":"1212","grade":"4.0","honors":"12","related_course":"1212"}],"works":[{"company":"alimamama","city":"11","province":"112","position":"大佬","project":"支付宝","start_time":"121","end_time":"111","sentence_1":"牛皮","sentence_2":"西南地区第一ADC","sentence_3":"西南地区第一ADC","sentence_4":"西南地区第一ADC"},{"company":"腾讯","city":"成都","province":"四川","position":"HR","project":"找人","start_time":"11","end_time":"1111","sentence_1":"西南地区第一ADC","sentence_2":"西南地区第一ADC","sentence_3":"西南地区第一ADC","sentence_4":"西南地区第一ADC"}],"leader":{"organization":[{"name":"西南地区第一ADC","position":"西南地区第一ADC","start_time":"12","end_time":"122","sentence_1":"西南地区第一ADC","sentence_2":"西南地区第一ADC","sentence_3":"西南地区第一ADC"}],"club":[{"name":"西南地区第一ADC","position":"西南地区第一ADC","start_time":"11","end_time":"122","sentence_1":"西南地区第一ADC","sentence_2":"西南地区第一ADC"}]},"skill":{"language":"西南地区第一ADC","computer":"西南地区第一ADC","hobby":"西南地区第一ADC"}}');
 
 insert into tag
 	values(1,'咨询/数据分析/行业研究/战略'),(2,'市场与销售'),(3,'运营'),(4,'财务/审计/税务/融资'),(5,'银行/基金/保险/证券'),(6,'记者/编辑/文案/策划'),(7,'投资'),(8,'产品'),(9,'广告/公关'),(10,'项目管理'),(11,'人力资源'),(12,'行政'),(13,'技术'),(14,'采购/供应链'),(15,'设计'),(16,'其他');
+
+insert into city
+	values(1,"北京"),(2,"上海"),(3,"广州"),(4,"深圳"),(5,"武汉"),(6,"南京"),(7,"成都"),(8,"天津"),(9,"杭州"),(10,"苏州"),(11,"西安"),(12,"大连"),(13,"其他");
 
 insert into star_company
 	values(1,1);

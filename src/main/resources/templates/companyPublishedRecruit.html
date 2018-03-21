@@ -875,9 +875,20 @@ MAIN CONTENT
                                             </div>
                                             <div class="value" data-jsx="3479566426"
                                                  data-reactid="198" style="margin-left: 40px;">
-                                                <div class="ant-checkbox-group"
-                                                     data-reactid="199">
+                                                <div class="ant-checkbox-group" data-reactid="199">
                                                     <label class="ant-checkbox-group-item ant-checkbox-wrapper"
+                                                           th:each="function : ${functionDictionary}">
+                                                        <input
+                                                            name="industry"
+                                                            type="checkbox"
+                                                            th:value="${function}"
+                                                            class="checkbox-bg"
+                                                            style="vertical-align:middle;">
+                                                        <span style="margin-left: 6px;vertical-align:middle;"  th:text="${function}"></span>
+                                                    </label>
+
+
+                                                    <!--<label class="ant-checkbox-group-item ant-checkbox-wrapper"
                                                            data-reactid="200"><input
                                                             name="industry"
                                                             type="checkbox"
@@ -1035,7 +1046,7 @@ MAIN CONTENT
                                                             class="checkbox-bg"
                                                             style="vertical-align:middle;"><span
                                                             style="margin-left: 6px;vertical-align:middle;">其他</span>
-                                                    </label>
+                                                    </label>-->
                                                 </div>
                                             </div>
                                         </div>

@@ -818,7 +818,13 @@ MAIN CONTENT
                                                                              data-reactid="127" style="margin-top: -3px;">
                                                                             <div class="ant-checkbox-group"
                                                                                  data-reactid="128">
-                                                                                <label class="ant-checkbox-group-item ant-checkbox-wrapper"
+
+                                                                                <label class="ant-checkbox-group-item ant-checkbox-wrapper" th:each="city, cityStat : ${cityDictionary}">
+                                                                                    <input name="city" type="checkbox" th:value="${city}" class="checkbox-bg" style="vertical-align:middle;margin-top: -0.5px;" th:checked="${intentionCity[cityStat.index] == '1'} ? 'true' : 'false'"/>
+                                                                                    <span style="margin-left: 6px;vertical-align:middle;" th:text="${city}"></span>
+                                                                                </label>
+
+                                                                                <!--<label class="ant-checkbox-group-item ant-checkbox-wrapper"
                                                                                        data-reactid="129">
                                                                                     <input name="city" type="checkbox"
                                                                                            value="北京"
@@ -929,7 +935,7 @@ MAIN CONTENT
                                                                                         value="其他"
                                                                                         class="checkbox-bg"
                                                                                         style="vertical-align:middle;margin-top: -0.5px;"><span
-                                                                                        style="margin-left: 6px;vertical-align:middle;">其他</span></label>
+                                                                                        style="margin-left: 6px;vertical-align:middle;">其他</span></label>-->
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -949,7 +955,14 @@ MAIN CONTENT
                                                                              data-reactid="198" style="margin-top: -3px;">
                                                                             <div class="ant-checkbox-group"
                                                                                  data-reactid="199">
-                                                                                <label class="ant-checkbox-group-item ant-checkbox-wrapper"
+
+
+                                                                                <label class="ant-checkbox-group-item ant-checkbox-wrapper" th:each="industry, industryStat : ${industryDictionary}">
+                                                                                    <input name="city" type="checkbox" th:value="${industry}" class="checkbox-bg" style="vertical-align:middle;margin-top: -0.5px;" th:checked="${intentionIndustry[industryStat.index] == '1'} ? 'true' : 'false'"/>
+                                                                                    <span style="margin-left: 6px;vertical-align:middle;" th:text="${industry}"></span>
+                                                                                </label>
+
+                                                                                <!--<label class="ant-checkbox-group-item ant-checkbox-wrapper"
                                                                                        data-reactid="200"><input
                                                                                         name="industry"
                                                                                         type="checkbox"
@@ -1177,7 +1190,7 @@ MAIN CONTENT
                                                                                         class="checkbox-bg"
                                                                                         style="vertical-align:middle;margin-top: -0.5px;"><span
                                                                                         style="margin-left: 6px;vertical-align:middle;">教育/科研/非盈利</span>
-                                                                                </label>
+                                                                                </label>-->
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1197,7 +1210,15 @@ MAIN CONTENT
                                                                              data-reactid="319" style="margin-top: -3px;">
                                                                             <div class="ant-checkbox-group"
                                                                                  data-reactid="320">
-                                                                                <label class="ant-checkbox-group-item ant-checkbox-wrapper"
+
+                                                                                <label class="ant-checkbox-group-item ant-checkbox-wrapper" th:each="function, functionStat : ${functionDictionary}">
+                                                                                    <input name="city" type="checkbox" th:value="${function}" class="checkbox-bg" style="vertical-align:middle;margin-top: -0.5px;" th:checked="${intentionFunction[functionStat.index] == '1'} ? 'true' : 'false'"/>
+                                                                                    <span style="margin-left: 6px;vertical-align:middle;" th:text="${function}"></span>
+                                                                                </label>
+
+
+
+                                                                                <!--<label class="ant-checkbox-group-item ant-checkbox-wrapper"
                                                                                        data-reactid="321"><input
                                                                                         name="func"
                                                                                         type="checkbox"
@@ -1355,7 +1376,7 @@ MAIN CONTENT
                                                                                         class="checkbox-bg"
                                                                                         style="vertical-align:middle;margin-top: -0.5px;"><span
                                                                                         style="margin-left: 6px;vertical-align:middle;">其他</span>
-                                                                                </label>
+                                                                                </label>-->
                                                                             </div>
                                                                         </div>
                                                                     </div>

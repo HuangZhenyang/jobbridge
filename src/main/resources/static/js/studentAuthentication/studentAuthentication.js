@@ -4,7 +4,7 @@
 
 $(document).ready(function () {
     getHeaderUserName();
-    getValidation();
+   // getValidation();
 });
 
 
