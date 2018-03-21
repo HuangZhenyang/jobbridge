@@ -1,0 +1,130 @@
+/* 以下css样式从css-index.css复制而来 */
+.signup-list{
+	list-style: none;
+    display: block;
+    position: fixed;
+    width: 10%;
+    top: 10px;
+    margin-left: 1114px;
+}
+.signup-list li{
+	/* float: right; */
+	font-size: 1.4em;
+	line-height: 1.4em;
+    margin: 5px 6px;
+}
+.signup-list li a{
+    color: #fff;
+}
+#panel #tab-2{
+	display: none;
+}
+.signup-header {
+	margin: 135px 0 100px 0;
+	background: rgba(255,255,255,0.2);
+	border-radius: 4px;
+	padding: 0px 20px 0 20px;
+}
+ .signup-header h3{
+	padding: 20px 0 10px;
+	color: white;
+	font-weight: 300;
+} 
+.form-header input {
+	position: relative;
+	padding: 5px 15px;
+}
+.form-header .form-control {
+	border-radius: 0;
+	border: solid 1px #dadada;
+	background-color: #fff;
+	color: #333;
+	height: 41px;
+	margin: 5px 72px;
+  line-height: 41px;
+}
+.form-control{
+	width: 400px;
+}
+.form-group{
+	display: inline-block;
+}
+
+.signup-header textarea{
+	width: 952px;
+	height: 200px;
+}
+textarea .ui-input-text{
+	min-height: 180px;
+}
+.form-header .btn {
+	border-radius: 0;
+	height: 40px;
+	width: 60%;
+	background-color: #3eb0f7;
+	color: white;
+	font-size: 17px !important;
+	padding: 0 5px;
+	border: none;
+	margin: 0 5px;
+	-webkit-transition: all .8s ease;
+	transition: all .8s ease;
+}
+
+
+
+
+
+/*以下为关于企业注册中上传图片部分的CSS样式修改
+author:*/
+.form-header .btn{
+    width: 47%;
+}
+.input-group .file-caption{
+    margin-right: 0px;
+    margin-left: 72px;
+    width: 401px;
+}
+.input-group-btn{
+    padding-left: 1px;
+    width: 28px;
+}
+.file-preview{
+    margin-left: 72px;
+    width: 396px;
+}
+.file-caption-name{
+    width: 170px;
+	height: 30px;
+	line-height: 20px;
+}
+.input-group-btn .btn-file{
+    width: 165px;
+}
+ .file{
+    width: 101px;
+} 
+.input-group-btn .btn-file i{
+    padding-top: 10px;
+}
+.form-header .last input{
+    width: 300px;
+    margin-left:400px;
+}
+.form-header .tip{
+    color: #fff;
+    padding-left: 72px;
+
+}
+
+/*以下样式为对个人注册界面的修改*/
+#tab-1 .form-group{
+    display: block;
+    margin-bottom: 50px;
+}
+#tab-1 .form-header .form-control{
+    margin: -1px 345px;
+}
+#tab-1{
+    margin: 135px 0 100px 0;
+}
