@@ -204,7 +204,7 @@ public class SignController {
             return;
         }
         request.getSession().removeAttribute("loginUser");
-        response.sendRedirect("/sign_in");
+        response.sendRedirect("/");
 
     }
 

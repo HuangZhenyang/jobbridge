@@ -1,0 +1,70 @@
+/*
+Template Name: INDEX CSS
+Template Version: 1.0
+Author: Kelv1n Yu
+*/
+
+.jobbridge-footer{
+    min-width: 1300px;
+    background: #2e3037;
+}
+.module-title{
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+}
+.jobbridge-containter{
+    min-height: 500px;
+    display: block;
+}
+.jb-banner{
+    width: 100%;
+    position: relative;
+}
+.jb-service{
+    min-width: 1300px;
+    overflow: hidden;
+}
+.jb-describe{
+    min-width: 1300px;
+    overflow: hidden;
+}
+.jobbridge-footer .main-footer{
+    height: 130px;
+    margin: 0 auto;
+    padding-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+.jobbridge-footer .main-footer ul{
+    float: left;
+}
+.jobbridge-footer .main-footer li{
+    margin-bottom: 30px;
+}
+.jobbridge-footer .main-footer li a{
+    font-size: 14px;
+    color: #8890a4;
+    transition: all .4s ease 0s;
+}
+.jobbridge-footer .main-footer li a:hover{
+    color: #ff4d35;
+}
+.jobbridge-footer .main-footer li a span{
+    position: relative;
+    top: -11px;
+}
+.jobbridge-footer .main-copyright{
+    padding-top: 30px;
+    padding-bottom: 20px;
+    text-align: center;
+    border-top: 1px solid #393b41;
+    font-size: 12px;
+    color: #484e5b;
+}
+.jobbridge-footer .main-copyright p{
+    margin-bottom:5px;
+}

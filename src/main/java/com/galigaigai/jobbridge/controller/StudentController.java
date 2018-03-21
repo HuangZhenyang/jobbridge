@@ -90,6 +90,8 @@ public class StudentController {
         if (loginUser == null || !(loginUser instanceof Student)) {
             response.sendRedirect("/");
         }
+        Student student = (Student) loginUser;
+        model.addAttribute("student",student);
         return "resume";
     }
 
@@ -104,6 +106,7 @@ public class StudentController {
             return "index";
         }
         Student student = (Student) loginUser;
+        model.addAttribute("student",student);
         Long recruitId;
         if (request.getParameter("id") == null) {
             System.out.println("getParameter error");
@@ -152,6 +155,7 @@ public class StudentController {
             return "index";
         }
         Student student = (Student) loginUser;
+        model.addAttribute("student",student);
         StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
         if(studentDetail == null){
             model.addAttribute("authentication","false");
@@ -175,6 +179,7 @@ public class StudentController {
         }
         Student student = (Student) loginUser;
 
+        model.addAttribute("student",student);
         //通过studentId获取student中的email
         String mailbox = student.getMailbox();
         model.addAttribute("mailbox",mailbox);
@@ -233,6 +238,7 @@ public class StudentController {
             return "index";
         }
         Student student = (Student) loginUser;
+        model.addAttribute("student",student);
 //        定义数据结构
         List<String> timeList = new ArrayList<>();
         List<String> companyNameList = new ArrayList<>();
@@ -286,6 +292,7 @@ public class StudentController {
             return "index";
         }
         Student student = (Student) loginUser;
+        model.addAttribute("student",student);
         //定义数据结构
         List<Company> companyList = new ArrayList<>();
         List<String> functionNameList = new ArrayList<>();
