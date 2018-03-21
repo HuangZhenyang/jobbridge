@@ -3,8 +3,8 @@
  */
 
 $(document).ready(function () {
-    getHeaderUserName();
-    getData();
+    // getHeaderUserName();
+    // getData();
 });
 
 /*

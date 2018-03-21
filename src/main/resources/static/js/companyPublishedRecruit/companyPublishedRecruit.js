@@ -5,8 +5,8 @@ let whichButton = ""; //add or modify
 
 
 $(document).ready(function () {
-    getHeaderUserName();
-    getPublishedJobsData();
+    // getHeaderUserName();
+    // getPublishedJobsData();
     /*
      * @author:HuangZhenyang
      * 绑定modal清空事件
