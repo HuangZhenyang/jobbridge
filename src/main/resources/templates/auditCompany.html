@@ -571,293 +571,23 @@
 
     </style>
     <!--/stuinfo-->
-    <link type="text/css" rel="stylesheet" href="../static/css/common/font-awesome.min.css"
-          th:href="@{/css/common/font-awesome.min.css}">
+    <link type="text/css" rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css"
+          th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
     <link type="text/css" rel="stylesheet" href="../static/css/common/main.css" th:href="@{/css/common/main.css}">
     <link type="text/css" rel="stylesheet"  href="../static/css/common/bootstrapForCompany.css" th:href="@{/css/common/bootstrapForCompany.css}"></link>
-
+    <link rel="stylesheet" href="../static/css/common/common.css" th:href="@{/css/common/common.css}">
     <style type="text/css">
-        html{
-            font-family:sans-serif;
-            -webkit-text-size-adjust:100%;
-            overflow-y:scroll;
-            -webkit-overflow-scrolling:touch;
-        }
-        body{
-            margin: 0;
-            font-size: 14px;
-            line-height: 1.5;
-            color: #333;
-            background-color: #fff;
-        }
-        article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary{
-            display: block;
-        }
-        audio, canvas, progress, video{
-            display: inline-block;
-            vertical-align: baseline;
-            *display: inline;
-            *zoom: 1;
-        }
-        audio:not([controls]){
-            display: none;
-            height: 0;
-        }
-        [hidden], template{
-            display: none;
-        }
-        a{
-            background: transparent;
-            text-decoration: none;
-            color: #08c;
-        }
-        a:active, a:hover{
-            outline: 0;
+        .jobbridge-header{
+            background: #292c2d !important;
         }
         a:hover{
             text-decoration: none;
-            color: #069;
         }
-        ul,ol,li,dl,dd{
-            margin: 0;
-            padding: 0;
-        }
-        ul,ol{
-            list-style: none outside none;
-        }
-        .has-transition{
-            transition: 0s .1s;
-        }
-        .jobbridge-header{
-            min-width: 1300px;
-            display: block;
-            height: 70px;
-            position: absolute;
-            left: 0;
+        .interlayer{
             width: 100%;
-            font-size: 16px;
-            z-index: 200;
-            right: 0;
-            border-bottom: 1px solid transparent;
-            background: rgba(26,35,46,0.01) !important;
-        }
-        .jobbridge-header{
-            position: relative;
-            background: #292c2d !important;
-        }
-        .jobbridge-header .header-box{
-            margin: 0 48px;
-        }
-        .jobbridge-header .header-box::after{
-            content: '';
-            display: block;
-            clear: both;
-        }
-        .jobbridge-header a{
-            color: #8890a4;
-        }
-        /*.jobbridge-header a:hover{*/
-        /*color: #f5533d;*/
-        /*}*/
-        .jobbridge-header .menu-line{
-            display: none;
-            height: 4px;
-            background: #f5533d;
-            left: 0;
-            bottom: 0;
-            position: absolute;
-            min-width: 30px;
-        }
-        .jobbridge-header .menu-line.transition{
-            display: block;
-            transition: .3s;
-        }
-        .jobbridge-header .logo{
-            display: inline-block;
-            width: 110px;
-            height: 38px;
-            background: url("static/img/comlogo/jobbridge.png") no-repeat;
-            margin:18px 20px 7px 0px;
-            float: left;
-        }
-        @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx){ .jobbridge-header .logo{
-            background-image: url("static/img/comlogo/jobbridge.png");
-            background-size: 110px 38px;
-        }
-        }
-        .jobbridge-header li{
-            white-space: nowrap;
-        }
-
-        .jobbridge-header .main-menu{
-            display: inline-block;
-            float: right;
-            transition: .25s;
-            height: 70px;
-            margin: 0;
-            z-index: 2;
-            padding-right: 146px;
-        }
-        .jobbridge-header .main-menu-li{
-            display: table-cell;
-            position: relative;
-            z-index: 2;
-            float: left;
-            margin-right: 10px;
-            line-height: 70px;
-        }
-        .jobbridge-header .main-menu-li:last-child{
-            margin-right: 0;
-        }
-        .jobbridge-header .main-menu-li>a{
-            height: 100%;
-            cursor: default;
-            position: relative;
-            display: inline-block;
-            padding: 0 15px;
-            color: #8990a4;
-            cursor: pointer;
-        }
-        .jobbridge-header .main-menu-li>a span{
-            font-size: 16px;
-            color: #8990a4;
-        }
-        .jobbridge-header .main-menu-li.hover>a>span{
-            color: #fff;
-        }
-        .jobbridge-header .header-right{
-            position: absolute;
-            right: 0;
-            top: 0;
-            float: right;
-            width: 185px;
-            height: 70px;
-        }
-        .jobbridge-header .signIn{
-            display: block;
-            width: 91px;
-            padding: 22px 0px 18px 46px;
-        }
-        .jobbridge-header .signIn-button{
-            display: block;
-            height: 28px;
-            width: 90px;
-            background: #f5533d;
-            border-radius: 35px;
-            text-align: center;
-            line-height: 28px;
-        }
-        .jobbridge-header .signIn-button:hover{
-            background: #f77564;
-        }
-        .jobbridge-header .signIn-button:active{
-            background: #f77564;
-        }
-        .jobbridge-header .signIn-button span{
-            font-size: 16px;
-            color: #fff;
-        }
-        .jobbridge-header .user{
-            display: block;
-            height: 70px;
-            position: relative;
-        }
-        .jobbridge-header .user:hover{
-            background: #17191f;
-        }
-        .jobbridge-header .user:hover .user-control{
-            display: block;
-            height: 108px;
-            transition: height .2s;
-            opacity: 1;
-        }
-        .jobbridge-header .user .uinfo{
-            display: block;
-            overflow: hidden;
-            height: 100%;
-            padding-left: 34px;
-        }
-        .jobbridge-header .user .user-info{
-            display: block;
-            padding: 0 10px;
-            height: 100%;
-            position: relative;
-        }
-        .jobbridge-header .user .user-info .uname{
-            display: block;
-            height: 20px;
-            margin-top: 23px;
-            padding-left: 25px;
-            position: relative;
-            line-height: 20px;
-        }
-        .jobbridge-header .user .user-info .uname .headshot{
-            color: #8890a4;
-            display: block;
-            width: 20px;
-            height: 20px;
-            position: absolute;
-            top: 3px;
-            left: 11px;
-        }
-        .jobbridge-header .user .user-info .uname>b{
-            color: #8890a4;
-            margin-left: 12px;
-            font-size: 16px;
-            font-weight: normal;
-            width: 64px !important;
-            height: 20px;
-            display: block;
-            width: 100%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .jobbridge-header .user .user-info .uname:hover .headshot{
-            color: #f5533d;
-        }
-        .jobbridge-header .user .user-info .uname:hover b{
-            color: #f5533d;
-        }
-        .jobbridge-header .user .user-control{
-            height: 0;
-            overflow: hidden;
-            width: 100%;
-            position: absolute;
-            top: 70px;
-            left: 0;
-            background: #17191f;
-            opacity: 0;
-        }
-        .jobbridge-header .user .user-control .uc-menu{
-            padding: 0px 54px;
-        }
-        .jobbridge-header .user .user-control .uc-menu-ul{
-            display: block;
-            overflow: hidden;
-        }
-        .jobbridge-header .user .user-control .uc-menu-li{
-            display: block;
-            float: left;
-            width: 100%;
-            height: 54px;
-        }
-        .jobbridge-header .user .user-control .uc-menu-li>a{
-            font-size: 16px;
-            line-height: 54px;
-        }
-        .jobbridge-header .user .user-control .uc-menu-li:hover>a{
-            color: #f5533d;
+            height: 36px;
         }
     </style>
-    <!--    <style type="text/css">
-            .main-body
-            {
-                background-image:url(../static/img/background/bg3.jpg);
-                background-position:center;
-                background-repeat:no-repeat;
-            }
-        </style>-->
     <style type="text/css" id="ProgressPart">
         .progress-part
         {
@@ -931,48 +661,42 @@
 <body>
 <header class="jobbridge-header has-transition">
     <div class="header-box">
-        <a href="/" class="logo"></a>
+        <a href="/" class="logo" style="background: url('../static/img/comlogo/jobbridge.png') no-repeat" th:style="'background:url(' + @{/img/comlogo/jobbridge.png} + ') no-repeat;'"></a>
         <div class="header-right">
-            <div class="signIn">
-                <a href="/sign_in" class="signIn-button">
-                    <span>登 录</span>
-                </a>
-            </div>
-            <!--<div class='user'>
+            <div class='user'>
                 <a href='javascript:;' class='user-info'>
-                    <span class='uinfo'>
-                        <span class='uname'>
-                            <i class="fa fa-user-o headshot"></i>
-                            <b>loginUser</b>
+                        <span class='uinfo'>
+                            <span class='uname'>
+                                <i class="fa fa-user-o headshot"></i>
+                                <b th:text="${userName}"></b>
+                            </span>
                         </span>
-                    </span>
                 </a>
                 <div class='user-control'>
                     <div class ='uc-menu'>
                         <ul class='uc-menu-ul'>
                             <li class='uc-menu-li'>
-                                <a href='#'>设置</a>
+                                <a href='/company/info'>设置</a>
                             </li>
                             <li class='uc-menu-li'>
-                                <a href='#'>退出</a>
+                                <a href='/sign_out'>退出</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-            </div>-->
-
+            </div>
         </div>
 
         <ul class="main-menu">
             <span class="menu-line" hidden = "hidden"></span>
             <li class="main-menu-li">
-                <a href="#">
+                <a href="/">
                     <span>主页</span>
                 </a>
             </li>
             <li class="main-menu-li">
-                <a href="#">
-                    <span>职位与招聘</span>
+                <a href="/recruit/info">
+                    <span>职位信息</span>
                 </a>
             </li>
             <li class="main-menu-li">
@@ -981,7 +705,7 @@
                 </a>
             </li>
             <li class="main-menu-li">
-                <a href="#">
+                <a id = "companyEntrance" href="/admin/audit_company">
                     <span>企业入口</span>
                 </a>
             </li>
@@ -991,6 +715,7 @@
 <section id="container">
     <section id="main-content" style="margin-left: 1px;">
         <section class="wrapper">
+            <div class="interlayer"></div>
             <!-- page start-->
             <div id="__next">
                 <div data-reactroot="" data-reactid="1" data-react-checksum="-1332626374">
@@ -1106,7 +831,7 @@
     <!--main content end-->
     <!--footer start-->
     <footer class="site-footer">
-        <div class="text-center">Copyright &copy; 2017.JobBridge <a href="#main-content" class="go-top"> <i
+        <div class="text-center">Copyright &copy; 2018. JobBridge <a href="#main-content" class="go-top"> <i
                 class="fa fa-angle-up"></i></a></div>
 
     </footer>
@@ -1162,6 +887,11 @@
                 }
             }
         );
+        $("#companyEntrance").mouseup(
+            function () {
+                alert("您还没有注册公司账号，请先注册");
+            }
+        );
     });
 </script>
 <script type="text/javascript">
@@ -1179,43 +909,6 @@
         var iconAddress="";
 
     })
-</script>
-<!--<script type="text/javascript">
-    $('#DetailModal').click(function () {
-        $('.DetailModal').html(data);
-    })
-</script>-->
-<script th:inline="javascript">
-    /*<![CDATA[*/
-
-    var loginUser = [[${loginUser}]];
-    console.log(loginUser);
-    if (loginUser !== null){
-        $("div.signIn").remove();
-        $("div.header-right").append("<div class='user'>\n" +
-            "                <a href='javascript:;' class='user-info'>\n" +
-            "                    <span class='uinfo'>\n" +
-            "                        <span class='uname'>\n" +
-            "                            <i class=\"fa fa-user headshot\"></i>\n" +
-            "                            <b>" + loginUser.userName + "</b>\n" +
-            "                        </span>\n" +
-            "                    </span>\n" +
-            "                </a>\n" +
-            "                <div class='user-control'>\n" +
-            "                    <div class ='uc-menu'>\n" +
-            "                        <ul class='uc-menu-ul'>\n" +
-            "                            <li class='uc-menu-li'>\n" +
-            "                                <a href='#'>设置</a>\n" +
-            "                            </li>\n" +
-            "                            <li class='uc-menu-li'>\n" +
-            "                                <a href='/sign_out'>退出</a>\n" +
-            "                            </li>\n" +
-            "                        </ul>\n" +
-            "                    </div>\n" +
-            "                </div>")
-    }
-
-    /*]]>*/
 </script>
 <script type="text/javascript">
     $("#defuse").on("click",function(event) {
