@@ -581,16 +581,16 @@ public class CompanyController {
                 break;
 
             case "sendEmail":
-                StudentDetail studentDetail = studentDetailRepository.findByStudentId(resume.getStudentId());
+                Student student = studentRepository.findByStudentId(resume.getStudentId());
                 Company company = companyRepository.findByCompanyId(resumeSend.getCompanyId());
-                if (studentDetail == null || company == null){
+                if (student == null || company == null){
                     System.out.println("studentDetail == null || company == null");
                 }else{
                     List<String> list = new ArrayList<>();
                     list.add("companyAgreeResume");
-                    list.add(company.getName());
+                    list.add(company.getUserName());
                     MailUtil mailUtil = new MailUtil(list);
-                    mailUtil.send(studentDetail.getStudentMailbox());
+                    mailUtil.send(student.getMailbox());
                 }
                 break;
         }

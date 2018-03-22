@@ -73,7 +73,8 @@ public class MailUtil {
                 content.append("<hr>");
                 content.append("<p><span style=\"font-size:20px\">Dear student:<br>");
                 content.append("We looked into your resume and thought you might be a good candidate\n");
-                content.append("Let me know if you want to join us.\n");
+                content.append("Let me know if you want to join us.");
+                content.append("<hr>");
                 content.append("Company:");
                 content.append(list.get(1));
                 content.append("</span></p>");
