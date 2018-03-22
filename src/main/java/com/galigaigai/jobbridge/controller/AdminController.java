@@ -66,7 +66,7 @@ public class AdminController {
         }
         List<Company> companyList = companyService.findCompanyAuditOrNot(false);
         model.addAttribute("companyList",companyList);
-
+        model.addAttribute("userName",((Student)loginUser).getUserName());
 
         return "auditCompany";
     }

@@ -639,7 +639,7 @@ TOP BAR CONTENT & NOTIFICATIONS
                     </a>
                 </li>
                 <li class="main-menu-li">
-                    <a href="#">
+                    <a href="/connection/index">
                         <span>人脉</span>
                     </a>
                 </li>
@@ -725,7 +725,7 @@ MAIN CONTENT
                                                                                         <li th:each="resumeSend,resumeSendStat:${resumeSendList}" th:class="${resumeSendStat.index%2}? 'list-warning':'list-info'" th:id="${resumeSend.resumeSendId}">
                                                                                         <i class="fa fa-ellipsis-v"></i>
                                                                                         <div class="job-title">
-                                                                                            <a th:href="@{'/company/resume_received/resume?id='+${resumeSend.resumeSendId}}">
+                                                                                            <a target="_blank" th:href="@{'/company/resume_received/resume?id='+${resumeSend.resumeSendId}}">
                                                                                             <span class="task-title-sp" th:text="${recruitTitleList[resumeSendStat.index]}"></span><span th:text="'&nbsp; from: '+${studentNameList[resumeSendStat.index]}+'&nbsp;&nbsp;'"></span>
                                                                                             <span class="badge" th:classappend="${resumeSendStat.index%2}? 'bg-warning':'bg-info'" th:text="${resumeSend.dateTime}"></span>
                                                                                             </a>
@@ -847,7 +847,7 @@ MAIN CONTENT
 
     <!--footer start-->
     <footer class="site-footer">
-        <div class="text-center">2018 © galigaigai. All Rights Reserved. <a href="#main-content" class="go-top"> <i
+        <div class="text-center">Copyright &copy; 2018. JobBridge <a href="#main-content" class="go-top"> <i
                 class="fa fa-angle-up"></i>
         </a></div>
     </footer>

@@ -29,16 +29,18 @@ function checkSignUpFunc() {
 
 function signUpFunc(){
     if(checkSignUpFunc()){
+        let formdata = new FormData();
+        formdata.append('userName',$('#userName').val());
+        formdata.append('mailbox',$('#mailbox').val());
+        formdata.append('password',$('#password').val());
+        formdata.append('identity','s');
         $.ajax({
             url: '/sign_up',
             type: 'post',
-            dataType: 'json',
-            data: {
-                userName:   $('#userName').val(),
-                password:   $('#password').val(),
-                mailbox:    $('#mailbox').val(),
-                identity:   's'
-            },
+            data: formdata,
+            async: false,
+            processData : false,
+            contentType : false,
         }).done(function (data) {
             console.log('成功, 收到的数据: ' + JSON.stringify(data, null, '  '));
             let result = data;
@@ -48,6 +50,25 @@ function signUpFunc(){
                 alert(result.reason);
             }
         });
+        // $.ajax({
+        //     url: '/sign_up',
+        //     type: 'post',
+        //     dataType: 'json',
+        //     data: {
+        //         userName:   $('#userName').val(),
+        //         password:   $('#password').val(),
+        //         mailbox:    $('#mailbox').val(),
+        //         identity:   's'
+        //     },
+        // }).done(function (data) {
+        //     console.log('成功, 收到的数据: ' + JSON.stringify(data, null, '  '));
+        //     let result = data;
+        //     if(result.ok === "true"){
+        //         window.location.href = "/sign_in";
+        //     }else{
+        //         alert(result.reason);
+        //     }
+        // });
     }
 }
 function checkSignUpCompanyFunc() {
