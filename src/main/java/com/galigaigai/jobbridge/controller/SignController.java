@@ -138,7 +138,7 @@ public class SignController {
      * @throws Exception
      */
     @PostMapping("/sign_up")
-    public void doSignUp(@RequestParam("img_file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public void doSignUp(@RequestParam(value = "img_file", required = false) MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception{
         response.setHeader("Access-Control-Allow-Origin", "*");
         String result = "";
         String userName = request.getParameter("userName");
