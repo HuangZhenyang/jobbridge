@@ -9,6 +9,7 @@ import com.galigaigai.jobbridge.service.StudentService;
 import com.galigaigai.jobbridge.util.CryptoUtil;
 import com.galigaigai.jobbridge.util.FileUploadUtil;
 import com.galigaigai.jobbridge.util.SendInfoUtil;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,10 +68,12 @@ public class SignController {
      * @return 返回signIn.html
      */
     @GetMapping("/sign_in")
-    public String showSignIn(HttpServletRequest request, HttpServletResponse response){
+    public String showSignIn(HttpServletRequest request, HttpServletResponse response, Model model){
         response.setHeader("Access-Control-Allow-Origin", "*");
         String timestamp = Long.toString(System.currentTimeMillis());
         request.getSession().setAttribute("timestamp",timestamp);
+        String originPage = request.getParameter("originPage");
+        model.addAttribute("originPage",originPage);
         return "signIn";
     }
 
@@ -84,6 +87,7 @@ public class SignController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         String loginName = request.getParameter("userName");
         String password = request.getParameter("passWord");
+        String originPage = request.getParameter("originPage");
 
         Object stu,com;
 
@@ -94,31 +98,46 @@ public class SignController {
             stu = studentRepository.findByUserName(loginName);
             com = companyRepository.findByUserName(loginName);
         }
-
+        JSONObject jsonData = new JSONObject();
+        if(originPage.equals("recruitSea")){
+            jsonData.put("url","/recruit/info");
+        }else{
+            jsonData.put("url","/");
+        }
         if (stu != null){
             Student student = (Student) stu;
             if(!CryptoUtil.validPassword(password, student.getPassword())){
-                result = "{\"ok\":\"false\",\"reason\":\"用户不存在或密码错误\"}";     //密码错误
+//                result = "{\"ok\":\"false\",\"reason\":\"用户不存在或密码错误\"}";     //密码错误
+                jsonData.put("ok","false");
+                jsonData.put("reason","用户不存在或密码错误");
             }else{
-                result = "{\"ok\":\"true\",\"identity\":\""+student.getIdentity()+"\"}";
+//                result = "{\"ok\":\"true\",\"identity\":\""+student.getIdentity()+"\"}";
+                jsonData.put("ok","true");
+                jsonData.put("identity",student.getIdentity());
                 request.getSession().setAttribute("loginUser",student);
             }
         }else if (com != null){
             Company company = (Company)com;
             if(!CryptoUtil.validPassword(password, company.getPassword())){
-                result = "{\"ok\":\"false\",\"reason\":\"用户不存在或密码错误\"}";     //密码错误
+//                result = "{\"ok\":\"false\",\"reason\":\"用户不存在或密码错误\"}";     //密码错误
+                jsonData.put("ok","false");
+                jsonData.put("reason","用户不存在或密码错误");
             }else{
-                result = "{\"ok\":\"true\",\"identity\":\""+company.getIdentity()+"\"}";
+//                result = "{\"ok\":\"true\",\"identity\":\""+company.getIdentity()+"\"}";
+                jsonData.put("ok","true");
+                jsonData.put("identity",company.getIdentity());
                 request.getSession().setAttribute("loginUser",company);
             }
         }else{
-            result = "{\"ok\":\"false\",\"reason\":\"用户不存在或密码错误\"}";     //用户不存在
+//            result = "{\"ok\":\"false\",\"reason\":\"用户不存在或密码错误\"}";     //用户不存在
+            jsonData.put("ok","false");
+            jsonData.put("reason","用户不存在或密码错误");
         }
-
 
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.print(result);
+//        out.print(result);
+        out.print(jsonData.toString());
         out.flush();
         out.close();
     }

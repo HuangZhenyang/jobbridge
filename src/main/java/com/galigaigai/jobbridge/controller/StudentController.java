@@ -107,8 +107,8 @@ public class StudentController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
-            response.sendRedirect("/");
-            return "index";
+            response.sendRedirect("/sign_in?originPage=recruitSea");
+            return "signIn";
         }
         Student student = (Student) loginUser;
         model.addAttribute("student",student);
