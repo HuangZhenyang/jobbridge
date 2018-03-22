@@ -273,7 +273,21 @@ function insertIntoClub(club) {
 }
 
 
-
-
+/*
+ * @author:Kelv1nYu
+ * 告诉后台hr通过了该简历
+ * */
+function approveResume() {
+    var resumeSendId = $("#resumeSendId").text();
+    //alert(resumeSendId);
+    $.ajax({
+        url:'/company/resume_received/resume',
+        type:'POST',
+        dataType:'json',
+        data:{
+            "resumeSendId": resumeSendId
+        }
+    });
+}
 
 
