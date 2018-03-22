@@ -71,7 +71,7 @@ function setData(data) {
 * */
 function starButtonFunc(evt) {
     if($(evt).text().trim() === "收藏"){
-        alert($('.my-send-button').attr('id'));
+        // alert($('.my-send-button').attr('id'));
         $.ajax({
             url:'/student/star',
             type:'post',

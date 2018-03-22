@@ -38,6 +38,7 @@ public class AdminController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if(loginUser == null || !("a".equals(((Student)loginUser).getIdentity()))){
             response.sendRedirect("/");
+            return "index";
         }
         return "addCompany";
     }
@@ -50,6 +51,7 @@ public class AdminController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if(loginUser == null || !("a".equals(((Student)loginUser).getIdentity()))){
             response.sendRedirect("/");
+            return "index";
         }
         return "addAdmin";
     }
@@ -63,6 +65,7 @@ public class AdminController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if(loginUser == null || !("a".equals(((Student)loginUser).getIdentity()))){
             response.sendRedirect("/");
+            return "index";
         }
         List<Company> companyList = companyService.findCompanyAuditOrNot(false);
         model.addAttribute("companyList",companyList);
@@ -86,6 +89,7 @@ public class AdminController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if(loginUser == null || !("a".equals(((Student)loginUser).getIdentity()))){
             response.sendRedirect("/");
+            return;
         }
 
         Object objectCompanyId = request.getParameter("companyId");

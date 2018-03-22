@@ -72,6 +72,7 @@ public class CompanyController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null) {
             response.sendRedirect("/");
+            return "index";
         }
 
         Company company = (Company)loginUser;
@@ -111,6 +112,7 @@ public class CompanyController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
+            return "index";
         }
         Company company = (Company) loginUser;
 //        查找意向字典
@@ -135,6 +137,7 @@ public class CompanyController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
+            return "index";
         }
 
         Company company = (Company) loginUser;
@@ -399,6 +402,7 @@ public class CompanyController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
+            return "index";
         }
 
         Company company = (Company) loginUser;
@@ -607,6 +611,7 @@ public class CompanyController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Company)) {
             response.sendRedirect("/");
+            return "index";
         }
         // 得到学生简历的id
         String resumeSendId = request.getParameter("id");
