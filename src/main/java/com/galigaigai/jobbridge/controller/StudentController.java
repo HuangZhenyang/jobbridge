@@ -92,6 +92,7 @@ public class StudentController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
             response.sendRedirect("/");
+            return "index";
         }
         Student student = (Student) loginUser;
         model.addAttribute("student",student);
@@ -106,6 +107,7 @@ public class StudentController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
+            response.sendRedirect("/");
             return "index";
         }
         Student student = (Student) loginUser;
@@ -155,6 +157,7 @@ public class StudentController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
+            response.sendRedirect("/");
             return "index";
         }
         Student student = (Student) loginUser;
@@ -178,6 +181,7 @@ public class StudentController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
+            response.sendRedirect("/");
             return "index";
         }
         Student student = (Student) loginUser;
@@ -238,6 +242,7 @@ public class StudentController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
+            response.sendRedirect("/");
             return "index";
         }
         Student student = (Student) loginUser;
@@ -292,6 +297,7 @@ public class StudentController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
+            response.sendRedirect("/");
             return "index";
         }
         Student student = (Student) loginUser;
@@ -605,6 +611,7 @@ public class StudentController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
             response.sendRedirect("/");
+            return;
         }
         Student student = (Student) loginUser;
 //        1. 如果学生没未填写详细信息，则创建一个新的
@@ -666,6 +673,7 @@ public class StudentController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
             response.sendRedirect("/");
+            return;
         }
         Student student = (Student) loginUser;
         Resume resume = resumeRepository.findByStudentId(student.getStudentId());
@@ -688,6 +696,7 @@ public class StudentController {
         Object loginUser = request.getSession().getAttribute("loginUser");
         if (loginUser == null || !(loginUser instanceof Student)) {
             response.sendRedirect("/");
+            return;
         }
         //String resumeid = request.getParameter("resumeid");
         Student student = (Student) loginUser;
