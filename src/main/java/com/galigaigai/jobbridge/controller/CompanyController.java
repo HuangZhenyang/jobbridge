@@ -6,6 +6,7 @@ import com.galigaigai.jobbridge.service.RecruitService;
 import com.galigaigai.jobbridge.service.RecruitTagService;
 import com.galigaigai.jobbridge.service.ResumeSendService;
 import com.galigaigai.jobbridge.service.TagService;
+import com.galigaigai.jobbridge.util.MailUtil;
 import com.galigaigai.jobbridge.util.ParseStringUtil;
 import com.galigaigai.jobbridge.util.SendInfoUtil;
 import org.json.JSONArray;
@@ -55,6 +56,10 @@ public class CompanyController {
     private ResumeRepository resumeRepository;
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private StudentDetailRepository studentDetailRepository;
+    @Autowired
+    private CompanyRepository companyRepository;
 
 
     /**
@@ -553,21 +558,39 @@ public class CompanyController {
             response.sendRedirect("/");
             return;
         }
-        Company company = (Company)loginUser;
         System.out.println("公司请求投递信息对应得简历信息");
         String resumeSendStr = request.getParameter("resumeSendId");
-        if (resumeSendStr == null || resumeSendStr == "") {
-            System.out.println("resumeSendStr is null");
+        String operation = request.getParameter("operation");
+        if (resumeSendStr == null || operation == null) {
+            System.out.println("resumeSendStr == null || operation == null");
         }
         Long resumeSendId = Long.parseLong(resumeSendStr);
         ResumeSend resumeSend = resumeSendRepository.findByResumeSendId(resumeSendId);
         //进入页面请求简历信息时，说明该公司已经看过该简历，所以修改HaveRead标记为true
         resumeSendService.updateHaveReadByResumeSendId(resumeSendId);
-
         Long resumeId = resumeSend.getResumeId();
-//        查找简历
+        //查找简历
         Resume resume = resumeRepository.findByResumeId(resumeId);
-        SendInfoUtil.render(resume.getResumeContent(), "text/json", response);
+        switch (operation){
+            case "requestResume":
+                SendInfoUtil.render(resume.getResumeContent(), "text/json", response);
+                break;
+
+            case "sendEmail":
+                StudentDetail studentDetail = studentDetailRepository.findByStudentId(resume.getStudentId());
+                Company company = companyRepository.findByCompanyId(resumeSend.getCompanyId());
+                if (studentDetail == null || company == null){
+                    System.out.println("studentDetail == null || company == null");
+                }else{
+                    List<String> list = new ArrayList<>();
+                    list.add("companyAgreeResume");
+                    list.add(company.getName());
+                    MailUtil mailUtil = new MailUtil(list);
+                    mailUtil.send(studentDetail.getStudentMailbox());
+                }
+                break;
+        }
+
 
     }
 

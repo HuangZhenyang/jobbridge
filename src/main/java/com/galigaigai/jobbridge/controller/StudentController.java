@@ -615,7 +615,11 @@ public class StudentController {
             studentDetailService.addStudentDetail(studentDetail);
         }
 //        2. 发送验证邮件
-        MailUtil mailUtil = new MailUtil();
+        List<String> list = new ArrayList<>();
+        list.add("studentAuthentication");
+        list.add("unUseString");
+        MailUtil mailUtil = new MailUtil(list);
+
         String email = request.getParameter("mailbox");
         JSONObject SendStatusJson = new JSONObject();
         boolean isSuccess = true;
@@ -625,7 +629,7 @@ public class StudentController {
             SendStatusJson.put("ok", false);
         } else {
             try {
-                mailUtil.Send(email);
+                mailUtil.send(email);
                 isSuccess = true;
             } catch (MessagingException e) {
                 e.printStackTrace();
