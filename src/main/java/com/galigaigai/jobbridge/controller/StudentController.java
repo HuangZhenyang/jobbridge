@@ -80,6 +80,9 @@ public class StudentController {
     @Autowired
     private IndustryRepository industryRepository;
 
+    @Autowired
+    private RecruitTagRepository recruitTagRepository;
+
     /**
      * 请求学生简历页面
      */
@@ -90,6 +93,8 @@ public class StudentController {
         if (loginUser == null || !(loginUser instanceof Student)) {
             response.sendRedirect("/");
         }
+        Student student = (Student) loginUser;
+        model.addAttribute("student",student);
         return "resume";
     }
 
@@ -104,6 +109,7 @@ public class StudentController {
             return "index";
         }
         Student student = (Student) loginUser;
+        model.addAttribute("student",student);
         Long recruitId;
         if (request.getParameter("id") == null) {
             System.out.println("getParameter error");
@@ -152,6 +158,7 @@ public class StudentController {
             return "index";
         }
         Student student = (Student) loginUser;
+        model.addAttribute("student",student);
         StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
         if(studentDetail == null){
             model.addAttribute("authentication","false");
@@ -175,6 +182,7 @@ public class StudentController {
         }
         Student student = (Student) loginUser;
 
+        model.addAttribute("student",student);
         //通过studentId获取student中的email
         String mailbox = student.getMailbox();
         model.addAttribute("mailbox",mailbox);
@@ -233,6 +241,7 @@ public class StudentController {
             return "index";
         }
         Student student = (Student) loginUser;
+        model.addAttribute("student",student);
 //        定义数据结构
         List<String> timeList = new ArrayList<>();
         List<String> companyNameList = new ArrayList<>();
@@ -286,6 +295,7 @@ public class StudentController {
             return "index";
         }
         Student student = (Student) loginUser;
+        model.addAttribute("student",student);
         //定义数据结构
         List<Company> companyList = new ArrayList<>();
         List<String> functionNameList = new ArrayList<>();
@@ -391,7 +401,7 @@ public class StudentController {
     }
 
     /**
-     * 学生收藏公司操作
+     * 学生收藏公司和职能操作
      */
     @PostMapping(value = "/star")
     public void studentDoStar(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -403,15 +413,26 @@ public class StudentController {
             return;
         }
         Student student = (Student) loginUser;
-        String companyId = request.getParameter("companyid");
+        String companyId = request.getParameter("companyId");
+        String recruitId = request.getParameter("recruitId");
+//        1. 先添加收藏的公司
         StarCompany starCompany = new StarCompany(Long.parseLong(companyId), student.getStudentId());
         starCompanyService.addStarCompany(starCompany);
+//        2. 再添加收藏的职能
+        System.out.println(recruitId);
+        List<RecruitTag> recruitTagList = recruitTagRepository.findByRecruitId(Long.parseLong(recruitId));
+        if(recruitTagList != null && !recruitTagList.isEmpty()){
+            for(RecruitTag recruitTag : recruitTagList){
+                StarTag starTag = new StarTag(student.getStudentId(),recruitTag.getTagId());
+                starTagService.addStarTag(starTag);
+            }
+        }
         String result = "{\"ok\":\"true\"}";
         SendInfoUtil.render(result, "text/json", response);
     }
 
     /**
-     * 删除学生收藏的公司
+     * 删除学生收藏的公司和职能
      */
     @DeleteMapping(value = "/star")
     public void studentDeleteStar(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -423,15 +444,83 @@ public class StudentController {
             return;
         }
         Student student = (Student) loginUser;
-        String companyId = request.getParameter("id");
+        String companyId = request.getParameter("companyId");
+        String recruitId = request.getParameter("recruitId");
+//        1. 先删除收藏的公司
         JSONObject json = new JSONObject();
-        Map<String, Object> map = new HashMap<String, Object>() {
+        Map<String, Object> starCompanyMap = new HashMap<String, Object>() {
             {
                 put("studentId", student.getStudentId());
                 put("companyId", Long.parseLong(companyId));
             }
         };
-        starCompanyService.deleteById(map);
+        starCompanyService.deleteById(starCompanyMap);
+//        2. 再删除收藏的tag
+        List<RecruitTag> recruitTagList = recruitTagRepository.findByRecruitId(Long.parseLong(recruitId));
+        if(recruitTagList != null && !recruitTagList.isEmpty()){
+            for(RecruitTag recruitTag : recruitTagList){
+                Map<String, Object> starTagMap = new HashMap<String, Object>(){
+                    {
+                        put("studentId", student.getStudentId());
+                        put("tagId", recruitTag.getTagId());
+                    }
+                };
+                starTagService.deleteStarTagById(starTagMap);
+            }
+        }
+        json.put("ok", "true");
+        SendInfoUtil.render(json.toString(), "text/json", response);
+    }
+
+    /**
+     * 删除学生收藏的公司
+     */
+    @DeleteMapping(value = "/star_company")
+    public void studentDeleteStarCompany(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        request.setCharacterEncoding("UTF-8");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if (loginUser == null || !(loginUser instanceof Student)) {
+            response.sendRedirect("/");
+            return;
+        }
+        Student student = (Student) loginUser;
+        String companyId = request.getParameter("companyId");
+        JSONObject json = new JSONObject();
+        Map<String, Object> starCompanyMap = new HashMap<String, Object>() {
+            {
+                put("studentId", student.getStudentId());
+                put("companyId", Long.parseLong(companyId));
+            }
+        };
+        starCompanyService.deleteById(starCompanyMap);
+        json.put("ok", "true");
+        SendInfoUtil.render(json.toString(), "text/json", response);
+    }
+
+    /**
+     * 删除学生收藏的职能
+     */
+    @DeleteMapping(value = "/star_tag")
+    public void studentDeleteStarTag(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        request.setCharacterEncoding("UTF-8");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if (loginUser == null || !(loginUser instanceof Student)) {
+            response.sendRedirect("/");
+            return;
+        }
+        Student student = (Student) loginUser;
+        String tagName = request.getParameter("tagName");
+        JSONObject json = new JSONObject();
+        Tag tag = tagRepository.findByName(tagName);
+        Map<String, Object> starTagMap = new HashMap<String, Object>(){
+            {
+                put("studentId", student.getStudentId());
+                put("tagId", tag.getTagId());
+            }
+        };
+        starTagService.deleteStarTagById(starTagMap);
         json.put("ok", "true");
         SendInfoUtil.render(json.toString(), "text/json", response);
     }

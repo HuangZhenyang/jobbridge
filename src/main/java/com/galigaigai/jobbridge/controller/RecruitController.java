@@ -45,6 +45,14 @@ public class RecruitController {
     @GetMapping(value = "/info")
     public String recruit(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
+        Object loginUser = request.getSession().getAttribute("loginUser");
+        if (loginUser != null) {
+            if(loginUser instanceof Student){
+                model.addAttribute("loginUser",(Student)loginUser);
+            }else if(loginUser instanceof Company){
+                model.addAttribute("loginUser",(Company)loginUser);
+            }
+        }
 //        查找意向字典
         List<City> cityList = cityRepository.findAll();
         List<Tag> tagList = tagRepository.findAll();

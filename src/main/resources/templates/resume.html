@@ -25,18 +25,28 @@
 	<link href="../static/css/resume/style2.css" rel='stylesheet' type='text/css' th:href="@{/css/resume/style2.css}">
 	<link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
+
 	<!-- 头像-->
 	<script type="text/javascript" src="../static/js/resume/imagecropper.js" th:src="@{/js/resume/imagecropper.js}"></script>
 	<link rel="stylesheet" type="text/css" href="../static/css/resume/avatar-style.css" th:href="@{/css/resume/avatar-style.css}">
 
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css"
+		  th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
 	<!--遮罩需要引入的文件 -->
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<!--字体需要引入的文件 -->
 	<script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
+	<link rel="stylesheet" href="../static/css/common/common.css" th:href="@{/css/common/common.css}">
+	<style type="text/css">
+		.jobbridge-header{
+			background: #292c2d !important;
+			position: relative;
+		}
+	</style>
 
 
 </head>
@@ -69,38 +79,59 @@
 <body>
 	<!--start-banner-->
 	<div id="home">
-		<div class="header-h">
-			<div class="header-container">
-				<div class="head">
-					<div class="header-left">
-						<a class="logo" href="/" data-jsx="1727466106" data-reactid="9"><img class="icon" src="../static/img/favicon/f2.ico" th:src="@{/img/favicon/f2.ico}" data-jsx="1727466106" data-reactid="11">
+		<header class="jobbridge-header has-transition">
+			<div class="header-box">
+				<a href="/" class="logo" style="background: url('../static/img/comlogo/jobbridge.png') no-repeat" th:style="'background:url(' + @{/img/comlogo/jobbridge.png} + ') no-repeat;'"></a>
+				<div class="header-right">
+					<div class='user'>
+						<a href='javascript:;' class='user-info'>
+                        <span class='uinfo'>
+                            <span class='uname'>
+                                <i class="fa fa-user-o headshot"></i>
+                                <b th:text="${student.userName}"></b>
+                            </span>
+                        </span>
 						</a>
-						<a href="/" style="display:inline-block"><h1><span style="color: #ffffff">Job Bridge</span> </h1></a>
-					</div>
-					<div class="header-right">
-
-
-						<div style="display:block" class="dropdown">
-
-							<div class="ant-row-flex ant-row-flex-middle" data-reactid="20">
-								<a href="/recruit/info" data-jsx="1727466106" data-reactid="21">
-								<button style="margin-right:8px;" type="button" class="ant-btn ant-btn-primary ant-btn-lg" data-reactid="22"><i class="fa fa-search-plus"></i><span data-reactid="23"> 职海</span></button>
-							</a>
-								<ol class="breadcrumb" style="float: right;margin-top: 15px;">
-									<li><a href="/student/info">个人中心</a></li>
-									<li><a href="/student/info"><span id="header-userName"></span></a></li>
-									<li><a class="signOut" href="/sign_out"><span>退出</span></a></li>
-								</ol>
-
-														</div>
+						<div class='user-control'>
+							<div class ='uc-menu'>
+								<ul class='uc-menu-ul'>
+									<li class='uc-menu-li'>
+										<a href='/student/info'>设置</a>
+									</li>
+									<li class='uc-menu-li'>
+										<a href='/sign_out'>退出</a>
+									</li>
+								</ul>
+							</div>
 						</div>
-
-						<!-- <p><a href="https://github.com/HollyTeam/Offer-gentleman">contact@us</a></p> -->
 					</div>
-					<div class="clearfix"></div>
 				</div>
+
+				<ul class="main-menu">
+					<span class="menu-line" hidden = "hidden"></span>
+					<li class="main-menu-li">
+						<a href="/">
+							<span>主页</span>
+						</a>
+					</li>
+					<li class="main-menu-li">
+						<a href="/recruit/info">
+							<span>职位信息</span>
+						</a>
+					</li>
+					<li class="main-menu-li">
+						<a href="#">
+							<span>人脉</span>
+						</a>
+					</li>
+					<li class="main-menu-li">
+						<a id = "companyEntrance" href="/student/resume">
+							<span>企业入口</span>
+						</a>
+					</li>
+				</ul>
 			</div>
-		</div>
+		</header>
 	</div>
 	<!--end-banner-->
 
@@ -603,6 +634,43 @@
 <script type="text/javascript" src="../static/js/resume/pdfmake.min.js" th:src="@{/js/resume/pdfmake.min.js}"></script>
 <script type="text/javascript" src="../static/js/resume/vfs_fonts.js" th:src="@{/js/resume/vfs_fonts.js}"></script>
 <script type="text/javascript" src="../static/js/common/html2canvas.js" th:src="@{/js/common/html2canvas.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("ul.main-menu").mouseleave(
+            function () {
+                $("span.menu-line").attr("hidden", "hidden")
+                $("span.menu-line").css({"opacity": "0", "width": "0"});
+                $("span.menu-line").removeClass("transition");
+            }
+        );
+        $("ul>li.main-menu-li").hover(
+            function (e) {
+                e.stopPropagation();
+                $(this).addClass("hover");
+                var left = $(this).offset().left;
+                var width = $(this).width();
+                if ($("span.menu-line").attr("hidden")) {
+                    $("span.menu-line").removeAttr("hidden").offset({left: left}).css({
+                        "display": "inline",
+                        "opacity": "1"
+                    });
+                    $("span.menu-line").animate({width: width}, 'fast');
+                } else {
+                    $("span.menu-line").addClass("transition");
+                    $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
+                }
+            },
+            function (e) {
+                //e.stopPropagation();
+                $(this).removeClass("hover");
+                if (($("ul>li.main-menu-li").hasClass('hover'))) {
+                    $("span.menu-line").css({"opacity": "0", "width": "0"});
+                    $("span.menu-line").removeClass("transition");
+                }
+            }
+        );
+    });
+</script>
 
 
 </html>

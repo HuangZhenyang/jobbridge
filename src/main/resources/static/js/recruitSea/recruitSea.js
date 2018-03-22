@@ -5,7 +5,7 @@ let pageNumber = 1;
 let flag = true; // true的时候表示是点击的上面的条件进行的筛选； false表示点击分页进行筛选
 
 $(document).ready(function () {
-    getHeaderUserName();
+    // getHeaderUserName();
     //getData();
     setOptionEvent();
     initPagePrtition();

@@ -6,7 +6,7 @@ let icon = ["fa-group", "fa-paper-plane", "fa-coffee"]; //设置图标
 let bgThemes = ["bg-theme","bg-warning","bg-success","bg-info","bg-important"];
 
 $(document).ready(function () {
-    getHeaderUserName();
+    // getHeaderUserName();
     //getData();
 });
 

@@ -2,140 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Job-Bridge">
+    <meta name="author" content="Kelv1nYu">
     <title>Home</title>
-    <link rel="stylesheet" href="../static/css/common/font-awesome.min.css" th:href="@{/css/common/font-awesome.min.css}">
+    <link href="../static/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <!-- Bootstrap
+    ================================================== -->
+    <link rel="stylesheet" type="text/css" href="../static/css/common/bootstrap.css" th:href="@{/css/common/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/common/jasny-bootstrap.min.css" th:href="@{/css/common/jasny-bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/common/animate.css" th:href="@{/css/common/animate.css}">
+
+    <!-- Slider
+    ================================================== -->
+    <link type="text/css" href="../static/css/common/owl.carousel.css" rel="stylesheet" media="screen" th:href="@{/css/common/owl.carousel.css}">
+    <link type="text/css" href="../static/css/common/owl.theme.css" rel="stylesheet" media="screen" th:href="@{/css/common/owl.theme.css}">
+
+    <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css" href="../static/css/index/style.css" th:href="@{/css/index/style.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/common/responsive.css" th:href="@{/css/common/responsive.css}">
+
+    <!-- Mine
+    ================================================== -->
     <link rel="stylesheet" href="../static/css/common/common.css" th:href="@{/css/common/common.css}">
-    <script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            /*$("ul.main-menu").mouseenter(
-                function () {
-                    $("span.menu-line").css("overflow","hidden");
-                }
-            );*/
-            $("ul.main-menu").mouseleave(
-                function () {
-                    $("span.menu-line").attr("hidden","hidden")
-                    $("span.menu-line").css({"opacity": "0", "width": "0"});
-                    $("span.menu-line").removeClass("transition");
-                }
-            );
-            $("ul>li.main-menu-li").hover(
-                function(e) {
-                    e.stopPropagation();
-                    $(this).addClass("hover");
-                    var left = $(this).offset().left;
-                    var width = $(this).width();
-                    if ($("span.menu-line").attr("hidden")) {
-                        $("span.menu-line").removeAttr("hidden").offset({left:left}).css({"display":"inline", "opacity":"1"});
-                        $("span.menu-line").animate({width:width},'fast');
-                    } else {
-                        $("span.menu-line").addClass("transition");
-                        $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
-                    }
-                },
-                function(e) {
-                    //e.stopPropagation();
-                    $(this).removeClass("hover");
-                    if(($("ul>li.main-menu-li").hasClass('hover'))) {
-                        $("span.menu-line").css({"opacity": "0", "width": "0"});
-                        $("span.menu-line").removeClass("transition");
-                    }
-                }
-            );
-            /*$("li:eq(0)").hover(
-                function(e) {
-                    e.stopPropagation();
-                    $(this).addClass("hover");
-                    var left = $(this).offset().left;
-                    var width = $(this).width();
-                    if ($("span.menu-line").attr("hidden")) {
-                        $("span.menu-line").removeAttr("hidden").offset({left:left}).css({"display":"inline", "opacity":"1"});
-                        $("span.menu-line").animate({width:width},'fast');
-                    } else {
-                        $("span.menu-line").addClass("transition");
-                        $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
-                    }
-                },
-                function(e) {
-                    //e.stopPropagation();
-                    $(this).removeClass("hover");
-                    if(($("li:eq(1)").is(':hover'))) {
-                        $("span.menu-line").css({"opacity": "0", "width": "0"});
-                        $("span.menu-line").removeClass("transition");
-                    }
-                }
-            );
-            $("li:eq(1)").hover(
-                function(e) {
-                    e.stopPropagation();
-                    $(this).addClass("hover");
-                    var left = $(this).offset().left;
-                    var width = $(this).width();
-                    if ($("span.menu-line").attr("hidden")) {
-                        $("span.menu-line").removeAttr("hidden").offset({left:left}).css({"display":"inline", "opacity":"1"});
-                        $("span.menu-line").animate({width:width},'fast');
-                    } else {
-                        $("span.menu-line").addClass("transition");
-                        $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
-                    }
-                },
-                function(e) {
-                    //e.stopPropagation();
-                    $(this).removeClass("hover");
-                    if(($("li:eq(0)").is(':hover'))||($("li:eq(2)").is(':hover'))) {
-                        $("span.menu-line").css({"opacity": "0", "width": "0"});
-                        $("span.menu-line").removeClass("transition");
-                    }
-                }
-            );
-            $("li:eq(2)").hover(
-                function(e) {
-                    e.stopPropagation();
-                    $(this).addClass("hover");
-                    var left = $(this).offset().left;
-                    var width = $(this).width();
-                    if ($("span.menu-line").attr("hidden")) {
-                        $("span.menu-line").removeAttr("hidden").offset({left:left}).css({"display":"inline", "opacity":"1"});
-                        $("span.menu-line").animate({width:width},'fast');
-                    } else {
-                        $("span.menu-line").addClass("transition");
-                        $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
-                    }
-                },
-                function(e) {
-                    $(this).removeClass("hover");
-                    if(($("li:eq(1)").is(':hover'))||($("li:eq(3)").is(':hover'))) {
-                        $("span.menu-line").css({"opacity": "0", "width": "0"});
-                        $("span.menu-line").removeClass("transition");
-                    }
-                }
-            );
-            $("li:eq(3)").hover(
-                function(e) {
-                    e.stopPropagation();
-                    $(this).addClass("hover");
-                    var left = $(this).offset().left;
-                    var width = $(this).width();
-                    if ($("span.menu-line").attr("hidden")) {
-                        $("span.menu-line").removeAttr("hidden").offset({left:left}).css({"display":"inline", "opacity":"1"});
-                        $("span.menu-line").animate({width:width},'fast');
-                    } else {
-                        $("span.menu-line").addClass("transition");
-                        $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
-                    }
-                },
-                function(e) {
-                    //e.stopPropagation();
-                    $(this).removeClass("hover");
-                    if(($("li:eq(2)").is(':hover'))) {
-                        $("span.menu-line").css({"opacity": "0", "width": "0"});
-                        $("span.menu-line").removeClass("transition");
-                    }
-                }
-            )*/
-        });
-    </script>
+    <link rel="stylesheet" href="../static/css/index/index.css" th:href="@{/css/index/index.css}">
 </head>
 <body>
 <header class="jobbridge-header has-transition">
@@ -175,13 +66,13 @@
         <ul class="main-menu">
             <span class="menu-line" hidden = "hidden"></span>
             <li class="main-menu-li">
-                <a href="#">
+                <a href="/">
                     <span>主页</span>
                 </a>
             </li>
             <li class="main-menu-li">
-                <a href="#">
-                    <span>职位与招聘</span>
+                <a href="/recruit/info">
+                    <span>职位信息</span>
                 </a>
             </li>
             <li class="main-menu-li">
@@ -190,19 +81,359 @@
                 </a>
             </li>
             <li class="main-menu-li">
-                <a href="#">
+                <a id = "companyEntrance" href="/company/info">
                     <span>企业入口</span>
                 </a>
             </li>
         </ul>
     </div>
 </header>
+<div class="jobbridge-containter">
+    <div id="home">
+        <div class="container text-center">
+            <div class="content">
+                <h1>Job Bridge</h1>
+                <hr>
+                <div class="header-text btn">
+                    <h1><span id="head-title"></span></h1>
+                </div>
+            </div>
+
+            <a href="#meet-us" class="down-btn page-scroll">
+                <span class="fa fa-angle-down"></span>
+            </a>
+        </div>
+    </div>
+    <div class="jb-service">
+        <div class="module-title PAGE_WIDTH">
+
+        </div>
+        <!-- Meet Us Section -->
+        <div id="meet-us">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="section-title">
+                            <h2>JobBridge</h2>
+                            <hr>
+                        </div>
+                        <p>JobBridge是一座连接求职大学生与企业Offer的桥梁</p>
+                        <a href="#stu-entry" class="down-btn page-scroll">
+                            <span class="fa fa-angle-down"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jb-describe">
+        <!-- Call-to-Action Section -->
+        <div style="background: #000; padding: 4%">
+            <p style="text-align: center; font-size: 20px; color: #fff">你可以在JobBridge得到什么</p>
+        </div>
+        <!-- stu-entry Section -->
+        <div id="stu-entry">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="section-title">
+                            <br>
+                            <h2>学生</h2>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space"></div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="service">
+                            <span class="fa fa-file-pdf-o fa-3x"></span>
+                            <h4>在线简历</h4>
+                            <p>专业模板，专业提示；在线简历生成导出，在线投递简历，一站式服务</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="service">
+                            <span class="fa fa-newspaper-o fa-3x"></span>
+                            <h4>招聘信息</h4>
+                            <p>海量招聘信息，覆盖各行各业；招聘信息推送，让你不再错过</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="service">
+                            <span class="fa fa-check fa-3x"></span>
+                            <h4>优质服务</h4>
+                            <p>JobBridge平台将会提供优质的服务，请放心食用 </p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#com-entry" class="down-btn page-scroll">
+                    <span class="fa fa-angle-down"></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Call-to-Action Section -->
+        <div class="interlayer" style="background: #000; padding: 1%">
+        </div>
+
+        <!-- com-entry Section -->
+        <div id="com-entry">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="section-title">
+                            <h2>企业</h2>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+            </div>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="service">
+                            <span class="fa fa-users fa-3x"></span>
+                            <h4>发现人才</h4>
+                            <p>人才汇聚、地灵人杰；借助JobBridge将更轻松方便的发现挖掘你想要的人才&nbsp;&nbsp;&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="service">
+                            <span class="fa fa-tags fa-3x"></span>
+                            <h4>发布信息</h4>
+                            <p>发布招聘信息，吸引优质人才；信息推送，快速架起企业与求职大学生之间的桥梁</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="service">
+                            <span class="fa fa-desktop fa-3x"></span>
+                            <h4>简历查看</h4>
+                            <p>在JobBridge中在线查看求职大学生投递的简历，方便快捷；学生身份认证，保证简历的真实性</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space"></div>
+            <div class="text-center">
+                <br>
+                <a href="#clients" class="down-btn page-scroll"><span class="fa fa-angle-down"></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="jb-chose">
+        <!-- Clients Section -->
+        <div id="clients">
+            <div class="overlay">
+                <div class="container text-center">
+                    <div class="section-title">
+                        <h2>Our Partners</h2>
+                        <hr>
+                    </div>
+
+                    <ul class="clients">
+                        <li><a href="#"><img src="../static/img/index/clients/01.png" class="img-responsive" alt="..." th:src="@{/img/index/clients/01.png}"></a></li>
+                        <li><a href="#"><img src="../static/img/index/clients/02.png" class="img-responsive" alt="..." th:src="@{/img/index/clients/02.png}"></a></li>
+                        <li><a href="#"><img src="../static/img/index/clients/03.png" class="img-responsive" alt="..." th:src="@{/img/index/clients/03.png}"></a></li>
+                        <li><a href="#"><img src="../static/img/index/clients/04.png" class="img-responsive" alt="..." th:src="@{/img/index/clients/04.png}"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="jobbridge-footer">
+    <div class="main-footer PAGE_WIDTH" style="width: 1000px">
+        <ul>
+            <li class="footer-box">
+                <a href="/">使用须知</a>
+            </li>
+        </ul>
+        <ul class="footer-box">
+            <li>
+                <a href="/">服务条款</a>
+            </li>
+        </ul>
+        <ul class="footer-box">
+            <li>
+                <a href="/">开发问题</a>
+            </li>
+        </ul>
+        <ul class="footer-box">
+            <li>
+                <a href="/">合作咨询</a>
+            </li>
+        </ul>
+        <ul class="footer-box">
+            <li>
+                <a href="/">意见反馈</a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-copyright">
+        <p>2018 © galigaigai. All Rights Reserved.</p>
+    </div>
+</footer>
+
+
+<script type="text/javascript" src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
+<script type="text/javascript" src="../static/js/common/typed.js" th:src="@{/js/common/typed.js}"></script>
+<script type="text/javascript" src="../static/js/common/bootstrap.js" th:src="@{/js/common/bootstrap.js}"></script>
+<script type="text/javascript" src="../static/js/common/SmoothScroll.js" th:src="@{/js/common/SmoothScroll.js}"></script>
+<script type="text/javascript" src="../static/js/common/jasny-bootstrap.min.js" th:src="@{/js/common/jasny-bootstrap.min.js}"></script>
+<script type="text/javascript" src="../static/js/common/owl.carousel.js" th:src="@{/js/common/owl.carousel.js}"></script>
+<script type="text/javascript" src="../static/js/common/index.js" th:src="@{js/common/index.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        /*$("ul.main-menu").mouseenter(
+         function () {
+         $("span.menu-line").css("overflow","hidden");
+         }
+         );*/
+        $("ul.main-menu").mouseleave(
+            function () {
+                $("span.menu-line").attr("hidden","hidden")
+                $("span.menu-line").css({"opacity": "0", "width": "0"});
+                $("span.menu-line").removeClass("transition");
+            }
+        );
+        $("ul>li.main-menu-li").hover(
+            function(e) {
+                e.stopPropagation();
+                $(this).addClass("hover");
+                var left = $(this).offset().left;
+                var width = $(this).width();
+                if ($("span.menu-line").attr("hidden")) {
+                    $("span.menu-line").removeAttr("hidden").offset({left:left}).css({"display":"inline", "opacity":"1"});
+                    $("span.menu-line").animate({width:width},'fast');
+                } else {
+                    $("span.menu-line").addClass("transition");
+                    $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
+                }
+            },
+            function(e) {
+                //e.stopPropagation();
+                $(this).removeClass("hover");
+                if(($("ul>li.main-menu-li").hasClass('hover'))) {
+                    $("span.menu-line").css({"opacity": "0", "width": "0"});
+                    $("span.menu-line").removeClass("transition");
+                }
+            }
+        );
+        /*$("li:eq(0)").hover(
+         function(e) {
+         e.stopPropagation();
+         $(this).addClass("hover");
+         var left = $(this).offset().left;
+         var width = $(this).width();
+         if ($("span.menu-line").attr("hidden")) {
+         $("span.menu-line").removeAttr("hidden").offset({left:left}).css({"display":"inline", "opacity":"1"});
+         $("span.menu-line").animate({width:width},'fast');
+         } else {
+         $("span.menu-line").addClass("transition");
+         $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
+         }
+         },
+         function(e) {
+         //e.stopPropagation();
+         $(this).removeClass("hover");
+         if(($("li:eq(1)").is(':hover'))) {
+         $("span.menu-line").css({"opacity": "0", "width": "0"});
+         $("span.menu-line").removeClass("transition");
+         }
+         }
+         );
+         $("li:eq(1)").hover(
+         function(e) {
+         e.stopPropagation();
+         $(this).addClass("hover");
+         var left = $(this).offset().left;
+         var width = $(this).width();
+         if ($("span.menu-line").attr("hidden")) {
+         $("span.menu-line").removeAttr("hidden").offset({left:left}).css({"display":"inline", "opacity":"1"});
+         $("span.menu-line").animate({width:width},'fast');
+         } else {
+         $("span.menu-line").addClass("transition");
+         $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
+         }
+         },
+         function(e) {
+         //e.stopPropagation();
+         $(this).removeClass("hover");
+         if(($("li:eq(0)").is(':hover'))||($("li:eq(2)").is(':hover'))) {
+         $("span.menu-line").css({"opacity": "0", "width": "0"});
+         $("span.menu-line").removeClass("transition");
+         }
+         }
+         );
+         $("li:eq(2)").hover(
+         function(e) {
+         e.stopPropagation();
+         $(this).addClass("hover");
+         var left = $(this).offset().left;
+         var width = $(this).width();
+         if ($("span.menu-line").attr("hidden")) {
+         $("span.menu-line").removeAttr("hidden").offset({left:left}).css({"display":"inline", "opacity":"1"});
+         $("span.menu-line").animate({width:width},'fast');
+         } else {
+         $("span.menu-line").addClass("transition");
+         $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
+         }
+         },
+         function(e) {
+         $(this).removeClass("hover");
+         if(($("li:eq(1)").is(':hover'))||($("li:eq(3)").is(':hover'))) {
+         $("span.menu-line").css({"opacity": "0", "width": "0"});
+         $("span.menu-line").removeClass("transition");
+         }
+         }
+         );
+         $("li:eq(3)").hover(
+         function(e) {
+         e.stopPropagation();
+         $(this).addClass("hover");
+         var left = $(this).offset().left;
+         var width = $(this).width();
+         if ($("span.menu-line").attr("hidden")) {
+         $("span.menu-line").removeAttr("hidden").offset({left:left}).css({"display":"inline", "opacity":"1"});
+         $("span.menu-line").animate({width:width},'fast');
+         } else {
+         $("span.menu-line").addClass("transition");
+         $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
+         }
+         },
+         function(e) {
+         //e.stopPropagation();
+         $(this).removeClass("hover");
+         if(($("li:eq(2)").is(':hover'))) {
+         $("span.menu-line").css({"opacity": "0", "width": "0"});
+         $("span.menu-line").removeClass("transition");
+         }
+         }
+         )*/
+        $(function () {
+            $("#head-title").typed({
+                strings: ["踏上JobBridge^1000,遇见心仪Offer^2000！^800"],
+                typeSpeed: 100,
+                loop: true,
+                startDelay: 100
+            });
+        });
+    });
+</script>
 <script th:inline="javascript">
     /*<![CDATA[*/
 
     var loginUser = [[${loginUser}]];
     console.log(loginUser);
-    if (loginUser !== null){
+
+    if(loginUser!==null){
         $("div.signIn").remove();
         $("div.header-right").append("<div class='user'>\n" +
             "                <a href='javascript:;' class='user-info'>\n" +
@@ -217,15 +448,37 @@
             "                    <div class ='uc-menu'>\n" +
             "                        <ul class='uc-menu-ul'>\n" +
             "                            <li class='uc-menu-li'>\n" +
-            "                                <a href='#'>设置</a>\n" +
+            "                                <a id = 'settings' href='#'>设置</a>\n" +
             "                            </li>\n" +
             "                            <li class='uc-menu-li'>\n" +
             "                                <a href='/sign_out'>退出</a>\n" +
             "                            </li>\n" +
             "                        </ul>\n" +
             "                    </div>\n" +
-            "                </div>")
+            "                </div>");
+
+        if(loginUser.identity === 's'){
+            $("#settings").attr("href","/student/info");
+        }
+        else if(loginUser.identity === 'e'){
+            $("#settings").attr("href","/company/info");
+        }
+        else{
+            $("#settings").attr("href","/admin/info");
+        }
     }
+    $("#companyEntrance").mouseup(function () {
+        if (loginUser === null){
+            alert("您还没有登录，请先登录！");
+            $("#companyEntrance").attr("href","/");
+        }
+        else{
+            if(loginUser.identity !== 'e'){
+                alert("您还没有注册公司账号，请先注册");
+                $("#companyEntrance").attr("href","/");
+            }
+        }
+    });
 
     /*]]>*/
 </script>
