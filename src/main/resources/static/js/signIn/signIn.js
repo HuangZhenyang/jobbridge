@@ -1,24 +1,27 @@
 function signInFunc() {
     if (checkSignInInput()) {
+        var originPage = $("input.sign-in").attr("id");
         $.ajax({
             type: 'post',
             url: '/sign_in',
             dataType: 'json',
             data: {
                 userName: $('#userName').val(),
-                passWord: $('#password').val()
+                passWord: $('#password').val(),
+                originPage: originPage
             }
         }).done(function (data) {
             console.log('成功, 收到的数据: ' + JSON.stringify(data, null, '  '));
             let result = data;
             if (result.ok === "true") {
-                if(result.identity === "s"){
+                window.location.href = result.url;
+                /*if(result.identity === "s"){
                     window.location.href = "/student/info";
                 }else if(result.identity === "a"){
                     window.location.href = "/admin/add_company";
                 }else if(result.identity === "e"){
                     window.location.href = "/company/info";
-                }
+                }*/
 
             } else {
                 $('#loginTip').text(result.reason);
