@@ -33,7 +33,8 @@ function getData() {
         type: 'post',
         dataType: 'json',
         data: {
-            "resumeSendId": resumeSendId
+            "resumeSendId": resumeSendId,
+            "operation": "requestResume"
         }
     }).done(function (data) {
         console.log(JSON.stringify(data));
@@ -285,7 +286,8 @@ function approveResume() {
         type:'POST',
         dataType:'json',
         data:{
-            "resumeSendId": resumeSendId
+            "resumeSendId": resumeSendId,
+            "operation": "sendEmail"
         }
     });
 }
