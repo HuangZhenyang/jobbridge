@@ -99,7 +99,7 @@ public class SignController {
             com = companyRepository.findByUserName(loginName);
         }
         JSONObject jsonData = new JSONObject();
-        if(originPage.equals("recruitSea")){
+        if("recruitSea".equals(originPage)){
             jsonData.put("url","/recruit/info");
         }else{
             jsonData.put("url","/");

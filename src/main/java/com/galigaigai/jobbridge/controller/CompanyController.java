@@ -419,9 +419,11 @@ public class CompanyController {
             //json.put("resumeSendList", resumeSendListJsonArray);
             return "companyReceivedResume";
         } else {
-            for (ResumeSend resumeSend : resumeSendList) {
+            for (int i=0; i<resumeSendList.size(); i++) {
+                ResumeSend resumeSend = resumeSendList.get(i);
                 if (resumeSend.getHaveDelete()) {
-                    resumeSendList.remove(resumeSend);
+                    resumeSendList.remove(i);
+                    i--;
                 } else {
                     //此处Json对应companyReceiveResume.js处json
 //                    JSONObject resumeSendJson = new JSONObject();

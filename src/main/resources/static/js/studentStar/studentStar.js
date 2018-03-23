@@ -142,7 +142,7 @@ function cancelStarFunction(functionNamePara) {
         dataType: 'json'
     }).done(function (data) {
         if(data.ok === 'true'){
-            delCompany(evt);
+            // delCompany(evt);
         }
     }).fail(function (xhr,status) {
 

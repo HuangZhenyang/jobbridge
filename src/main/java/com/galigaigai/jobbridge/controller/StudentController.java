@@ -191,16 +191,7 @@ public class StudentController {
         String mailbox = student.getMailbox();
         model.addAttribute("mailbox",mailbox);
 
-        //通过studentID获取studentDetail中的其他信息
-        StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
-        if (studentDetail == null) {
-            return "studentInfo";
-        }
-//        找到该学生的意向
-        String[] intentionCity = ParseStringUtil.parseString(studentDetail.getIntentionCity());
-        String[] intentionIndustry = ParseStringUtil.parseString(studentDetail.getIntentionIndustry());
-        String[] intentionFunction = ParseStringUtil.parseString(studentDetail.getIntentionFunction());
-//        查找意向字典
+        //        查找意向字典
         List<City> cityList = cityRepository.findAll();
         List<Industry> industryList = industryRepository.findAll();
         List<Tag> tagList = tagRepository.findAll();
@@ -209,28 +200,50 @@ public class StudentController {
         String[] industryDictionary = new String[industryList.size()];
         String[] functionDictionary = new String[tagList.size()];
 
+        String[] intentionCityVector = new String[cityList.size()];
+        String[] intentionIndustryVector = new String[industryList.size()];
+        String[] intentionFunctionVector = new String[tagList.size()];
+
         for(int i = 0;i < cityList.size();i++){
+            intentionCityVector[i] = "0";
             cityDictionary[i] = cityList.get(i).getName();
         }
         for(int i = 0;i < industryList.size();i++){
+            intentionIndustryVector[i] = "0";
             industryDictionary[i] = industryList.get(i).getName();
         }
         for(int i = 0;i < tagList.size();i++){
+            intentionFunctionVector[i] = "0";
             functionDictionary[i] = tagList.get(i).getName();
         }
+
+        model.addAttribute("cityDictionary",cityDictionary);
+        model.addAttribute("industryDictionary",industryDictionary);
+        model.addAttribute("functionDictionary",functionDictionary);
+
+        //通过studentID获取studentDetail中的其他信息
+        StudentDetail studentDetail = studentDetailRepository.findByStudentId(student.getStudentId());
+        if (studentDetail == null) {
+            model.addAttribute("intentionCity",intentionCityVector);
+            model.addAttribute("intentionIndustry",intentionIndustryVector);
+            model.addAttribute("intentionFunction",intentionFunctionVector);
+            return "studentInfo";
+        }
+//        找到该学生的意向
+        String[] intentionCity = ParseStringUtil.parseString(studentDetail.getIntentionCity());
+        String[] intentionIndustry = ParseStringUtil.parseString(studentDetail.getIntentionIndustry());
+        String[] intentionFunction = ParseStringUtil.parseString(studentDetail.getIntentionFunction());
+
 //        调用函数，得到学生意向向量表
-        String[] intentionCityVector = StudentInfoUtil.getStudentIntention(cityDictionary,intentionCity);
-        String[] intentionIndustryVector = StudentInfoUtil.getStudentIntention(industryDictionary,intentionIndustry);
-        String[] intentionFunctionVector = StudentInfoUtil.getStudentIntention(functionDictionary,intentionFunction);
+        intentionCityVector = StudentInfoUtil.getStudentIntention(cityDictionary,intentionCity);
+        intentionIndustryVector = StudentInfoUtil.getStudentIntention(industryDictionary,intentionIndustry);
+        intentionFunctionVector = StudentInfoUtil.getStudentIntention(functionDictionary,intentionFunction);
 
 //        返回渲染数据
         model.addAttribute("studentDetail",studentDetail);
         model.addAttribute("intentionCity",intentionCityVector);
         model.addAttribute("intentionIndustry",intentionIndustryVector);
         model.addAttribute("intentionFunction",intentionFunctionVector);
-        model.addAttribute("cityDictionary",cityDictionary);
-        model.addAttribute("industryDictionary",industryDictionary);
-        model.addAttribute("functionDictionary",functionDictionary);
         return "studentInfo";
     }
 

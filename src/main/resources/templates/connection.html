@@ -75,7 +75,7 @@
 <div class="menu">
     <ul>
         <li class="mark"><a href="#">Job Bridge</a></li>
-        <li class="menu-1"><a href="#" id="userName"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;</a></li>
+        <li class="menu-1"><a href="#" id="userName"><i class="fa fa-user" aria-hidden="true"></i><span th:text="${userName}"></span></a></li>
         <li class="menu-2"><a href="#"><i class="fa fa-suitcase" aria-hidden="true"></i>&nbsp;职位</a></li>
         <li class="menu-3"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;人脉</a></li>
         <li class="menu-4"><a href="#"><i class=" fa fa-home fa-fw" aria-hidden="true"></i>&nbsp;主页</a></li>
@@ -171,7 +171,7 @@
                                 </h3>
                                 <!--这里是放人脉信息的页面-->
                                 <div class="mn-pymk-list__cards" id="connection-list">
-                                    <div class="mn-pymk-list__card display-flex flex-column">
+                                    <div class="mn-pymk-list__card display-flex flex-column" th:each="studentName, studentNameStat : ${studentNameList}">
                                         <div  class="pymk-card ember-view">
                                             <a href="https://www.linkedin.com/in/linda-student-2771a392/"
                                                class="pt3 ember-view">
@@ -181,8 +181,8 @@
                                             <div class="pymk-card__details pv0 ph2 text-align-center mt1">
                                                 <a href="https://www.linkedin.com/in/linda-student-2771a392/"
                                                    class="pymk-card__link ember-view">
-                                                    <span class="pymk-card__name pymk-card__name--card-layout block m0 Sans-15px-black-85%-semibold">Linda Student</span>
-                                                    <span class="pymk-card__occupation pymk-card__occupation--card-layout block m0 Sans-13px-black-55%">Student at 四川大学</span>
+                                                    <span class="pymk-card__name pymk-card__name--card-layout block m0 Sans-15px-black-85%-semibold" th:text="${studentName}">Linda Student</span>
+                                                    <span class="pymk-card__occupation pymk-card__occupation--card-layout block m0 Sans-13px-black-55%" th:text="${studentDetailList[studentNameStat.index].universityName}">Student at 四川大学</span>
                                                 </a>
                                                 <!---->
                                             </div>
@@ -194,14 +194,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mn-pymk-list__card display-flex flex-column">
+                                    <!--<div class="mn-pymk-list__card display-flex flex-column">
                                         <div class="pymk-card ember-view">
                                             <a class="pt3 ember-view">
                                                 <img class="lazy-image EntityPhoto-circle-7 loaded"  src="assets/img/index/bg1.jpg">
                                             </a>
                                             <div class="pymk-card__details pv0 ph2 text-align-center mt1">
-                                                    <span class="pymk-card__name pymk-card__name--card-layout block m0 Sans-15px-black-85%-semibold">杨云鹏</span>
-                                                    <span class="pymk-card__occupation pymk-card__occupation--card-layout block m0 Sans-13px-black-55%">四川大学 - 学生</span>
+                                                    <span class="pymk-card__name pymk-card__name&#45;&#45;card-layout block m0 Sans-15px-black-85%-semibold">杨云鹏</span>
+                                                    <span class="pymk-card__occupation pymk-card__occupation&#45;&#45;card-layout block m0 Sans-13px-black-55%">四川大学 - 学生</span>
                                             </div>
                                             <div class="pymk-card__action-container pt1 pb3 ph0">
                                                 <button class="button-secondary-small" >
@@ -209,7 +209,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                 </div>
 

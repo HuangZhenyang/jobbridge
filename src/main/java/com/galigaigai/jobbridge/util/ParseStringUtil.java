@@ -11,6 +11,7 @@ import java.util.Date;
 public class ParseStringUtil {
     public static String[] parseString(String str){
         //String intentionCity = "[\"上海\",\"北京\"]";
+
         str = str.replace("[","");
         str = str.replace("]","");
         str = str.replace("\"","");

@@ -35,7 +35,8 @@ public class ConnectionController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if(loginUser == null || !("s".equals(((Student)loginUser).getIdentity()))){
-            response.sendRedirect("/");
+            response.sendRedirect("/"); // 修改浏览器的URL
+            return "index";
         }
         StudentDetail studentDetail1 = studentDetailRepository.findByStudentId(((Student)loginUser).getStudentId());
         List<StudentDetail> studentDetailList = studentDetailService.findStudentDetailByStudentDetail(studentDetail1);
