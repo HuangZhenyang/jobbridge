@@ -591,7 +591,7 @@ public class CompanyController {
                     List<String> list = new ArrayList<>();
                     list.add("companyAgreeResume");
                     list.add(company.getUserName());
-                    MailUtil mailUtil = new MailUtil(list);
+                    MailUtil mailUtil = MailUtil.getInstance(list);
                     mailUtil.send(student.getMailbox());
                 }
                 break;

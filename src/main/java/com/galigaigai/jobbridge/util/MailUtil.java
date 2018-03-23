@@ -24,6 +24,11 @@ public class MailUtil {
     private String subject;
     private StringBuilder content;
 
+    public static MailUtil getInstance(List<String> list){
+        MailUtil mailUtil = new MailUtil(list);
+        return mailUtil;
+    }
+
     /**
      * 发送邮件工具类
      * @param list  list[0]指示当前执行的操作，
@@ -32,7 +37,7 @@ public class MailUtil {
      *
      *             list[1]指示一些需要用到的数据
      */
-    public MailUtil(List<String> list){
+    private MailUtil(List<String> list){
         mailSender = new JavaMailSenderImpl();
         p = new Properties();
         content = new StringBuilder();
