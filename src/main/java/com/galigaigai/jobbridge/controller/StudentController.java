@@ -625,7 +625,7 @@ public class StudentController {
         List<String> list = new ArrayList<>();
         list.add("studentAuthentication");
         list.add("unUseString");
-        MailUtil mailUtil = new MailUtil(list);
+        MailUtil mailUtil = MailUtil.getInstance(list);
 
         String email = request.getParameter("mailbox");
         JSONObject SendStatusJson = new JSONObject();
