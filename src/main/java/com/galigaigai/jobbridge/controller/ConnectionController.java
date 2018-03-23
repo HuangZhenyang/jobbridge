@@ -1,5 +1,6 @@
 package com.galigaigai.jobbridge.controller;
 
+import com.galigaigai.jobbridge.model.Company;
 import com.galigaigai.jobbridge.model.Student;
 import com.galigaigai.jobbridge.model.StudentDetail;
 import com.galigaigai.jobbridge.repository.StudentDetailRepository;
@@ -34,6 +35,10 @@ public class ConnectionController {
     public String showConnection(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
+        if(loginUser instanceof Company){
+            response.sendRedirect("/"); // 修改浏览器的URL
+            return "index";
+        }
         if(loginUser == null || !("s".equals(((Student)loginUser).getIdentity()))){
             response.sendRedirect("/"); // 修改浏览器的URL
             return "index";

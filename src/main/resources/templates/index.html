@@ -81,8 +81,8 @@
                 </a>
             </li>
             <li class="main-menu-li">
-                <a id = "companyEntrance" href="/company/info">
-                    <span>企业入口</span>
+                <a id = "Entrance" href="/">
+                    <span>入口</span>
                 </a>
             </li>
         </ul>
@@ -459,26 +459,17 @@
 
         if(loginUser.identity === 's'){
             $("#settings").attr("href","/student/info");
+            $("#Entrance").attr("href","/student/info");
         }
         else if(loginUser.identity === 'e'){
             $("#settings").attr("href","/company/info");
+            $("#Entrance").attr("href","/company/info");
         }
         else{
-            $("#settings").attr("href","/admin/audit_company");
+            $("#settings").attr("href","/admin/add_admin");
+            $("#Entrance").attr("href","/admin/add_admin");
         }
     }
-    $("#companyEntrance").mouseup(function () {
-        if (loginUser === null){
-            alert("您还没有登录，请先登录！");
-            $("#companyEntrance").attr("href","/");
-        }
-        else{
-            if(loginUser.identity !== 'e'){
-                alert("您还没有注册公司账号，请先注册");
-                $("#companyEntrance").attr("href","/");
-            }
-        }
-    });
 
     /*]]>*/
 </script>

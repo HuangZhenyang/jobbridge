@@ -8,80 +8,72 @@
     <link rel="stylesheet" href="../static/css/connection/3.css" th:href="@{/css/connection/3.css}">
     <link rel="stylesheet" href="../static/css/connection/4.css" th:href="@{/css/connection/4.css}">
     <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" href="../static/css/common/common.css" th:href="@{/css/common/common.css}">
     <style type="text/css">
-        body {
-            font-family: tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif;
-            margin: 0;
+        .jobbridge-header{
+            background: #292c2d !important;
+            position: relative;
         }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .menu {
-            background: #24292E;
-            border: none;
-            height: auto;
-            position: fixed;
-            z-index: 9999;
-            width: 100%;
-
-        }
-
-        .menu ul {
-            border: none;
-        }
-
-        .mark {
-            float: left;
-            min-width: 500px;
-            padding: 0;
-            height: 53px;
-            line-height: 53px;
-            text-align: center;
-            border: none;
-        }
-
-        .menu-1, .menu-2, .menu-3, .menu-4 {
-            float: right;
-            min-width: 200px;
-            padding: 0;
-            height: 53px;
-            line-height: 53px;
-            text-align: center;
-            border: none;
-        }
-
-        .menu > ul li a {
-            color: #c7d1d8;
-        }
-
-        a {
+        a:hover{
             text-decoration: none;
-        }
-
-        .menu > ul li a:hover {
-            color: white;
-        }
-
-        .menu > ul li:hover {
-            border-bottom: 2px solid #fff;
         }
     </style>
 </head>
 <body >
-<div class="menu">
-    <ul>
-        <li class="mark"><a href="#">Job Bridge</a></li>
-        <li class="menu-1"><a href="#" id="userName"><i class="fa fa-user" aria-hidden="true"></i><span th:text="${userName}"></span></a></li>
-        <li class="menu-2"><a href="#"><i class="fa fa-suitcase" aria-hidden="true"></i>&nbsp;职位</a></li>
-        <li class="menu-3"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;人脉</a></li>
-        <li class="menu-4"><a href="#"><i class=" fa fa-home fa-fw" aria-hidden="true"></i>&nbsp;主页</a></li>
-    </ul>
-</div>
-<br>
+
+<header class="jobbridge-header has-transition">
+    <div class="header-box">
+        <a href="/" class="logo" style="background: url('../static/img/comlogo/jobbridge.png') no-repeat" th:style="'background:url(' + @{/img/comlogo/jobbridge.png} + ') no-repeat;'"></a>
+        <div class="header-right">
+            <div class='user'>
+                <a href='javascript:;' class='user-info'>
+                        <span class='uinfo'>
+                            <span class='uname'>
+                                <i class="fa fa-user-o headshot"></i>
+                                <b th:text="${userName}"></b>
+                            </span>
+                        </span>
+                </a>
+                <div class='user-control'>
+                    <div class ='uc-menu'>
+                        <ul class='uc-menu-ul'>
+                            <li class='uc-menu-li'>
+                                <a href='/admin/add_admin'>设置</a>
+                            </li>
+                            <li class='uc-menu-li'>
+                                <a href='/sign_out'>退出</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="main-menu">
+            <span class="menu-line" hidden = "hidden"></span>
+            <li class="main-menu-li">
+                <a href="/">
+                    <span>主页</span>
+                </a>
+            </li>
+            <li class="main-menu-li">
+                <a href="/recruit/info">
+                    <span>职位信息</span>
+                </a>
+            </li>
+            <li class="main-menu-li">
+                <a href="/connection/index">
+                    <span>人脉</span>
+                </a>
+            </li>
+            <li class="main-menu-li">
+                <a id = "Entrance" href="/admin/add_admin">
+                    <span>入口</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</header>
 <div class="application-outlet ">
     <div class="authentication-outlet launchpad-cp-enabled">
         <div  class="extended">
@@ -263,6 +255,43 @@
     <!---->
     <script type="text/javascript" src="../static/js/connection/connection.js" th:src="@{/js/connection/connection.js}"></script>
     <script type="text/javascript" src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("ul.main-menu").mouseleave(
+                function () {
+                    $("span.menu-line").attr("hidden", "hidden")
+                    $("span.menu-line").css({"opacity": "0", "width": "0"});
+                    $("span.menu-line").removeClass("transition");
+                }
+            );
+            $("ul>li.main-menu-li").hover(
+                function (e) {
+                    e.stopPropagation();
+                    $(this).addClass("hover");
+                    var left = $(this).offset().left;
+                    var width = $(this).width();
+                    if ($("span.menu-line").attr("hidden")) {
+                        $("span.menu-line").removeAttr("hidden").offset({left: left}).css({
+                            "display": "inline",
+                            "opacity": "1"
+                        });
+                        $("span.menu-line").animate({width: width}, 'fast');
+                    } else {
+                        $("span.menu-line").addClass("transition");
+                        $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
+                    }
+                },
+                function (e) {
+                    //e.stopPropagation();
+                    $(this).removeClass("hover");
+                    if (($("ul>li.main-menu-li").hasClass('hover'))) {
+                        $("span.menu-line").css({"opacity": "0", "width": "0"});
+                        $("span.menu-line").removeClass("transition");
+                    }
+                }
+            );
+        });
+    </script>
 </div>
 
 </body>
