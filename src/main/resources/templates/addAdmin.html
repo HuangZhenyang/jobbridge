@@ -1,151 +1,778 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>增加管理员</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}">
-    <!--Loading bootstrap css-->
+    <meta name="description" content="Job-Bridge">
+    <meta name="author" content="HuangZhenyang">
+    <link rel="shortcut icon" href="../static/img/favicon/f1.ico" th:href="@{/img/favicon/f1.ico}" />
+    <title>企业审核</title>
+    <!-- Custom styles for this template -->
+    <link href="../static/css/common/style-init.css" rel="stylesheet" th:href="@{/css/common/style-init.css}" />
+    <link href="../static/css/common/style-responsive.css" rel="stylesheet" th:href="@{/css/common/style-responsive.css}" />
+    <!--external css-->
+    <link href="../static/css/common/font-awesome.css" rel="stylesheet" th:href="@{/css/common/font-awesome.css}" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!--my class-->
+    <link href="../static/css/common/style.css" th:href="@{/css/common/style.css}"/>
+
+    <!--stuinfo-->
+    <link rel="stylesheet" href="../static/css/common/antd.min.css" class="next-head" th:href="@{/css/common/antd.min.css}"/>
+    <style id="__jsx-style-515442552">
+        .ucenter[data-jsx="515442552"] {
+            margin-top: 30px;
+        }
+
+        .box[data-jsx="515442552"] {
+            border: 1px solid #d9d9d9;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.075);
+            border-radius: 10px;
+            min-height: 800px;
+        }
+
+        .ucenter[data-jsx="515442552"] .box[data-jsx="515442552"] .content[data-jsx="515442552"] {
+            padding: 20px 30px;
+        }
+
+    </style>
+    <style id="__jsx-style-1727466106">
+        .box[data-jsx="1727466106"] {
+            position: relative;
+            z-index: 10;
+            background-color: #fff;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.075);
+        }
+
+        .logo[data-jsx="1727466106"] {
+            margin-right: 10px;
+        }
+
+        .logo[data-jsx="1727466106"] .icon[data-jsx="1727466106"] {
+            width: 30px;
+            height: auto;
+        }
+
+        .logo[data-jsx="1727466106"] .text[data-jsx="1727466106"] {
+            width: 170px;
+            height: auto;
+            margin-left: 5px;
+        }
+
+        .mitem[data-jsx="1727466106"] {
+            display: block;
+            padding: 0 10px;
+            height: 70px;
+            line-height: 62px;
+            border-top: 4px solid transparent;
+            color: #333;
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -ms-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .mitem[data-jsx="1727466106"]:hover {
+            border-top-color: #337ab7;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .mitem[data-jsx="1727466106"] .img[data-jsx="1727466106"] {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .mitem[data-jsx="1727466106"] .text[data-jsx="1727466106"] {
+            margin: 0 -5px 0 5px;
+            vertical-align: middle;
+        }
+
+        .mitem[data-jsx="1727466106"] .icon[data-jsx="1727466106"] {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+            background: url(../static/img/index/bg1.jpg) no-repeat;
+            background-size: contain;
+        }
+
+        .mitem[data-jsx="1727466106"] .head-img[data-jsx="1727466106"],
+        .mitem[data-jsx="1727466106"] .drop-down[data-jsx="1727466106"] {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+        }
+
+        .mitem[data-jsx="1727466106"] .name[data-jsx="1727466106"] {
+            vertical-align: middle;
+            margin-left: 5px;
+            max-width: 80px;
+        }
+
+    </style>
+    <style id="__jsx-style-2255456950">
+        .line {
+            height: 1px;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .ant-select-selection {
+            width: 400px;
+            padding: 6px 12px;
+        }
+
+        .ant-select-selection--multiple .ant-select-selection__rendered {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .ant-checkbox + span {
+            line-height: 200%;
+        }
+
+        .ant-select-selection--single {
+            height: auto;
+        }
+
+        .content .wrapper .detail .trade label.ant-checkbox-group-item.ant-checkbox-wrapper,
+        .content .wrapper .detail .section label.ant-checkbox-group-item.ant-checkbox-wrapper {
+            width: 220px;
+            vertical-align: top;
+        }
+
+    </style>
+    <style id="__jsx-style-2597945739">
+        .box[data-jsx="2597945739"] {
+            position: fixed;
+            z-index: 10;
+            right: 56px;
+            bottom: 160px;
+        }
+
+        .backtop[data-jsx="2597945739"] {
+            display: block;
+            width: 28px;
+            cursor: pointer;
+        }
+
+    </style>
+    <style id="__jsx-style-3196015672">
+        .user-center-menu {
+            padding-left: 20px;
+            padding-right: 30px;
+        }
+
+        .user-center-menu .ant-menu-vertical {
+            border: none;
+        }
+
+        .user-center-menu .ant-menu-vertical .ant-menu-item {
+            font-size: 14px;
+        }
+
+        .user-center-menu .ant-menu .info {
+            border-bottom: 1px solid #e9e9e9;
+        }
+
+        .user-center-menu .ant-menu-item i {
+            font-size: 26px;
+            vertical-align: middle;
+            padding: 0 10px;
+        }
+
+    </style>
+    <style id="__jsx-style-3479566426">
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .category[data-jsx="3479566426"],
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .detail[data-jsx="3479566426"],
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .no-school[data-jsx="3479566426"] {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .no-school[data-jsx="3479566426"] {
+            width: 170px;
+            cursor: pointer;
+            padding: 68px 0;
+            color: #3E84E0;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .no-school[data-jsx="3479566426"]:hover span[data-jsx="3479566426"] {
+            text-decoration: underline;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .no-school[data-jsx="3479566426"] span[data-jsx="3479566426"] {
+            display: inline-block;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .category[data-jsx="3479566426"] {
+            padding-top: 10px;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .detail[data-jsx="3479566426"] .label[data-jsx="3479566426"] {
+            width: 140px;
+            text-align: right;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .detail[data-jsx="3479566426"] .label[data-jsx="3479566426"] strong[data-jsx="3479566426"] {
+            color: #F7412D;
+            margin-right: 5px;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .detail[data-jsx="3479566426"] .value[data-jsx="3479566426"] {
+            width: 450px;
+            padding-left: 30px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .detail[data-jsx="3479566426"] .trade[data-jsx="3479566426"] .value[data-jsx="3479566426"],
+        .content[data-jsx="3479566426"] .wrapper[data-jsx="3479566426"] .detail[data-jsx="3479566426"] .section[data-jsx="3479566426"] .value[data-jsx="3479566426"] {
+            width: 500px;
+        }
+
+        .form-group[data-jsx="3479566426"] {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .error[data-jsx="3479566426"] {
+            text-align: center;
+            color: red;
+        }
+
+        .submit[data-jsx="3479566426"] {
+            text-align: center;
+        }
+
+    </style>
+    <style id="__jsx-style-4042860639">
+        .box[data-jsx="4042860639"] {
+            margin-top: 20px;
+            padding-top: 30px;
+            padding-bottom: 20px;
+            color: #d9d9d9;
+            background-color: #373737;
+        }
+
+        .logo-box[data-jsx="4042860639"] {
+            width: 450px;
+        }
+
+        .logo[data-jsx="4042860639"] {
+            display: block;
+        }
+
+        .logo[data-jsx="4042860639"] .icon[data-jsx="4042860639"] {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo[data-jsx="4042860639"] .text[data-jsx="4042860639"] {
+            width: 195px;
+            height: 35px;
+            margin-left: 5px;
+        }
+
+        .descr[data-jsx="4042860639"] {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .menu-box[data-jsx="4042860639"] {
+            width: 350px;
+        }
+
+        .menu[data-jsx="4042860639"] {
+            text-align: center;
+        }
+
+        .menu[data-jsx="4042860639"] .link[data-jsx="4042860639"] {
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        .contact[data-jsx="4042860639"] {
+            margin-top: 20px;
+        }
+
+        .contact[data-jsx="4042860639"] .copyright[data-jsx="4042860639"] {
+            font-size: 12px;
+            text-align: right;
+        }
+
+    </style>
+    <style id="__jsx-style-4224132704">
+        .ant-breadcrumb {
+            margin: 15px 0;
+        }
+
+        .ant-breadcrumb,
+        .ant-breadcrumb a,
+        .ant-breadcrumb > span:last-child {
+            color: inherit;
+        }
+
+        .ant-breadcrumb > span:last-child {
+            font-weight: normal;
+        }
+
+        .ant-tabs {
+            color: inherit;
+        }
+
+        .ant-radio-group,
+        .ant-radio-wrapper,
+        .ant-checkbox-group,
+        .ant-checkbox-wrapper {
+            font-size: inherit;
+        }
+
+        .ant-radio,
+        .ant-radio + *,
+        .ant-checkbox,
+        .ant-checkbox + * {
+            vertical-align: middle;
+        }
+
+        .ant-btn-danger {
+            color: #fff;
+            background-color: #F7412D;
+            border-color: #F7412D;
+        }
+
+        .ant-btn-danger:focus,
+        .ant-btn-danger:hover {
+            background-color: #f46e65;
+            border-color: #f46e65;
+        }
+
+        .ant-btn-danger:active {
+            background-color: #d73435;
+            border-color: #d73435;
+        }
+
+        .ant-card {
+            font-size: inherit;
+            background-color: transparent;
+        }
+
+        .ant-table {
+            font-size: inherit;
+        }
+
+        .ant-modal-body {
+            font-size: inherit;
+        }
+
+        .ant-select {
+            font-size: inherit;
+        }
+
+        .ant-select-dropdown {
+            font-size: inherit;
+        }
+
+        .ant-input {
+            font-size: inherit;
+        }
+
+        .my-color-primary {
+            color: #3E84E0 !important;
+        }
+
+        .my-color-gray {
+            color: #767676 !important;
+        }
+
+        .my-color-danger {
+            color: #F7412D !important;
+        }
+
+        .my-color-success {
+            color: #00C160 !important;
+        }
+
+        .my-color-white {
+            color: #ffffff !important;
+        }
+
+        .my-color-black {
+            color: #333333 !important;
+        }
+
+        .my-color-border {
+            color: #d9d9d9 !important;
+        }
+
+        .my-bgcolor-primary {
+            color: #ffffff !important;
+            background-color: #3E84E0 !important;
+        }
+
+        .my-bgcolor-gray {
+            background-color: #F9F9F9 !important;
+        }
+
+        .my-bgcolor-danger {
+            color: #ffffff !important;
+            background-color: #F7412D !important;
+        }
+
+        .my-bgcolor-success {
+            color: #ffffff !important;
+            background-color: #00C160 !important;
+        }
+
+        body {
+            color: #333333;
+            font-size: 14px;
+        }
+
+        a,
+        a:active,
+        a:hover,
+        a:focus {
+            outline: 0;
+            text-decoration: none;
+        }
+
+        /*主体内容容器*/
+
+        .my-container {
+            width: 1208px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .my-container-box {
+            min-width: 1208px;
+        }
+
+        /*文本位置*/
+
+        .my-text-left {
+            text-align: left;
+        }
+
+        .my-text-center {
+            text-align: center;
+        }
+
+        .my-text-right {
+            text-align: right;
+        }
+
+        /*文本单行*/
+
+        .my-text-rowsingle {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /*图片宽度限制*/
+
+        .my-img-full img {
+            max-width: 100%;
+        }
+
+        /*快速浮动和清除浮动*/
+
+        .my-clearfix:before,
+        .my-clearfix:after {
+            content: ' ';
+            display: table;
+        }
+
+        .my-clearfix:after {
+            clear: both;
+        }
+
+        .my-pull-left {
+            float: left !important;
+        }
+
+        .my-pull-right {
+            float: right !important;
+        }
+
+        /*限制行数，多余内容省略号*/
+
+        .line-clamp {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        .line-clamp2 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .line-clamp3 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        /*文本动换行*/
+
+        .line {
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+
+        /*提示登录框*/
+
+        .my-modal-login .ant-confirm-btns {
+            margin-top: 15px;
+        }
+
+        .my-modal-login .ant-btn {
+            margin-bottom: 0;
+        }
+
+        .my-modal-login .anticon {
+            display: none;
+        }
+
+        .my-modal-login .ant-confirm-content {
+            margin-left: 0;
+        }
+
+        .browser-tips {
+            background-color: #3E84E0;
+            color: #fff;
+            border-radius: 0;
+            border: 0;
+        }
+
+        .browser-tips a,
+        .browser-tips i.anticon-cross {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+    </style>
+    <!--/stuinfo-->
     <link type="text/css" rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css"
           th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
-    <link type="text/css" rel="stylesheet" href="../static/css/common/bootstrap.min.css" th:href="@{/css/common/bootstrap.min.css}">
     <link type="text/css" rel="stylesheet" href="../static/css/common/main.css" th:href="@{/css/common/main.css}">
+    <link type="text/css" rel="stylesheet"  href="../static/css/common/bootstrapForCompany.css" th:href="@{/css/common/bootstrapForCompany.css}"></link>
+    <link rel="stylesheet" href="../static/css/common/common.css" th:href="@{/css/common/common.css}">
+    <style type="text/css">
+        .jobbridge-header{
+            background: #292c2d !important;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        .interlayer{
+            width: 100%;
+            height: 36px;
+        }
+    </style>
+    <style type="text/css" id="ProgressPart">
+        .progress-part
+        {
+            position: relative;
+            margin:20px auto;
+            width: 750px;
+            height:600px;
+            overflow: auto;
+        }
+        #companyListMainPart
+        {
+            border-color: #f0f0f0;
+        }
+        .panel-heading
+        {
+            padding:0px;
+            background-color:#f0f0f0;
+
+        }
+        .list-group li
+        {
+            line-height: 54px;
+        }
+    </style>
+
+    <style type="text/css" id="detail-part">
+        .detailPart
+        {
+            font-size: 18px;
+            font-family: simkai;
+        }
+        .modal-header
+        {
+            padding: 22px 15px;
+        }
+
+    </style>
+    <style type="text/css" id="Footer">
+        .site-footer
+        {
+            /*            width: 100%;
+                        height:35px;   !* footer的高度一定要是固定值*!
+                        position:absolute;
+                        bottom:0px;
+                        left:0px;*/
+            background-color: #1d130f;
+        }
+        .text-center
+        {
+            color: #fff3cf;
+            font-size: 20px;
+            font-style: italic;
+            text-align: center;
+        }
+    </style>
+    <style type="text/css" id="ModalBox">
+        .modal-dialog
+        {
+            margin-top: 0px;
+        }
+    </style>
+    <style type="text/css" id="FontStyle">
+        @font-face
+        {
+            font-family: simkai;
+            src: url('../static/fonts/simkai.ttf')
+        }
+    </style>
 </head>
+
 <body>
-<div>
-    <!--BEGIN BACK TO TOP-->
-    <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
-    <!--END BACK TO TOP-->
-    <!--BEGIN TOPBAR-->
-    <div id="header-topbar-option-demo" class="page-header-topbar">
-        <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3"
-             class="navbar navbar-default navbar-static-top">
-            <div class="navbar-header">
-                <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span
-                        class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
-                        class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a id="logo" href="/admin/add_admin" class="navbar-brand"><span class="fa fa-rocket"></span><span
-                        class="logo-text">JobBridge</span><span style="display: none"
-                                                                class="logo-text-icon">µ</span></a></div>
-            <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
-
-                <ul class="nav navbar navbar-top-links navbar-right mbn">
-
-                    <li class="dropdown topbar-user">
-                        <a data-hover="dropdown" href="#" class="dropdown-toggle"><label><span class="hidden-xs"
-                                                                                               id="user"></span></label>&nbsp;<span
-                                class="caret"></span></a>
-                        <ul class="dropdown-menu dropdown-user pull-right">
-                            <li><a href="/sign_out"><i class="fa fa-key"></i>退出</a></li>
+<header class="jobbridge-header has-transition">
+    <div class="header-box">
+        <a href="/" class="logo" style="background: url('../static/img/comlogo/jobbridge.png') no-repeat" th:style="'background:url(' + @{/img/comlogo/jobbridge.png} + ') no-repeat;'"></a>
+        <div class="header-right">
+            <div class='user'>
+                <a href='javascript:;' class='user-info'>
+                        <span class='uinfo'>
+                            <span class='uname'>
+                                <i class="fa fa-user-o headshot"></i>
+                                <b th:text="${userName}"></b>
+                            </span>
+                        </span>
+                </a>
+                <div class='user-control'>
+                    <div class ='uc-menu'>
+                        <ul class='uc-menu-ul'>
+                            <li class='uc-menu-li'>
+                                <a href='/admin/audit_company'>设置</a>
+                            </li>
+                            <li class='uc-menu-li'>
+                                <a href='/sign_out'>退出</a>
+                            </li>
                         </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <!--BEGIN MODAL CONFIG PORTLET-->
-        <div id="modal-config" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
-                            &times;
-                        </button>
-                        <h4 class="modal-title">
-                            Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" data-dismiss="modal" class="btn btn-default">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            Save changes
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
-        <!--END MODAL CONFIG PORTLET-->
+
+        <ul class="main-menu">
+            <span class="menu-line" hidden = "hidden"></span>
+            <li class="main-menu-li">
+                <a href="/">
+                    <span>主页</span>
+                </a>
+            </li>
+            <li class="main-menu-li">
+                <a href="/recruit/info">
+                    <span>职位信息</span>
+                </a>
+            </li>
+            <li class="main-menu-li">
+                <a href="/connection/index">
+                    <span>人脉</span>
+                </a>
+            </li>
+            <li class="main-menu-li">
+                <a id = "Entrance" href="/admin/add_admin">
+                    <span>入口</span>
+                </a>
+            </li>
+        </ul>
     </div>
-    <!--END TOPBAR-->
-    <div id="wrapper">
-        <!--BEGIN SIDEBAR MENU-->
-        <nav id="sidebar" role="navigation" data-step="2"
-             data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;"
-             data-position="right" class="navbar-default navbar-static-side">
-            <div class="sidebar-collapse menu-scroll">
-                <ul id="side-menu" class="nav">
+</header>
+<section id="container">
+    <section id="main-content" style="margin-left: 1px;">
+        <section class="wrapper">
+            <div class="interlayer"></div>
+            <!-- page start-->
+            <div id="__next">
+                <div data-reactroot="" data-reactid="1" data-react-checksum="-1332626374">
+                    <div data-reactid="2">
+                        <div data-reactid="3">
+                            <!-- react-empty: 4 -->
+                            <div data-reactid="13">
+                                <div class="ucenter my-container" data-jsx="515442552" data-reactid="38">
+                                    <div class="ant-row" data-reactid="39">
+                                        <!--侧边栏-->
+                                        <div class="ant-col-6" data-reactid="32">
+                                            <div class="user-center-menu" data-reactid="33">
+                                                <ul class="ant-menu ant-menu-vertical  ant-menu-light ant-menu-root"
+                                                    role="menu" tabindex="0" data-reactid="34">
+                                                    <!--等项目完工时需要修改这几个按钮的超链接-->
+                                                    <li class="ant-menu-item info" role="menuitem" aria-selected="true"
 
-                    <div class="clearfix"></div>
-                    <li><a href="/admin/audit_company"><i class="fa fa-sitemap fa-fw">
-                        <div class="icon-bg bg-dark"></div>
-                    </i><span class="menu-title">审核企业信息</span></a>
-                    </li>
+                                                        data-reactid="35"><a href="/admin/audit_company"
+                                                                             data-reactid="36"><i
+                                                            class="fa fa-user" data-reactid="37"></i><span
+                                                            data-reactid="38" style="color:#00a2ae">&nbsp;企业信息</span></a>
+                                                    </li>
+                                                    <li class="ant-menu-item info" role="menuitem" aria-selected="true"
 
-                    <li><a href="/admin/add_admin"><i class="fa  fa-credit-card">
-                        <div class="icon-bg bg-primary"></div>
-                    </i><span class="menu-title">增加管理员</span></a>
-                    </li>
-                </ul>
-
-            </div>
-
-        </nav>
-        <!--END SIDEBAR MENU-->
-        <div id="page-wrapper">
-            <!--BEGIN TITLE & BREADCRUMB PAGE-->
-            <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
-                <div class="page-header pull-left">
-                    <div class="page-title">
-                        增加管理员
-                    </div>
-                </div>
-                <div class="clearfix">
-                </div>
-            </div>
-            <!--END TITLE & BREADCRUMB PAGE-->
-            <!--BEGIN CONTENT-->
-            <div class="page-content">
-                <div id="tab-general">
-                    <div class="row mbl">
-                        <div class="col-lg-12">
-
-                            <div class="col-md-12">
-                                <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-12">
-                            <div class="row">
-                                <div class="row mtl">
-                                    <div class="col-md-9">
-                                        <div id="generalTabContent" class="tab-content">
-                                            <div id="tab-edit" class="tab-pane fade in active">
+                                                        data-reactid="35"><a href="/admin/add_admin"
+                                                                             data-reactid="36"><i
+                                                            class="fa fa-address-card-o" data-reactid="37"></i><span
+                                                            data-reactid="38" style="color:#00a2ae">&nbsp;&nbsp;&nbsp;添加管理员</span></a>
+                                                    </li>
+                                                    <!--等项目完工时需要修改这几个按钮的超链接-->
+                                                </ul>
+                                                <!-- react-empty: 51 -->
+                                            </div>
+                                        </div>
+                                        <!--主要内容-->
+                                        <div class="ant-col-18" data-reactid="60">
+                                            <div class="box" data-jsx="515442552" data-reactid="61" >
+                                                <h2 style="text-align:center; margin: 20px;">增加管理员</h2>
                                                 <div action="#" class="form-horizontal">
-                                                    <div class="form-group"><label
-                                                            class="col-sm-3 control-label">账号</label>
+                                                    <div class="form-group" ><label
+                                                            class="col-sm-3 control-label" style="width: 364px;font-size: 22px">账号:&nbsp;</label>
                                                         <div class="col-sm-9 controls">
                                                             <div class="row">
                                                                 <div class="col-xs-9"><input type="text" id="userName"
                                                                                              placeholder="给管理员设置一个登录账号"
-                                                                                             class="form-control"/>
+                                                                                             class="form-control" style="height: 34px;"/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group"><label
-                                                            class="col-sm-3 control-label">密码</label>
+                                                            class="col-sm-3 control-label" style="width: 364px;font-size: 22px" >密码:&nbsp;</label>
                                                         <div class="col-sm-9 controls">
                                                             <div class="row">
-                                                                <div class="col-xs-9"><input type="text" id="password"
+                                                                <div class="col-xs-9" style="margin:5px 0 5px 0"><input type="text" id="password"
                                                                                              placeholder="给管理员设置一个登陆密码"
-                                                                                             class="form-control"/>
+                                                                                             class="form-control" style="height: 34px;"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -158,8 +785,11 @@
                                                         </div>
                                                     </div>
                                                     <hr/>
-                                                    <input onclick="addAdminFunc()" type="submit"
-                                                           class="btn btn-green btn-block"/>
+                                                    <div style="text-align: center;">
+                                                        <input onclick="addAdminFunc()" type="submit"
+                                                               class="btn  btn-block" style="width: auto"/>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -167,20 +797,73 @@
                                 </div>
                             </div>
                         </div>
+                        <link rel="stylesheet" href="../static/css/common/style.css" data-reactid="453" th:href="@{/css/common/style.css}"/>
+                    </div>
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+        <div class="detail-part">
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="DetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog " role="document" style="width:100%" id="modal">
+                    <div class="modal-content">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <div class="modal-header">
+                            <h4 class="modal-title" style="font-size: 25px;color: #463f3d">企业审核</h4>
+                        </div>
+                        <div id="selectTree" class="ztree" style="height:430px;overflow:hidden; ">
+                            <div class="modal-body">
+                                <!--    <div  class="detailPart" #id="iconAddress" style="text-align: center;height: 120px "><img src=''></div>
+                                    <div class="detailPart"><span id="name"style="font-style:italic;font-size: 32px;font-weight: bold"></span>:</div>
+                                    <div class="detailPart">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id="companyIntroduction"></span></div>
+                                    <div class="detailPart"><span style="font-size: 24px;font-weight:bolder">联系方式:&nbsp&nbsp</span><span id="phoneNum"></span></div>
+                                    <div class="detailPart"><span style="font-size: 24px;font-weight:bolder">邮箱地址:&nbsp&nbsp</span><span id="mailbox"></span></div>-->
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button class="btn" data-dismiss="modal" id="defuse">拒绝</button>
+                            <button class="btn" data-dismiss="modal" id="agree">同意</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--END CONTENT-->
-        <!--BEGIN FOOTER-->
-        <div id="footer">
-            <div class="copyright">
-                <p style="text-align: center">2017 @出任CEO</p></div>
-        </div>
-        <!--END FOOTER-->
-    </div>
+    </section>
+    <!-- /MAIN CONTENT -->
 
-</div>
+    <!--main content end-->
+    <!--footer start-->
+    <footer class="site-footer">
+        <div class="text-center">Copyright &copy; 2018. JobBridge <a href="#main-content" class="go-top"> <i
+                class="fa fa-angle-up"></i></a></div>
+
+    </footer>
+    <!--footer end-->
+</section>
+
+<!--Javascript for this page-->
+<script>
+
+    var defuse = document.getElementById('defuse');
+    var agree = document.getElementById('agree');
+    var modal = document.getElementById('modal');
+    defuse.addEventListener('click', function(){
+
+    });
+    agree.addEventListener('click', function(){
+
+    });
+</script>
+
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--<script src="../static/js/addCompany2.js" th:src="@{/js/addCompany2.js}"></script>-->
 <script src="../static/js/common/jquery-1.11.0.min.js" th:src="@{/js/common/jquery-1.11.0.min.js}"></script>
 <script src="../static/js/common/bootstrap.min.js" th:src="@{/js/common/bootstrap.min.js}"></script>
 <!--侧边栏动画效果js-->
@@ -188,6 +871,94 @@
 <script src="../static/js/common/jquery.menu.js" th:src="@{/js/common/jquery.menu.js}"></script>
 <!--CORE JAVASCRIPT-->
 <script src="../static/js/addAdmin/addAdmin.js" th:src="@{/js/addAdmin/addAdmin.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("ul.main-menu").mouseleave(
+            function () {
+                $("span.menu-line").attr("hidden","hidden")
+                $("span.menu-line").css({"opacity": "0", "width": "0"});
+                $("span.menu-line").removeClass("transition");
+            }
+        );
+        $("ul>li.main-menu-li").hover(
+            function(e) {
+                e.stopPropagation();
+                $(this).addClass("hover");
+                var left = $(this).offset().left;
+                var width = $(this).width();
+                if ($("span.menu-line").attr("hidden")) {
+                    $("span.menu-line").removeAttr("hidden").offset({left:left}).css({"display":"inline", "opacity":"1"});
+                    $("span.menu-line").animate({width:width},'fast');
+                } else {
+                    $("span.menu-line").addClass("transition");
+                    $("span.menu-line").css({"left": left, "width": width, "opacity": "1", "display": "inline"});
+                }
+            },
+            function(e) {
+                //e.stopPropagation();
+                $(this).removeClass("hover");
+                if(($("ul>li.main-menu-li").hasClass('hover'))) {
+                    $("span.menu-line").css({"opacity": "0", "width": "0"});
+                    $("span.menu-line").removeClass("transition");
+                }
+            }
+        );
+    });
+</script>
+<script type="text/javascript">
+    $('#DetailModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var ul = button.children('.detail-body');
+        var modal = $(this);
+        var modalBody = modal.find('.modal-body');
+        modalBody.empty().append(modalBody.empty().append( ul.clone().removeAttr('hidden')));
+
+        var name="";
+        var mailbox="";
+        var companyIntroduction="";
+        var phoneNum="";
+        var iconAddress="";
+
+    })
+</script>
+<script type="text/javascript">
+    $("#defuse").on("click",function(event) {
+        event.preventDefault();
+        var id = $(".modal-body").find("span[id]").attr("id");
+        // $("ul>li:has(span[id="+id+"])").remove();
+        $( '#' + id ).parents('li').remove();
+        $.ajax({
+
+            type: "POST",
+            url: "/admin/audit_company",
+            data: {
+                "companyId": id,
+                "auditStatus": false
+            },
+            dataType: "json",
+            success: function( data ){
+
+            }
+        })
+    })
+    $("#agree").on("click",function(event) {
+        event.preventDefault();
+        var id = $(".modal-body").find("span[id]").attr("id");
+        $( '#' + id ).parents('li').remove();
+        $.ajax({
+            type: "POST",
+            url: "/admin/audit_company",
+            data: {
+                "companyId": id,
+                "auditStatus": true
+            },
+            dataType: "json",
+        })
+    })
+</script>
+
 
 </body>
+
 </html>
+

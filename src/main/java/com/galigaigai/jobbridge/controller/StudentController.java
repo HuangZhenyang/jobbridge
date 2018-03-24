@@ -396,7 +396,7 @@ public class StudentController {
             studentDetailService.addStudentDetail(studentDetail);
         }
 //        删除学生所有的收藏
-        starTagService.deleteStarTagByStudentId(student.getStudentId());
+        /*starTagService.deleteStarTagByStudentId(student.getStudentId());
 //        2.添加学生收藏的意向大类
         String[] tags = ParseStringUtil.parseString(intentionIndustry);
         for (int i = 0; i < tags.length; i++) {
@@ -414,7 +414,7 @@ public class StudentController {
 //                2.3 再将tag添加学生收藏标签中
             StarTag starTag = new StarTag(student.getStudentId(), justTag.getTagId());
             starTagService.addStarTag(starTag);
-        }
+        }*/
         String result = "{\"ok\":\"true\"}";
         SendInfoUtil.render(result, "text/json", response);
     }

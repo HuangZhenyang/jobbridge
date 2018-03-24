@@ -46,13 +46,14 @@ public class AdminController {
     * 管理员添加新管理员界面
     * */
     @GetMapping(value = "/add_admin")
-    public String adminAddAdmin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String adminAddAdmin(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Object loginUser = request.getSession().getAttribute("loginUser");
         if(loginUser == null || !("a".equals(((Student)loginUser).getIdentity()))){
             response.sendRedirect("/");
             return "index";
         }
+        model.addAttribute("userName",((Student)loginUser).getUserName());
         return "addAdmin";
     }
 
