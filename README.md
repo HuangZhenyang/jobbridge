@@ -6,7 +6,16 @@
 
 ***
 
-## Features
+## 项目结构
+* 采用前后端分离开发
+* 前端：html + css + js, bootstrap + jquery ；插件：pdfmake.js
+* 后端: spring boot
+* 模板引擎: Thymeleaf
+* 数据库：MySQL
+* 测试: 后端采用Junit进行单元测试; 前端采用Mock.js对请求进行拦截;
+
+
+## 功能特点
 * 学生：
 	1. 用学生邮箱进行学生身份认证; 
 	2. 在线制作/修改/导出简历;
@@ -26,13 +35,6 @@
 	6. 如果通过,点击"批准",平台会向学生邮箱发一封"HR已经批准,会在近期通知您"的邮件;
 
 
-## 项目结构
-* 采用前后端分离开发
-* 前端：html + css + js, bootstrap + jquery ；插件：pdfmake.js
-* 后端: spring boot
-* 模板引擎: Thymeleaf
-* 数据库：MySQL
-* 测试: 后端采用Junit进行单元测试; 前端采用Mock.js对请求进行拦截;
 
 ## 运行
 1. **创建数据库：** 打开`mysql`命令行, `mysql> create database jobbridge2;`, `mysql> use jobbridge2;`, `mysql> source [path to JobBridge.sql];`
