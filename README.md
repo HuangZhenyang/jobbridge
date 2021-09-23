@@ -14,6 +14,9 @@
 * 数据库：MySQL
 * 测试: 后端采用Junit进行单元测试; 前端采用Mock.js对请求进行拦截;
 
+## 依赖
+* jdk: 1.8
+* mysql: 5.7
 
 ## 功能特点
 * 学生：
@@ -37,8 +40,8 @@
 
 
 ## 运行
-1. **创建数据库：** 打开`mysql`命令行, `mysql> create database jobbridge2;`, `mysql> use jobbridge2;`, `mysql> source [path to JobBridge.sql];`
-2. **修改配置文件中的数据库配置：** 打开项目中的`application.yml`文件，然后修改对应的数据库配置；
+1. **创建数据库：** 打开`mysql`命令行, `mysql> create database jobbridge;`, `mysql> use jobbridge;`, `mysql> source [path to JobBridge.sql];`
+2. **修改配置文件中的数据库配置：** 打开项目中的`application.yml`文件，然后修改对应的数据库配置，比如数据库的密码；
 3. **运行：** 在`idea`中`open`项目文件夹， 运行即可，`localhost:8080/`
 
 ---
